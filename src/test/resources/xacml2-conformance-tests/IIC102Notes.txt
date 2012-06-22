@@ -1,0 +1,2 @@
+I don't understand this. Adding 5 days and 2 hours to testAttr doesn't give 2002-03--27T10:23:47-47-05.00.
+Oh wait a minute; maybe its that parser problem.

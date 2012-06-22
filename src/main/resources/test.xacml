@@ -1,0 +1,1 @@
+permit if ( "foo" == "bar" )

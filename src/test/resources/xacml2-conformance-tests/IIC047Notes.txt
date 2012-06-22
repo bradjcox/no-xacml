@@ -1,0 +1,1 @@
+I can't see what's wrong here. XDateTime.equals matches as it should. So why is NotApplicable expected?
