@@ -4,7 +4,7 @@ options
 {
 //  backtrack=true;
 //  memoize = true;
-	k = 6;
+	k = 5;
   output=AST;
 }
 tokens

@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<groupId>Xacml</groupId>
-	<artifactId>Xacml-Antlr</artifactId>
+	<artifactId>NoXacml</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
-	<name>Xacml-Antlr</name>
+	<name>NoXacml</name>
 	<modelVersion>4.0.0</modelVersion>
 
 	<!-- <parent> <groupId>Technica-PBAC</groupId> <artifactId>Xacml2.0</artifactId>
