@@ -139,7 +139,7 @@ isInOps
 	|  x500NameExpr '.' ISIN_TOK '(' x500NameBag ')'
 	|  rfc822NameExpr '.' ISIN_TOK '(' rfc822NameBag ')'
 	|  hexBinaryExpr '.' ISIN_TOK '(' hexBinaryBag ')'
-	|  base64BinaryExpr '.' ISIN_TOK '(' base64BinaryBag ')'
+	|  (base64BinaryExpr) => base64BinaryExpr '.' ISIN_TOK '(' base64BinaryBag ')'
 	;
 
 binOps
@@ -154,7 +154,7 @@ binOps
 	| '(' yearMonthDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) yearMonthDurationExpr ')'
 	| '(' x500NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) x500NameExpr ')'
 	| '(' rfc822NameExpr ( '=='	|  '>=' | '>' | '<' | '<=' ) rfc822NameExpr ')'
-	| '(' base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' ) base64BinaryExpr ')'
+	| (base64BinaryExpr) => '(' base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' ) base64BinaryExpr ')'
 	;
 
 regexOps
@@ -265,71 +265,71 @@ hexBinaryExpr
 	;
 
 stringBag
-	: STRING_TOK STRING_LIST
+	: STRING_TOK STRING_CONSTANT_LIST
 //	| ( INTERSECTION_TOK | UNION_TOK ) '(' stringBag ',' stringBag	')'
 	;
 anyUriBag
-	: ANYURI_TOK STRING_LIST
+	: ANYURI_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK '(' anyUriExpr ( ',' anyUriExpr)+ ')'
 	;
 base64BinaryBag
-	: (BASE64BINARY_TOK) => BASE64BINARY_TOK STRING_LIST
+	: ((BASE64BINARY_TOK) => BASE64BINARY_TOK STRING_CONSTANT_LIST)
 //	| BAG_TOK '(' base64BinaryExpr ( ',' base64BinaryExpr )+ ')'
 //	| INTERSECTION_TOK '(' base64BinaryBag ',' base64BinaryBag ')'
 //	| UNION_TOK '(' base64BinaryBag ',' base64BinaryBag ')'
 	;
 booleanBag
-	: (BOOLEAN_TOK) => BOOLEAN_TOK STRING_LIST
+	: (BOOLEAN_TOK) => BOOLEAN_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK '(' booleanExpr ( ',' booleanExpr)+ ')'
 //	| ( INTERSECTION_TOK | UNION_TOK ) '(' booleanBag',' booleanBag	')'
 	;
 dateBag
-	: ((DATE_TOK)=> DATE_TOK STRING_LIST)
+	: ((DATE_TOK)=> DATE_TOK STRING_CONSTANT_LIST)
 //	| (BAG_TOK)=> BAG_TOK '(' dateExpr ( ',' dateExpr)+ ')'
 //	| ( INTERSECTION_TOK | UNION_TOK ) '(' dateBag	',' dateBag	')'
 	;
 dateTimeBag
-	: ((DATETIME_TOK)=> DATETIME_TOK STRING_LIST)
+	: ((DATETIME_TOK)=> DATETIME_TOK STRING_CONSTANT_LIST)
 //	| BAG_TOK '(' dateTimeExpr ( ',' dateTimeExpr)+ ')'
 //	| ( INTERSECTION_TOK | UNION_TOK ) '(' dateTimeBag ',' dateTimeBag	')'
 	;
 dayTimeDurationBag
-	: ((DAYTIMEDURATION_TOK) => DAYTIMEDURATION_TOK STRING_LIST)
+	: ((DAYTIMEDURATION_TOK) => DAYTIMEDURATION_TOK STRING_CONSTANT_LIST)
 //	| BAG_TOK '(' dayTimeDurationExpr ( ',' dayTimeDurationExpr)+ ')'
 //	| ( INTERSECTION_TOK | UNION_TOK ) '(' dayTimeDurationBag ',' dayTimeDurationBag	')'
 	;
 integerBag
-	: (INTEGER_TOK) => INTEGER_TOK STRING_LIST
+	: (INTEGER_TOK) => INTEGER_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK '(' integerExpr ( ',' integerExpr)+ ')'
 //	| ( INTERSECTION_TOK | UNION_TOK ) '(' integerBag ',' integerBag	')'
 	;
 doubleBag
-	: (DOUBLE_TOK) => DOUBLE_TOK STRING_LIST
+	: (DOUBLE_TOK) => DOUBLE_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK '(' doubleExpr ( ',' doubleExpr)+ ')'
 //	| ( INTERSECTION_TOK | UNION_TOK ) '(' dayTimeDurationBag ',' dayTimeDurationBag	')'
 	;
 hexBinaryBag
-	: (HEXBINARY_TOK) => HEXBINARY_TOK STRING_LIST
+	: (HEXBINARY_TOK) => HEXBINARY_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK '(' hexBinaryExpr (',' hexBinaryExpr)+ ')'
 //	| ( INTERSECTION_TOK | UNION_TOK ) '(' hexBinaryBag ',' hexBinaryBag	')'
 	;
 rfc822NameBag
-	: (RFC822NAME_TOK) => RFC822NAME_TOK STRING_LIST
+	: (RFC822NAME_TOK) => RFC822NAME_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK '(' rfc822NameExpr ( ',' rfc822NameExpr)+ ')'
 //	| ( INTERSECTION_TOK | UNION_TOK ) '(' rfc822NameBag ',' rfc822NameBag	')'
 	;
 timeBag
-	: (TIME_TOK)=> TIME_TOK STRING_LIST
+	: (TIME_TOK)=> TIME_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK '(' timeExpr ( ',' timeExpr )+ ')'
 //	| ( INTERSECTION_TOK | UNION_TOK ) '(' timeBag ',' timeBag	')'
 	;
 x500NameBag
-	: (X500NAME_TOK) => X500NAME_TOK STRING_LIST
+	: (X500NAME_TOK) => X500NAME_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK '(' x500NameExpr ( ',' x500NameExpr )+ ')'
 //	| ( INTERSECTION_TOK | UNION_TOK ) '(' x500NameBag ',' x500NameBag	')'
 	;
 yearMonthDurationBag
-	: (YEARMONTHDURATION_TOK) => YEARMONTHDURATION_TOK STRING_LIST
+	: (YEARMONTHDURATION_TOK) => YEARMONTHDURATION_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK '(' yearMonthDurationExpr ( ',' yearMonthDurationExpr)+ ')'
 //	| ( INTERSECTION_TOK | UNION_TOK ) '(' yearMonthDurationBag	 ',' yearMonthDurationBag		')'
 	;
@@ -366,7 +366,7 @@ fragment IDENTIFIER
 	: ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
 	;
 
-fragment STRING_LIST
+fragment STRING_CONSTANT_LIST
 	: '(' STRING_CONSTANT ( ',' STRING_CONSTANT )* ')'
 	;
 
@@ -380,7 +380,7 @@ fragment INTEGER_CONSTANT
 
 fragment DOUBLE_CONSTANT
 	:	INTEGER_CONSTANT? '.' INTEGER_CONSTANT? EXPONENT
-//	|	 INTEGER_CONSTANT EXPONENT
+	|	 INTEGER_CONSTANT EXPONENT
 	;
 
 fragment EXPONENT
