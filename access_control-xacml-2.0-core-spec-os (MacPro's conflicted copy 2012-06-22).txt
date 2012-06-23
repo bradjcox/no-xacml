@@ -5904,7 +5904,6 @@ the first argument matches the second argument according to the following specif
 An RFC822 name consists of a local-part followed by "@" followed by a domain-part.  The 
 local-part is case-sensitive, while the domain-part (which is usually a DNS name) is not 
 case-sensitive. 
-
 The second argument contains a complete rfc822Name.  The first argument is a complete 
 or partial rfc822Name used to select appropriate values in the second argument as follows.
 In order to match a particular address in the second argument, the first argument must 
@@ -5912,7 +5911,6 @@ specify the complete mail address to be matched.  For example, if the first argu
 ÒAnderson@sun.comÓ, this matches a value in the second argument of 
 ÒAnderson@sun.comÓ and ÒAnderson@SUN.COMÓ, but not ÒAnne.Anderson@sun.comÓ, 
 Òanderson@sun.comÓ or ÒAnderson@east.sun.comÓ.
-
 In order to match any address at a particular domain in the second argument, the first 
 argument must specify only a domain name (usually a DNS name).  For example, if the first 
 argument is Òsun.comÓ, this matches a value in the first argument of ÒAnderson@sun.comÓ 
