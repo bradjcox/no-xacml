@@ -368,7 +368,7 @@ STRING_CONSTANT
 	:	'"' ( ESC_SEQ | ~('\\'|'"') )* '"'
 	;
 
-INTEGER_CONSTANT
+fragment INTEGER_CONSTANT
 	: SIGN? ('0'..'9')+
 	;
 

@@ -21,6 +21,13 @@ public class NoXacmlTest
 	final static StringBuilder buf = new StringBuilder();
 
 	@Test
+	public void IIA010()
+	{
+		Object p = runPolicy("IIA/IIA010.nox");
+		return;
+	}
+
+	@Test
 	public void IIA006()
 	{
 		runPolicy("IIA/IIA006.nox");
@@ -100,14 +107,8 @@ public class NoXacmlTest
 		{
 			log.error("Fault:{}", path, e);
 			log.error(parser.getErrorMessage(e, parser.getTokenNames()));
+			throw new Fault(e);
 		}
-		// catch (Throwable e)
-		// {
-		// Throwable cause = e.getCause();
-		// log.error("Fault:{}", path, e);
-		// // log.error(parser.getErrorMessage(e, parser.getTokenNames()));
-		// }
-		return null;
 	}
 
 	void printTree(final CommonTree t, final int indent)
