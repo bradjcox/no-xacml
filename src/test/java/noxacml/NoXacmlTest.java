@@ -1,10 +1,12 @@
 package noxacml;
+import static org.junit.Assert.assertTrue;
+
 import java.io.IOException;
-import java.util.List;
+
+import noxacml.util.Fault;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.ParserRuleReturnScope;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.CommonTreeNodeStream;
@@ -19,35 +21,58 @@ public class NoXacmlTest
 	final static StringBuilder buf = new StringBuilder();
 
 	@Test
+	public void IIA006()
+	{
+		runPolicy("IIA/IIA006.nox");
+		return;
+	}
+
+	@Test
+	public void IIA005()
+	{
+		runPolicy("IIA/IIA005.nox");
+		return;
+	}
+
+	@Test
 	public void IIA004()
 	{
-		runPolicy("src/test/resources/noxacml/IIA004.nox");
+		try
+		{
+			runPolicy("IIA/IIA004.nox");
+			log.info("Fail");
+		}
+		catch (Throwable e)
+		{
+			log.info("Exception expected: ", e);
+		}
 		return;
 	}
 
 	@Test
 	public void IIA003()
 	{
-		runPolicy("src/test/resources/noxacml/IIA003.nox");
+		runPolicy("IIA/IIA003.nox");
 		return;
 	}
 
 	@Test
 	public void IIA002()
 	{
-		runPolicy("src/test/resources/noxacml/IIA002.nox");
+		runPolicy("IIA/IIA002.nox");
 		return;
 	}
 
 	@Test
 	public void IIA001()
 	{
-		GrammarParser.policy_return p = runPolicy("src/test/resources/noxacml/IIA001.nox");
+		runPolicy("IIA/IIA001.nox");
 		return;
 	}
 
 	private GrammarParser.policy_return runPolicy(String path)
 	{
+		path = "src/test/resources/"+path;
 		log.info(path);
 		GrammarLexer lexer = null;
 		GrammarParser parser = null;
@@ -63,24 +88,25 @@ public class NoXacmlTest
 			TreeAdaptor ta = parser.getTreeAdaptor();
 			CommonTree t = (CommonTree) p.getTree();
 			CommonTreeNodeStream nodes = new CommonTreeNodeStream(t);
-			printTree(t, 0);
+			// printTree(t, 0);
 			return p;
 		}
 		catch (IOException e)
 		{
 			log.error("Fault:{}", path, e);
+			throw new Fault(e);
 		}
 		catch (RecognitionException e)
 		{
 			log.error("Fault:{}", path, e);
 			log.error(parser.getErrorMessage(e, parser.getTokenNames()));
 		}
-		catch (Throwable e)
-		{
-			log.error("Fault:{}", path, e);
-			Object t = tokens.getTokens().get(25);
-//			log.error(parser.getErrorMessage(e, parser.getTokenNames()));
-		}
+		// catch (Throwable e)
+		// {
+		// Throwable cause = e.getCause();
+		// log.error("Fault:{}", path, e);
+		// // log.error(parser.getErrorMessage(e, parser.getTokenNames()));
+		// }
 		return null;
 	}
 
@@ -110,4 +136,5 @@ public class NoXacmlTest
 		buf.append(" ");
 		log.info(s);
 	}
+
 }

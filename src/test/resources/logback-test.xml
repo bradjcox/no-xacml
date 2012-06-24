@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration debug="true">
+<configuration debug="false">
 
 	<appender class="ch.qos.logback.core.ConsoleAppender" name="console">
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -8,13 +8,7 @@
 	</appender>
 
 	<logger name="com.technica" level="DEBUG"/>
-	<logger name="org.opensaml" level="WARN"/>
-	<logger name="org.apache.catalina" level="DEBUG"/>
-	<logger name="resteasy" level="DEBUG"/>
-	<logger name="org.jboss.resteasy" level="DEBUG"/>
 	<logger name="osint" level="DEBUG"/>
-	<logger name="org.imageterrier" level="DEBUG"/>
-	<logger name="org.eclipse" level="WARN"/>
 	<logger name="noxacml" level="DEBUG"/>
 
 	<root level="WARN">
