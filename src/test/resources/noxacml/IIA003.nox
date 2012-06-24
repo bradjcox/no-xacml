@@ -1,0 +1,15 @@
+// Policy for Conformance Test IIA003.
+policy IIA003 denyOverrides
+{
+// A subject with a "bogus" attribute with a value of
+// "Physician" can read or write Bart Simpson's medical
+	target
+	{
+		permit if
+		(
+			subject.bogus == "Physician" &&
+			resource.id.uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
+			( action.id == "read" || action.id == "write" )
+		)
+	}
+}

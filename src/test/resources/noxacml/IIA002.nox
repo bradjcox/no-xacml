@@ -1,0 +1,15 @@
+// Policy for Conformance Test IIA002.
+policy IIA002 denyOverrides
+{
+//	A subject with a role attribute of "Physician" can read or
+//  write Bart Simpson's medical record.
+	target
+	{
+		permit if
+		(
+			subject.role == "Physician" &&
+			resource.id.uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
+			( action.id == "read" || action.id == "write" )
+		)
+	}
+}

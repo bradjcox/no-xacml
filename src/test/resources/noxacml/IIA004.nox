@@ -1,0 +1,18 @@
+// Policy for Conformance Test IIA004.
+// This policy contains INTENTIONAL syntax error in SubjectAttributeDesigntor,
+// AttributeIt attribute is omitted.
+policy IIA004 denyOverrides
+{
+// Julius Hibbert can read or write Bart Simpson's medical
+// record: syntax for the SubjectAttributeDesignator omits
+// the required AttributeId xml attribute, however.
+	target
+	{
+		permit if
+		(
+			subject == "Physician" &&
+			resource.id.uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
+			( action.id == "read" || action.id == "write" )
+		)
+	}
+}
