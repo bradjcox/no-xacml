@@ -1,2 +1,0 @@
-bcox: Policy refers to "bogus" attribute, but the request defines no such attribute.
-Expecting NotApplicable but Indeterminate is observed. 
