@@ -76,8 +76,6 @@ tokens
 	package noxacml;
 	import java.util.Map;
 	import java.util.HashMap;
-//	import org.slf4j.Logger;
-//	import org.slf4j.LoggerFactory;
 }
 @lexer::header
 {
@@ -85,15 +83,49 @@ tokens
 }
 @members
 {
-//	final static Logger log = LoggerFactory.getLogger(GrammarParser.class);
+	public String getErrorMessage(RecognitionException e, String[] tokenNames)
+	{
+		List stack = getRuleInvocationStack(e, this.getClass().getName());
+		String msg = null;
+		String inputContext = input.LT(-3) == null ? "" : ((Tree) input.LT(-3)).getText() + " " + input.LT(-2) == null
+				? ""
+				: ((Tree) input.LT(-2)).getText() + " " + input.LT(-1) == null ? "" : ((Tree) input.LT(-1)).getText() + " >>>" + ((Tree) input.LT(1)).getText() + "<<< "
+						+ ((Tree) input.LT(2)).getText() + " " + ((Tree) input.LT(3)).getText();
+		if (e instanceof NoViableAltException)
+		{
+			NoViableAltException nvae = (NoViableAltException) e;
+			msg = " no viable alt; token=" + e.token + " (decision=" + nvae.decisionNumber + " state " + nvae.stateNumber + ")" + " decision=<<" + nvae.grammarDecisionDescription + ">>";
+		}
+		else
+		{
+			msg = super.getErrorMessage(e, tokenNames);
+		}
+		return stack + " " + msg + " context=..." + inputContext + "...";
+	}
+
+	public String getTokenErrorDisplay(Token t)
+	{
+		return t.toString();
+	}
+}
+@rulecatch
+{
+	catch (Exception e)
+	{
+		throw new RuntimeException(e);
+	}
 }
 
+parseFile
+	: policy EOF
+	;
+
 policy
-	: POLICY_TOK^ ANYCASEIDENTIFIER LOWERCASEIDENTIFIER '{' target? rule '}' EOF
+	: POLICY_TOK^ ANYCASEIDENTIFIER LOWERCASEIDENTIFIER '{' target? rule? '}'
 	;
 
 target
-	:	TARGET_TOK^ '{' '}'
+	:	TARGET_TOK^ '{' (PERMIT_TOK | DENY_TOK) IF_TOK booleanExpr '}'
 	;
 
 rule

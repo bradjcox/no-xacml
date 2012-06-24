@@ -19,35 +19,69 @@ public class NoXacmlTest
 	final static StringBuilder buf = new StringBuilder();
 
 	@Test
-	public void noXacmlTest()
+	public void IIA004()
 	{
-		System.err.println("start");
-		String path = "src/test/resources/noxacml/IIA001.noxacml";
-		System.err.println(path);
-		try
-		{
-			GrammarParser.policy_return p = runPolicy(path);
-			Object t = p.getTree();
-			return;
-		}
-		catch (Exception e)
-		{
-			log.error("Fault: {}", path, e);
-		}
+		runPolicy("src/test/resources/noxacml/IIA004.nox");
+		return;
 	}
 
-	private GrammarParser.policy_return runPolicy(String path) throws Exception
+	@Test
+	public void IIA003()
 	{
-		GrammarLexer lexer = new GrammarLexer(new ANTLRFileStream(path));
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		GrammarParser parser = new GrammarParser(tokens);
-		GrammarParser.policy_return p = parser.policy();
+		runPolicy("src/test/resources/noxacml/IIA003.nox");
+		return;
+	}
 
-		TreeAdaptor ta = parser.getTreeAdaptor();
-		CommonTree t = (CommonTree) p.getTree();
-		CommonTreeNodeStream nodes = new CommonTreeNodeStream(t);
-		printTree(t, 0);
-		return p;
+	@Test
+	public void IIA002()
+	{
+		runPolicy("src/test/resources/noxacml/IIA002.nox");
+		return;
+	}
+
+	@Test
+	public void IIA001()
+	{
+		GrammarParser.policy_return p = runPolicy("src/test/resources/noxacml/IIA001.nox");
+		return;
+	}
+
+	private GrammarParser.policy_return runPolicy(String path)
+	{
+		log.info(path);
+		GrammarLexer lexer = null;
+		GrammarParser parser = null;
+		GrammarParser.policy_return p = null;
+		CommonTokenStream tokens = null;
+		try
+		{
+			lexer = new GrammarLexer(new ANTLRFileStream(path));
+			tokens = new CommonTokenStream(lexer);
+			parser = new GrammarParser(tokens);
+			p = parser.policy();
+
+			TreeAdaptor ta = parser.getTreeAdaptor();
+			CommonTree t = (CommonTree) p.getTree();
+			CommonTreeNodeStream nodes = new CommonTreeNodeStream(t);
+			printTree(t, 0);
+			return p;
+		}
+		catch (IOException e)
+		{
+			log.error("Fault:{}", path, e);
+		}
+		catch (RecognitionException e)
+		{
+			log.error("Fault:{}", path, e);
+			log.error(parser.getErrorMessage(e, parser.getTokenNames()));
+		}
+		catch (Throwable e)
+		{
+			log.error("Fault:{}", path, e);
+			Object t = tokens.getTokens().get(25);
+//			log.error(parser.getErrorMessage(e, parser.getTokenNames()));
+		}
+		return null;
 	}
 
 	void printTree(final CommonTree t, final int indent)
@@ -69,58 +103,11 @@ public class NoXacmlTest
 		}
 		return;
 	}
+
 	void println(String s)
 	{
 		buf.append(s);
 		buf.append(" ");
-		System.err.println(s);
-	}
-
-	abstract static class Node
-	{
-
-	}
-
-	final static class PolicyNode extends Node
-	{
-		// final IdentifierNode name;
-		// final IdentifierNode combiningAlg;
-		// final List<TargetNode> targets;
-		// final List<RuleNode> rules;
-		//
-		// public PolicyNode()
-		// {
-		//
-		// }
-		//
-		// public void walk()
-		// {
-		// name.walk();
-		// combiningAlg.walk();
-		// targets.walk();
-		// rules.walk();
-		// }
-	}
-
-	class IdentifierNode extends Node
-	{
-		int value;
-
-		public void walk()
-		{}
-	}
-	class TargetNode extends Node
-	{
-		int value;
-
-		public void walk()
-		{}
-	}
-	class RuleNode extends Node
-	{
-		int value;
-
-		public void walk()
-		{}
+		log.info(s);
 	}
 }
