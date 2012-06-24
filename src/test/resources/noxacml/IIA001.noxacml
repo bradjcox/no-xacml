@@ -1,0 +1,12 @@
+// "Policy for Conformance Test IIA001."
+policy IIA001 denyOverrides
+{
+//	"Julius Hibbert can read or write Bart Simpson's medical record."
+	target {}
+	rule IIA1
+	{
+		permit if (subject.id == "Julius Hibbert" &&
+			resource.id.uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
+			( action.id == "read" || action.id == "write" ))
+	}
+}

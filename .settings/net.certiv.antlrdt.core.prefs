@@ -1,3 +1,5 @@
 builderAllowFullBuilds=true
 builderFormat=true
+builderLoc=builderLocRelative
+builderOrganize=true
 eclipse.preferences.version=1

@@ -1,4 +1,4 @@
-grammar Xacml;
+grammar Grammar;
 
 options
 {
@@ -49,115 +49,110 @@ tokens
 	NOT_TOK='not';
 	ONEANDONLY_TOK='oneAndOnly';
 	PERMIT_TOK='permit';
+	POLICY_TOK='policy';
+	POLICYSET_TOK='policyset';
 	RANGEOP_TOK='rangeOp';
 	REGEXMATCH_TOK='regexpMatch';
 	RESOURCE_TOK='resource';
 	RFC822NAME_TOK= 'rfc822Name';
 	RND_TOK='rnd';
+	RULE_TOK='rule';
 	SETEQUALS_TOK='setEquals';
 	SIZE_TOK='size';
 	STRING_TOK= 'string';
 	SUBJECT_TOK='subject';
 	SUBSET_TOK='subset';
+	TARGET_TOK='target';
 	TIME_TOK= 'time';
 	TRUE_TOK='true';
 	UNION_TOK='union';
+	URI_TOK='uri';
 	X500NAME_TOK= 'x500Name';
 	YEARMONTHDURATION_TOK= 'yearMonthDuration';
 }
 
 @header
 {
-	package my;
+	package noxacml;
+	import java.util.Map;
 	import java.util.HashMap;
-	import org.slf4j.Logger;
-	import org.slf4j.LoggerFactory;
+//	import org.slf4j.Logger;
+//	import org.slf4j.LoggerFactory;
 }
 @lexer::header
 {
-	package my;
+	package noxacml;
 }
 @members
 {
-	private int _type;
-	HashMap<String, Object> objectMap = new HashMap<String, Object>();
-    final static Logger log = LoggerFactory.getLogger(XacmlParser.class);
-	public static void main(String[] args) throws Exception
-	{
-		args = new String[] { "src/main/resources/test.xacml" };
-		XacmlLexer lexer = new XacmlLexer(new ANTLRFileStream(args[0]));
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		XacmlParser parser = new XacmlParser(tokens);
-		try
-		{
-//			XacmlParser.rule_return xacmlExpr =
-			Object o = parser.xacmlExpr();
-			return;
-		}
-		catch (RecognitionException e)
-		{
-			e.printStackTrace();
-		}
-	}
+//	final static Logger log = LoggerFactory.getLogger(GrammarParser.class);
 }
 
-xacmlExpr
-	:	(PERMIT_TOK | DENY_TOK) IF_TOK booleanExpr EOF { log.debug("xacmlExpr: {}", $booleanExpr.text); }
+policy
+	: POLICY_TOK^ ANYCASEIDENTIFIER LOWERCASEIDENTIFIER '{' target? rule '}' EOF
+	;
+
+target
+	:	TARGET_TOK^ '{' '}'
+	;
+
+rule
+	: RULE_TOK^ ANYCASEIDENTIFIER '{' (PERMIT_TOK | DENY_TOK) IF_TOK booleanExpr '}'
 	;
 
 booleanExpr
-	: (factoredBoolExpr)=>  (factoredBoolExpr) ( booleanExpr 	ISIN_TOK '(' booleanBag ')' )?
+	: TRUE_TOK^
+	| FALSE_TOK^
+	| BOOLEAN_TOK^ '(' attributeExpr ')'
+	| ( NOF_TOK^ | NOT_TOK^) '(' booleanExpr ')'
+	| '(' conditionalOrExpr ')'
+	| equalityExpr
+	| isInOp
+	| stringExpr '.' ( NODEEQUAL_TOK^ | NODEMATCH_TOK^ ) '(' stringExpr ')'
+//	| bagOp
+//	| regexOp
 	;
 
-factoredBoolExpr
-	: TRUE_TOK
-	| FALSE_TOK
-	| BOOLEAN_TOK '(' ATTRIBUTE ')'
-	| ( NOF_TOK | NOT_TOK) '(' booleanExpr ')'
-//	| stringExpr '.' (NODEEQUAL_TOK | NODEMATCH_TOK) '(' stringExpr ')'
-	| binOps
-	| isInOps
-	| bagOps
-	| stringOps
-	| regexOps
+conditionalOrExpr
+    : (conditionalAndExpr) => conditionalAndExpr ('||' conditionalAndExpr )*
+    ;
+
+conditionalAndExpr
+    : (booleanExpr ) => booleanExpr ('&&' booleanExpr)*
+    ;
+
+isInOp
+	:  doubleExpr '.' ISIN_TOK^ '(' doubleBag ')'
+	|  stringExpr '.' ISIN_TOK^ '(' stringBag ')'
+	|  anyUriExpr '.' ISIN_TOK^ '(' anyUriBag ')'
+	|  dateExpr '.' ISIN_TOK^ '(' dateBag ')'
+	|  timeExpr '.' ISIN_TOK^ '(' timeBag ')'
+	|  dateTimeExpr '.' ISIN_TOK^ '(' dateTimeBag ')'
+	|  base64BinaryExpr '.' ISIN_TOK^ '(' base64BinaryBag ')'
+	|  dayTimeDurationExpr '.' ISIN_TOK^ '(' dayTimeDurationBag ')'
+	|  yearMonthDurationExpr '.' ISIN_TOK^ '(' yearMonthDurationBag ')'
+	|  x500NameExpr '.' ISIN_TOK^ '(' x500NameBag ')'
+	|  rfc822NameExpr '.' ISIN_TOK^ '(' rfc822NameBag ')'
+	|  hexBinaryExpr '.' ISIN_TOK^ '(' hexBinaryBag ')'
+	|  (base64BinaryExpr) => base64BinaryExpr '.' ISIN_TOK^ '(' base64BinaryBag ')'
 	;
 
-stringOps
-	: stringExpr '.'	( NODEEQUAL_TOK | NODEMATCH_TOK ) '(' stringExpr ')'
-	;
+equalityExpr
+	: integerExpr ( '==' | '>=' | '>' | '<' | '<=' ) integerExpr
+	| doubleExpr ( '==' | '>=' | '>' | '<' | '<=' ) doubleExpr
+	| stringExpr ( '==' | '>=' | '>' | '<' | '<=' ) stringExpr
+	| anyUriExpr ( '==' | '>=' | '>' | '<' | '<=' ) anyUriExpr
+	| dateExpr ( '==' | '>=' | '>' | '<' | '<=' ) dateExpr
+	| timeExpr ( '==' | '>=' | '>' | '<' | '<=' ) timeExpr
+	| dateTimeExpr ( '==' | '>=' | '>' | '<' | '<=' ) dateTimeExpr
+	| yearMonthDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) yearMonthDurationExpr
+	| x500NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) x500NameExpr
+	| rfc822NameExpr ( '=='	|  '>=' | '>' | '<' | '<=' ) rfc822NameExpr
+	| (dayTimeDurationExpr) => dayTimeDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) dayTimeDurationExpr
+	| (base64BinaryExpr) => base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' ) base64BinaryExpr
+  ;
 
-isInOps
-	:  doubleExpr '.' ISIN_TOK '(' doubleBag ')'
-	|  stringExpr '.' ISIN_TOK '(' stringBag ')'
-	|  anyUriExpr '.' ISIN_TOK '(' anyUriBag ')'
-	|  dateExpr '.' ISIN_TOK '(' dateBag ')'
-	|  timeExpr '.' ISIN_TOK '(' timeBag ')'
-	|  dateTimeExpr '.' ISIN_TOK '(' dateTimeBag ')'
-	|  base64BinaryExpr '.' ISIN_TOK '(' base64BinaryBag ')'
-	|  dayTimeDurationExpr '.' ISIN_TOK '(' dayTimeDurationBag ')'
-	|  yearMonthDurationExpr '.' ISIN_TOK '(' yearMonthDurationBag ')'
-	|  x500NameExpr '.' ISIN_TOK '(' x500NameBag ')'
-	|  rfc822NameExpr '.' ISIN_TOK '(' rfc822NameBag ')'
-	|  hexBinaryExpr '.' ISIN_TOK '(' hexBinaryBag ')'
-	|  (base64BinaryExpr) => base64BinaryExpr '.' ISIN_TOK '(' base64BinaryBag ')'
-	;
-
-binOps
-	: '(' integerExpr ( '==' | '>=' | '>' | '<' | '<=' ) integerExpr ')'
-	| '(' doubleExpr ( '==' | '>=' | '>' | '<' | '<=' ) doubleExpr ')'
-	| '(' stringExpr ( '==' | '>=' | '>' | '<' | '<=' ) stringExpr ')'
-	| '(' anyUriExpr ( '==' | '>=' | '>' | '<' | '<=' ) anyUriExpr ')'
-	| '(' dateExpr ( '==' | '>=' | '>' | '<' | '<=' ) dateExpr ')'
-	| '(' timeExpr ( '==' | '>=' | '>' | '<' | '<=' ) timeExpr ')'
-	| '(' dateTimeExpr ( '==' | '>=' | '>' | '<' | '<=' ) dateTimeExpr ')'
-	| '(' dayTimeDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) dayTimeDurationExpr ')'
-	| '(' yearMonthDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) yearMonthDurationExpr ')'
-	| '(' x500NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) x500NameExpr ')'
-	| '(' rfc822NameExpr ( '=='	|  '>=' | '>' | '<' | '<=' ) rfc822NameExpr ')'
-	| (base64BinaryExpr) => '(' base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' ) base64BinaryExpr ')'
-	;
-
-regexOps
+regexOp
 	: integerExpr  '.' REGEXMATCH_TOK '(' integerExpr ')'
 	| doubleExpr '.' REGEXMATCH_TOK '(' doubleExpr ')'
 	| stringExpr '.' REGEXMATCH_TOK '(' stringExpr ')'
@@ -172,31 +167,31 @@ regexOps
 	| (base64BinaryExpr) => base64BinaryExpr '.' REGEXMATCH_TOK '(' base64BinaryExpr ')'
 	;
 
-
-bagOps
-	: booleanBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) '(' booleanBag ')'
-	| integerBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  integerBag ')'
-	| doubleBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  doubleBag ')'
-	| stringBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  stringBag ')'
-	| dateBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  dateBag ')'
-	| timeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  timeBag ')'
-	| dateTimeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  dateTimeBag ')'
-	| base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  base64BinaryBag ')'
-	| dayTimeDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  dayTimeDurationBag ')'
-	| yearMonthDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  yearMonthDurationBag ')'
-	| anyUriBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  anyUriBag ')'
-	| x500NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  x500NameBag ')'
-	| rfc822NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  rfc822NameBag ')'
-	| hexBinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  hexBinaryBag ')'
+bagOp
+	: (booleanBag) => booleanBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) '(' booleanBag ')'
+	| (integerBag) => integerBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  integerBag ')'
+	| (doubleBag) => doubleBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  doubleBag ')'
+	| (stringBag ) => stringBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  stringBag ')'
+	| (dateBag ) => dateBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  dateBag ')'
+	| (timeBag ) => timeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  timeBag ')'
+	| (dateTimeBag ) => dateTimeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  dateTimeBag ')'
+	| (base64BinaryBag ) => base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  base64BinaryBag ')'
+	| (dayTimeDurationBag ) => dayTimeDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  dayTimeDurationBag ')'
+	| (yearMonthDurationBag ) => yearMonthDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  yearMonthDurationBag ')'
+	| (anyUriBag ) => anyUriBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  anyUriBag ')'
+	| (x500NameBag ) => x500NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  x500NameBag ')'
+	| (rfc822NameBag ) => rfc822NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  rfc822NameBag ')'
+	| (hexBinaryBag ) => hexBinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  hexBinaryBag ')'
 	| (base64BinaryBag) => base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) '('  base64BinaryBag ')'
 	;
 
 integerExpr
 	: INTEGER_CONSTANT
-// 	| '(' integerExpr ( '+' | '-' | '*' | '/' | '%' ) integerExpr ')'
 	| ( INTEGER_TOK | NODECOUNT_TOK ) '(' stringExpr ')'
 	| ABS_TOK '(' integerExpr ')'
-	| SIZE_TOK '(' anyBag ')'
+	| anyBag '.' SIZE_TOK '(' ')'
+//	| integerExpr '.' ABS_TOK '(' ')'
+// 	| '(' integerExpr ( '+' | '-' | '*' | '/' | '%' ) integerExpr ')'
 	;
 
 doubleExpr
@@ -208,16 +203,21 @@ doubleExpr
 
 stringExpr
 	: (STRING_CONSTANT) => STRING_CONSTANT
-	| ATTRIBUTE
+	| attributeExpr
 //	| ((stringExpr) => stringExpr '.' ( NORMALIZESPACE_TOK | NORMALIZETOLOWERCASE_TOK) '(' ')')
 	| stringBag '.' ONEANDONLY_TOK '(' ')'
 //	| CONCATENATE_TOK '(' stringExpr ',' stringExpr ')'
 	;
 
+attributeExpr
+	: ( SUBJECT_TOK	| RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK) ('.' LOWERCASEIDENTIFIER )+
+	;
+
 anyUriExpr
 	: ANYURI_TOK '(' stringExpr ')'
 //	| ((anyUriExpr) => anyUriExpr '.' ( NORMALIZESPACE_TOK | NORMALIZETOLOWERCASE_TOK) '(' ')')
-	| anyUriBag '.' ONEANDONLY_TOK '(' ')' 
+	| anyUriBag '.' ONEANDONLY_TOK '(' ')'
+	| (stringExpr) => stringExpr '.' URI_TOK '(' ')'
 //	| CONCATENATE_TOK '(' anyUriExpr ',' anyUriExpr ')'
 	;
 
@@ -232,8 +232,8 @@ timeExpr
 	;
 
 dateTimeExpr
-	: DATETIME_TOK '(' stringExpr ')'
-	| dateTimeBag '.' ONEANDONLY_TOK '(' ')'
+	: (DATETIME_TOK) => DATETIME_TOK '(' stringExpr ')'
+	| (dateTimeBag) => dateTimeBag '.' ONEANDONLY_TOK '(' ')'
 	;
 
 base64BinaryExpr
@@ -266,11 +266,11 @@ hexBinaryExpr
 
 stringBag
 	: STRING_TOK STRING_CONSTANT_LIST
-//	| ( INTERSECTION_TOK | UNION_TOK ) '(' stringBag ',' stringBag	')'
+//	| (stringBag) => ( INTERSECTION_TOK | UNION_TOK ) '(' stringBag ',' stringBag	')'
 	;
 anyUriBag
 	: ANYURI_TOK STRING_CONSTANT_LIST
-//	| BAG_TOK '(' anyUriExpr ( ',' anyUriExpr)+ ')'
+//	| (anyUriBag) => ( INTERSECTION_TOK | UNION_TOK ) '(' anyUriBag ',' anyUriBag	')'
 	;
 base64BinaryBag
 	: ((BASE64BINARY_TOK) => BASE64BINARY_TOK STRING_CONSTANT_LIST)
@@ -301,7 +301,7 @@ dayTimeDurationBag
 integerBag
 	: (INTEGER_TOK) => INTEGER_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK '(' integerExpr ( ',' integerExpr)+ ')'
-//	| ( INTERSECTION_TOK | UNION_TOK ) '(' integerBag ',' integerBag	')'
+	| (integerBag) => ( INTERSECTION_TOK | UNION_TOK ) '(' integerBag ',' integerBag	')'
 	;
 doubleBag
 	: (DOUBLE_TOK) => DOUBLE_TOK STRING_CONSTANT_LIST
@@ -349,28 +349,28 @@ anyBag
 	;
 
 COMMENT
-	: '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
-	| '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
+	: '//' ~('\n'|'\r')* '\r'? '\n' { $channel=HIDDEN; }
+	| '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN; }
 	;
 
 WHITESPACE
-	: ( ' ' | '\t' | '\r' 		| '\n' )+ {$channel=HIDDEN;}
+	: (' '|'\t'|'\r'|'\n')+ {$channel=HIDDEN;}
 	| COMMENT
 	;
 
-fragment ATTRIBUTE
-	: ( SUBJECT_TOK	| RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK) ('.' IDENTIFIER )+
+LOWERCASEIDENTIFIER
+	: ('a'..'z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
 	;
 
-fragment IDENTIFIER
-	: ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+ANYCASEIDENTIFIER
+	: ('a'..'z'|'A'..'Z'|'0'..'9'|'_')+
 	;
 
-fragment STRING_CONSTANT_LIST
+STRING_CONSTANT_LIST
 	: '(' STRING_CONSTANT ( ',' STRING_CONSTANT )* ')'
 	;
 
-fragment STRING_CONSTANT
+STRING_CONSTANT
 	:	'"' ( ESC_SEQ | ~('\\'|'"') )* '"'
 	;
 
