@@ -23,6 +23,7 @@ tokens
 	BASE64BINARY_TOK= 'base64Binary';
 	BOOLEAN_TOK= 'boolean';
 	CONCATENATE_TOK='concatenate';
+	CONTAINS_TOK='contains';
 	DATE_TOK= 'date';
 	DATETIME_TOK= 'dateTime';
 	DAYTIMEDURATION_TOK= 'dayTimeDuration';
@@ -105,7 +106,7 @@ booleanExpr
 	| ( NOF_TOK^ | NOT_TOK^) '(' booleanExpr ')'
 	| '(' conditionalOrExpr ')'
 	| equalityExpr
-	| isInOp
+	| isInOp | containsOp
 	| stringExpr '.' ( NODEEQUAL_TOK^ | NODEMATCH_TOK^ ) '(' stringExpr ')'
 //	| bagOp
 //	| regexOp
@@ -138,6 +139,22 @@ isInOp
 	|  rfc822NameExpr '.' ISIN_TOK^ '(' rfc822NameBag ')'
 	|  hexBinaryExpr '.' ISIN_TOK^ '(' hexBinaryBag ')'
 	|  (base64BinaryExpr) => base64BinaryExpr '.' ISIN_TOK^ '(' base64BinaryBag ')'
+	;
+
+containsOp
+	:  doubleBag'.' CONTAINS_TOK^ '(' doubleExpr ')'
+	|  stringBag'.' CONTAINS_TOK^ '(' stringExpr ')'
+	|  anyUriBag '.' CONTAINS_TOK^ '(' anyUriExpr ')'
+	|  dateBag '.' CONTAINS_TOK^ '(' dateExpr ')'
+	|  timeBag '.' CONTAINS_TOK^ '(' timeExpr ')'
+	|  dateTimeBag '.' CONTAINS_TOK^ '(' dateTimeExpr ')'
+	|  base64BinaryBag '.' CONTAINS_TOK^ '(' base64BinaryExpr ')'
+	|  dayTimeDurationBag '.' CONTAINS_TOK^ '(' dayTimeDurationExpr ')'
+	|  yearMonthDurationBag '.' CONTAINS_TOK^ '(' yearMonthDurationExpr ')'
+	|  x500NameBag '.' CONTAINS_TOK^ '(' x500NameExpr ')'
+	|  rfc822NameBag '.' CONTAINS_TOK^ '(' rfc822NameExpr ')'
+	|  hexBinaryBag '.' CONTAINS_TOK^ '(' hexBinaryExpr ')'
+	|  (base64BinaryExpr) => base64BinaryBag '.' CONTAINS_TOK^ '(' base64BinaryExpr ')'
 	;
 
 equalityExpr

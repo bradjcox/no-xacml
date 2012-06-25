@@ -1,4 +1,4 @@
-// Policy for Conformance Test IIA010.
+// Policy for Conformance Test IIA006.
 policy IIA010 denyOverrides
 {
 	// Anyone who is 45 integer years old may perform any action on any resource.
@@ -6,7 +6,8 @@ policy IIA010 denyOverrides
 	{
 		permit if
 		(
-			subject.age.oneAndOnly().integer() >= 45
+			subject.age.oneAndOnly().integer() >= 45 &&
+subject.role.contains("Physician")
 		)
 	}
 }

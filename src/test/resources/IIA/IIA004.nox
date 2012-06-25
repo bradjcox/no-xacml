@@ -11,6 +11,8 @@ policy IIA004 denyOverrides
 		permit if
 		(
 			subject.role.oneAndOnly() == "Physician" &&
+			"Physician".isIn(subject.role) &&
+			subject.role.contains("Physician") &&
 			resource.id.oneAndOnly().uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
 			( action.id.oneAndOnly() == "read" || action.id.oneAndOnly() == "write" )
 		)

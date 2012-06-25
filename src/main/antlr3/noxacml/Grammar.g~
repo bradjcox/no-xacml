@@ -23,6 +23,7 @@ tokens
 	BASE64BINARY_TOK= 'base64Binary';
 	BOOLEAN_TOK= 'boolean';
 	CONCATENATE_TOK='concatenate';
+	CONTAINS_TOK='contains';
 	DATE_TOK= 'date';
 	DATETIME_TOK= 'dateTime';
 	DAYTIMEDURATION_TOK= 'dayTimeDuration';
@@ -138,6 +139,22 @@ isInOp
 	|  rfc822NameExpr '.' ISIN_TOK^ '(' rfc822NameBag ')'
 	|  hexBinaryExpr '.' ISIN_TOK^ '(' hexBinaryBag ')'
 	|  (base64BinaryExpr) => base64BinaryExpr '.' ISIN_TOK^ '(' base64BinaryBag ')'
+	;
+
+containsOp
+	:  doubleBag'.' ISIN_TOK^ '(' doubleExpr ')'
+	|  stringBag'.' ISIN_TOK^ '(' stringExpr ')'
+	|  anyUriBag '.' ISIN_TOK^ '(' anyUriExpr ')'
+	|  dateBag '.' ISIN_TOK^ '(' dateExpr ')'
+	|  timeBag '.' ISIN_TOK^ '(' timeExpr ')'
+	|  dateTimeBag '.' ISIN_TOK^ '(' dateTimeExpr ')'
+	|  base64BinaryBag '.' ISIN_TOK^ '(' base64BinaryExpr ')'
+	|  dayTimeDurationBag '.' ISIN_TOK^ '(' dayTimeDurationExpr ')'
+	|  yearMonthDurationBag '.' ISIN_TOK^ '(' yearMonthDurationExpr ')'
+	|  x500NameBag '.' ISIN_TOK^ '(' x500NameExpr ')'
+	|  rfc822NameBag '.' ISIN_TOK^ '(' rfc822NameExpr ')'
+	|  hexBinaryBag '.' ISIN_TOK^ '(' hexBinaryBag ')'
+	|  (base64BinaryExpr) => base64BinaryBag '.' ISIN_TOK^ '(' base64BinaryBag ')'
 	;
 
 equalityExpr
@@ -352,18 +369,6 @@ WHITESPACE
 	| COMMENT
 	;
 
-LOWERCASEIDENTIFIER
-	: ('a'..'z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
-	;
-
-ANYCASEIDENTIFIER
-	: ('a'..'z'|'A'..'Z'|'0'..'9'|'_')+
-	;
-
-STRING_CONSTANT_LIST
-	: '(' STRING_CONSTANT ( ',' STRING_CONSTANT )* ')'
-	;
-
 STRING_CONSTANT
 	:	'"' ( ESC_SEQ | ~('\\'|'"') )* '"'
 	;
@@ -376,6 +381,17 @@ INTEGER_CONSTANT
 DOUBLE_CONSTANT
 	: INTEGER_CONSTANT? ('.' ('0'..'9')*)? EXPONENT
 //	| INTEGER_CONSTANT EXPONENT
+	;
+LOWERCASEIDENTIFIER
+	: ('a'..'z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+	;
+
+ANYCASEIDENTIFIER
+	: ('a'..'z'|'A'..'Z'|'0'..'9'|'_')+
+	;
+
+STRING_CONSTANT_LIST
+	: '(' STRING_CONSTANT ( ',' STRING_CONSTANT )* ')'
 	;
 
 fragment EXPONENT
