@@ -352,6 +352,19 @@ WHITESPACE
 	| COMMENT
 	;
 
+STRING_CONSTANT
+	:	'"' ( ESC_SEQ | ~('\\'|'"') )* '"'
+	;
+
+INTEGER_CONSTANT
+	: ('0'..'9')+
+//	: ('+'|'-')? ('0'..'9')+
+	;
+
+DOUBLE_CONSTANT
+	: INTEGER_CONSTANT? ('.' ('0'..'9')*)? EXPONENT
+//	| INTEGER_CONSTANT EXPONENT
+	;
 LOWERCASEIDENTIFIER
 	: ('a'..'z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
 	;
@@ -362,19 +375,6 @@ ANYCASEIDENTIFIER
 
 STRING_CONSTANT_LIST
 	: '(' STRING_CONSTANT ( ',' STRING_CONSTANT )* ')'
-	;
-
-STRING_CONSTANT
-	:	'"' ( ESC_SEQ | ~('\\'|'"') )* '"'
-	;
-
-INTEGER_CONSTANT
-	: SIGN? ('0'..'9')+
-	;
-
-fragment DOUBLE_CONSTANT
-	: INTEGER_CONSTANT? ('.' ('0'..'9')*)? EXPONENT
-//	| INTEGER_CONSTANT EXPONENT
 	;
 
 fragment EXPONENT

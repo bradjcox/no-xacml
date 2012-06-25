@@ -8,9 +8,9 @@ policy IIA005 denyOverrides
 	{
 		permit if
 		(
-			subject.id == "Julius Hibbert" &&
-			resource.id.uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
-			( action.id == "read" || action.id == "write" )
+			subject.id.oneAndOnly() == "Julius Hibbert" &&
+			resource.id.oneAndOnly().uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
+			( action.id.oneAndOnly() == "read" || action.id.oneAndOnly() == "write" )
 		)
 	}
 }

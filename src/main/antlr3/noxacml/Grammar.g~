@@ -368,11 +368,12 @@ STRING_CONSTANT
 	:	'"' ( ESC_SEQ | ~('\\'|'"') )* '"'
 	;
 
-fragment INTEGER_CONSTANT
-	: SIGN? ('0'..'9')+
+INTEGER_CONSTANT
+	: ('0'..'9')+
+//	: ('+'|'-')? ('0'..'9')+
 	;
 
-fragment DOUBLE_CONSTANT
+DOUBLE_CONSTANT
 	: INTEGER_CONSTANT? ('.' ('0'..'9')*)? EXPONENT
 //	| INTEGER_CONSTANT EXPONENT
 	;

@@ -6,10 +6,10 @@ policy IIA006 denyOverrides
 	{
 		permit if
 		(
-			subject.id == "Julius Hibbert" &&
-			subject.someAttribute == "riddle me this" &&
-			resource.id.uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
-			( action.id == "read" || action.id == "write" )
+			subject.id.oneAndOnly() == "Julius Hibbert" &&
+			subject.someAttribute.oneAndOnly() == "riddle me this" &&
+			resource.id.oneAndOnly().uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
+			( action.id.oneAndOnly() == "read" || action.id.oneAndOnly() == "write" )
 		)
 	}
 }

@@ -7,9 +7,9 @@ policy IIA002 denyOverrides
 	{
 		permit if
 		(
-			subject.role == "Physician" &&
-			resource.id.uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
-			( action.id == "read" || action.id == "write" )
+			subject.role.oneAndOnly() == "Physician" &&
+			resource.id.oneAndOnly().uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
+			( action.id.oneAndOnly() == "read" || action.id.oneAndOnly() == "write" )
 		)
 	}
 }

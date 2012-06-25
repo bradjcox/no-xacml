@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g 2012-06-24 19:42:48
+// $ANTLR 3.4 /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g 2012-06-24 21:07:41
 
 	package noxacml;
 	import java.util.Map;
@@ -122,26 +122,26 @@ public class GrammarParser extends DebugParser {
 
 
 public static final String[] ruleNames = new String[] {
-    "invalidRule", "synpred14_Grammar", "doubleBag", "synpred32_Grammar", 
-    "synpred27_Grammar", "synpred9_Grammar", "synpred17_Grammar", "anyUriExpr", 
-    "x500NameExpr", "anyUriBag", "synpred34_Grammar", "synpred29_Grammar", 
-    "dayTimeDurationExpr", "synpred26_Grammar", "yearMonthDurationBag", 
-    "integerBag", "synpred21_Grammar", "synpred16_Grammar", "dateExpr", 
-    "stringExpr", "target", "rfc822NameExpr", "booleanBag", "synpred2_Grammar", 
-    "synpred8_Grammar", "synpred33_Grammar", "yearMonthDurationExpr", "synpred18_Grammar", 
-    "anyBag", "rule", "synpred30_Grammar", "hexBinaryExpr", "timeBag", "synpred42_Grammar", 
-    "synpred36_Grammar", "synpred25_Grammar", "base64BinaryExpr", "hexBinaryBag", 
-    "synpred38_Grammar", "synpred7_Grammar", "synpred20_Grammar", "synpred31_Grammar", 
-    "conditionalAndExpr", "isInOp", "synpred6_Grammar", "booleanExpr", "policy", 
-    "dateTimeBag", "synpred1_Grammar", "dateTimeExpr", "synpred11_Grammar", 
-    "x500NameBag", "timeExpr", "synpred37_Grammar", "synpred15_Grammar", 
-    "synpred28_Grammar", "synpred40_Grammar", "synpred35_Grammar", "doubleExpr", 
-    "synpred10_Grammar", "dayTimeDurationBag", "synpred41_Grammar", "equalityExpr", 
-    "attributeExpr", "stringBag", "synpred39_Grammar", "rfc822NameBag", 
-    "conditionalOrExpr", "regexOp", "synpred12_Grammar", "synpred4_Grammar", 
-    "synpred22_Grammar", "synpred3_Grammar", "integerExpr", "synpred19_Grammar", 
-    "synpred5_Grammar", "dateBag", "base64BinaryBag", "synpred23_Grammar", 
-    "synpred13_Grammar", "synpred24_Grammar", "bagOp", "parseFile"
+    "invalidRule", "synpred8_Grammar", "x500NameBag", "synpred41_Grammar", 
+    "synpred37_Grammar", "synpred2_Grammar", "rfc822NameExpr", "synpred4_Grammar", 
+    "stringBag", "synpred25_Grammar", "hexBinaryBag", "integerBag", "rule", 
+    "synpred26_Grammar", "synpred22_Grammar", "synpred15_Grammar", "regexOp", 
+    "synpred6_Grammar", "hexBinaryExpr", "dateTimeExpr", "synpred27_Grammar", 
+    "timeBag", "synpred12_Grammar", "base64BinaryExpr", "attributeExpr", 
+    "synpred39_Grammar", "synpred23_Grammar", "dayTimeDurationBag", "synpred40_Grammar", 
+    "bagOp", "dateTimeBag", "synpred20_Grammar", "conditionalAndExpr", "synpred7_Grammar", 
+    "synpred17_Grammar", "isInOp", "equalityExpr", "yearMonthDurationBag", 
+    "synpred24_Grammar", "synpred18_Grammar", "synpred19_Grammar", "policy", 
+    "synpred36_Grammar", "synpred3_Grammar", "synpred38_Grammar", "synpred11_Grammar", 
+    "timeExpr", "synpred16_Grammar", "synpred14_Grammar", "anyBag", "doubleExpr", 
+    "rfc822NameBag", "dateExpr", "synpred10_Grammar", "synpred31_Grammar", 
+    "doubleBag", "target", "synpred32_Grammar", "synpred28_Grammar", "x500NameExpr", 
+    "synpred30_Grammar", "conditionalOrExpr", "parseFile", "synpred34_Grammar", 
+    "base64BinaryBag", "stringExpr", "synpred29_Grammar", "dateBag", "synpred5_Grammar", 
+    "anyUriBag", "dayTimeDurationExpr", "synpred1_Grammar", "synpred9_Grammar", 
+    "booleanExpr", "booleanBag", "integerExpr", "yearMonthDurationExpr", 
+    "synpred35_Grammar", "synpred33_Grammar", "synpred21_Grammar", "synpred13_Grammar", 
+    "anyUriExpr", "synpred42_Grammar"
 };
 
 public static final boolean[] decisionCanBacktrack = new boolean[] {
