@@ -1,4 +1,7 @@
 syntax: glob
-.DS_Store
+*/.DS_Store
+*.class
+*.jar
+*/.svn
 target
 UNUSED
