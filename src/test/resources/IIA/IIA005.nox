@@ -4,7 +4,7 @@ policy IIA005 denyOverrides
 //            Julius Hibbert can read or write Bart Simpson's medical
 //           record.  The associated Request for this test omits the
 //            required AttributeId for the Action attribute, however.
-	target
+	rule IIA1
 	{
 		permit if
 		(

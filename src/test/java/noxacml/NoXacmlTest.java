@@ -5,15 +5,19 @@ import java.io.IOException;
 
 import noxacml.util.Fault;
 
+import oasis.names.tc.xacml._2_0.policy.schema.os.PolicyType;
+
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.CommonTreeNodeStream;
+import org.antlr.runtime.tree.Tree;
 import org.antlr.runtime.tree.TreeAdaptor;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import noxacml.xacml2.PolicyBuilder;
 
 public class NoXacmlTest
 {
@@ -24,6 +28,13 @@ public class NoXacmlTest
 	public void IIA010()
 	{
 		Object p = runPolicy("IIA/IIA010.nox");
+		return;
+	}
+
+	@Test
+	public void IIA009()
+	{
+		runPolicy("IIA/IIA009.nox");
 		return;
 	}
 
@@ -51,7 +62,7 @@ public class NoXacmlTest
 		}
 		catch (Throwable e)
 		{
-			log.info("Exception expected: ", e);
+			log.info("Fault is expected: ");
 		}
 		return;
 	}
@@ -77,41 +88,46 @@ public class NoXacmlTest
 		return;
 	}
 
-	private GrammarParser.policy_return runPolicy(String path)
+	private PolicyType runPolicy(String path)
 	{
 		path = "src/test/resources/"+path;
 		log.info(path);
 		GrammarLexer lexer = null;
 		GrammarParser parser = null;
-		GrammarParser.policy_return p = null;
+		GrammarParser.xacmlFile_return xacmlFileRet = null;
 		CommonTokenStream tokens = null;
+		PolicyType policyType = null;
+		Tree ast;
 		try
 		{
 			lexer = new GrammarLexer(new ANTLRFileStream(path));
 			tokens = new CommonTokenStream(lexer);
 			parser = new GrammarParser(tokens);
-			p = parser.policy();
-
-			TreeAdaptor ta = parser.getTreeAdaptor();
-			CommonTree t = (CommonTree) p.getTree();
-			CommonTreeNodeStream nodes = new CommonTreeNodeStream(t);
-			// printTree(t, 0);
-			return p;
+			xacmlFileRet = (GrammarParser.xacmlFile_return)parser.xacmlFile();;
+			ast = (Tree)xacmlFileRet.getTree();
+//			if (ast.isNil())
+//			{
+//				throw new Fault("Parse error:"+ast.toString());
+//			}
+			policyType = PolicyBuilder.buildXacmlFile(ast);
+			return policyType;
 		}
 		catch (IOException e)
 		{
 			log.error("Fault:{}", path, e);
+			assertTrue(false);
 			throw new Fault(e);
 		}
 		catch (RecognitionException e)
 		{
 			log.error("Fault:{}", path, e);
 			log.error(parser.getErrorMessage(e, parser.getTokenNames()));
+			assertTrue(false);
 			throw new Fault(e);
 		}
 	}
 
-	void printTree(final CommonTree t, final int indent)
+	void printTree(final Tree t, final int indent)
 	{
 		if (t != null)
 		{
@@ -125,7 +141,7 @@ public class NoXacmlTest
 			for (int i = 0; i < t.getChildCount(); i++)
 			{
 				println(sb.toString() + t.getChild(i).toString());
-				printTree((CommonTree) t.getChild(i), indent + 1);
+				printTree((Tree) t.getChild(i), indent + 1);
 			}
 		}
 		return;

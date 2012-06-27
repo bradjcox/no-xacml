@@ -722,12 +722,15 @@ Therefore, a PAP combines rules in a policy.  A policy comprises four main compo
 ¥	obligations.
 Rules are described above.  The remaining components are described in the following sub-
 sections.
+
 3.3.2.1.	Policy target
+
 An XACML <PolicySet>, <Policy> or <Rule> element contains a <Target> element that
 specifies the set of subjects, resources, actions and environments to which it applies.  The
 <Target> of a <PolicySet> or <Policy> may be declared by the writer of the <PolicySet> or
 <Policy>, or it may be calculated from the <Target> elements of the <PolicySet>, <Policy>
 and <Rule> elements that it contains.
+
 A system entity that calculates a <Target> in this way is not defined by XACML, but there are two
 logical methods that might be used.  In one method, the <Target> element of the outer
 <PolicySet> or <Policy> (the "outer component") is calculated as the union of all the
@@ -744,7 +747,9 @@ In cases where the <Target> of a <Policy> is declared by the policy writer, any 
 <Rule> elements in the <Policy> that have the same <Target> element as the <Policy>
 element may omit the <Target> element.  Such <Rule> elements inherit the <Target> of the
 <Policy> in which they are contained.
+
 3.3.2.2.	Rule-combining algorithm
+
 The rule-combining algorithm specifies the procedure by which the results of evaluating the
 component rules are combined when evaluating the policy, i.e. the Decision value placed in the
 response context by the PDP is the value of the policy, as defined by the rule-combining
@@ -1756,7 +1761,9 @@ matches either of the action match criteria.
 [a535] - [a552] The <ActionMatch> elements target the rule at actions whose
 Òurn:oasis:names:tc:xacml:1.0:action:action-idÓ action attribute is equal to ÓreadÓ or ÒwriteÓ.
 This rule does not have a <Condition> element.
+
 4.2.4.5.	Example PolicySet
+
 This section uses the examples of the previous sections to illustrate the process of combining
 policies.  The policy governing read access to medical elements of a record is formed from each of
 the four rules described in Section 4.2.3.  In plain language, the combined rule is:

@@ -1,17 +1,22 @@
 // Policy for Conformance Test IIA006.
 policy IIA006 denyOverrides
 {
-// Julius Hibbert can read or write Bart Simpson's medical record.
-	target
+		// Julius Hibbert can read or write Bart Simpson's medical record.
+	target IIA1
 	{
-		permit if
+		applicable if
 		(
 			subject.id.oneAndOnly() == "Julius Hibbert" &&
 			subject.someAttribute.oneAndOnly() == "riddle me this" &&
 			resource.id.oneAndOnly().uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
 			( action.id.oneAndOnly() == "read" || action.id.oneAndOnly() == "write" )
-			// Condition
-			&& "riddle me this".isIn(subject.category.accessSubject.oneAndOnly().required())
+		)
+	}
+	rule IIA1
+	{
+		permit if
+		(
+			"riddle me this".isIn(subject.category.accessSubject.oneAndOnly())
 		)
 	}
 }

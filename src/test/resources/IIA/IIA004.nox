@@ -3,16 +3,16 @@
 // AttributeIt attribute is omitted.
 policy IIA004 denyOverrides
 {
-// Julius Hibbert can read or write Bart Simpson's medical
-// record: syntax for the SubjectAttributeDesignator omits
-// the required AttributeId xml attribute, however.
-	target
+		// Julius Hibbert can read or write Bart Simpson's medical
+		// record: syntax for the SubjectAttributeDesignator omits
+		// the required AttributeId xml attribute, however.
+	rule IIA1
 	{
 		permit if
 		(
 			subject.role.oneAndOnly() == "Physician" &&
 			"Physician".isIn(subject.role) &&
-			subject.role.contains("Physician") &&
+			subject.role.contains ( "Physician" ) &&
 			resource.id.oneAndOnly().uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
 			( action.id.oneAndOnly() == "read" || action.id.oneAndOnly() == "write" )
 		)
