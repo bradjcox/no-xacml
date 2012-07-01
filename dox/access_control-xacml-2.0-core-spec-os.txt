@@ -650,27 +650,26 @@ The policy language model is shown in Figure 3.  The main components of the mode
 These are described in the following sub-sections.
 
 Figure 3 - Policy language model
+
 3.3.1	Rule
+
 A rule is the most elementary unit of policy.  It may exist in isolation only within one of the major
 actors of the XACML domain.  In order to exchange rules between major actors, they must be
 encapsulated in a policy.  A rule can be evaluated on the basis of its contents.  The main
 components of a rule are:
 
 ¥	a target;
-
 ¥	an effect and
-
 ¥	a condition.
+
 These are discussed in the following sub-sections.
+
 3.3.1.1.	Rule target
+
 The target defines the set of:
-
 ¥	resources;
-
 ¥	subjects;
-
 ¥	actions and
-
 ¥	environment
 
 to which the rule is intended to apply.  The <Condition> element may further refine the

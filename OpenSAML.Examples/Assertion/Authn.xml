@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<saml:Assertion
+  xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+  ID="Assertion12345789"
+  IssueInstant="2009-07-15T15:42:36.750Z"
+  Version="2.0"
+>
+  <saml:Issuer>http://mycom.com/MyJavaAuthnService</saml:Issuer>
+  <saml:Subject>
+    <saml:NameID>harold_dt</saml:NameID>
+  </saml:Subject>
+  <saml:AuthnStatement>
+    <saml:AuthnContext>
+      <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml:AuthnContextClassRef>
+    </saml:AuthnContext>
+  </saml:AuthnStatement>
+</saml:Assertion>
+

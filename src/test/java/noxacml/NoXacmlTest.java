@@ -5,7 +5,8 @@ import java.io.IOException;
 
 import noxacml.util.Fault;
 
-import oasis.names.tc.xacml._2_0.policy.schema.os.PolicyType;
+import org.opensaml.xacml.policy.*;
+import org.opensaml.xacml.ctx.*;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -90,7 +91,7 @@ public class NoXacmlTest
 
 	private PolicyType runPolicy(String path)
 	{
-		path = "src/test/resources/"+path;
+		path = "src/test/resources/" + path;
 		log.info(path);
 		GrammarLexer lexer = null;
 		GrammarParser parser = null;
@@ -103,13 +104,12 @@ public class NoXacmlTest
 			lexer = new GrammarLexer(new ANTLRFileStream(path));
 			tokens = new CommonTokenStream(lexer);
 			parser = new GrammarParser(tokens);
-			xacmlFileRet = (GrammarParser.xacmlFile_return)parser.xacmlFile();;
-			ast = (Tree)xacmlFileRet.getTree();
-//			if (ast.isNil())
-//			{
-//				throw new Fault("Parse error:"+ast.toString());
-//			}
-			policyType = PolicyBuilder.buildXacmlFile(ast);
+			xacmlFileRet = (GrammarParser.xacmlFile_return) parser.xacmlFile();
+			ast = (Tree) xacmlFileRet.getTree();
+			policyType = PolicyBuilder.newXacmlFile(ast);
+
+//			final NoXacmlTreeParser treeParser = new NoXacmlTreeParser(new CommonTreeNodeStream(ast));
+//			final Formula queryFormula = treeParser.formula();
 			return policyType;
 		}
 		catch (IOException e)

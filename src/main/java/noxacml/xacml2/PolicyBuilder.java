@@ -1,14 +1,17 @@
 package noxacml.xacml2;
 
-import noxacml.GrammarParser;
-import oasis.names.tc.xacml._2_0.policy.schema.os.ActionsType;
-import oasis.names.tc.xacml._2_0.policy.schema.os.EnvironmentsType;
-import oasis.names.tc.xacml._2_0.policy.schema.os.PolicyType;
-import oasis.names.tc.xacml._2_0.policy.schema.os.ResourcesType;
-import oasis.names.tc.xacml._2_0.policy.schema.os.SubjectsType;
-import oasis.names.tc.xacml._2_0.policy.schema.os.TargetType;
+import noxacml.util.Fault;
+import noxacml.util.SAMLBuilder;
 
 import org.antlr.runtime.tree.Tree;
+import org.opensaml.xacml.policy.ActionsType;
+import org.opensaml.xacml.policy.DescriptionType;
+import org.opensaml.xacml.policy.EnvironmentsType;
+import org.opensaml.xacml.policy.PolicyType;
+import org.opensaml.xacml.policy.ResourcesType;
+import org.opensaml.xacml.policy.RuleType;
+import org.opensaml.xacml.policy.SubjectsType;
+import org.opensaml.xacml.policy.TargetType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,56 +24,90 @@ import org.slf4j.LoggerFactory;
 public class PolicyBuilder
 {
 	final static Logger log = LoggerFactory.getLogger(PolicyBuilder.class);
+	final static SAMLBuilder builder = new SAMLBuilder();
 
-	public static PolicyType buildXacmlFile(Tree t)
+	public static PolicyType newXacmlFile(Tree t)
 	{
-		PolicyType pt = buildPolicyType(t.getChild(0));
+		PolicyType pt = newPolicyType(t.getChild(0));
 		return pt;
 	}
-	public static PolicyType buildPolicyType(Tree t)
+	public static PolicyType newPolicyType(Tree tree)
 	{
-		PolicyType policyType = new PolicyType();
-		policyType.setDescription(t.toStringTree());
-		policyType.setPolicyId(t.getChild(0).toString());
-		policyType.setObligations(null);
-		policyType.setPolicyDefaults(null);
-		policyType.setRuleCombiningAlgId(t.getChild(1).toString());
-		policyType.setTarget(buildTargetType(t.getChild(3)));
-		policyType.setVersion("");
-		return policyType;
+//		XACMLObjectBuilderFactory builderFactory = Configuration.getBuilderFactory();
+//		SAMLObjectBuilder<PolicyType> builder = (SAMLObjectBuilder<PolicyType>)
+//				builderFactory.getBuilder(PolicyType.DEFAULT_ELEMENT_NAME);
+//		PolicyType pt= builder.buildObject();
+//
+//		UnmarshallerFactory unmarshallerFactory = Configuration.getUnmarshallerFactory();
+//		Unmarshaller unmarshaller = unmarshallerFactory.getUnmarshaller(rootElmt);
+//		Object o = unmarshaller.unmarshall(rootElmt);
+//		PolicyType pt = (PolicyType) o;
+//
+//		PolicyType o = new PolicyType();
+		DescriptionType dt = builder.create(DescriptionType.class, DescriptionType.DEFAULT_ELEMENT_NAME);
+		dt.setValue("");
+
+		PolicyType o = builder.create(PolicyType.class, PolicyType.DEFAULT_ELEMENT_NAME);
+		o.setDescription(dt);
+		o.setPolicyId(tree.getChild(0).toString());
+		o.setObligations(null);
+		o.setPolicyDefaults(null);
+		o.setRuleCombiningAlgoId(tree.getChild(1).toString());
+		Tree c = tree.getChild(2);
+		if ("target".equals(c.getText()))
+		{
+			o.setTarget(newTargetType(c));
+		}
+		else if ("rule".equals(c.getText()))
+		{
+//			o.setRule(newRuleType(c));
+		}
+		else
+		{
+			throw new Fault("Expecting rule|target in:"+c);
+		}
+		o.setTarget(newTargetType(c));
+		o.setVersion("");
+		return o;
 	}
 
-	private static TargetType buildTargetType(Tree tree)
+	private static TargetType newTargetType(Tree tree)
 	{
-		TargetType target = new TargetType();
-		target.setActions(buildActionType(null));
-		target.setEnvironments(buildEnvironmentType(null));
-		target.setResources(buildResourcesType(null));
-		target.setSubjects(buildSubjectsType(null));
-		return target;
+		TargetType o = builder.create(TargetType.class, TargetType.DEFAULT_ELEMENT_NAME);
+		o.setActions(newActionType(null));
+		o.setEnvironments(newEnvironmentType(null));
+		o.setResources(newResourcesType(null));
+		o.setSubjects(newSubjectsType(null));
+		return o;
 	}
 
-	private static SubjectsType buildSubjectsType(Tree tree)
+	private static RuleType newRuleType(Tree tree)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		RuleType o = builder.create(RuleType.class, RuleType.DEFAULT_ELEMENT_NAME);
+		return o;
 	}
 
-	private static EnvironmentsType buildEnvironmentType(Object object)
+	private static SubjectsType newSubjectsType(Tree tree)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		SubjectsType o = builder.create(SubjectsType.class, SubjectsType.DEFAULT_ELEMENT_NAME);
+		return o;
 	}
 
-	private static ResourcesType buildResourcesType(Tree tree)
+	private static EnvironmentsType newEnvironmentType(Object object)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		EnvironmentsType o = builder.create(EnvironmentsType.class, EnvironmentsType.DEFAULT_ELEMENT_NAME);
+		return o;
 	}
 
-	private static ActionsType buildActionType(Tree tree)
+	private static ResourcesType newResourcesType(Tree tree)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		ResourcesType o = builder.create(ResourcesType.class, ResourcesType.DEFAULT_ELEMENT_NAME);
+		return o;
+	}
+
+	private static ActionsType newActionType(Tree tree)
+	{
+		ActionsType o = builder.create(ActionsType.class, ActionsType.DEFAULT_ELEMENT_NAME);
+		return o;
 	}
 }
