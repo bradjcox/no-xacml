@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g 2012-07-01 14:35:19
+// $ANTLR 3.4 /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g 2012-07-01 16:54:21
 
 	package noxacml;
 	import org.opensaml.xacml.policy.*;
@@ -124,20 +124,19 @@ public class GrammarParser extends DebugParser {
 
 
 public static final String[] ruleNames = new String[] {
-    "invalidRule", "x500NameExpr", "dateExpr", "stringBag", "synpred1_Grammar", 
-    "hexBinaryExpr", "yearMonthDurationExpr", "timeExpr", "anyUriExpr", 
-    "doubleBag", "doubleExpr", "dateTimeExpr", "synpred14_Grammar", "regexOp", 
-    "anyBag", "integerExpr", "policySet", "synpred13_Grammar", "synpred5_Grammar", 
-    "attributeExpr", "conditionalOrExpr", "synpred17_Grammar", "synpred15_Grammar", 
-    "target", "synpred12_Grammar", "synpred2_Grammar", "dateBag", "rule", 
-    "hexBinaryBag", "timeBag", "dateTimeBag", "booleanBag", "synpred4_Grammar", 
-    "dayTimeDurationExpr", "synpred7_Grammar", "bagOp", "rfc822NameBag", 
-    "synpred9_Grammar", "synpred3_Grammar", "isInOp", "rfc822NameExpr", 
-    "stringExpr", "integerBag", "yearMonthDurationBag", "dayTimeDurationBag", 
-    "base64BinaryExpr", "anyUriBag", "synpred6_Grammar", "conditionalAndExpr", 
-    "x500NameBag", "synpred16_Grammar", "synpred8_Grammar", "booleanExpr", 
-    "policy", "synpred10_Grammar", "containsOp", "equalityExpr", "base64BinaryBag", 
-    "xacmlFile", "synpred11_Grammar"
+    "invalidRule", "conditionalAndExpr", "synpred2_Grammar", "synpred12_Grammar", 
+    "anyUriBag", "yearMonthDurationExpr", "dayTimeDurationBag", "rule", 
+    "anyBag", "xacmlFile", "base64BinaryExpr", "hexBinaryExpr", "dateTimeBag", 
+    "x500NameBag", "policy", "synpred8_Grammar", "x500NameExpr", "stringBag", 
+    "hexBinaryBag", "stringExpr", "synpred13_Grammar", "dateExpr", "synpred7_Grammar", 
+    "timeExpr", "synpred15_Grammar", "synpred6_Grammar", "booleanBag", "synpred16_Grammar", 
+    "synpred17_Grammar", "dateTimeExpr", "booleanExpr", "timeBag", "dayTimeDurationExpr", 
+    "rfc822NameExpr", "synpred14_Grammar", "rfc822NameBag", "yearMonthDurationBag", 
+    "doubleExpr", "synpred10_Grammar", "containsOp", "synpred3_Grammar", 
+    "anyUriExpr", "attributeExpr", "conditionalOrExpr", "synpred9_Grammar", 
+    "policySet", "dateBag", "base64BinaryBag", "synpred11_Grammar", "doubleBag", 
+    "isInOp", "bagOp", "synpred1_Grammar", "target", "integerBag", "integerExpr", 
+    "synpred4_Grammar", "regexOp", "synpred5_Grammar", "equalityExpr"
 };
 
 public static final boolean[] decisionCanBacktrack = new boolean[] {
@@ -354,7 +353,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "policy"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:100:1: policy returns [ PolicyType o] : POLICY_TOK ANYCASEIDENTIFIER LOWERCASEIDENTIFIER '{' target '}' ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:100:1: policy returns [ PolicyType o] : POLICY_TOK pid= ANYCASEIDENTIFIER combAlgId= LOWERCASEIDENTIFIER '{' t= target '}' ;
     public final GrammarParser.policy_return policy() throws RecognitionException {
         GrammarParser.policy_return retval = new GrammarParser.policy_return();
         retval.start = input.LT(1);
@@ -362,19 +361,19 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
+        Token pid=null;
+        Token combAlgId=null;
         Token POLICY_TOK4=null;
-        Token ANYCASEIDENTIFIER5=null;
-        Token LOWERCASEIDENTIFIER6=null;
-        Token char_literal7=null;
-        Token char_literal9=null;
-        GrammarParser.target_return target8 =null;
+        Token char_literal5=null;
+        Token char_literal6=null;
+        GrammarParser.target_return t =null;
 
 
+        Object pid_tree=null;
+        Object combAlgId_tree=null;
         Object POLICY_TOK4_tree=null;
-        Object ANYCASEIDENTIFIER5_tree=null;
-        Object LOWERCASEIDENTIFIER6_tree=null;
-        Object char_literal7_tree=null;
-        Object char_literal9_tree=null;
+        Object char_literal5_tree=null;
+        Object char_literal6_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "policy");
         if ( getRuleLevel()==0 ) {dbg.commence();}
@@ -382,10 +381,10 @@ public TreeAdaptor getTreeAdaptor() {
         dbg.location(100, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:101:2: ( POLICY_TOK ANYCASEIDENTIFIER LOWERCASEIDENTIFIER '{' target '}' )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:101:2: ( POLICY_TOK pid= ANYCASEIDENTIFIER combAlgId= LOWERCASEIDENTIFIER '{' t= target '}' )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:101:4: POLICY_TOK ANYCASEIDENTIFIER LOWERCASEIDENTIFIER '{' target '}'
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:101:4: POLICY_TOK pid= ANYCASEIDENTIFIER combAlgId= LOWERCASEIDENTIFIER '{' t= target '}'
             {
             root_0 = (Object)adaptor.nil();
 
@@ -398,54 +397,54 @@ public TreeAdaptor getTreeAdaptor() {
             ;
             adaptor.addChild(root_0, POLICY_TOK4_tree);
             }
-            dbg.location(101,15);
-            ANYCASEIDENTIFIER5=(Token)match(input,ANYCASEIDENTIFIER,FOLLOW_ANYCASEIDENTIFIER_in_policy489); if (state.failed) return retval;
+            dbg.location(101,18);
+            pid=(Token)match(input,ANYCASEIDENTIFIER,FOLLOW_ANYCASEIDENTIFIER_in_policy491); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            ANYCASEIDENTIFIER5_tree = 
-            (Object)adaptor.create(ANYCASEIDENTIFIER5)
+            pid_tree = 
+            (Object)adaptor.create(pid)
             ;
-            adaptor.addChild(root_0, ANYCASEIDENTIFIER5_tree);
+            adaptor.addChild(root_0, pid_tree);
             }
-            dbg.location(101,33);
-            LOWERCASEIDENTIFIER6=(Token)match(input,LOWERCASEIDENTIFIER,FOLLOW_LOWERCASEIDENTIFIER_in_policy491); if (state.failed) return retval;
+            dbg.location(101,46);
+            combAlgId=(Token)match(input,LOWERCASEIDENTIFIER,FOLLOW_LOWERCASEIDENTIFIER_in_policy495); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            LOWERCASEIDENTIFIER6_tree = 
-            (Object)adaptor.create(LOWERCASEIDENTIFIER6)
+            combAlgId_tree = 
+            (Object)adaptor.create(combAlgId)
             ;
-            adaptor.addChild(root_0, LOWERCASEIDENTIFIER6_tree);
+            adaptor.addChild(root_0, combAlgId_tree);
             }
-            dbg.location(101,53);
-            char_literal7=(Token)match(input,90,FOLLOW_90_in_policy493); if (state.failed) return retval;
+            dbg.location(101,67);
+            char_literal5=(Token)match(input,90,FOLLOW_90_in_policy497); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal7_tree = 
-            (Object)adaptor.create(char_literal7)
+            char_literal5_tree = 
+            (Object)adaptor.create(char_literal5)
             ;
-            adaptor.addChild(root_0, char_literal7_tree);
+            adaptor.addChild(root_0, char_literal5_tree);
             }
-            dbg.location(101,57);
-            pushFollow(FOLLOW_target_in_policy495);
-            target8=target();
+            dbg.location(101,72);
+            pushFollow(FOLLOW_target_in_policy501);
+            t=target();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, target8.getTree());
-            dbg.location(101,64);
-            char_literal9=(Token)match(input,92,FOLLOW_92_in_policy497); if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, t.getTree());
+            dbg.location(101,80);
+            char_literal6=(Token)match(input,92,FOLLOW_92_in_policy503); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal9_tree = 
-            (Object)adaptor.create(char_literal9)
+            char_literal6_tree = 
+            (Object)adaptor.create(char_literal6)
             ;
-            adaptor.addChild(root_0, char_literal9_tree);
+            adaptor.addChild(root_0, char_literal6_tree);
             }
             dbg.location(102,2);
             if ( state.backtracking==0 ) {
             		PolicyType o = builder.create(PolicyType.class, PolicyType.DEFAULT_ELEMENT_NAME);
             //		o.setDescription("");
-            		o.setPolicyId((ANYCASEIDENTIFIER5!=null?ANYCASEIDENTIFIER5.getText():null));
+            		o.setPolicyId((pid!=null?pid.getText():null));
             		o.setObligations(null);
             		o.setPolicyDefaults(null);
-            		o.setRuleCombiningAlgoId((LOWERCASEIDENTIFIER6!=null?LOWERCASEIDENTIFIER6.getText():null));
-            		o.setTarget($target.o);
+            		o.setRuleCombiningAlgoId((combAlgId!=null?combAlgId.getText():null));
+            		o.setTarget((t!=null?t.o:null));
             //		o.setRule(r);
             		o.setVersion("");
             	}
@@ -501,21 +500,21 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token POLICYSET_TOK10=null;
-        Token ANYCASEIDENTIFIER11=null;
-        Token LOWERCASEIDENTIFIER12=null;
+        Token POLICYSET_TOK7=null;
+        Token ANYCASEIDENTIFIER8=null;
+        Token LOWERCASEIDENTIFIER9=null;
+        Token char_literal10=null;
         Token char_literal13=null;
-        Token char_literal16=null;
-        GrammarParser.target_return target14 =null;
+        GrammarParser.target_return target11 =null;
 
-        GrammarParser.policy_return policy15 =null;
+        GrammarParser.policy_return policy12 =null;
 
 
-        Object POLICYSET_TOK10_tree=null;
-        Object ANYCASEIDENTIFIER11_tree=null;
-        Object LOWERCASEIDENTIFIER12_tree=null;
+        Object POLICYSET_TOK7_tree=null;
+        Object ANYCASEIDENTIFIER8_tree=null;
+        Object LOWERCASEIDENTIFIER9_tree=null;
+        Object char_literal10_tree=null;
         Object char_literal13_tree=null;
-        Object char_literal16_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "policySet");
         if ( getRuleLevel()==0 ) {dbg.commence();}
@@ -532,31 +531,31 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             dbg.location(115,17);
-            POLICYSET_TOK10=(Token)match(input,POLICYSET_TOK,FOLLOW_POLICYSET_TOK_in_policySet514); if (state.failed) return retval;
+            POLICYSET_TOK7=(Token)match(input,POLICYSET_TOK,FOLLOW_POLICYSET_TOK_in_policySet520); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            POLICYSET_TOK10_tree = 
-            (Object)adaptor.create(POLICYSET_TOK10)
+            POLICYSET_TOK7_tree = 
+            (Object)adaptor.create(POLICYSET_TOK7)
             ;
-            root_0 = (Object)adaptor.becomeRoot(POLICYSET_TOK10_tree, root_0);
+            root_0 = (Object)adaptor.becomeRoot(POLICYSET_TOK7_tree, root_0);
             }
             dbg.location(115,19);
-            ANYCASEIDENTIFIER11=(Token)match(input,ANYCASEIDENTIFIER,FOLLOW_ANYCASEIDENTIFIER_in_policySet517); if (state.failed) return retval;
+            ANYCASEIDENTIFIER8=(Token)match(input,ANYCASEIDENTIFIER,FOLLOW_ANYCASEIDENTIFIER_in_policySet523); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            ANYCASEIDENTIFIER11_tree = 
-            (Object)adaptor.create(ANYCASEIDENTIFIER11)
+            ANYCASEIDENTIFIER8_tree = 
+            (Object)adaptor.create(ANYCASEIDENTIFIER8)
             ;
-            adaptor.addChild(root_0, ANYCASEIDENTIFIER11_tree);
+            adaptor.addChild(root_0, ANYCASEIDENTIFIER8_tree);
             }
             dbg.location(115,37);
-            LOWERCASEIDENTIFIER12=(Token)match(input,LOWERCASEIDENTIFIER,FOLLOW_LOWERCASEIDENTIFIER_in_policySet519); if (state.failed) return retval;
+            LOWERCASEIDENTIFIER9=(Token)match(input,LOWERCASEIDENTIFIER,FOLLOW_LOWERCASEIDENTIFIER_in_policySet525); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            LOWERCASEIDENTIFIER12_tree = 
-            (Object)adaptor.create(LOWERCASEIDENTIFIER12)
+            LOWERCASEIDENTIFIER9_tree = 
+            (Object)adaptor.create(LOWERCASEIDENTIFIER9)
             ;
-            adaptor.addChild(root_0, LOWERCASEIDENTIFIER12_tree);
+            adaptor.addChild(root_0, LOWERCASEIDENTIFIER9_tree);
             }
             dbg.location(115,60);
-            char_literal13=(Token)match(input,90,FOLLOW_90_in_policySet521); if (state.failed) return retval;
+            char_literal10=(Token)match(input,90,FOLLOW_90_in_policySet527); if (state.failed) return retval;
             dbg.location(115,62);
             // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:115:62: ( target )?
             int alt2=2;
@@ -577,12 +576,12 @@ public TreeAdaptor getTreeAdaptor() {
                     // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:115:62: target
                     {
                     dbg.location(115,62);
-                    pushFollow(FOLLOW_target_in_policySet524);
-                    target14=target();
+                    pushFollow(FOLLOW_target_in_policySet530);
+                    target11=target();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, target14.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, target11.getTree());
 
                     }
                     break;
@@ -616,12 +615,12 @@ public TreeAdaptor getTreeAdaptor() {
             	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:115:70: policy
             	    {
             	    dbg.location(115,70);
-            	    pushFollow(FOLLOW_policy_in_policySet527);
-            	    policy15=policy();
+            	    pushFollow(FOLLOW_policy_in_policySet533);
+            	    policy12=policy();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, policy15.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, policy12.getTree());
 
             	    }
             	    break;
@@ -640,7 +639,7 @@ public TreeAdaptor getTreeAdaptor() {
             } finally {dbg.exitSubRule(3);}
 
             dbg.location(115,81);
-            char_literal16=(Token)match(input,92,FOLLOW_92_in_policySet530); if (state.failed) return retval;
+            char_literal13=(Token)match(input,92,FOLLOW_92_in_policySet536); if (state.failed) return retval;
             dbg.location(116,2);
             if ( state.backtracking==0 ) {
             		PolicySetType o = builder.create(PolicySetType.class, PolicySetType.DEFAULT_ELEMENT_NAME);
@@ -682,60 +681,61 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class target_return extends ParserRuleReturnScope {
+        public TargetType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "target"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:125:1: target[ TargetType o] : TARGET_TOK ^ ( ANYCASEIDENTIFIER )? '{' ! APPLICABLE_TOK IF_TOK booleanExpr '}' !;
-    public final GrammarParser.target_return target(TargetType o) throws RecognitionException {
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:121:1: target returns [ TargetType o] : TARGET_TOK ^ ( ANYCASEIDENTIFIER )? '{' ! APPLICABLE_TOK IF_TOK booleanExpr '}' !;
+    public final GrammarParser.target_return target() throws RecognitionException {
         GrammarParser.target_return retval = new GrammarParser.target_return();
         retval.start = input.LT(1);
 
 
         Object root_0 = null;
 
-        Token TARGET_TOK17=null;
-        Token ANYCASEIDENTIFIER18=null;
-        Token char_literal19=null;
-        Token APPLICABLE_TOK20=null;
-        Token IF_TOK21=null;
-        Token char_literal23=null;
-        GrammarParser.booleanExpr_return booleanExpr22 =null;
+        Token TARGET_TOK14=null;
+        Token ANYCASEIDENTIFIER15=null;
+        Token char_literal16=null;
+        Token APPLICABLE_TOK17=null;
+        Token IF_TOK18=null;
+        Token char_literal20=null;
+        GrammarParser.booleanExpr_return booleanExpr19 =null;
 
 
-        Object TARGET_TOK17_tree=null;
-        Object ANYCASEIDENTIFIER18_tree=null;
-        Object char_literal19_tree=null;
-        Object APPLICABLE_TOK20_tree=null;
-        Object IF_TOK21_tree=null;
-        Object char_literal23_tree=null;
+        Object TARGET_TOK14_tree=null;
+        Object ANYCASEIDENTIFIER15_tree=null;
+        Object char_literal16_tree=null;
+        Object APPLICABLE_TOK17_tree=null;
+        Object IF_TOK18_tree=null;
+        Object char_literal20_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "target");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(125, 0);
+        dbg.location(121, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:126:2: ( TARGET_TOK ^ ( ANYCASEIDENTIFIER )? '{' ! APPLICABLE_TOK IF_TOK booleanExpr '}' !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:122:2: ( TARGET_TOK ^ ( ANYCASEIDENTIFIER )? '{' ! APPLICABLE_TOK IF_TOK booleanExpr '}' !)
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:126:4: TARGET_TOK ^ ( ANYCASEIDENTIFIER )? '{' ! APPLICABLE_TOK IF_TOK booleanExpr '}' !
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:122:4: TARGET_TOK ^ ( ANYCASEIDENTIFIER )? '{' ! APPLICABLE_TOK IF_TOK booleanExpr '}' !
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(126,14);
-            TARGET_TOK17=(Token)match(input,TARGET_TOK,FOLLOW_TARGET_TOK_in_target549); if (state.failed) return retval;
+            dbg.location(122,14);
+            TARGET_TOK14=(Token)match(input,TARGET_TOK,FOLLOW_TARGET_TOK_in_target555); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            TARGET_TOK17_tree = 
-            (Object)adaptor.create(TARGET_TOK17)
+            TARGET_TOK14_tree = 
+            (Object)adaptor.create(TARGET_TOK14)
             ;
-            root_0 = (Object)adaptor.becomeRoot(TARGET_TOK17_tree, root_0);
+            root_0 = (Object)adaptor.becomeRoot(TARGET_TOK14_tree, root_0);
             }
-            dbg.location(126,16);
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:126:16: ( ANYCASEIDENTIFIER )?
+            dbg.location(122,16);
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:122:16: ( ANYCASEIDENTIFIER )?
             int alt4=2;
             try { dbg.enterSubRule(4);
             try { dbg.enterDecision(4, decisionCanBacktrack[4]);
@@ -751,15 +751,15 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:126:16: ANYCASEIDENTIFIER
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:122:16: ANYCASEIDENTIFIER
                     {
-                    dbg.location(126,16);
-                    ANYCASEIDENTIFIER18=(Token)match(input,ANYCASEIDENTIFIER,FOLLOW_ANYCASEIDENTIFIER_in_target552); if (state.failed) return retval;
+                    dbg.location(122,16);
+                    ANYCASEIDENTIFIER15=(Token)match(input,ANYCASEIDENTIFIER,FOLLOW_ANYCASEIDENTIFIER_in_target558); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ANYCASEIDENTIFIER18_tree = 
-                    (Object)adaptor.create(ANYCASEIDENTIFIER18)
+                    ANYCASEIDENTIFIER15_tree = 
+                    (Object)adaptor.create(ANYCASEIDENTIFIER15)
                     ;
-                    adaptor.addChild(root_0, ANYCASEIDENTIFIER18_tree);
+                    adaptor.addChild(root_0, ANYCASEIDENTIFIER15_tree);
                     }
 
                     }
@@ -768,34 +768,34 @@ public TreeAdaptor getTreeAdaptor() {
             }
             } finally {dbg.exitSubRule(4);}
 
-            dbg.location(126,38);
-            char_literal19=(Token)match(input,90,FOLLOW_90_in_target555); if (state.failed) return retval;
-            dbg.location(126,40);
-            APPLICABLE_TOK20=(Token)match(input,APPLICABLE_TOK,FOLLOW_APPLICABLE_TOK_in_target558); if (state.failed) return retval;
+            dbg.location(122,38);
+            char_literal16=(Token)match(input,90,FOLLOW_90_in_target561); if (state.failed) return retval;
+            dbg.location(122,40);
+            APPLICABLE_TOK17=(Token)match(input,APPLICABLE_TOK,FOLLOW_APPLICABLE_TOK_in_target564); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            APPLICABLE_TOK20_tree = 
-            (Object)adaptor.create(APPLICABLE_TOK20)
+            APPLICABLE_TOK17_tree = 
+            (Object)adaptor.create(APPLICABLE_TOK17)
             ;
-            adaptor.addChild(root_0, APPLICABLE_TOK20_tree);
+            adaptor.addChild(root_0, APPLICABLE_TOK17_tree);
             }
-            dbg.location(126,55);
-            IF_TOK21=(Token)match(input,IF_TOK,FOLLOW_IF_TOK_in_target560); if (state.failed) return retval;
+            dbg.location(122,55);
+            IF_TOK18=(Token)match(input,IF_TOK,FOLLOW_IF_TOK_in_target566); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            IF_TOK21_tree = 
-            (Object)adaptor.create(IF_TOK21)
+            IF_TOK18_tree = 
+            (Object)adaptor.create(IF_TOK18)
             ;
-            adaptor.addChild(root_0, IF_TOK21_tree);
+            adaptor.addChild(root_0, IF_TOK18_tree);
             }
-            dbg.location(126,62);
-            pushFollow(FOLLOW_booleanExpr_in_target562);
-            booleanExpr22=booleanExpr();
+            dbg.location(122,62);
+            pushFollow(FOLLOW_booleanExpr_in_target568);
+            booleanExpr19=booleanExpr();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanExpr22.getTree());
-            dbg.location(126,77);
-            char_literal23=(Token)match(input,92,FOLLOW_92_in_target564); if (state.failed) return retval;
-            dbg.location(127,2);
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanExpr19.getTree());
+            dbg.location(122,77);
+            char_literal20=(Token)match(input,92,FOLLOW_92_in_target570); if (state.failed) return retval;
+            dbg.location(123,2);
             if ( state.backtracking==0 ) {
             		TargetType o = builder.create(TargetType.class, TargetType.DEFAULT_ELEMENT_NAME);
             	}
@@ -821,7 +821,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(130, 1);
+        dbg.location(126, 1);
 
         }
         finally {
@@ -836,60 +836,61 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class rule_return extends ParserRuleReturnScope {
+        public RuleType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "rule"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:131:1: rule[ RuleType o] : RULE_TOK ^ ( ANYCASEIDENTIFIER )? '{' ! ( PERMIT_TOK | DENY_TOK ) IF_TOK booleanExpr '}' !;
-    public final GrammarParser.rule_return rule(RuleType o) throws RecognitionException {
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:127:1: rule returns [ RuleType o] : RULE_TOK ^ ( ANYCASEIDENTIFIER )? '{' ! ( PERMIT_TOK | DENY_TOK ) IF_TOK booleanExpr '}' !;
+    public final GrammarParser.rule_return rule() throws RecognitionException {
         GrammarParser.rule_return retval = new GrammarParser.rule_return();
         retval.start = input.LT(1);
 
 
         Object root_0 = null;
 
-        Token RULE_TOK24=null;
-        Token ANYCASEIDENTIFIER25=null;
-        Token char_literal26=null;
-        Token set27=null;
-        Token IF_TOK28=null;
-        Token char_literal30=null;
-        GrammarParser.booleanExpr_return booleanExpr29 =null;
+        Token RULE_TOK21=null;
+        Token ANYCASEIDENTIFIER22=null;
+        Token char_literal23=null;
+        Token set24=null;
+        Token IF_TOK25=null;
+        Token char_literal27=null;
+        GrammarParser.booleanExpr_return booleanExpr26 =null;
 
 
-        Object RULE_TOK24_tree=null;
-        Object ANYCASEIDENTIFIER25_tree=null;
-        Object char_literal26_tree=null;
-        Object set27_tree=null;
-        Object IF_TOK28_tree=null;
-        Object char_literal30_tree=null;
+        Object RULE_TOK21_tree=null;
+        Object ANYCASEIDENTIFIER22_tree=null;
+        Object char_literal23_tree=null;
+        Object set24_tree=null;
+        Object IF_TOK25_tree=null;
+        Object char_literal27_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "rule");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(131, 0);
+        dbg.location(127, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:132:2: ( RULE_TOK ^ ( ANYCASEIDENTIFIER )? '{' ! ( PERMIT_TOK | DENY_TOK ) IF_TOK booleanExpr '}' !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:128:2: ( RULE_TOK ^ ( ANYCASEIDENTIFIER )? '{' ! ( PERMIT_TOK | DENY_TOK ) IF_TOK booleanExpr '}' !)
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:132:4: RULE_TOK ^ ( ANYCASEIDENTIFIER )? '{' ! ( PERMIT_TOK | DENY_TOK ) IF_TOK booleanExpr '}' !
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:128:4: RULE_TOK ^ ( ANYCASEIDENTIFIER )? '{' ! ( PERMIT_TOK | DENY_TOK ) IF_TOK booleanExpr '}' !
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(132,12);
-            RULE_TOK24=(Token)match(input,RULE_TOK,FOLLOW_RULE_TOK_in_rule580); if (state.failed) return retval;
+            dbg.location(128,12);
+            RULE_TOK21=(Token)match(input,RULE_TOK,FOLLOW_RULE_TOK_in_rule588); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            RULE_TOK24_tree = 
-            (Object)adaptor.create(RULE_TOK24)
+            RULE_TOK21_tree = 
+            (Object)adaptor.create(RULE_TOK21)
             ;
-            root_0 = (Object)adaptor.becomeRoot(RULE_TOK24_tree, root_0);
+            root_0 = (Object)adaptor.becomeRoot(RULE_TOK21_tree, root_0);
             }
-            dbg.location(132,14);
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:132:14: ( ANYCASEIDENTIFIER )?
+            dbg.location(128,14);
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:128:14: ( ANYCASEIDENTIFIER )?
             int alt5=2;
             try { dbg.enterSubRule(5);
             try { dbg.enterDecision(5, decisionCanBacktrack[5]);
@@ -905,15 +906,15 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:132:14: ANYCASEIDENTIFIER
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:128:14: ANYCASEIDENTIFIER
                     {
-                    dbg.location(132,14);
-                    ANYCASEIDENTIFIER25=(Token)match(input,ANYCASEIDENTIFIER,FOLLOW_ANYCASEIDENTIFIER_in_rule583); if (state.failed) return retval;
+                    dbg.location(128,14);
+                    ANYCASEIDENTIFIER22=(Token)match(input,ANYCASEIDENTIFIER,FOLLOW_ANYCASEIDENTIFIER_in_rule591); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ANYCASEIDENTIFIER25_tree = 
-                    (Object)adaptor.create(ANYCASEIDENTIFIER25)
+                    ANYCASEIDENTIFIER22_tree = 
+                    (Object)adaptor.create(ANYCASEIDENTIFIER22)
                     ;
-                    adaptor.addChild(root_0, ANYCASEIDENTIFIER25_tree);
+                    adaptor.addChild(root_0, ANYCASEIDENTIFIER22_tree);
                     }
 
                     }
@@ -922,15 +923,15 @@ public TreeAdaptor getTreeAdaptor() {
             }
             } finally {dbg.exitSubRule(5);}
 
-            dbg.location(132,36);
-            char_literal26=(Token)match(input,90,FOLLOW_90_in_rule586); if (state.failed) return retval;
-            dbg.location(132,38);
-            set27=(Token)input.LT(1);
+            dbg.location(128,36);
+            char_literal23=(Token)match(input,90,FOLLOW_90_in_rule594); if (state.failed) return retval;
+            dbg.location(128,38);
+            set24=(Token)input.LT(1);
 
             if ( input.LA(1)==DENY_TOK||input.LA(1)==PERMIT_TOK ) {
                 input.consume();
                 if ( state.backtracking==0 ) adaptor.addChild(root_0, 
-                (Object)adaptor.create(set27)
+                (Object)adaptor.create(set24)
                 );
                 state.errorRecovery=false;
                 state.failed=false;
@@ -942,24 +943,24 @@ public TreeAdaptor getTreeAdaptor() {
                 throw mse;
             }
 
-            dbg.location(132,62);
-            IF_TOK28=(Token)match(input,IF_TOK,FOLLOW_IF_TOK_in_rule597); if (state.failed) return retval;
+            dbg.location(128,62);
+            IF_TOK25=(Token)match(input,IF_TOK,FOLLOW_IF_TOK_in_rule605); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            IF_TOK28_tree = 
-            (Object)adaptor.create(IF_TOK28)
+            IF_TOK25_tree = 
+            (Object)adaptor.create(IF_TOK25)
             ;
-            adaptor.addChild(root_0, IF_TOK28_tree);
+            adaptor.addChild(root_0, IF_TOK25_tree);
             }
-            dbg.location(132,69);
-            pushFollow(FOLLOW_booleanExpr_in_rule599);
-            booleanExpr29=booleanExpr();
+            dbg.location(128,69);
+            pushFollow(FOLLOW_booleanExpr_in_rule607);
+            booleanExpr26=booleanExpr();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanExpr29.getTree());
-            dbg.location(132,84);
-            char_literal30=(Token)match(input,92,FOLLOW_92_in_rule601); if (state.failed) return retval;
-            dbg.location(133,2);
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanExpr26.getTree());
+            dbg.location(128,84);
+            char_literal27=(Token)match(input,92,FOLLOW_92_in_rule609); if (state.failed) return retval;
+            dbg.location(129,2);
             if ( state.backtracking==0 ) {
             		RuleType o = builder.create(RuleType.class, RuleType.DEFAULT_ELEMENT_NAME);
             	}
@@ -985,7 +986,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(136, 1);
+        dbg.location(132, 1);
 
         }
         finally {
@@ -1000,13 +1001,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class booleanExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "booleanExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:138:1: booleanExpr : ( TRUE_TOK ^| FALSE_TOK ^| BOOLEAN_TOK ^ LPAREN ! attributeExpr RPAREN !| ( NOF_TOK ^| NOT_TOK ^) LPAREN ! booleanExpr RPAREN !| LPAREN ! conditionalOrExpr RPAREN !| equalityExpr | isInOp | containsOp | stringExpr '.' ( NODEEQUAL_TOK ^| NODEMATCH_TOK ^) LPAREN ! stringExpr RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:134:1: booleanExpr returns [SomeType o] : ( TRUE_TOK ^| FALSE_TOK ^| BOOLEAN_TOK ^ LPAREN ! attributeExpr RPAREN !| ( NOF_TOK ^| NOT_TOK ^) LPAREN ! booleanExpr RPAREN !| LPAREN ! conditionalOrExpr RPAREN !| equalityExpr | isInOp | containsOp | stringExpr '.' ( NODEEQUAL_TOK ^| NODEMATCH_TOK ^) LPAREN ! stringExpr RPAREN !);
     public final GrammarParser.booleanExpr_return booleanExpr() throws RecognitionException {
         GrammarParser.booleanExpr_return retval = new GrammarParser.booleanExpr_return();
         retval.start = input.LT(1);
@@ -1014,63 +1016,63 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token TRUE_TOK31=null;
-        Token FALSE_TOK32=null;
-        Token BOOLEAN_TOK33=null;
-        Token LPAREN34=null;
-        Token RPAREN36=null;
-        Token NOF_TOK37=null;
-        Token NOT_TOK38=null;
+        Token TRUE_TOK28=null;
+        Token FALSE_TOK29=null;
+        Token BOOLEAN_TOK30=null;
+        Token LPAREN31=null;
+        Token RPAREN33=null;
+        Token NOF_TOK34=null;
+        Token NOT_TOK35=null;
+        Token LPAREN36=null;
+        Token RPAREN38=null;
         Token LPAREN39=null;
         Token RPAREN41=null;
-        Token LPAREN42=null;
-        Token RPAREN44=null;
-        Token char_literal49=null;
-        Token NODEEQUAL_TOK50=null;
-        Token NODEMATCH_TOK51=null;
-        Token LPAREN52=null;
-        Token RPAREN54=null;
-        GrammarParser.attributeExpr_return attributeExpr35 =null;
+        Token char_literal46=null;
+        Token NODEEQUAL_TOK47=null;
+        Token NODEMATCH_TOK48=null;
+        Token LPAREN49=null;
+        Token RPAREN51=null;
+        GrammarParser.attributeExpr_return attributeExpr32 =null;
 
-        GrammarParser.booleanExpr_return booleanExpr40 =null;
+        GrammarParser.booleanExpr_return booleanExpr37 =null;
 
-        GrammarParser.conditionalOrExpr_return conditionalOrExpr43 =null;
+        GrammarParser.conditionalOrExpr_return conditionalOrExpr40 =null;
 
-        GrammarParser.equalityExpr_return equalityExpr45 =null;
+        GrammarParser.equalityExpr_return equalityExpr42 =null;
 
-        GrammarParser.isInOp_return isInOp46 =null;
+        GrammarParser.isInOp_return isInOp43 =null;
 
-        GrammarParser.containsOp_return containsOp47 =null;
+        GrammarParser.containsOp_return containsOp44 =null;
 
-        GrammarParser.stringExpr_return stringExpr48 =null;
+        GrammarParser.stringExpr_return stringExpr45 =null;
 
-        GrammarParser.stringExpr_return stringExpr53 =null;
+        GrammarParser.stringExpr_return stringExpr50 =null;
 
 
-        Object TRUE_TOK31_tree=null;
-        Object FALSE_TOK32_tree=null;
-        Object BOOLEAN_TOK33_tree=null;
-        Object LPAREN34_tree=null;
-        Object RPAREN36_tree=null;
-        Object NOF_TOK37_tree=null;
-        Object NOT_TOK38_tree=null;
+        Object TRUE_TOK28_tree=null;
+        Object FALSE_TOK29_tree=null;
+        Object BOOLEAN_TOK30_tree=null;
+        Object LPAREN31_tree=null;
+        Object RPAREN33_tree=null;
+        Object NOF_TOK34_tree=null;
+        Object NOT_TOK35_tree=null;
+        Object LPAREN36_tree=null;
+        Object RPAREN38_tree=null;
         Object LPAREN39_tree=null;
         Object RPAREN41_tree=null;
-        Object LPAREN42_tree=null;
-        Object RPAREN44_tree=null;
-        Object char_literal49_tree=null;
-        Object NODEEQUAL_TOK50_tree=null;
-        Object NODEMATCH_TOK51_tree=null;
-        Object LPAREN52_tree=null;
-        Object RPAREN54_tree=null;
+        Object char_literal46_tree=null;
+        Object NODEEQUAL_TOK47_tree=null;
+        Object NODEMATCH_TOK48_tree=null;
+        Object LPAREN49_tree=null;
+        Object RPAREN51_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "booleanExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(138, 0);
+        dbg.location(134, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:139:2: ( TRUE_TOK ^| FALSE_TOK ^| BOOLEAN_TOK ^ LPAREN ! attributeExpr RPAREN !| ( NOF_TOK ^| NOT_TOK ^) LPAREN ! booleanExpr RPAREN !| LPAREN ! conditionalOrExpr RPAREN !| equalityExpr | isInOp | containsOp | stringExpr '.' ( NODEEQUAL_TOK ^| NODEMATCH_TOK ^) LPAREN ! stringExpr RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:135:2: ( TRUE_TOK ^| FALSE_TOK ^| BOOLEAN_TOK ^ LPAREN ! attributeExpr RPAREN !| ( NOF_TOK ^| NOT_TOK ^) LPAREN ! booleanExpr RPAREN !| LPAREN ! conditionalOrExpr RPAREN !| equalityExpr | isInOp | containsOp | stringExpr '.' ( NODEEQUAL_TOK ^| NODEMATCH_TOK ^) LPAREN ! stringExpr RPAREN !)
             int alt8=9;
             try { dbg.enterDecision(8, decisionCanBacktrack[8]);
 
@@ -1088,18 +1090,18 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:139:4: TRUE_TOK ^
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:135:4: TRUE_TOK ^
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(139,12);
-                    TRUE_TOK31=(Token)match(input,TRUE_TOK,FOLLOW_TRUE_TOK_in_booleanExpr616); if (state.failed) return retval;
+                    dbg.location(135,12);
+                    TRUE_TOK28=(Token)match(input,TRUE_TOK,FOLLOW_TRUE_TOK_in_booleanExpr628); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    TRUE_TOK31_tree = 
-                    (Object)adaptor.create(TRUE_TOK31)
+                    TRUE_TOK28_tree = 
+                    (Object)adaptor.create(TRUE_TOK28)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(TRUE_TOK31_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(TRUE_TOK28_tree, root_0);
                     }
 
                     }
@@ -1107,18 +1109,18 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:140:4: FALSE_TOK ^
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:136:4: FALSE_TOK ^
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(140,13);
-                    FALSE_TOK32=(Token)match(input,FALSE_TOK,FOLLOW_FALSE_TOK_in_booleanExpr622); if (state.failed) return retval;
+                    dbg.location(136,13);
+                    FALSE_TOK29=(Token)match(input,FALSE_TOK,FOLLOW_FALSE_TOK_in_booleanExpr634); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    FALSE_TOK32_tree = 
-                    (Object)adaptor.create(FALSE_TOK32)
+                    FALSE_TOK29_tree = 
+                    (Object)adaptor.create(FALSE_TOK29)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(FALSE_TOK32_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(FALSE_TOK29_tree, root_0);
                     }
 
                     }
@@ -1126,43 +1128,43 @@ public TreeAdaptor getTreeAdaptor() {
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:141:4: BOOLEAN_TOK ^ LPAREN ! attributeExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:137:4: BOOLEAN_TOK ^ LPAREN ! attributeExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(141,15);
-                    BOOLEAN_TOK33=(Token)match(input,BOOLEAN_TOK,FOLLOW_BOOLEAN_TOK_in_booleanExpr628); if (state.failed) return retval;
+                    dbg.location(137,15);
+                    BOOLEAN_TOK30=(Token)match(input,BOOLEAN_TOK,FOLLOW_BOOLEAN_TOK_in_booleanExpr640); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    BOOLEAN_TOK33_tree = 
-                    (Object)adaptor.create(BOOLEAN_TOK33)
+                    BOOLEAN_TOK30_tree = 
+                    (Object)adaptor.create(BOOLEAN_TOK30)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(BOOLEAN_TOK33_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(BOOLEAN_TOK30_tree, root_0);
                     }
-                    dbg.location(141,23);
-                    LPAREN34=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_booleanExpr631); if (state.failed) return retval;
-                    dbg.location(141,25);
-                    pushFollow(FOLLOW_attributeExpr_in_booleanExpr634);
-                    attributeExpr35=attributeExpr();
+                    dbg.location(137,23);
+                    LPAREN31=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_booleanExpr643); if (state.failed) return retval;
+                    dbg.location(137,25);
+                    pushFollow(FOLLOW_attributeExpr_in_booleanExpr646);
+                    attributeExpr32=attributeExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, attributeExpr35.getTree());
-                    dbg.location(141,45);
-                    RPAREN36=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_booleanExpr636); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, attributeExpr32.getTree());
+                    dbg.location(137,45);
+                    RPAREN33=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_booleanExpr648); if (state.failed) return retval;
 
                     }
                     break;
                 case 4 :
                     dbg.enterAlt(4);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:142:4: ( NOF_TOK ^| NOT_TOK ^) LPAREN ! booleanExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:138:4: ( NOF_TOK ^| NOT_TOK ^) LPAREN ! booleanExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(142,4);
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:142:4: ( NOF_TOK ^| NOT_TOK ^)
+                    dbg.location(138,4);
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:138:4: ( NOF_TOK ^| NOT_TOK ^)
                     int alt6=2;
                     try { dbg.enterSubRule(6);
                     try { dbg.enterDecision(6, decisionCanBacktrack[6]);
@@ -1190,15 +1192,15 @@ public TreeAdaptor getTreeAdaptor() {
                         case 1 :
                             dbg.enterAlt(1);
 
-                            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:142:6: NOF_TOK ^
+                            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:138:6: NOF_TOK ^
                             {
-                            dbg.location(142,13);
-                            NOF_TOK37=(Token)match(input,NOF_TOK,FOLLOW_NOF_TOK_in_booleanExpr644); if (state.failed) return retval;
+                            dbg.location(138,13);
+                            NOF_TOK34=(Token)match(input,NOF_TOK,FOLLOW_NOF_TOK_in_booleanExpr656); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
-                            NOF_TOK37_tree = 
-                            (Object)adaptor.create(NOF_TOK37)
+                            NOF_TOK34_tree = 
+                            (Object)adaptor.create(NOF_TOK34)
                             ;
-                            root_0 = (Object)adaptor.becomeRoot(NOF_TOK37_tree, root_0);
+                            root_0 = (Object)adaptor.becomeRoot(NOF_TOK34_tree, root_0);
                             }
 
                             }
@@ -1206,15 +1208,15 @@ public TreeAdaptor getTreeAdaptor() {
                         case 2 :
                             dbg.enterAlt(2);
 
-                            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:142:17: NOT_TOK ^
+                            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:138:17: NOT_TOK ^
                             {
-                            dbg.location(142,24);
-                            NOT_TOK38=(Token)match(input,NOT_TOK,FOLLOW_NOT_TOK_in_booleanExpr649); if (state.failed) return retval;
+                            dbg.location(138,24);
+                            NOT_TOK35=(Token)match(input,NOT_TOK,FOLLOW_NOT_TOK_in_booleanExpr661); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
-                            NOT_TOK38_tree = 
-                            (Object)adaptor.create(NOT_TOK38)
+                            NOT_TOK35_tree = 
+                            (Object)adaptor.create(NOT_TOK35)
                             ;
-                            root_0 = (Object)adaptor.becomeRoot(NOT_TOK38_tree, root_0);
+                            root_0 = (Object)adaptor.becomeRoot(NOT_TOK35_tree, root_0);
                             }
 
                             }
@@ -1223,121 +1225,121 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     } finally {dbg.exitSubRule(6);}
 
-                    dbg.location(142,33);
-                    LPAREN39=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_booleanExpr653); if (state.failed) return retval;
-                    dbg.location(142,35);
-                    pushFollow(FOLLOW_booleanExpr_in_booleanExpr656);
-                    booleanExpr40=booleanExpr();
+                    dbg.location(138,33);
+                    LPAREN36=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_booleanExpr665); if (state.failed) return retval;
+                    dbg.location(138,35);
+                    pushFollow(FOLLOW_booleanExpr_in_booleanExpr668);
+                    booleanExpr37=booleanExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanExpr40.getTree());
-                    dbg.location(142,53);
-                    RPAREN41=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_booleanExpr658); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanExpr37.getTree());
+                    dbg.location(138,53);
+                    RPAREN38=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_booleanExpr670); if (state.failed) return retval;
 
                     }
                     break;
                 case 5 :
                     dbg.enterAlt(5);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:143:4: LPAREN ! conditionalOrExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:139:4: LPAREN ! conditionalOrExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(143,10);
-                    LPAREN42=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_booleanExpr664); if (state.failed) return retval;
-                    dbg.location(143,12);
-                    pushFollow(FOLLOW_conditionalOrExpr_in_booleanExpr667);
-                    conditionalOrExpr43=conditionalOrExpr();
+                    dbg.location(139,10);
+                    LPAREN39=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_booleanExpr676); if (state.failed) return retval;
+                    dbg.location(139,12);
+                    pushFollow(FOLLOW_conditionalOrExpr_in_booleanExpr679);
+                    conditionalOrExpr40=conditionalOrExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, conditionalOrExpr43.getTree());
-                    dbg.location(143,36);
-                    RPAREN44=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_booleanExpr669); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, conditionalOrExpr40.getTree());
+                    dbg.location(139,36);
+                    RPAREN41=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_booleanExpr681); if (state.failed) return retval;
 
                     }
                     break;
                 case 6 :
                     dbg.enterAlt(6);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:144:4: equalityExpr
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:140:4: equalityExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(144,4);
-                    pushFollow(FOLLOW_equalityExpr_in_booleanExpr675);
-                    equalityExpr45=equalityExpr();
+                    dbg.location(140,4);
+                    pushFollow(FOLLOW_equalityExpr_in_booleanExpr687);
+                    equalityExpr42=equalityExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, equalityExpr45.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, equalityExpr42.getTree());
 
                     }
                     break;
                 case 7 :
                     dbg.enterAlt(7);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:145:4: isInOp
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:141:4: isInOp
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(145,4);
-                    pushFollow(FOLLOW_isInOp_in_booleanExpr680);
-                    isInOp46=isInOp();
+                    dbg.location(141,4);
+                    pushFollow(FOLLOW_isInOp_in_booleanExpr692);
+                    isInOp43=isInOp();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, isInOp46.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, isInOp43.getTree());
 
                     }
                     break;
                 case 8 :
                     dbg.enterAlt(8);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:145:13: containsOp
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:141:13: containsOp
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(145,13);
-                    pushFollow(FOLLOW_containsOp_in_booleanExpr684);
-                    containsOp47=containsOp();
+                    dbg.location(141,13);
+                    pushFollow(FOLLOW_containsOp_in_booleanExpr696);
+                    containsOp44=containsOp();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, containsOp47.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, containsOp44.getTree());
 
                     }
                     break;
                 case 9 :
                     dbg.enterAlt(9);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:146:4: stringExpr '.' ( NODEEQUAL_TOK ^| NODEMATCH_TOK ^) LPAREN ! stringExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:142:4: stringExpr '.' ( NODEEQUAL_TOK ^| NODEMATCH_TOK ^) LPAREN ! stringExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(146,4);
-                    pushFollow(FOLLOW_stringExpr_in_booleanExpr689);
-                    stringExpr48=stringExpr();
+                    dbg.location(142,4);
+                    pushFollow(FOLLOW_stringExpr_in_booleanExpr701);
+                    stringExpr45=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr48.getTree());
-                    dbg.location(146,15);
-                    char_literal49=(Token)match(input,84,FOLLOW_84_in_booleanExpr691); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr45.getTree());
+                    dbg.location(142,15);
+                    char_literal46=(Token)match(input,84,FOLLOW_84_in_booleanExpr703); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal49_tree = 
-                    (Object)adaptor.create(char_literal49)
+                    char_literal46_tree = 
+                    (Object)adaptor.create(char_literal46)
                     ;
-                    adaptor.addChild(root_0, char_literal49_tree);
+                    adaptor.addChild(root_0, char_literal46_tree);
                     }
-                    dbg.location(146,19);
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:146:19: ( NODEEQUAL_TOK ^| NODEMATCH_TOK ^)
+                    dbg.location(142,19);
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:142:19: ( NODEEQUAL_TOK ^| NODEMATCH_TOK ^)
                     int alt7=2;
                     try { dbg.enterSubRule(7);
                     try { dbg.enterDecision(7, decisionCanBacktrack[7]);
@@ -1365,15 +1367,15 @@ public TreeAdaptor getTreeAdaptor() {
                         case 1 :
                             dbg.enterAlt(1);
 
-                            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:146:21: NODEEQUAL_TOK ^
+                            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:142:21: NODEEQUAL_TOK ^
                             {
-                            dbg.location(146,34);
-                            NODEEQUAL_TOK50=(Token)match(input,NODEEQUAL_TOK,FOLLOW_NODEEQUAL_TOK_in_booleanExpr695); if (state.failed) return retval;
+                            dbg.location(142,34);
+                            NODEEQUAL_TOK47=(Token)match(input,NODEEQUAL_TOK,FOLLOW_NODEEQUAL_TOK_in_booleanExpr707); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
-                            NODEEQUAL_TOK50_tree = 
-                            (Object)adaptor.create(NODEEQUAL_TOK50)
+                            NODEEQUAL_TOK47_tree = 
+                            (Object)adaptor.create(NODEEQUAL_TOK47)
                             ;
-                            root_0 = (Object)adaptor.becomeRoot(NODEEQUAL_TOK50_tree, root_0);
+                            root_0 = (Object)adaptor.becomeRoot(NODEEQUAL_TOK47_tree, root_0);
                             }
 
                             }
@@ -1381,15 +1383,15 @@ public TreeAdaptor getTreeAdaptor() {
                         case 2 :
                             dbg.enterAlt(2);
 
-                            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:146:38: NODEMATCH_TOK ^
+                            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:142:38: NODEMATCH_TOK ^
                             {
-                            dbg.location(146,51);
-                            NODEMATCH_TOK51=(Token)match(input,NODEMATCH_TOK,FOLLOW_NODEMATCH_TOK_in_booleanExpr700); if (state.failed) return retval;
+                            dbg.location(142,51);
+                            NODEMATCH_TOK48=(Token)match(input,NODEMATCH_TOK,FOLLOW_NODEMATCH_TOK_in_booleanExpr712); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
-                            NODEMATCH_TOK51_tree = 
-                            (Object)adaptor.create(NODEMATCH_TOK51)
+                            NODEMATCH_TOK48_tree = 
+                            (Object)adaptor.create(NODEMATCH_TOK48)
                             ;
-                            root_0 = (Object)adaptor.becomeRoot(NODEMATCH_TOK51_tree, root_0);
+                            root_0 = (Object)adaptor.becomeRoot(NODEMATCH_TOK48_tree, root_0);
                             }
 
                             }
@@ -1398,17 +1400,17 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     } finally {dbg.exitSubRule(7);}
 
-                    dbg.location(146,61);
-                    LPAREN52=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_booleanExpr705); if (state.failed) return retval;
-                    dbg.location(146,63);
-                    pushFollow(FOLLOW_stringExpr_in_booleanExpr708);
-                    stringExpr53=stringExpr();
+                    dbg.location(142,61);
+                    LPAREN49=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_booleanExpr717); if (state.failed) return retval;
+                    dbg.location(142,63);
+                    pushFollow(FOLLOW_stringExpr_in_booleanExpr720);
+                    stringExpr50=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr53.getTree());
-                    dbg.location(146,80);
-                    RPAREN54=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_booleanExpr710); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr50.getTree());
+                    dbg.location(142,80);
+                    RPAREN51=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_booleanExpr722); if (state.failed) return retval;
 
                     }
                     break;
@@ -1433,7 +1435,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(149, 1);
+        dbg.location(145, 1);
 
         }
         finally {
@@ -1448,13 +1450,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class booleanBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "booleanBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:150:1: booleanBag : BOOLEAN_TOK STRING_CONSTANT_LIST ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:146:1: booleanBag returns [SomeType o] : BOOLEAN_TOK STRING_CONSTANT_LIST ;
     public final GrammarParser.booleanBag_return booleanBag() throws RecognitionException {
         GrammarParser.booleanBag_return retval = new GrammarParser.booleanBag_return();
         retval.start = input.LT(1);
@@ -1462,41 +1465,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token BOOLEAN_TOK55=null;
-        Token STRING_CONSTANT_LIST56=null;
+        Token BOOLEAN_TOK52=null;
+        Token STRING_CONSTANT_LIST53=null;
 
-        Object BOOLEAN_TOK55_tree=null;
-        Object STRING_CONSTANT_LIST56_tree=null;
+        Object BOOLEAN_TOK52_tree=null;
+        Object STRING_CONSTANT_LIST53_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "booleanBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(150, 0);
+        dbg.location(146, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:151:2: ( BOOLEAN_TOK STRING_CONSTANT_LIST )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:147:2: ( BOOLEAN_TOK STRING_CONSTANT_LIST )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:151:4: BOOLEAN_TOK STRING_CONSTANT_LIST
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:147:4: BOOLEAN_TOK STRING_CONSTANT_LIST
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(151,4);
-            BOOLEAN_TOK55=(Token)match(input,BOOLEAN_TOK,FOLLOW_BOOLEAN_TOK_in_booleanBag723); if (state.failed) return retval;
+            dbg.location(147,4);
+            BOOLEAN_TOK52=(Token)match(input,BOOLEAN_TOK,FOLLOW_BOOLEAN_TOK_in_booleanBag739); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            BOOLEAN_TOK55_tree = 
-            (Object)adaptor.create(BOOLEAN_TOK55)
+            BOOLEAN_TOK52_tree = 
+            (Object)adaptor.create(BOOLEAN_TOK52)
             ;
-            adaptor.addChild(root_0, BOOLEAN_TOK55_tree);
+            adaptor.addChild(root_0, BOOLEAN_TOK52_tree);
             }
-            dbg.location(151,16);
-            STRING_CONSTANT_LIST56=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_booleanBag725); if (state.failed) return retval;
+            dbg.location(147,16);
+            STRING_CONSTANT_LIST53=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_booleanBag741); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STRING_CONSTANT_LIST56_tree = 
-            (Object)adaptor.create(STRING_CONSTANT_LIST56)
+            STRING_CONSTANT_LIST53_tree = 
+            (Object)adaptor.create(STRING_CONSTANT_LIST53)
             ;
-            adaptor.addChild(root_0, STRING_CONSTANT_LIST56_tree);
+            adaptor.addChild(root_0, STRING_CONSTANT_LIST53_tree);
             }
 
             }
@@ -1520,7 +1523,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(154, 1);
+        dbg.location(150, 1);
 
         }
         finally {
@@ -1535,13 +1538,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class conditionalOrExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "conditionalOrExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:156:1: conditionalOrExpr : conditionalAndExpr ( '||' conditionalAndExpr )* ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:152:1: conditionalOrExpr returns [SomeType o] : conditionalAndExpr ( '||' conditionalAndExpr )* ;
     public final GrammarParser.conditionalOrExpr_return conditionalOrExpr() throws RecognitionException {
         GrammarParser.conditionalOrExpr_return retval = new GrammarParser.conditionalOrExpr_return();
         retval.start = input.LT(1);
@@ -1549,37 +1553,37 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token string_literal58=null;
-        GrammarParser.conditionalAndExpr_return conditionalAndExpr57 =null;
+        Token string_literal55=null;
+        GrammarParser.conditionalAndExpr_return conditionalAndExpr54 =null;
 
-        GrammarParser.conditionalAndExpr_return conditionalAndExpr59 =null;
+        GrammarParser.conditionalAndExpr_return conditionalAndExpr56 =null;
 
 
-        Object string_literal58_tree=null;
+        Object string_literal55_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "conditionalOrExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(156, 0);
+        dbg.location(152, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:157:5: ( conditionalAndExpr ( '||' conditionalAndExpr )* )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:153:5: ( conditionalAndExpr ( '||' conditionalAndExpr )* )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:157:7: conditionalAndExpr ( '||' conditionalAndExpr )*
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:153:7: conditionalAndExpr ( '||' conditionalAndExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(157,7);
-            pushFollow(FOLLOW_conditionalAndExpr_in_conditionalOrExpr741);
-            conditionalAndExpr57=conditionalAndExpr();
+            dbg.location(153,7);
+            pushFollow(FOLLOW_conditionalAndExpr_in_conditionalOrExpr761);
+            conditionalAndExpr54=conditionalAndExpr();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, conditionalAndExpr57.getTree());
-            dbg.location(157,26);
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:157:26: ( '||' conditionalAndExpr )*
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, conditionalAndExpr54.getTree());
+            dbg.location(153,26);
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:153:26: ( '||' conditionalAndExpr )*
             try { dbg.enterSubRule(9);
 
             loop9:
@@ -1600,23 +1604,23 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    dbg.enterAlt(1);
 
-            	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:157:27: '||' conditionalAndExpr
+            	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:153:27: '||' conditionalAndExpr
             	    {
-            	    dbg.location(157,27);
-            	    string_literal58=(Token)match(input,91,FOLLOW_91_in_conditionalOrExpr744); if (state.failed) return retval;
+            	    dbg.location(153,27);
+            	    string_literal55=(Token)match(input,91,FOLLOW_91_in_conditionalOrExpr764); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    string_literal58_tree = 
-            	    (Object)adaptor.create(string_literal58)
+            	    string_literal55_tree = 
+            	    (Object)adaptor.create(string_literal55)
             	    ;
-            	    adaptor.addChild(root_0, string_literal58_tree);
+            	    adaptor.addChild(root_0, string_literal55_tree);
             	    }
-            	    dbg.location(157,32);
-            	    pushFollow(FOLLOW_conditionalAndExpr_in_conditionalOrExpr746);
-            	    conditionalAndExpr59=conditionalAndExpr();
+            	    dbg.location(153,32);
+            	    pushFollow(FOLLOW_conditionalAndExpr_in_conditionalOrExpr766);
+            	    conditionalAndExpr56=conditionalAndExpr();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, conditionalAndExpr59.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, conditionalAndExpr56.getTree());
 
             	    }
             	    break;
@@ -1649,7 +1653,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(158, 4);
+        dbg.location(154, 4);
 
         }
         finally {
@@ -1664,13 +1668,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class conditionalAndExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "conditionalAndExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:160:1: conditionalAndExpr : booleanExpr ( '&&' booleanExpr )* ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:156:1: conditionalAndExpr returns [SomeType o] : booleanExpr ( '&&' booleanExpr )* ;
     public final GrammarParser.conditionalAndExpr_return conditionalAndExpr() throws RecognitionException {
         GrammarParser.conditionalAndExpr_return retval = new GrammarParser.conditionalAndExpr_return();
         retval.start = input.LT(1);
@@ -1678,37 +1683,37 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token string_literal61=null;
-        GrammarParser.booleanExpr_return booleanExpr60 =null;
+        Token string_literal58=null;
+        GrammarParser.booleanExpr_return booleanExpr57 =null;
 
-        GrammarParser.booleanExpr_return booleanExpr62 =null;
+        GrammarParser.booleanExpr_return booleanExpr59 =null;
 
 
-        Object string_literal61_tree=null;
+        Object string_literal58_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "conditionalAndExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(160, 0);
+        dbg.location(156, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:161:5: ( booleanExpr ( '&&' booleanExpr )* )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:157:5: ( booleanExpr ( '&&' booleanExpr )* )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:161:7: booleanExpr ( '&&' booleanExpr )*
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:157:7: booleanExpr ( '&&' booleanExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(161,7);
-            pushFollow(FOLLOW_booleanExpr_in_conditionalAndExpr766);
-            booleanExpr60=booleanExpr();
+            dbg.location(157,7);
+            pushFollow(FOLLOW_booleanExpr_in_conditionalAndExpr790);
+            booleanExpr57=booleanExpr();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanExpr60.getTree());
-            dbg.location(161,19);
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:161:19: ( '&&' booleanExpr )*
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanExpr57.getTree());
+            dbg.location(157,19);
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:157:19: ( '&&' booleanExpr )*
             try { dbg.enterSubRule(10);
 
             loop10:
@@ -1729,23 +1734,23 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    dbg.enterAlt(1);
 
-            	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:161:20: '&&' booleanExpr
+            	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:157:20: '&&' booleanExpr
             	    {
-            	    dbg.location(161,20);
-            	    string_literal61=(Token)match(input,82,FOLLOW_82_in_conditionalAndExpr769); if (state.failed) return retval;
+            	    dbg.location(157,20);
+            	    string_literal58=(Token)match(input,82,FOLLOW_82_in_conditionalAndExpr793); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    string_literal61_tree = 
-            	    (Object)adaptor.create(string_literal61)
+            	    string_literal58_tree = 
+            	    (Object)adaptor.create(string_literal58)
             	    ;
-            	    adaptor.addChild(root_0, string_literal61_tree);
+            	    adaptor.addChild(root_0, string_literal58_tree);
             	    }
-            	    dbg.location(161,25);
-            	    pushFollow(FOLLOW_booleanExpr_in_conditionalAndExpr771);
-            	    booleanExpr62=booleanExpr();
+            	    dbg.location(157,25);
+            	    pushFollow(FOLLOW_booleanExpr_in_conditionalAndExpr795);
+            	    booleanExpr59=booleanExpr();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanExpr62.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanExpr59.getTree());
 
             	    }
             	    break;
@@ -1778,7 +1783,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(162, 4);
+        dbg.location(158, 4);
 
         }
         finally {
@@ -1793,13 +1798,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class isInOp_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "isInOp"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:164:1: isInOp : ( doubleExpr '.' ISIN_TOK ^ LPAREN ! doubleBag RPAREN !| stringExpr '.' ISIN_TOK ^ LPAREN ! stringBag RPAREN !| anyUriExpr '.' ISIN_TOK ^ LPAREN ! anyUriBag RPAREN !| dateExpr '.' ISIN_TOK ^ LPAREN ! dateBag RPAREN !| timeExpr '.' ISIN_TOK ^ LPAREN ! timeBag RPAREN !| dateTimeExpr '.' ISIN_TOK ^ LPAREN ! dateTimeBag RPAREN !| base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !| dayTimeDurationExpr '.' ISIN_TOK ^ LPAREN ! dayTimeDurationBag RPAREN !| yearMonthDurationExpr '.' ISIN_TOK ^ LPAREN ! yearMonthDurationBag RPAREN !| x500NameExpr '.' ISIN_TOK ^ LPAREN ! x500NameBag RPAREN !| rfc822NameExpr '.' ISIN_TOK ^ LPAREN ! rfc822NameBag RPAREN !| hexBinaryExpr '.' ISIN_TOK ^ LPAREN ! hexBinaryBag RPAREN !| ( base64BinaryExpr )=> base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:160:1: isInOp returns [SomeType o] : ( doubleExpr '.' ISIN_TOK ^ LPAREN ! doubleBag RPAREN !| stringExpr '.' ISIN_TOK ^ LPAREN ! stringBag RPAREN !| anyUriExpr '.' ISIN_TOK ^ LPAREN ! anyUriBag RPAREN !| dateExpr '.' ISIN_TOK ^ LPAREN ! dateBag RPAREN !| timeExpr '.' ISIN_TOK ^ LPAREN ! timeBag RPAREN !| dateTimeExpr '.' ISIN_TOK ^ LPAREN ! dateTimeBag RPAREN !| base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !| dayTimeDurationExpr '.' ISIN_TOK ^ LPAREN ! dayTimeDurationBag RPAREN !| yearMonthDurationExpr '.' ISIN_TOK ^ LPAREN ! yearMonthDurationBag RPAREN !| x500NameExpr '.' ISIN_TOK ^ LPAREN ! x500NameBag RPAREN !| rfc822NameExpr '.' ISIN_TOK ^ LPAREN ! rfc822NameBag RPAREN !| hexBinaryExpr '.' ISIN_TOK ^ LPAREN ! hexBinaryBag RPAREN !| ( base64BinaryExpr )=> base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !);
     public final GrammarParser.isInOp_return isInOp() throws RecognitionException {
         GrammarParser.isInOp_return retval = new GrammarParser.isInOp_return();
         retval.start = input.LT(1);
@@ -1807,171 +1813,171 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token char_literal64=null;
-        Token ISIN_TOK65=null;
-        Token LPAREN66=null;
-        Token RPAREN68=null;
-        Token char_literal70=null;
-        Token ISIN_TOK71=null;
-        Token LPAREN72=null;
-        Token RPAREN74=null;
-        Token char_literal76=null;
-        Token ISIN_TOK77=null;
-        Token LPAREN78=null;
-        Token RPAREN80=null;
-        Token char_literal82=null;
-        Token ISIN_TOK83=null;
-        Token LPAREN84=null;
-        Token RPAREN86=null;
-        Token char_literal88=null;
-        Token ISIN_TOK89=null;
-        Token LPAREN90=null;
-        Token RPAREN92=null;
-        Token char_literal94=null;
-        Token ISIN_TOK95=null;
-        Token LPAREN96=null;
-        Token RPAREN98=null;
-        Token char_literal100=null;
-        Token ISIN_TOK101=null;
-        Token LPAREN102=null;
-        Token RPAREN104=null;
-        Token char_literal106=null;
-        Token ISIN_TOK107=null;
-        Token LPAREN108=null;
-        Token RPAREN110=null;
-        Token char_literal112=null;
-        Token ISIN_TOK113=null;
-        Token LPAREN114=null;
-        Token RPAREN116=null;
-        Token char_literal118=null;
-        Token ISIN_TOK119=null;
-        Token LPAREN120=null;
-        Token RPAREN122=null;
-        Token char_literal124=null;
-        Token ISIN_TOK125=null;
-        Token LPAREN126=null;
-        Token RPAREN128=null;
-        Token char_literal130=null;
-        Token ISIN_TOK131=null;
-        Token LPAREN132=null;
-        Token RPAREN134=null;
-        Token char_literal136=null;
-        Token ISIN_TOK137=null;
-        Token LPAREN138=null;
-        Token RPAREN140=null;
-        GrammarParser.doubleExpr_return doubleExpr63 =null;
+        Token char_literal61=null;
+        Token ISIN_TOK62=null;
+        Token LPAREN63=null;
+        Token RPAREN65=null;
+        Token char_literal67=null;
+        Token ISIN_TOK68=null;
+        Token LPAREN69=null;
+        Token RPAREN71=null;
+        Token char_literal73=null;
+        Token ISIN_TOK74=null;
+        Token LPAREN75=null;
+        Token RPAREN77=null;
+        Token char_literal79=null;
+        Token ISIN_TOK80=null;
+        Token LPAREN81=null;
+        Token RPAREN83=null;
+        Token char_literal85=null;
+        Token ISIN_TOK86=null;
+        Token LPAREN87=null;
+        Token RPAREN89=null;
+        Token char_literal91=null;
+        Token ISIN_TOK92=null;
+        Token LPAREN93=null;
+        Token RPAREN95=null;
+        Token char_literal97=null;
+        Token ISIN_TOK98=null;
+        Token LPAREN99=null;
+        Token RPAREN101=null;
+        Token char_literal103=null;
+        Token ISIN_TOK104=null;
+        Token LPAREN105=null;
+        Token RPAREN107=null;
+        Token char_literal109=null;
+        Token ISIN_TOK110=null;
+        Token LPAREN111=null;
+        Token RPAREN113=null;
+        Token char_literal115=null;
+        Token ISIN_TOK116=null;
+        Token LPAREN117=null;
+        Token RPAREN119=null;
+        Token char_literal121=null;
+        Token ISIN_TOK122=null;
+        Token LPAREN123=null;
+        Token RPAREN125=null;
+        Token char_literal127=null;
+        Token ISIN_TOK128=null;
+        Token LPAREN129=null;
+        Token RPAREN131=null;
+        Token char_literal133=null;
+        Token ISIN_TOK134=null;
+        Token LPAREN135=null;
+        Token RPAREN137=null;
+        GrammarParser.doubleExpr_return doubleExpr60 =null;
 
-        GrammarParser.doubleBag_return doubleBag67 =null;
+        GrammarParser.doubleBag_return doubleBag64 =null;
 
-        GrammarParser.stringExpr_return stringExpr69 =null;
+        GrammarParser.stringExpr_return stringExpr66 =null;
 
-        GrammarParser.stringBag_return stringBag73 =null;
+        GrammarParser.stringBag_return stringBag70 =null;
 
-        GrammarParser.anyUriExpr_return anyUriExpr75 =null;
+        GrammarParser.anyUriExpr_return anyUriExpr72 =null;
 
-        GrammarParser.anyUriBag_return anyUriBag79 =null;
+        GrammarParser.anyUriBag_return anyUriBag76 =null;
 
-        GrammarParser.dateExpr_return dateExpr81 =null;
+        GrammarParser.dateExpr_return dateExpr78 =null;
 
-        GrammarParser.dateBag_return dateBag85 =null;
+        GrammarParser.dateBag_return dateBag82 =null;
 
-        GrammarParser.timeExpr_return timeExpr87 =null;
+        GrammarParser.timeExpr_return timeExpr84 =null;
 
-        GrammarParser.timeBag_return timeBag91 =null;
+        GrammarParser.timeBag_return timeBag88 =null;
 
-        GrammarParser.dateTimeExpr_return dateTimeExpr93 =null;
+        GrammarParser.dateTimeExpr_return dateTimeExpr90 =null;
 
-        GrammarParser.dateTimeBag_return dateTimeBag97 =null;
+        GrammarParser.dateTimeBag_return dateTimeBag94 =null;
 
-        GrammarParser.base64BinaryExpr_return base64BinaryExpr99 =null;
+        GrammarParser.base64BinaryExpr_return base64BinaryExpr96 =null;
 
-        GrammarParser.base64BinaryBag_return base64BinaryBag103 =null;
+        GrammarParser.base64BinaryBag_return base64BinaryBag100 =null;
 
-        GrammarParser.dayTimeDurationExpr_return dayTimeDurationExpr105 =null;
+        GrammarParser.dayTimeDurationExpr_return dayTimeDurationExpr102 =null;
 
-        GrammarParser.dayTimeDurationBag_return dayTimeDurationBag109 =null;
+        GrammarParser.dayTimeDurationBag_return dayTimeDurationBag106 =null;
 
-        GrammarParser.yearMonthDurationExpr_return yearMonthDurationExpr111 =null;
+        GrammarParser.yearMonthDurationExpr_return yearMonthDurationExpr108 =null;
 
-        GrammarParser.yearMonthDurationBag_return yearMonthDurationBag115 =null;
+        GrammarParser.yearMonthDurationBag_return yearMonthDurationBag112 =null;
 
-        GrammarParser.x500NameExpr_return x500NameExpr117 =null;
+        GrammarParser.x500NameExpr_return x500NameExpr114 =null;
 
-        GrammarParser.x500NameBag_return x500NameBag121 =null;
+        GrammarParser.x500NameBag_return x500NameBag118 =null;
 
-        GrammarParser.rfc822NameExpr_return rfc822NameExpr123 =null;
+        GrammarParser.rfc822NameExpr_return rfc822NameExpr120 =null;
 
-        GrammarParser.rfc822NameBag_return rfc822NameBag127 =null;
+        GrammarParser.rfc822NameBag_return rfc822NameBag124 =null;
 
-        GrammarParser.hexBinaryExpr_return hexBinaryExpr129 =null;
+        GrammarParser.hexBinaryExpr_return hexBinaryExpr126 =null;
 
-        GrammarParser.hexBinaryBag_return hexBinaryBag133 =null;
+        GrammarParser.hexBinaryBag_return hexBinaryBag130 =null;
 
-        GrammarParser.base64BinaryExpr_return base64BinaryExpr135 =null;
+        GrammarParser.base64BinaryExpr_return base64BinaryExpr132 =null;
 
-        GrammarParser.base64BinaryBag_return base64BinaryBag139 =null;
+        GrammarParser.base64BinaryBag_return base64BinaryBag136 =null;
 
 
-        Object char_literal64_tree=null;
-        Object ISIN_TOK65_tree=null;
-        Object LPAREN66_tree=null;
-        Object RPAREN68_tree=null;
-        Object char_literal70_tree=null;
-        Object ISIN_TOK71_tree=null;
-        Object LPAREN72_tree=null;
-        Object RPAREN74_tree=null;
-        Object char_literal76_tree=null;
-        Object ISIN_TOK77_tree=null;
-        Object LPAREN78_tree=null;
-        Object RPAREN80_tree=null;
-        Object char_literal82_tree=null;
-        Object ISIN_TOK83_tree=null;
-        Object LPAREN84_tree=null;
-        Object RPAREN86_tree=null;
-        Object char_literal88_tree=null;
-        Object ISIN_TOK89_tree=null;
-        Object LPAREN90_tree=null;
-        Object RPAREN92_tree=null;
-        Object char_literal94_tree=null;
-        Object ISIN_TOK95_tree=null;
-        Object LPAREN96_tree=null;
-        Object RPAREN98_tree=null;
-        Object char_literal100_tree=null;
-        Object ISIN_TOK101_tree=null;
-        Object LPAREN102_tree=null;
-        Object RPAREN104_tree=null;
-        Object char_literal106_tree=null;
-        Object ISIN_TOK107_tree=null;
-        Object LPAREN108_tree=null;
-        Object RPAREN110_tree=null;
-        Object char_literal112_tree=null;
-        Object ISIN_TOK113_tree=null;
-        Object LPAREN114_tree=null;
-        Object RPAREN116_tree=null;
-        Object char_literal118_tree=null;
-        Object ISIN_TOK119_tree=null;
-        Object LPAREN120_tree=null;
-        Object RPAREN122_tree=null;
-        Object char_literal124_tree=null;
-        Object ISIN_TOK125_tree=null;
-        Object LPAREN126_tree=null;
-        Object RPAREN128_tree=null;
-        Object char_literal130_tree=null;
-        Object ISIN_TOK131_tree=null;
-        Object LPAREN132_tree=null;
-        Object RPAREN134_tree=null;
-        Object char_literal136_tree=null;
-        Object ISIN_TOK137_tree=null;
-        Object LPAREN138_tree=null;
-        Object RPAREN140_tree=null;
+        Object char_literal61_tree=null;
+        Object ISIN_TOK62_tree=null;
+        Object LPAREN63_tree=null;
+        Object RPAREN65_tree=null;
+        Object char_literal67_tree=null;
+        Object ISIN_TOK68_tree=null;
+        Object LPAREN69_tree=null;
+        Object RPAREN71_tree=null;
+        Object char_literal73_tree=null;
+        Object ISIN_TOK74_tree=null;
+        Object LPAREN75_tree=null;
+        Object RPAREN77_tree=null;
+        Object char_literal79_tree=null;
+        Object ISIN_TOK80_tree=null;
+        Object LPAREN81_tree=null;
+        Object RPAREN83_tree=null;
+        Object char_literal85_tree=null;
+        Object ISIN_TOK86_tree=null;
+        Object LPAREN87_tree=null;
+        Object RPAREN89_tree=null;
+        Object char_literal91_tree=null;
+        Object ISIN_TOK92_tree=null;
+        Object LPAREN93_tree=null;
+        Object RPAREN95_tree=null;
+        Object char_literal97_tree=null;
+        Object ISIN_TOK98_tree=null;
+        Object LPAREN99_tree=null;
+        Object RPAREN101_tree=null;
+        Object char_literal103_tree=null;
+        Object ISIN_TOK104_tree=null;
+        Object LPAREN105_tree=null;
+        Object RPAREN107_tree=null;
+        Object char_literal109_tree=null;
+        Object ISIN_TOK110_tree=null;
+        Object LPAREN111_tree=null;
+        Object RPAREN113_tree=null;
+        Object char_literal115_tree=null;
+        Object ISIN_TOK116_tree=null;
+        Object LPAREN117_tree=null;
+        Object RPAREN119_tree=null;
+        Object char_literal121_tree=null;
+        Object ISIN_TOK122_tree=null;
+        Object LPAREN123_tree=null;
+        Object RPAREN125_tree=null;
+        Object char_literal127_tree=null;
+        Object ISIN_TOK128_tree=null;
+        Object LPAREN129_tree=null;
+        Object RPAREN131_tree=null;
+        Object char_literal133_tree=null;
+        Object ISIN_TOK134_tree=null;
+        Object LPAREN135_tree=null;
+        Object RPAREN137_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "isInOp");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(164, 0);
+        dbg.location(160, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:165:2: ( doubleExpr '.' ISIN_TOK ^ LPAREN ! doubleBag RPAREN !| stringExpr '.' ISIN_TOK ^ LPAREN ! stringBag RPAREN !| anyUriExpr '.' ISIN_TOK ^ LPAREN ! anyUriBag RPAREN !| dateExpr '.' ISIN_TOK ^ LPAREN ! dateBag RPAREN !| timeExpr '.' ISIN_TOK ^ LPAREN ! timeBag RPAREN !| dateTimeExpr '.' ISIN_TOK ^ LPAREN ! dateTimeBag RPAREN !| base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !| dayTimeDurationExpr '.' ISIN_TOK ^ LPAREN ! dayTimeDurationBag RPAREN !| yearMonthDurationExpr '.' ISIN_TOK ^ LPAREN ! yearMonthDurationBag RPAREN !| x500NameExpr '.' ISIN_TOK ^ LPAREN ! x500NameBag RPAREN !| rfc822NameExpr '.' ISIN_TOK ^ LPAREN ! rfc822NameBag RPAREN !| hexBinaryExpr '.' ISIN_TOK ^ LPAREN ! hexBinaryBag RPAREN !| ( base64BinaryExpr )=> base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:161:2: ( doubleExpr '.' ISIN_TOK ^ LPAREN ! doubleBag RPAREN !| stringExpr '.' ISIN_TOK ^ LPAREN ! stringBag RPAREN !| anyUriExpr '.' ISIN_TOK ^ LPAREN ! anyUriBag RPAREN !| dateExpr '.' ISIN_TOK ^ LPAREN ! dateBag RPAREN !| timeExpr '.' ISIN_TOK ^ LPAREN ! timeBag RPAREN !| dateTimeExpr '.' ISIN_TOK ^ LPAREN ! dateTimeBag RPAREN !| base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !| dayTimeDurationExpr '.' ISIN_TOK ^ LPAREN ! dayTimeDurationBag RPAREN !| yearMonthDurationExpr '.' ISIN_TOK ^ LPAREN ! yearMonthDurationBag RPAREN !| x500NameExpr '.' ISIN_TOK ^ LPAREN ! x500NameBag RPAREN !| rfc822NameExpr '.' ISIN_TOK ^ LPAREN ! rfc822NameBag RPAREN !| hexBinaryExpr '.' ISIN_TOK ^ LPAREN ! hexBinaryBag RPAREN !| ( base64BinaryExpr )=> base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !)
             int alt11=13;
             try { dbg.enterDecision(11, decisionCanBacktrack[11]);
 
@@ -1989,585 +1995,585 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:165:5: doubleExpr '.' ISIN_TOK ^ LPAREN ! doubleBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:161:5: doubleExpr '.' ISIN_TOK ^ LPAREN ! doubleBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(165,5);
-                    pushFollow(FOLLOW_doubleExpr_in_isInOp788);
-                    doubleExpr63=doubleExpr();
+                    dbg.location(161,5);
+                    pushFollow(FOLLOW_doubleExpr_in_isInOp816);
+                    doubleExpr60=doubleExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleExpr63.getTree());
-                    dbg.location(165,16);
-                    char_literal64=(Token)match(input,84,FOLLOW_84_in_isInOp790); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleExpr60.getTree());
+                    dbg.location(161,16);
+                    char_literal61=(Token)match(input,84,FOLLOW_84_in_isInOp818); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal64_tree = 
-                    (Object)adaptor.create(char_literal64)
+                    char_literal61_tree = 
+                    (Object)adaptor.create(char_literal61)
                     ;
-                    adaptor.addChild(root_0, char_literal64_tree);
+                    adaptor.addChild(root_0, char_literal61_tree);
                     }
-                    dbg.location(165,28);
-                    ISIN_TOK65=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp792); if (state.failed) return retval;
+                    dbg.location(161,28);
+                    ISIN_TOK62=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp820); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ISIN_TOK65_tree = 
-                    (Object)adaptor.create(ISIN_TOK65)
+                    ISIN_TOK62_tree = 
+                    (Object)adaptor.create(ISIN_TOK62)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK65_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK62_tree, root_0);
                     }
-                    dbg.location(165,36);
-                    LPAREN66=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp795); if (state.failed) return retval;
-                    dbg.location(165,38);
-                    pushFollow(FOLLOW_doubleBag_in_isInOp798);
-                    doubleBag67=doubleBag();
+                    dbg.location(161,36);
+                    LPAREN63=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp823); if (state.failed) return retval;
+                    dbg.location(161,38);
+                    pushFollow(FOLLOW_doubleBag_in_isInOp826);
+                    doubleBag64=doubleBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleBag67.getTree());
-                    dbg.location(165,54);
-                    RPAREN68=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp800); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleBag64.getTree());
+                    dbg.location(161,54);
+                    RPAREN65=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp828); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:166:5: stringExpr '.' ISIN_TOK ^ LPAREN ! stringBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:162:5: stringExpr '.' ISIN_TOK ^ LPAREN ! stringBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(166,5);
-                    pushFollow(FOLLOW_stringExpr_in_isInOp807);
-                    stringExpr69=stringExpr();
+                    dbg.location(162,5);
+                    pushFollow(FOLLOW_stringExpr_in_isInOp835);
+                    stringExpr66=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr69.getTree());
-                    dbg.location(166,16);
-                    char_literal70=(Token)match(input,84,FOLLOW_84_in_isInOp809); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr66.getTree());
+                    dbg.location(162,16);
+                    char_literal67=(Token)match(input,84,FOLLOW_84_in_isInOp837); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal70_tree = 
-                    (Object)adaptor.create(char_literal70)
+                    char_literal67_tree = 
+                    (Object)adaptor.create(char_literal67)
                     ;
-                    adaptor.addChild(root_0, char_literal70_tree);
+                    adaptor.addChild(root_0, char_literal67_tree);
                     }
-                    dbg.location(166,28);
-                    ISIN_TOK71=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp811); if (state.failed) return retval;
+                    dbg.location(162,28);
+                    ISIN_TOK68=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp839); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ISIN_TOK71_tree = 
-                    (Object)adaptor.create(ISIN_TOK71)
+                    ISIN_TOK68_tree = 
+                    (Object)adaptor.create(ISIN_TOK68)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK71_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK68_tree, root_0);
                     }
-                    dbg.location(166,36);
-                    LPAREN72=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp814); if (state.failed) return retval;
-                    dbg.location(166,38);
-                    pushFollow(FOLLOW_stringBag_in_isInOp817);
-                    stringBag73=stringBag();
+                    dbg.location(162,36);
+                    LPAREN69=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp842); if (state.failed) return retval;
+                    dbg.location(162,38);
+                    pushFollow(FOLLOW_stringBag_in_isInOp845);
+                    stringBag70=stringBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringBag73.getTree());
-                    dbg.location(166,54);
-                    RPAREN74=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp819); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringBag70.getTree());
+                    dbg.location(162,54);
+                    RPAREN71=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp847); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:167:5: anyUriExpr '.' ISIN_TOK ^ LPAREN ! anyUriBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:163:5: anyUriExpr '.' ISIN_TOK ^ LPAREN ! anyUriBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(167,5);
-                    pushFollow(FOLLOW_anyUriExpr_in_isInOp826);
-                    anyUriExpr75=anyUriExpr();
+                    dbg.location(163,5);
+                    pushFollow(FOLLOW_anyUriExpr_in_isInOp854);
+                    anyUriExpr72=anyUriExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriExpr75.getTree());
-                    dbg.location(167,16);
-                    char_literal76=(Token)match(input,84,FOLLOW_84_in_isInOp828); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriExpr72.getTree());
+                    dbg.location(163,16);
+                    char_literal73=(Token)match(input,84,FOLLOW_84_in_isInOp856); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal76_tree = 
-                    (Object)adaptor.create(char_literal76)
+                    char_literal73_tree = 
+                    (Object)adaptor.create(char_literal73)
                     ;
-                    adaptor.addChild(root_0, char_literal76_tree);
+                    adaptor.addChild(root_0, char_literal73_tree);
                     }
-                    dbg.location(167,28);
-                    ISIN_TOK77=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp830); if (state.failed) return retval;
+                    dbg.location(163,28);
+                    ISIN_TOK74=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp858); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ISIN_TOK77_tree = 
-                    (Object)adaptor.create(ISIN_TOK77)
+                    ISIN_TOK74_tree = 
+                    (Object)adaptor.create(ISIN_TOK74)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK77_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK74_tree, root_0);
                     }
-                    dbg.location(167,36);
-                    LPAREN78=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp833); if (state.failed) return retval;
-                    dbg.location(167,38);
-                    pushFollow(FOLLOW_anyUriBag_in_isInOp836);
-                    anyUriBag79=anyUriBag();
+                    dbg.location(163,36);
+                    LPAREN75=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp861); if (state.failed) return retval;
+                    dbg.location(163,38);
+                    pushFollow(FOLLOW_anyUriBag_in_isInOp864);
+                    anyUriBag76=anyUriBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriBag79.getTree());
-                    dbg.location(167,54);
-                    RPAREN80=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp838); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriBag76.getTree());
+                    dbg.location(163,54);
+                    RPAREN77=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp866); if (state.failed) return retval;
 
                     }
                     break;
                 case 4 :
                     dbg.enterAlt(4);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:168:5: dateExpr '.' ISIN_TOK ^ LPAREN ! dateBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:164:5: dateExpr '.' ISIN_TOK ^ LPAREN ! dateBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(168,5);
-                    pushFollow(FOLLOW_dateExpr_in_isInOp845);
-                    dateExpr81=dateExpr();
+                    dbg.location(164,5);
+                    pushFollow(FOLLOW_dateExpr_in_isInOp873);
+                    dateExpr78=dateExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateExpr81.getTree());
-                    dbg.location(168,14);
-                    char_literal82=(Token)match(input,84,FOLLOW_84_in_isInOp847); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateExpr78.getTree());
+                    dbg.location(164,14);
+                    char_literal79=(Token)match(input,84,FOLLOW_84_in_isInOp875); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal82_tree = 
-                    (Object)adaptor.create(char_literal82)
+                    char_literal79_tree = 
+                    (Object)adaptor.create(char_literal79)
                     ;
-                    adaptor.addChild(root_0, char_literal82_tree);
+                    adaptor.addChild(root_0, char_literal79_tree);
                     }
-                    dbg.location(168,26);
-                    ISIN_TOK83=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp849); if (state.failed) return retval;
+                    dbg.location(164,26);
+                    ISIN_TOK80=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp877); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ISIN_TOK83_tree = 
-                    (Object)adaptor.create(ISIN_TOK83)
+                    ISIN_TOK80_tree = 
+                    (Object)adaptor.create(ISIN_TOK80)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK83_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK80_tree, root_0);
                     }
-                    dbg.location(168,34);
-                    LPAREN84=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp852); if (state.failed) return retval;
-                    dbg.location(168,36);
-                    pushFollow(FOLLOW_dateBag_in_isInOp855);
-                    dateBag85=dateBag();
+                    dbg.location(164,34);
+                    LPAREN81=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp880); if (state.failed) return retval;
+                    dbg.location(164,36);
+                    pushFollow(FOLLOW_dateBag_in_isInOp883);
+                    dateBag82=dateBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateBag85.getTree());
-                    dbg.location(168,50);
-                    RPAREN86=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp857); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateBag82.getTree());
+                    dbg.location(164,50);
+                    RPAREN83=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp885); if (state.failed) return retval;
 
                     }
                     break;
                 case 5 :
                     dbg.enterAlt(5);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:169:5: timeExpr '.' ISIN_TOK ^ LPAREN ! timeBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:165:5: timeExpr '.' ISIN_TOK ^ LPAREN ! timeBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(169,5);
-                    pushFollow(FOLLOW_timeExpr_in_isInOp864);
-                    timeExpr87=timeExpr();
+                    dbg.location(165,5);
+                    pushFollow(FOLLOW_timeExpr_in_isInOp892);
+                    timeExpr84=timeExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeExpr87.getTree());
-                    dbg.location(169,14);
-                    char_literal88=(Token)match(input,84,FOLLOW_84_in_isInOp866); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeExpr84.getTree());
+                    dbg.location(165,14);
+                    char_literal85=(Token)match(input,84,FOLLOW_84_in_isInOp894); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal88_tree = 
-                    (Object)adaptor.create(char_literal88)
+                    char_literal85_tree = 
+                    (Object)adaptor.create(char_literal85)
                     ;
-                    adaptor.addChild(root_0, char_literal88_tree);
+                    adaptor.addChild(root_0, char_literal85_tree);
                     }
-                    dbg.location(169,26);
-                    ISIN_TOK89=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp868); if (state.failed) return retval;
+                    dbg.location(165,26);
+                    ISIN_TOK86=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp896); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ISIN_TOK89_tree = 
-                    (Object)adaptor.create(ISIN_TOK89)
+                    ISIN_TOK86_tree = 
+                    (Object)adaptor.create(ISIN_TOK86)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK89_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK86_tree, root_0);
                     }
-                    dbg.location(169,34);
-                    LPAREN90=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp871); if (state.failed) return retval;
-                    dbg.location(169,36);
-                    pushFollow(FOLLOW_timeBag_in_isInOp874);
-                    timeBag91=timeBag();
+                    dbg.location(165,34);
+                    LPAREN87=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp899); if (state.failed) return retval;
+                    dbg.location(165,36);
+                    pushFollow(FOLLOW_timeBag_in_isInOp902);
+                    timeBag88=timeBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeBag91.getTree());
-                    dbg.location(169,50);
-                    RPAREN92=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp876); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeBag88.getTree());
+                    dbg.location(165,50);
+                    RPAREN89=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp904); if (state.failed) return retval;
 
                     }
                     break;
                 case 6 :
                     dbg.enterAlt(6);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:170:5: dateTimeExpr '.' ISIN_TOK ^ LPAREN ! dateTimeBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:166:5: dateTimeExpr '.' ISIN_TOK ^ LPAREN ! dateTimeBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(170,5);
-                    pushFollow(FOLLOW_dateTimeExpr_in_isInOp883);
-                    dateTimeExpr93=dateTimeExpr();
+                    dbg.location(166,5);
+                    pushFollow(FOLLOW_dateTimeExpr_in_isInOp911);
+                    dateTimeExpr90=dateTimeExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeExpr93.getTree());
-                    dbg.location(170,18);
-                    char_literal94=(Token)match(input,84,FOLLOW_84_in_isInOp885); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeExpr90.getTree());
+                    dbg.location(166,18);
+                    char_literal91=(Token)match(input,84,FOLLOW_84_in_isInOp913); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal94_tree = 
-                    (Object)adaptor.create(char_literal94)
+                    char_literal91_tree = 
+                    (Object)adaptor.create(char_literal91)
                     ;
-                    adaptor.addChild(root_0, char_literal94_tree);
+                    adaptor.addChild(root_0, char_literal91_tree);
                     }
-                    dbg.location(170,30);
-                    ISIN_TOK95=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp887); if (state.failed) return retval;
+                    dbg.location(166,30);
+                    ISIN_TOK92=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp915); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ISIN_TOK95_tree = 
-                    (Object)adaptor.create(ISIN_TOK95)
+                    ISIN_TOK92_tree = 
+                    (Object)adaptor.create(ISIN_TOK92)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK95_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK92_tree, root_0);
                     }
-                    dbg.location(170,38);
-                    LPAREN96=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp890); if (state.failed) return retval;
-                    dbg.location(170,40);
-                    pushFollow(FOLLOW_dateTimeBag_in_isInOp893);
-                    dateTimeBag97=dateTimeBag();
+                    dbg.location(166,38);
+                    LPAREN93=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp918); if (state.failed) return retval;
+                    dbg.location(166,40);
+                    pushFollow(FOLLOW_dateTimeBag_in_isInOp921);
+                    dateTimeBag94=dateTimeBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeBag97.getTree());
-                    dbg.location(170,58);
-                    RPAREN98=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp895); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeBag94.getTree());
+                    dbg.location(166,58);
+                    RPAREN95=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp923); if (state.failed) return retval;
 
                     }
                     break;
                 case 7 :
                     dbg.enterAlt(7);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:171:5: base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:167:5: base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(171,5);
-                    pushFollow(FOLLOW_base64BinaryExpr_in_isInOp902);
-                    base64BinaryExpr99=base64BinaryExpr();
+                    dbg.location(167,5);
+                    pushFollow(FOLLOW_base64BinaryExpr_in_isInOp930);
+                    base64BinaryExpr96=base64BinaryExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr99.getTree());
-                    dbg.location(171,22);
-                    char_literal100=(Token)match(input,84,FOLLOW_84_in_isInOp904); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr96.getTree());
+                    dbg.location(167,22);
+                    char_literal97=(Token)match(input,84,FOLLOW_84_in_isInOp932); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal100_tree = 
-                    (Object)adaptor.create(char_literal100)
+                    char_literal97_tree = 
+                    (Object)adaptor.create(char_literal97)
                     ;
-                    adaptor.addChild(root_0, char_literal100_tree);
+                    adaptor.addChild(root_0, char_literal97_tree);
                     }
-                    dbg.location(171,34);
-                    ISIN_TOK101=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp906); if (state.failed) return retval;
+                    dbg.location(167,34);
+                    ISIN_TOK98=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp934); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ISIN_TOK101_tree = 
-                    (Object)adaptor.create(ISIN_TOK101)
+                    ISIN_TOK98_tree = 
+                    (Object)adaptor.create(ISIN_TOK98)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK101_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK98_tree, root_0);
                     }
-                    dbg.location(171,42);
-                    LPAREN102=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp909); if (state.failed) return retval;
-                    dbg.location(171,44);
-                    pushFollow(FOLLOW_base64BinaryBag_in_isInOp912);
-                    base64BinaryBag103=base64BinaryBag();
+                    dbg.location(167,42);
+                    LPAREN99=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp937); if (state.failed) return retval;
+                    dbg.location(167,44);
+                    pushFollow(FOLLOW_base64BinaryBag_in_isInOp940);
+                    base64BinaryBag100=base64BinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag103.getTree());
-                    dbg.location(171,66);
-                    RPAREN104=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp914); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag100.getTree());
+                    dbg.location(167,66);
+                    RPAREN101=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp942); if (state.failed) return retval;
 
                     }
                     break;
                 case 8 :
                     dbg.enterAlt(8);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:172:5: dayTimeDurationExpr '.' ISIN_TOK ^ LPAREN ! dayTimeDurationBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:168:5: dayTimeDurationExpr '.' ISIN_TOK ^ LPAREN ! dayTimeDurationBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(172,5);
-                    pushFollow(FOLLOW_dayTimeDurationExpr_in_isInOp921);
-                    dayTimeDurationExpr105=dayTimeDurationExpr();
+                    dbg.location(168,5);
+                    pushFollow(FOLLOW_dayTimeDurationExpr_in_isInOp949);
+                    dayTimeDurationExpr102=dayTimeDurationExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationExpr105.getTree());
-                    dbg.location(172,25);
-                    char_literal106=(Token)match(input,84,FOLLOW_84_in_isInOp923); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationExpr102.getTree());
+                    dbg.location(168,25);
+                    char_literal103=(Token)match(input,84,FOLLOW_84_in_isInOp951); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal106_tree = 
-                    (Object)adaptor.create(char_literal106)
+                    char_literal103_tree = 
+                    (Object)adaptor.create(char_literal103)
                     ;
-                    adaptor.addChild(root_0, char_literal106_tree);
+                    adaptor.addChild(root_0, char_literal103_tree);
                     }
-                    dbg.location(172,37);
-                    ISIN_TOK107=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp925); if (state.failed) return retval;
+                    dbg.location(168,37);
+                    ISIN_TOK104=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp953); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ISIN_TOK107_tree = 
-                    (Object)adaptor.create(ISIN_TOK107)
+                    ISIN_TOK104_tree = 
+                    (Object)adaptor.create(ISIN_TOK104)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK107_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK104_tree, root_0);
                     }
-                    dbg.location(172,45);
-                    LPAREN108=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp928); if (state.failed) return retval;
-                    dbg.location(172,47);
-                    pushFollow(FOLLOW_dayTimeDurationBag_in_isInOp931);
-                    dayTimeDurationBag109=dayTimeDurationBag();
+                    dbg.location(168,45);
+                    LPAREN105=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp956); if (state.failed) return retval;
+                    dbg.location(168,47);
+                    pushFollow(FOLLOW_dayTimeDurationBag_in_isInOp959);
+                    dayTimeDurationBag106=dayTimeDurationBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationBag109.getTree());
-                    dbg.location(172,72);
-                    RPAREN110=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp933); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationBag106.getTree());
+                    dbg.location(168,72);
+                    RPAREN107=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp961); if (state.failed) return retval;
 
                     }
                     break;
                 case 9 :
                     dbg.enterAlt(9);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:173:5: yearMonthDurationExpr '.' ISIN_TOK ^ LPAREN ! yearMonthDurationBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:169:5: yearMonthDurationExpr '.' ISIN_TOK ^ LPAREN ! yearMonthDurationBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(173,5);
-                    pushFollow(FOLLOW_yearMonthDurationExpr_in_isInOp940);
-                    yearMonthDurationExpr111=yearMonthDurationExpr();
+                    dbg.location(169,5);
+                    pushFollow(FOLLOW_yearMonthDurationExpr_in_isInOp968);
+                    yearMonthDurationExpr108=yearMonthDurationExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationExpr111.getTree());
-                    dbg.location(173,27);
-                    char_literal112=(Token)match(input,84,FOLLOW_84_in_isInOp942); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationExpr108.getTree());
+                    dbg.location(169,27);
+                    char_literal109=(Token)match(input,84,FOLLOW_84_in_isInOp970); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal112_tree = 
-                    (Object)adaptor.create(char_literal112)
+                    char_literal109_tree = 
+                    (Object)adaptor.create(char_literal109)
                     ;
-                    adaptor.addChild(root_0, char_literal112_tree);
+                    adaptor.addChild(root_0, char_literal109_tree);
                     }
-                    dbg.location(173,39);
-                    ISIN_TOK113=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp944); if (state.failed) return retval;
+                    dbg.location(169,39);
+                    ISIN_TOK110=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp972); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ISIN_TOK113_tree = 
-                    (Object)adaptor.create(ISIN_TOK113)
+                    ISIN_TOK110_tree = 
+                    (Object)adaptor.create(ISIN_TOK110)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK113_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK110_tree, root_0);
                     }
-                    dbg.location(173,47);
-                    LPAREN114=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp947); if (state.failed) return retval;
-                    dbg.location(173,49);
-                    pushFollow(FOLLOW_yearMonthDurationBag_in_isInOp950);
-                    yearMonthDurationBag115=yearMonthDurationBag();
+                    dbg.location(169,47);
+                    LPAREN111=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp975); if (state.failed) return retval;
+                    dbg.location(169,49);
+                    pushFollow(FOLLOW_yearMonthDurationBag_in_isInOp978);
+                    yearMonthDurationBag112=yearMonthDurationBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationBag115.getTree());
-                    dbg.location(173,76);
-                    RPAREN116=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp952); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationBag112.getTree());
+                    dbg.location(169,76);
+                    RPAREN113=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp980); if (state.failed) return retval;
 
                     }
                     break;
                 case 10 :
                     dbg.enterAlt(10);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:174:5: x500NameExpr '.' ISIN_TOK ^ LPAREN ! x500NameBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:170:5: x500NameExpr '.' ISIN_TOK ^ LPAREN ! x500NameBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(174,5);
-                    pushFollow(FOLLOW_x500NameExpr_in_isInOp959);
-                    x500NameExpr117=x500NameExpr();
+                    dbg.location(170,5);
+                    pushFollow(FOLLOW_x500NameExpr_in_isInOp987);
+                    x500NameExpr114=x500NameExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameExpr117.getTree());
-                    dbg.location(174,18);
-                    char_literal118=(Token)match(input,84,FOLLOW_84_in_isInOp961); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameExpr114.getTree());
+                    dbg.location(170,18);
+                    char_literal115=(Token)match(input,84,FOLLOW_84_in_isInOp989); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal118_tree = 
-                    (Object)adaptor.create(char_literal118)
+                    char_literal115_tree = 
+                    (Object)adaptor.create(char_literal115)
                     ;
-                    adaptor.addChild(root_0, char_literal118_tree);
+                    adaptor.addChild(root_0, char_literal115_tree);
                     }
-                    dbg.location(174,30);
-                    ISIN_TOK119=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp963); if (state.failed) return retval;
+                    dbg.location(170,30);
+                    ISIN_TOK116=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp991); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ISIN_TOK119_tree = 
-                    (Object)adaptor.create(ISIN_TOK119)
+                    ISIN_TOK116_tree = 
+                    (Object)adaptor.create(ISIN_TOK116)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK119_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK116_tree, root_0);
                     }
-                    dbg.location(174,38);
-                    LPAREN120=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp966); if (state.failed) return retval;
-                    dbg.location(174,40);
-                    pushFollow(FOLLOW_x500NameBag_in_isInOp969);
-                    x500NameBag121=x500NameBag();
+                    dbg.location(170,38);
+                    LPAREN117=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp994); if (state.failed) return retval;
+                    dbg.location(170,40);
+                    pushFollow(FOLLOW_x500NameBag_in_isInOp997);
+                    x500NameBag118=x500NameBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameBag121.getTree());
-                    dbg.location(174,58);
-                    RPAREN122=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp971); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameBag118.getTree());
+                    dbg.location(170,58);
+                    RPAREN119=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp999); if (state.failed) return retval;
 
                     }
                     break;
                 case 11 :
                     dbg.enterAlt(11);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:175:5: rfc822NameExpr '.' ISIN_TOK ^ LPAREN ! rfc822NameBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:171:5: rfc822NameExpr '.' ISIN_TOK ^ LPAREN ! rfc822NameBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(175,5);
-                    pushFollow(FOLLOW_rfc822NameExpr_in_isInOp978);
-                    rfc822NameExpr123=rfc822NameExpr();
+                    dbg.location(171,5);
+                    pushFollow(FOLLOW_rfc822NameExpr_in_isInOp1006);
+                    rfc822NameExpr120=rfc822NameExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameExpr123.getTree());
-                    dbg.location(175,20);
-                    char_literal124=(Token)match(input,84,FOLLOW_84_in_isInOp980); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameExpr120.getTree());
+                    dbg.location(171,20);
+                    char_literal121=(Token)match(input,84,FOLLOW_84_in_isInOp1008); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal124_tree = 
-                    (Object)adaptor.create(char_literal124)
+                    char_literal121_tree = 
+                    (Object)adaptor.create(char_literal121)
                     ;
-                    adaptor.addChild(root_0, char_literal124_tree);
+                    adaptor.addChild(root_0, char_literal121_tree);
                     }
-                    dbg.location(175,32);
-                    ISIN_TOK125=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp982); if (state.failed) return retval;
+                    dbg.location(171,32);
+                    ISIN_TOK122=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp1010); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ISIN_TOK125_tree = 
-                    (Object)adaptor.create(ISIN_TOK125)
+                    ISIN_TOK122_tree = 
+                    (Object)adaptor.create(ISIN_TOK122)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK125_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK122_tree, root_0);
                     }
-                    dbg.location(175,40);
-                    LPAREN126=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp985); if (state.failed) return retval;
-                    dbg.location(175,42);
-                    pushFollow(FOLLOW_rfc822NameBag_in_isInOp988);
-                    rfc822NameBag127=rfc822NameBag();
+                    dbg.location(171,40);
+                    LPAREN123=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp1013); if (state.failed) return retval;
+                    dbg.location(171,42);
+                    pushFollow(FOLLOW_rfc822NameBag_in_isInOp1016);
+                    rfc822NameBag124=rfc822NameBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameBag127.getTree());
-                    dbg.location(175,62);
-                    RPAREN128=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp990); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameBag124.getTree());
+                    dbg.location(171,62);
+                    RPAREN125=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp1018); if (state.failed) return retval;
 
                     }
                     break;
                 case 12 :
                     dbg.enterAlt(12);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:176:5: hexBinaryExpr '.' ISIN_TOK ^ LPAREN ! hexBinaryBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:172:5: hexBinaryExpr '.' ISIN_TOK ^ LPAREN ! hexBinaryBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(176,5);
-                    pushFollow(FOLLOW_hexBinaryExpr_in_isInOp997);
-                    hexBinaryExpr129=hexBinaryExpr();
+                    dbg.location(172,5);
+                    pushFollow(FOLLOW_hexBinaryExpr_in_isInOp1025);
+                    hexBinaryExpr126=hexBinaryExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryExpr129.getTree());
-                    dbg.location(176,19);
-                    char_literal130=(Token)match(input,84,FOLLOW_84_in_isInOp999); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryExpr126.getTree());
+                    dbg.location(172,19);
+                    char_literal127=(Token)match(input,84,FOLLOW_84_in_isInOp1027); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal130_tree = 
-                    (Object)adaptor.create(char_literal130)
+                    char_literal127_tree = 
+                    (Object)adaptor.create(char_literal127)
                     ;
-                    adaptor.addChild(root_0, char_literal130_tree);
+                    adaptor.addChild(root_0, char_literal127_tree);
                     }
-                    dbg.location(176,31);
-                    ISIN_TOK131=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp1001); if (state.failed) return retval;
+                    dbg.location(172,31);
+                    ISIN_TOK128=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp1029); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ISIN_TOK131_tree = 
-                    (Object)adaptor.create(ISIN_TOK131)
+                    ISIN_TOK128_tree = 
+                    (Object)adaptor.create(ISIN_TOK128)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK131_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK128_tree, root_0);
                     }
-                    dbg.location(176,39);
-                    LPAREN132=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp1004); if (state.failed) return retval;
-                    dbg.location(176,41);
-                    pushFollow(FOLLOW_hexBinaryBag_in_isInOp1007);
-                    hexBinaryBag133=hexBinaryBag();
+                    dbg.location(172,39);
+                    LPAREN129=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp1032); if (state.failed) return retval;
+                    dbg.location(172,41);
+                    pushFollow(FOLLOW_hexBinaryBag_in_isInOp1035);
+                    hexBinaryBag130=hexBinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryBag133.getTree());
-                    dbg.location(176,60);
-                    RPAREN134=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp1009); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryBag130.getTree());
+                    dbg.location(172,60);
+                    RPAREN131=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp1037); if (state.failed) return retval;
 
                     }
                     break;
                 case 13 :
                     dbg.enterAlt(13);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:177:5: ( base64BinaryExpr )=> base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:173:5: ( base64BinaryExpr )=> base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(177,27);
-                    pushFollow(FOLLOW_base64BinaryExpr_in_isInOp1022);
-                    base64BinaryExpr135=base64BinaryExpr();
+                    dbg.location(173,27);
+                    pushFollow(FOLLOW_base64BinaryExpr_in_isInOp1050);
+                    base64BinaryExpr132=base64BinaryExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr135.getTree());
-                    dbg.location(177,44);
-                    char_literal136=(Token)match(input,84,FOLLOW_84_in_isInOp1024); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr132.getTree());
+                    dbg.location(173,44);
+                    char_literal133=(Token)match(input,84,FOLLOW_84_in_isInOp1052); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal136_tree = 
-                    (Object)adaptor.create(char_literal136)
+                    char_literal133_tree = 
+                    (Object)adaptor.create(char_literal133)
                     ;
-                    adaptor.addChild(root_0, char_literal136_tree);
+                    adaptor.addChild(root_0, char_literal133_tree);
                     }
-                    dbg.location(177,56);
-                    ISIN_TOK137=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp1026); if (state.failed) return retval;
+                    dbg.location(173,56);
+                    ISIN_TOK134=(Token)match(input,ISIN_TOK,FOLLOW_ISIN_TOK_in_isInOp1054); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ISIN_TOK137_tree = 
-                    (Object)adaptor.create(ISIN_TOK137)
+                    ISIN_TOK134_tree = 
+                    (Object)adaptor.create(ISIN_TOK134)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK137_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ISIN_TOK134_tree, root_0);
                     }
-                    dbg.location(177,64);
-                    LPAREN138=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp1029); if (state.failed) return retval;
-                    dbg.location(177,66);
-                    pushFollow(FOLLOW_base64BinaryBag_in_isInOp1032);
-                    base64BinaryBag139=base64BinaryBag();
+                    dbg.location(173,64);
+                    LPAREN135=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_isInOp1057); if (state.failed) return retval;
+                    dbg.location(173,66);
+                    pushFollow(FOLLOW_base64BinaryBag_in_isInOp1060);
+                    base64BinaryBag136=base64BinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag139.getTree());
-                    dbg.location(177,88);
-                    RPAREN140=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp1034); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag136.getTree());
+                    dbg.location(173,88);
+                    RPAREN137=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_isInOp1062); if (state.failed) return retval;
 
                     }
                     break;
@@ -2592,7 +2598,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(178, 1);
+        dbg.location(174, 1);
 
         }
         finally {
@@ -2607,13 +2613,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class containsOp_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "containsOp"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:180:1: containsOp : ( doubleBag '.' CONTAINS_TOK ^ LPAREN ! doubleExpr RPAREN !| stringBag '.' CONTAINS_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriBag '.' CONTAINS_TOK ^ LPAREN ! anyUriExpr RPAREN !| dateBag '.' CONTAINS_TOK ^ LPAREN ! dateExpr RPAREN !| timeBag '.' CONTAINS_TOK ^ LPAREN ! timeExpr RPAREN !| dateTimeBag '.' CONTAINS_TOK ^ LPAREN ! dateTimeExpr RPAREN !| base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !| dayTimeDurationBag '.' CONTAINS_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !| yearMonthDurationBag '.' CONTAINS_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !| x500NameBag '.' CONTAINS_TOK ^ LPAREN ! x500NameExpr RPAREN !| rfc822NameBag '.' CONTAINS_TOK ^ LPAREN ! rfc822NameExpr RPAREN !| hexBinaryBag '.' CONTAINS_TOK ^ LPAREN ! hexBinaryExpr RPAREN !| ( base64BinaryExpr )=> base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:176:1: containsOp returns [SomeType o] : ( doubleBag '.' CONTAINS_TOK ^ LPAREN ! doubleExpr RPAREN !| stringBag '.' CONTAINS_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriBag '.' CONTAINS_TOK ^ LPAREN ! anyUriExpr RPAREN !| dateBag '.' CONTAINS_TOK ^ LPAREN ! dateExpr RPAREN !| timeBag '.' CONTAINS_TOK ^ LPAREN ! timeExpr RPAREN !| dateTimeBag '.' CONTAINS_TOK ^ LPAREN ! dateTimeExpr RPAREN !| base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !| dayTimeDurationBag '.' CONTAINS_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !| yearMonthDurationBag '.' CONTAINS_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !| x500NameBag '.' CONTAINS_TOK ^ LPAREN ! x500NameExpr RPAREN !| rfc822NameBag '.' CONTAINS_TOK ^ LPAREN ! rfc822NameExpr RPAREN !| hexBinaryBag '.' CONTAINS_TOK ^ LPAREN ! hexBinaryExpr RPAREN !| ( base64BinaryExpr )=> base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !);
     public final GrammarParser.containsOp_return containsOp() throws RecognitionException {
         GrammarParser.containsOp_return retval = new GrammarParser.containsOp_return();
         retval.start = input.LT(1);
@@ -2621,171 +2628,171 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token char_literal142=null;
-        Token CONTAINS_TOK143=null;
-        Token LPAREN144=null;
-        Token RPAREN146=null;
-        Token char_literal148=null;
-        Token CONTAINS_TOK149=null;
-        Token LPAREN150=null;
-        Token RPAREN152=null;
-        Token char_literal154=null;
-        Token CONTAINS_TOK155=null;
-        Token LPAREN156=null;
-        Token RPAREN158=null;
-        Token char_literal160=null;
-        Token CONTAINS_TOK161=null;
-        Token LPAREN162=null;
-        Token RPAREN164=null;
-        Token char_literal166=null;
-        Token CONTAINS_TOK167=null;
-        Token LPAREN168=null;
-        Token RPAREN170=null;
-        Token char_literal172=null;
-        Token CONTAINS_TOK173=null;
-        Token LPAREN174=null;
-        Token RPAREN176=null;
-        Token char_literal178=null;
-        Token CONTAINS_TOK179=null;
-        Token LPAREN180=null;
-        Token RPAREN182=null;
-        Token char_literal184=null;
-        Token CONTAINS_TOK185=null;
-        Token LPAREN186=null;
-        Token RPAREN188=null;
-        Token char_literal190=null;
-        Token CONTAINS_TOK191=null;
-        Token LPAREN192=null;
-        Token RPAREN194=null;
-        Token char_literal196=null;
-        Token CONTAINS_TOK197=null;
-        Token LPAREN198=null;
-        Token RPAREN200=null;
-        Token char_literal202=null;
-        Token CONTAINS_TOK203=null;
-        Token LPAREN204=null;
-        Token RPAREN206=null;
-        Token char_literal208=null;
-        Token CONTAINS_TOK209=null;
-        Token LPAREN210=null;
-        Token RPAREN212=null;
-        Token char_literal214=null;
-        Token CONTAINS_TOK215=null;
-        Token LPAREN216=null;
-        Token RPAREN218=null;
-        GrammarParser.doubleBag_return doubleBag141 =null;
+        Token char_literal139=null;
+        Token CONTAINS_TOK140=null;
+        Token LPAREN141=null;
+        Token RPAREN143=null;
+        Token char_literal145=null;
+        Token CONTAINS_TOK146=null;
+        Token LPAREN147=null;
+        Token RPAREN149=null;
+        Token char_literal151=null;
+        Token CONTAINS_TOK152=null;
+        Token LPAREN153=null;
+        Token RPAREN155=null;
+        Token char_literal157=null;
+        Token CONTAINS_TOK158=null;
+        Token LPAREN159=null;
+        Token RPAREN161=null;
+        Token char_literal163=null;
+        Token CONTAINS_TOK164=null;
+        Token LPAREN165=null;
+        Token RPAREN167=null;
+        Token char_literal169=null;
+        Token CONTAINS_TOK170=null;
+        Token LPAREN171=null;
+        Token RPAREN173=null;
+        Token char_literal175=null;
+        Token CONTAINS_TOK176=null;
+        Token LPAREN177=null;
+        Token RPAREN179=null;
+        Token char_literal181=null;
+        Token CONTAINS_TOK182=null;
+        Token LPAREN183=null;
+        Token RPAREN185=null;
+        Token char_literal187=null;
+        Token CONTAINS_TOK188=null;
+        Token LPAREN189=null;
+        Token RPAREN191=null;
+        Token char_literal193=null;
+        Token CONTAINS_TOK194=null;
+        Token LPAREN195=null;
+        Token RPAREN197=null;
+        Token char_literal199=null;
+        Token CONTAINS_TOK200=null;
+        Token LPAREN201=null;
+        Token RPAREN203=null;
+        Token char_literal205=null;
+        Token CONTAINS_TOK206=null;
+        Token LPAREN207=null;
+        Token RPAREN209=null;
+        Token char_literal211=null;
+        Token CONTAINS_TOK212=null;
+        Token LPAREN213=null;
+        Token RPAREN215=null;
+        GrammarParser.doubleBag_return doubleBag138 =null;
 
-        GrammarParser.doubleExpr_return doubleExpr145 =null;
+        GrammarParser.doubleExpr_return doubleExpr142 =null;
 
-        GrammarParser.stringBag_return stringBag147 =null;
+        GrammarParser.stringBag_return stringBag144 =null;
 
-        GrammarParser.stringExpr_return stringExpr151 =null;
+        GrammarParser.stringExpr_return stringExpr148 =null;
 
-        GrammarParser.anyUriBag_return anyUriBag153 =null;
+        GrammarParser.anyUriBag_return anyUriBag150 =null;
 
-        GrammarParser.anyUriExpr_return anyUriExpr157 =null;
+        GrammarParser.anyUriExpr_return anyUriExpr154 =null;
 
-        GrammarParser.dateBag_return dateBag159 =null;
+        GrammarParser.dateBag_return dateBag156 =null;
 
-        GrammarParser.dateExpr_return dateExpr163 =null;
+        GrammarParser.dateExpr_return dateExpr160 =null;
 
-        GrammarParser.timeBag_return timeBag165 =null;
+        GrammarParser.timeBag_return timeBag162 =null;
 
-        GrammarParser.timeExpr_return timeExpr169 =null;
+        GrammarParser.timeExpr_return timeExpr166 =null;
 
-        GrammarParser.dateTimeBag_return dateTimeBag171 =null;
+        GrammarParser.dateTimeBag_return dateTimeBag168 =null;
 
-        GrammarParser.dateTimeExpr_return dateTimeExpr175 =null;
+        GrammarParser.dateTimeExpr_return dateTimeExpr172 =null;
 
-        GrammarParser.base64BinaryBag_return base64BinaryBag177 =null;
+        GrammarParser.base64BinaryBag_return base64BinaryBag174 =null;
 
-        GrammarParser.base64BinaryExpr_return base64BinaryExpr181 =null;
+        GrammarParser.base64BinaryExpr_return base64BinaryExpr178 =null;
 
-        GrammarParser.dayTimeDurationBag_return dayTimeDurationBag183 =null;
+        GrammarParser.dayTimeDurationBag_return dayTimeDurationBag180 =null;
 
-        GrammarParser.dayTimeDurationExpr_return dayTimeDurationExpr187 =null;
+        GrammarParser.dayTimeDurationExpr_return dayTimeDurationExpr184 =null;
 
-        GrammarParser.yearMonthDurationBag_return yearMonthDurationBag189 =null;
+        GrammarParser.yearMonthDurationBag_return yearMonthDurationBag186 =null;
 
-        GrammarParser.yearMonthDurationExpr_return yearMonthDurationExpr193 =null;
+        GrammarParser.yearMonthDurationExpr_return yearMonthDurationExpr190 =null;
 
-        GrammarParser.x500NameBag_return x500NameBag195 =null;
+        GrammarParser.x500NameBag_return x500NameBag192 =null;
 
-        GrammarParser.x500NameExpr_return x500NameExpr199 =null;
+        GrammarParser.x500NameExpr_return x500NameExpr196 =null;
 
-        GrammarParser.rfc822NameBag_return rfc822NameBag201 =null;
+        GrammarParser.rfc822NameBag_return rfc822NameBag198 =null;
 
-        GrammarParser.rfc822NameExpr_return rfc822NameExpr205 =null;
+        GrammarParser.rfc822NameExpr_return rfc822NameExpr202 =null;
 
-        GrammarParser.hexBinaryBag_return hexBinaryBag207 =null;
+        GrammarParser.hexBinaryBag_return hexBinaryBag204 =null;
 
-        GrammarParser.hexBinaryExpr_return hexBinaryExpr211 =null;
+        GrammarParser.hexBinaryExpr_return hexBinaryExpr208 =null;
 
-        GrammarParser.base64BinaryBag_return base64BinaryBag213 =null;
+        GrammarParser.base64BinaryBag_return base64BinaryBag210 =null;
 
-        GrammarParser.base64BinaryExpr_return base64BinaryExpr217 =null;
+        GrammarParser.base64BinaryExpr_return base64BinaryExpr214 =null;
 
 
-        Object char_literal142_tree=null;
-        Object CONTAINS_TOK143_tree=null;
-        Object LPAREN144_tree=null;
-        Object RPAREN146_tree=null;
-        Object char_literal148_tree=null;
-        Object CONTAINS_TOK149_tree=null;
-        Object LPAREN150_tree=null;
-        Object RPAREN152_tree=null;
-        Object char_literal154_tree=null;
-        Object CONTAINS_TOK155_tree=null;
-        Object LPAREN156_tree=null;
-        Object RPAREN158_tree=null;
-        Object char_literal160_tree=null;
-        Object CONTAINS_TOK161_tree=null;
-        Object LPAREN162_tree=null;
-        Object RPAREN164_tree=null;
-        Object char_literal166_tree=null;
-        Object CONTAINS_TOK167_tree=null;
-        Object LPAREN168_tree=null;
-        Object RPAREN170_tree=null;
-        Object char_literal172_tree=null;
-        Object CONTAINS_TOK173_tree=null;
-        Object LPAREN174_tree=null;
-        Object RPAREN176_tree=null;
-        Object char_literal178_tree=null;
-        Object CONTAINS_TOK179_tree=null;
-        Object LPAREN180_tree=null;
-        Object RPAREN182_tree=null;
-        Object char_literal184_tree=null;
-        Object CONTAINS_TOK185_tree=null;
-        Object LPAREN186_tree=null;
-        Object RPAREN188_tree=null;
-        Object char_literal190_tree=null;
-        Object CONTAINS_TOK191_tree=null;
-        Object LPAREN192_tree=null;
-        Object RPAREN194_tree=null;
-        Object char_literal196_tree=null;
-        Object CONTAINS_TOK197_tree=null;
-        Object LPAREN198_tree=null;
-        Object RPAREN200_tree=null;
-        Object char_literal202_tree=null;
-        Object CONTAINS_TOK203_tree=null;
-        Object LPAREN204_tree=null;
-        Object RPAREN206_tree=null;
-        Object char_literal208_tree=null;
-        Object CONTAINS_TOK209_tree=null;
-        Object LPAREN210_tree=null;
-        Object RPAREN212_tree=null;
-        Object char_literal214_tree=null;
-        Object CONTAINS_TOK215_tree=null;
-        Object LPAREN216_tree=null;
-        Object RPAREN218_tree=null;
+        Object char_literal139_tree=null;
+        Object CONTAINS_TOK140_tree=null;
+        Object LPAREN141_tree=null;
+        Object RPAREN143_tree=null;
+        Object char_literal145_tree=null;
+        Object CONTAINS_TOK146_tree=null;
+        Object LPAREN147_tree=null;
+        Object RPAREN149_tree=null;
+        Object char_literal151_tree=null;
+        Object CONTAINS_TOK152_tree=null;
+        Object LPAREN153_tree=null;
+        Object RPAREN155_tree=null;
+        Object char_literal157_tree=null;
+        Object CONTAINS_TOK158_tree=null;
+        Object LPAREN159_tree=null;
+        Object RPAREN161_tree=null;
+        Object char_literal163_tree=null;
+        Object CONTAINS_TOK164_tree=null;
+        Object LPAREN165_tree=null;
+        Object RPAREN167_tree=null;
+        Object char_literal169_tree=null;
+        Object CONTAINS_TOK170_tree=null;
+        Object LPAREN171_tree=null;
+        Object RPAREN173_tree=null;
+        Object char_literal175_tree=null;
+        Object CONTAINS_TOK176_tree=null;
+        Object LPAREN177_tree=null;
+        Object RPAREN179_tree=null;
+        Object char_literal181_tree=null;
+        Object CONTAINS_TOK182_tree=null;
+        Object LPAREN183_tree=null;
+        Object RPAREN185_tree=null;
+        Object char_literal187_tree=null;
+        Object CONTAINS_TOK188_tree=null;
+        Object LPAREN189_tree=null;
+        Object RPAREN191_tree=null;
+        Object char_literal193_tree=null;
+        Object CONTAINS_TOK194_tree=null;
+        Object LPAREN195_tree=null;
+        Object RPAREN197_tree=null;
+        Object char_literal199_tree=null;
+        Object CONTAINS_TOK200_tree=null;
+        Object LPAREN201_tree=null;
+        Object RPAREN203_tree=null;
+        Object char_literal205_tree=null;
+        Object CONTAINS_TOK206_tree=null;
+        Object LPAREN207_tree=null;
+        Object RPAREN209_tree=null;
+        Object char_literal211_tree=null;
+        Object CONTAINS_TOK212_tree=null;
+        Object LPAREN213_tree=null;
+        Object RPAREN215_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "containsOp");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(180, 0);
+        dbg.location(176, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:181:2: ( doubleBag '.' CONTAINS_TOK ^ LPAREN ! doubleExpr RPAREN !| stringBag '.' CONTAINS_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriBag '.' CONTAINS_TOK ^ LPAREN ! anyUriExpr RPAREN !| dateBag '.' CONTAINS_TOK ^ LPAREN ! dateExpr RPAREN !| timeBag '.' CONTAINS_TOK ^ LPAREN ! timeExpr RPAREN !| dateTimeBag '.' CONTAINS_TOK ^ LPAREN ! dateTimeExpr RPAREN !| base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !| dayTimeDurationBag '.' CONTAINS_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !| yearMonthDurationBag '.' CONTAINS_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !| x500NameBag '.' CONTAINS_TOK ^ LPAREN ! x500NameExpr RPAREN !| rfc822NameBag '.' CONTAINS_TOK ^ LPAREN ! rfc822NameExpr RPAREN !| hexBinaryBag '.' CONTAINS_TOK ^ LPAREN ! hexBinaryExpr RPAREN !| ( base64BinaryExpr )=> base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:177:2: ( doubleBag '.' CONTAINS_TOK ^ LPAREN ! doubleExpr RPAREN !| stringBag '.' CONTAINS_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriBag '.' CONTAINS_TOK ^ LPAREN ! anyUriExpr RPAREN !| dateBag '.' CONTAINS_TOK ^ LPAREN ! dateExpr RPAREN !| timeBag '.' CONTAINS_TOK ^ LPAREN ! timeExpr RPAREN !| dateTimeBag '.' CONTAINS_TOK ^ LPAREN ! dateTimeExpr RPAREN !| base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !| dayTimeDurationBag '.' CONTAINS_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !| yearMonthDurationBag '.' CONTAINS_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !| x500NameBag '.' CONTAINS_TOK ^ LPAREN ! x500NameExpr RPAREN !| rfc822NameBag '.' CONTAINS_TOK ^ LPAREN ! rfc822NameExpr RPAREN !| hexBinaryBag '.' CONTAINS_TOK ^ LPAREN ! hexBinaryExpr RPAREN !| ( base64BinaryExpr )=> base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !)
             int alt12=13;
             try { dbg.enterDecision(12, decisionCanBacktrack[12]);
 
@@ -2803,585 +2810,585 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:181:5: doubleBag '.' CONTAINS_TOK ^ LPAREN ! doubleExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:177:5: doubleBag '.' CONTAINS_TOK ^ LPAREN ! doubleExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(181,5);
-                    pushFollow(FOLLOW_doubleBag_in_containsOp1047);
-                    doubleBag141=doubleBag();
+                    dbg.location(177,5);
+                    pushFollow(FOLLOW_doubleBag_in_containsOp1079);
+                    doubleBag138=doubleBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleBag141.getTree());
-                    dbg.location(181,15);
-                    char_literal142=(Token)match(input,84,FOLLOW_84_in_containsOp1049); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleBag138.getTree());
+                    dbg.location(177,15);
+                    char_literal139=(Token)match(input,84,FOLLOW_84_in_containsOp1081); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal142_tree = 
-                    (Object)adaptor.create(char_literal142)
+                    char_literal139_tree = 
+                    (Object)adaptor.create(char_literal139)
                     ;
-                    adaptor.addChild(root_0, char_literal142_tree);
+                    adaptor.addChild(root_0, char_literal139_tree);
                     }
-                    dbg.location(181,31);
-                    CONTAINS_TOK143=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1051); if (state.failed) return retval;
+                    dbg.location(177,31);
+                    CONTAINS_TOK140=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1083); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CONTAINS_TOK143_tree = 
-                    (Object)adaptor.create(CONTAINS_TOK143)
+                    CONTAINS_TOK140_tree = 
+                    (Object)adaptor.create(CONTAINS_TOK140)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK143_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK140_tree, root_0);
                     }
-                    dbg.location(181,39);
-                    LPAREN144=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1054); if (state.failed) return retval;
-                    dbg.location(181,41);
-                    pushFollow(FOLLOW_doubleExpr_in_containsOp1057);
-                    doubleExpr145=doubleExpr();
+                    dbg.location(177,39);
+                    LPAREN141=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1086); if (state.failed) return retval;
+                    dbg.location(177,41);
+                    pushFollow(FOLLOW_doubleExpr_in_containsOp1089);
+                    doubleExpr142=doubleExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleExpr145.getTree());
-                    dbg.location(181,58);
-                    RPAREN146=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1059); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleExpr142.getTree());
+                    dbg.location(177,58);
+                    RPAREN143=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1091); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:182:5: stringBag '.' CONTAINS_TOK ^ LPAREN ! stringExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:178:5: stringBag '.' CONTAINS_TOK ^ LPAREN ! stringExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(182,5);
-                    pushFollow(FOLLOW_stringBag_in_containsOp1066);
-                    stringBag147=stringBag();
+                    dbg.location(178,5);
+                    pushFollow(FOLLOW_stringBag_in_containsOp1098);
+                    stringBag144=stringBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringBag147.getTree());
-                    dbg.location(182,15);
-                    char_literal148=(Token)match(input,84,FOLLOW_84_in_containsOp1068); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringBag144.getTree());
+                    dbg.location(178,15);
+                    char_literal145=(Token)match(input,84,FOLLOW_84_in_containsOp1100); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal148_tree = 
-                    (Object)adaptor.create(char_literal148)
+                    char_literal145_tree = 
+                    (Object)adaptor.create(char_literal145)
                     ;
-                    adaptor.addChild(root_0, char_literal148_tree);
+                    adaptor.addChild(root_0, char_literal145_tree);
                     }
-                    dbg.location(182,31);
-                    CONTAINS_TOK149=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1070); if (state.failed) return retval;
+                    dbg.location(178,31);
+                    CONTAINS_TOK146=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1102); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CONTAINS_TOK149_tree = 
-                    (Object)adaptor.create(CONTAINS_TOK149)
+                    CONTAINS_TOK146_tree = 
+                    (Object)adaptor.create(CONTAINS_TOK146)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK149_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK146_tree, root_0);
                     }
-                    dbg.location(182,39);
-                    LPAREN150=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1073); if (state.failed) return retval;
-                    dbg.location(182,41);
-                    pushFollow(FOLLOW_stringExpr_in_containsOp1076);
-                    stringExpr151=stringExpr();
+                    dbg.location(178,39);
+                    LPAREN147=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1105); if (state.failed) return retval;
+                    dbg.location(178,41);
+                    pushFollow(FOLLOW_stringExpr_in_containsOp1108);
+                    stringExpr148=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr151.getTree());
-                    dbg.location(182,58);
-                    RPAREN152=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1078); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr148.getTree());
+                    dbg.location(178,58);
+                    RPAREN149=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1110); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:183:5: anyUriBag '.' CONTAINS_TOK ^ LPAREN ! anyUriExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:179:5: anyUriBag '.' CONTAINS_TOK ^ LPAREN ! anyUriExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(183,5);
-                    pushFollow(FOLLOW_anyUriBag_in_containsOp1085);
-                    anyUriBag153=anyUriBag();
+                    dbg.location(179,5);
+                    pushFollow(FOLLOW_anyUriBag_in_containsOp1117);
+                    anyUriBag150=anyUriBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriBag153.getTree());
-                    dbg.location(183,15);
-                    char_literal154=(Token)match(input,84,FOLLOW_84_in_containsOp1087); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriBag150.getTree());
+                    dbg.location(179,15);
+                    char_literal151=(Token)match(input,84,FOLLOW_84_in_containsOp1119); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal154_tree = 
-                    (Object)adaptor.create(char_literal154)
+                    char_literal151_tree = 
+                    (Object)adaptor.create(char_literal151)
                     ;
-                    adaptor.addChild(root_0, char_literal154_tree);
+                    adaptor.addChild(root_0, char_literal151_tree);
                     }
-                    dbg.location(183,31);
-                    CONTAINS_TOK155=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1089); if (state.failed) return retval;
+                    dbg.location(179,31);
+                    CONTAINS_TOK152=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1121); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CONTAINS_TOK155_tree = 
-                    (Object)adaptor.create(CONTAINS_TOK155)
+                    CONTAINS_TOK152_tree = 
+                    (Object)adaptor.create(CONTAINS_TOK152)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK155_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK152_tree, root_0);
                     }
-                    dbg.location(183,39);
-                    LPAREN156=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1092); if (state.failed) return retval;
-                    dbg.location(183,41);
-                    pushFollow(FOLLOW_anyUriExpr_in_containsOp1095);
-                    anyUriExpr157=anyUriExpr();
+                    dbg.location(179,39);
+                    LPAREN153=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1124); if (state.failed) return retval;
+                    dbg.location(179,41);
+                    pushFollow(FOLLOW_anyUriExpr_in_containsOp1127);
+                    anyUriExpr154=anyUriExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriExpr157.getTree());
-                    dbg.location(183,58);
-                    RPAREN158=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1097); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriExpr154.getTree());
+                    dbg.location(179,58);
+                    RPAREN155=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1129); if (state.failed) return retval;
 
                     }
                     break;
                 case 4 :
                     dbg.enterAlt(4);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:184:5: dateBag '.' CONTAINS_TOK ^ LPAREN ! dateExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:180:5: dateBag '.' CONTAINS_TOK ^ LPAREN ! dateExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(184,5);
-                    pushFollow(FOLLOW_dateBag_in_containsOp1104);
-                    dateBag159=dateBag();
+                    dbg.location(180,5);
+                    pushFollow(FOLLOW_dateBag_in_containsOp1136);
+                    dateBag156=dateBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateBag159.getTree());
-                    dbg.location(184,13);
-                    char_literal160=(Token)match(input,84,FOLLOW_84_in_containsOp1106); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateBag156.getTree());
+                    dbg.location(180,13);
+                    char_literal157=(Token)match(input,84,FOLLOW_84_in_containsOp1138); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal160_tree = 
-                    (Object)adaptor.create(char_literal160)
+                    char_literal157_tree = 
+                    (Object)adaptor.create(char_literal157)
                     ;
-                    adaptor.addChild(root_0, char_literal160_tree);
+                    adaptor.addChild(root_0, char_literal157_tree);
                     }
-                    dbg.location(184,29);
-                    CONTAINS_TOK161=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1108); if (state.failed) return retval;
+                    dbg.location(180,29);
+                    CONTAINS_TOK158=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1140); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CONTAINS_TOK161_tree = 
-                    (Object)adaptor.create(CONTAINS_TOK161)
+                    CONTAINS_TOK158_tree = 
+                    (Object)adaptor.create(CONTAINS_TOK158)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK161_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK158_tree, root_0);
                     }
-                    dbg.location(184,37);
-                    LPAREN162=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1111); if (state.failed) return retval;
-                    dbg.location(184,39);
-                    pushFollow(FOLLOW_dateExpr_in_containsOp1114);
-                    dateExpr163=dateExpr();
+                    dbg.location(180,37);
+                    LPAREN159=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1143); if (state.failed) return retval;
+                    dbg.location(180,39);
+                    pushFollow(FOLLOW_dateExpr_in_containsOp1146);
+                    dateExpr160=dateExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateExpr163.getTree());
-                    dbg.location(184,54);
-                    RPAREN164=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1116); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateExpr160.getTree());
+                    dbg.location(180,54);
+                    RPAREN161=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1148); if (state.failed) return retval;
 
                     }
                     break;
                 case 5 :
                     dbg.enterAlt(5);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:185:5: timeBag '.' CONTAINS_TOK ^ LPAREN ! timeExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:181:5: timeBag '.' CONTAINS_TOK ^ LPAREN ! timeExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(185,5);
-                    pushFollow(FOLLOW_timeBag_in_containsOp1123);
-                    timeBag165=timeBag();
+                    dbg.location(181,5);
+                    pushFollow(FOLLOW_timeBag_in_containsOp1155);
+                    timeBag162=timeBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeBag165.getTree());
-                    dbg.location(185,13);
-                    char_literal166=(Token)match(input,84,FOLLOW_84_in_containsOp1125); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeBag162.getTree());
+                    dbg.location(181,13);
+                    char_literal163=(Token)match(input,84,FOLLOW_84_in_containsOp1157); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal166_tree = 
-                    (Object)adaptor.create(char_literal166)
+                    char_literal163_tree = 
+                    (Object)adaptor.create(char_literal163)
                     ;
-                    adaptor.addChild(root_0, char_literal166_tree);
+                    adaptor.addChild(root_0, char_literal163_tree);
                     }
-                    dbg.location(185,29);
-                    CONTAINS_TOK167=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1127); if (state.failed) return retval;
+                    dbg.location(181,29);
+                    CONTAINS_TOK164=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1159); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CONTAINS_TOK167_tree = 
-                    (Object)adaptor.create(CONTAINS_TOK167)
+                    CONTAINS_TOK164_tree = 
+                    (Object)adaptor.create(CONTAINS_TOK164)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK167_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK164_tree, root_0);
                     }
-                    dbg.location(185,37);
-                    LPAREN168=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1130); if (state.failed) return retval;
-                    dbg.location(185,39);
-                    pushFollow(FOLLOW_timeExpr_in_containsOp1133);
-                    timeExpr169=timeExpr();
+                    dbg.location(181,37);
+                    LPAREN165=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1162); if (state.failed) return retval;
+                    dbg.location(181,39);
+                    pushFollow(FOLLOW_timeExpr_in_containsOp1165);
+                    timeExpr166=timeExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeExpr169.getTree());
-                    dbg.location(185,54);
-                    RPAREN170=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1135); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeExpr166.getTree());
+                    dbg.location(181,54);
+                    RPAREN167=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1167); if (state.failed) return retval;
 
                     }
                     break;
                 case 6 :
                     dbg.enterAlt(6);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:186:5: dateTimeBag '.' CONTAINS_TOK ^ LPAREN ! dateTimeExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:182:5: dateTimeBag '.' CONTAINS_TOK ^ LPAREN ! dateTimeExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(186,5);
-                    pushFollow(FOLLOW_dateTimeBag_in_containsOp1142);
-                    dateTimeBag171=dateTimeBag();
+                    dbg.location(182,5);
+                    pushFollow(FOLLOW_dateTimeBag_in_containsOp1174);
+                    dateTimeBag168=dateTimeBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeBag171.getTree());
-                    dbg.location(186,17);
-                    char_literal172=(Token)match(input,84,FOLLOW_84_in_containsOp1144); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeBag168.getTree());
+                    dbg.location(182,17);
+                    char_literal169=(Token)match(input,84,FOLLOW_84_in_containsOp1176); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal172_tree = 
-                    (Object)adaptor.create(char_literal172)
+                    char_literal169_tree = 
+                    (Object)adaptor.create(char_literal169)
                     ;
-                    adaptor.addChild(root_0, char_literal172_tree);
+                    adaptor.addChild(root_0, char_literal169_tree);
                     }
-                    dbg.location(186,33);
-                    CONTAINS_TOK173=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1146); if (state.failed) return retval;
+                    dbg.location(182,33);
+                    CONTAINS_TOK170=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1178); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CONTAINS_TOK173_tree = 
-                    (Object)adaptor.create(CONTAINS_TOK173)
+                    CONTAINS_TOK170_tree = 
+                    (Object)adaptor.create(CONTAINS_TOK170)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK173_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK170_tree, root_0);
                     }
-                    dbg.location(186,41);
-                    LPAREN174=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1149); if (state.failed) return retval;
-                    dbg.location(186,43);
-                    pushFollow(FOLLOW_dateTimeExpr_in_containsOp1152);
-                    dateTimeExpr175=dateTimeExpr();
+                    dbg.location(182,41);
+                    LPAREN171=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1181); if (state.failed) return retval;
+                    dbg.location(182,43);
+                    pushFollow(FOLLOW_dateTimeExpr_in_containsOp1184);
+                    dateTimeExpr172=dateTimeExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeExpr175.getTree());
-                    dbg.location(186,62);
-                    RPAREN176=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1154); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeExpr172.getTree());
+                    dbg.location(182,62);
+                    RPAREN173=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1186); if (state.failed) return retval;
 
                     }
                     break;
                 case 7 :
                     dbg.enterAlt(7);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:187:5: base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:183:5: base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(187,5);
-                    pushFollow(FOLLOW_base64BinaryBag_in_containsOp1161);
-                    base64BinaryBag177=base64BinaryBag();
+                    dbg.location(183,5);
+                    pushFollow(FOLLOW_base64BinaryBag_in_containsOp1193);
+                    base64BinaryBag174=base64BinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag177.getTree());
-                    dbg.location(187,21);
-                    char_literal178=(Token)match(input,84,FOLLOW_84_in_containsOp1163); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag174.getTree());
+                    dbg.location(183,21);
+                    char_literal175=(Token)match(input,84,FOLLOW_84_in_containsOp1195); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal178_tree = 
-                    (Object)adaptor.create(char_literal178)
+                    char_literal175_tree = 
+                    (Object)adaptor.create(char_literal175)
                     ;
-                    adaptor.addChild(root_0, char_literal178_tree);
+                    adaptor.addChild(root_0, char_literal175_tree);
                     }
-                    dbg.location(187,37);
-                    CONTAINS_TOK179=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1165); if (state.failed) return retval;
+                    dbg.location(183,37);
+                    CONTAINS_TOK176=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1197); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CONTAINS_TOK179_tree = 
-                    (Object)adaptor.create(CONTAINS_TOK179)
+                    CONTAINS_TOK176_tree = 
+                    (Object)adaptor.create(CONTAINS_TOK176)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK179_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK176_tree, root_0);
                     }
-                    dbg.location(187,45);
-                    LPAREN180=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1168); if (state.failed) return retval;
-                    dbg.location(187,47);
-                    pushFollow(FOLLOW_base64BinaryExpr_in_containsOp1171);
-                    base64BinaryExpr181=base64BinaryExpr();
+                    dbg.location(183,45);
+                    LPAREN177=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1200); if (state.failed) return retval;
+                    dbg.location(183,47);
+                    pushFollow(FOLLOW_base64BinaryExpr_in_containsOp1203);
+                    base64BinaryExpr178=base64BinaryExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr181.getTree());
-                    dbg.location(187,70);
-                    RPAREN182=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1173); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr178.getTree());
+                    dbg.location(183,70);
+                    RPAREN179=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1205); if (state.failed) return retval;
 
                     }
                     break;
                 case 8 :
                     dbg.enterAlt(8);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:188:5: dayTimeDurationBag '.' CONTAINS_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:184:5: dayTimeDurationBag '.' CONTAINS_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(188,5);
-                    pushFollow(FOLLOW_dayTimeDurationBag_in_containsOp1180);
-                    dayTimeDurationBag183=dayTimeDurationBag();
+                    dbg.location(184,5);
+                    pushFollow(FOLLOW_dayTimeDurationBag_in_containsOp1212);
+                    dayTimeDurationBag180=dayTimeDurationBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationBag183.getTree());
-                    dbg.location(188,24);
-                    char_literal184=(Token)match(input,84,FOLLOW_84_in_containsOp1182); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationBag180.getTree());
+                    dbg.location(184,24);
+                    char_literal181=(Token)match(input,84,FOLLOW_84_in_containsOp1214); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal184_tree = 
-                    (Object)adaptor.create(char_literal184)
+                    char_literal181_tree = 
+                    (Object)adaptor.create(char_literal181)
                     ;
-                    adaptor.addChild(root_0, char_literal184_tree);
+                    adaptor.addChild(root_0, char_literal181_tree);
                     }
-                    dbg.location(188,40);
-                    CONTAINS_TOK185=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1184); if (state.failed) return retval;
+                    dbg.location(184,40);
+                    CONTAINS_TOK182=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1216); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CONTAINS_TOK185_tree = 
-                    (Object)adaptor.create(CONTAINS_TOK185)
+                    CONTAINS_TOK182_tree = 
+                    (Object)adaptor.create(CONTAINS_TOK182)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK185_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK182_tree, root_0);
                     }
-                    dbg.location(188,48);
-                    LPAREN186=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1187); if (state.failed) return retval;
-                    dbg.location(188,50);
-                    pushFollow(FOLLOW_dayTimeDurationExpr_in_containsOp1190);
-                    dayTimeDurationExpr187=dayTimeDurationExpr();
+                    dbg.location(184,48);
+                    LPAREN183=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1219); if (state.failed) return retval;
+                    dbg.location(184,50);
+                    pushFollow(FOLLOW_dayTimeDurationExpr_in_containsOp1222);
+                    dayTimeDurationExpr184=dayTimeDurationExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationExpr187.getTree());
-                    dbg.location(188,76);
-                    RPAREN188=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1192); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationExpr184.getTree());
+                    dbg.location(184,76);
+                    RPAREN185=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1224); if (state.failed) return retval;
 
                     }
                     break;
                 case 9 :
                     dbg.enterAlt(9);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:189:5: yearMonthDurationBag '.' CONTAINS_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:185:5: yearMonthDurationBag '.' CONTAINS_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(189,5);
-                    pushFollow(FOLLOW_yearMonthDurationBag_in_containsOp1199);
-                    yearMonthDurationBag189=yearMonthDurationBag();
+                    dbg.location(185,5);
+                    pushFollow(FOLLOW_yearMonthDurationBag_in_containsOp1231);
+                    yearMonthDurationBag186=yearMonthDurationBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationBag189.getTree());
-                    dbg.location(189,26);
-                    char_literal190=(Token)match(input,84,FOLLOW_84_in_containsOp1201); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationBag186.getTree());
+                    dbg.location(185,26);
+                    char_literal187=(Token)match(input,84,FOLLOW_84_in_containsOp1233); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal190_tree = 
-                    (Object)adaptor.create(char_literal190)
+                    char_literal187_tree = 
+                    (Object)adaptor.create(char_literal187)
                     ;
-                    adaptor.addChild(root_0, char_literal190_tree);
+                    adaptor.addChild(root_0, char_literal187_tree);
                     }
-                    dbg.location(189,42);
-                    CONTAINS_TOK191=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1203); if (state.failed) return retval;
+                    dbg.location(185,42);
+                    CONTAINS_TOK188=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1235); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CONTAINS_TOK191_tree = 
-                    (Object)adaptor.create(CONTAINS_TOK191)
+                    CONTAINS_TOK188_tree = 
+                    (Object)adaptor.create(CONTAINS_TOK188)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK191_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK188_tree, root_0);
                     }
-                    dbg.location(189,50);
-                    LPAREN192=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1206); if (state.failed) return retval;
-                    dbg.location(189,52);
-                    pushFollow(FOLLOW_yearMonthDurationExpr_in_containsOp1209);
-                    yearMonthDurationExpr193=yearMonthDurationExpr();
+                    dbg.location(185,50);
+                    LPAREN189=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1238); if (state.failed) return retval;
+                    dbg.location(185,52);
+                    pushFollow(FOLLOW_yearMonthDurationExpr_in_containsOp1241);
+                    yearMonthDurationExpr190=yearMonthDurationExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationExpr193.getTree());
-                    dbg.location(189,80);
-                    RPAREN194=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1211); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationExpr190.getTree());
+                    dbg.location(185,80);
+                    RPAREN191=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1243); if (state.failed) return retval;
 
                     }
                     break;
                 case 10 :
                     dbg.enterAlt(10);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:190:5: x500NameBag '.' CONTAINS_TOK ^ LPAREN ! x500NameExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:186:5: x500NameBag '.' CONTAINS_TOK ^ LPAREN ! x500NameExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(190,5);
-                    pushFollow(FOLLOW_x500NameBag_in_containsOp1218);
-                    x500NameBag195=x500NameBag();
+                    dbg.location(186,5);
+                    pushFollow(FOLLOW_x500NameBag_in_containsOp1250);
+                    x500NameBag192=x500NameBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameBag195.getTree());
-                    dbg.location(190,17);
-                    char_literal196=(Token)match(input,84,FOLLOW_84_in_containsOp1220); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameBag192.getTree());
+                    dbg.location(186,17);
+                    char_literal193=(Token)match(input,84,FOLLOW_84_in_containsOp1252); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal196_tree = 
-                    (Object)adaptor.create(char_literal196)
+                    char_literal193_tree = 
+                    (Object)adaptor.create(char_literal193)
                     ;
-                    adaptor.addChild(root_0, char_literal196_tree);
+                    adaptor.addChild(root_0, char_literal193_tree);
                     }
-                    dbg.location(190,33);
-                    CONTAINS_TOK197=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1222); if (state.failed) return retval;
+                    dbg.location(186,33);
+                    CONTAINS_TOK194=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1254); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CONTAINS_TOK197_tree = 
-                    (Object)adaptor.create(CONTAINS_TOK197)
+                    CONTAINS_TOK194_tree = 
+                    (Object)adaptor.create(CONTAINS_TOK194)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK197_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK194_tree, root_0);
                     }
-                    dbg.location(190,41);
-                    LPAREN198=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1225); if (state.failed) return retval;
-                    dbg.location(190,43);
-                    pushFollow(FOLLOW_x500NameExpr_in_containsOp1228);
-                    x500NameExpr199=x500NameExpr();
+                    dbg.location(186,41);
+                    LPAREN195=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1257); if (state.failed) return retval;
+                    dbg.location(186,43);
+                    pushFollow(FOLLOW_x500NameExpr_in_containsOp1260);
+                    x500NameExpr196=x500NameExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameExpr199.getTree());
-                    dbg.location(190,62);
-                    RPAREN200=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1230); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameExpr196.getTree());
+                    dbg.location(186,62);
+                    RPAREN197=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1262); if (state.failed) return retval;
 
                     }
                     break;
                 case 11 :
                     dbg.enterAlt(11);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:191:5: rfc822NameBag '.' CONTAINS_TOK ^ LPAREN ! rfc822NameExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:187:5: rfc822NameBag '.' CONTAINS_TOK ^ LPAREN ! rfc822NameExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(191,5);
-                    pushFollow(FOLLOW_rfc822NameBag_in_containsOp1237);
-                    rfc822NameBag201=rfc822NameBag();
+                    dbg.location(187,5);
+                    pushFollow(FOLLOW_rfc822NameBag_in_containsOp1269);
+                    rfc822NameBag198=rfc822NameBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameBag201.getTree());
-                    dbg.location(191,19);
-                    char_literal202=(Token)match(input,84,FOLLOW_84_in_containsOp1239); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameBag198.getTree());
+                    dbg.location(187,19);
+                    char_literal199=(Token)match(input,84,FOLLOW_84_in_containsOp1271); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal202_tree = 
-                    (Object)adaptor.create(char_literal202)
+                    char_literal199_tree = 
+                    (Object)adaptor.create(char_literal199)
                     ;
-                    adaptor.addChild(root_0, char_literal202_tree);
+                    adaptor.addChild(root_0, char_literal199_tree);
                     }
-                    dbg.location(191,35);
-                    CONTAINS_TOK203=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1241); if (state.failed) return retval;
+                    dbg.location(187,35);
+                    CONTAINS_TOK200=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1273); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CONTAINS_TOK203_tree = 
-                    (Object)adaptor.create(CONTAINS_TOK203)
+                    CONTAINS_TOK200_tree = 
+                    (Object)adaptor.create(CONTAINS_TOK200)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK203_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK200_tree, root_0);
                     }
-                    dbg.location(191,43);
-                    LPAREN204=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1244); if (state.failed) return retval;
-                    dbg.location(191,45);
-                    pushFollow(FOLLOW_rfc822NameExpr_in_containsOp1247);
-                    rfc822NameExpr205=rfc822NameExpr();
+                    dbg.location(187,43);
+                    LPAREN201=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1276); if (state.failed) return retval;
+                    dbg.location(187,45);
+                    pushFollow(FOLLOW_rfc822NameExpr_in_containsOp1279);
+                    rfc822NameExpr202=rfc822NameExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameExpr205.getTree());
-                    dbg.location(191,66);
-                    RPAREN206=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1249); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameExpr202.getTree());
+                    dbg.location(187,66);
+                    RPAREN203=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1281); if (state.failed) return retval;
 
                     }
                     break;
                 case 12 :
                     dbg.enterAlt(12);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:192:5: hexBinaryBag '.' CONTAINS_TOK ^ LPAREN ! hexBinaryExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:188:5: hexBinaryBag '.' CONTAINS_TOK ^ LPAREN ! hexBinaryExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(192,5);
-                    pushFollow(FOLLOW_hexBinaryBag_in_containsOp1256);
-                    hexBinaryBag207=hexBinaryBag();
+                    dbg.location(188,5);
+                    pushFollow(FOLLOW_hexBinaryBag_in_containsOp1288);
+                    hexBinaryBag204=hexBinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryBag207.getTree());
-                    dbg.location(192,18);
-                    char_literal208=(Token)match(input,84,FOLLOW_84_in_containsOp1258); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryBag204.getTree());
+                    dbg.location(188,18);
+                    char_literal205=(Token)match(input,84,FOLLOW_84_in_containsOp1290); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal208_tree = 
-                    (Object)adaptor.create(char_literal208)
+                    char_literal205_tree = 
+                    (Object)adaptor.create(char_literal205)
                     ;
-                    adaptor.addChild(root_0, char_literal208_tree);
+                    adaptor.addChild(root_0, char_literal205_tree);
                     }
-                    dbg.location(192,34);
-                    CONTAINS_TOK209=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1260); if (state.failed) return retval;
+                    dbg.location(188,34);
+                    CONTAINS_TOK206=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1292); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CONTAINS_TOK209_tree = 
-                    (Object)adaptor.create(CONTAINS_TOK209)
+                    CONTAINS_TOK206_tree = 
+                    (Object)adaptor.create(CONTAINS_TOK206)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK209_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK206_tree, root_0);
                     }
-                    dbg.location(192,42);
-                    LPAREN210=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1263); if (state.failed) return retval;
-                    dbg.location(192,44);
-                    pushFollow(FOLLOW_hexBinaryExpr_in_containsOp1266);
-                    hexBinaryExpr211=hexBinaryExpr();
+                    dbg.location(188,42);
+                    LPAREN207=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1295); if (state.failed) return retval;
+                    dbg.location(188,44);
+                    pushFollow(FOLLOW_hexBinaryExpr_in_containsOp1298);
+                    hexBinaryExpr208=hexBinaryExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryExpr211.getTree());
-                    dbg.location(192,64);
-                    RPAREN212=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1268); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryExpr208.getTree());
+                    dbg.location(188,64);
+                    RPAREN209=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1300); if (state.failed) return retval;
 
                     }
                     break;
                 case 13 :
                     dbg.enterAlt(13);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:193:5: ( base64BinaryExpr )=> base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:189:5: ( base64BinaryExpr )=> base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(193,27);
-                    pushFollow(FOLLOW_base64BinaryBag_in_containsOp1281);
-                    base64BinaryBag213=base64BinaryBag();
+                    dbg.location(189,27);
+                    pushFollow(FOLLOW_base64BinaryBag_in_containsOp1313);
+                    base64BinaryBag210=base64BinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag213.getTree());
-                    dbg.location(193,43);
-                    char_literal214=(Token)match(input,84,FOLLOW_84_in_containsOp1283); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag210.getTree());
+                    dbg.location(189,43);
+                    char_literal211=(Token)match(input,84,FOLLOW_84_in_containsOp1315); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal214_tree = 
-                    (Object)adaptor.create(char_literal214)
+                    char_literal211_tree = 
+                    (Object)adaptor.create(char_literal211)
                     ;
-                    adaptor.addChild(root_0, char_literal214_tree);
+                    adaptor.addChild(root_0, char_literal211_tree);
                     }
-                    dbg.location(193,59);
-                    CONTAINS_TOK215=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1285); if (state.failed) return retval;
+                    dbg.location(189,59);
+                    CONTAINS_TOK212=(Token)match(input,CONTAINS_TOK,FOLLOW_CONTAINS_TOK_in_containsOp1317); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CONTAINS_TOK215_tree = 
-                    (Object)adaptor.create(CONTAINS_TOK215)
+                    CONTAINS_TOK212_tree = 
+                    (Object)adaptor.create(CONTAINS_TOK212)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK215_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(CONTAINS_TOK212_tree, root_0);
                     }
-                    dbg.location(193,67);
-                    LPAREN216=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1288); if (state.failed) return retval;
-                    dbg.location(193,69);
-                    pushFollow(FOLLOW_base64BinaryExpr_in_containsOp1291);
-                    base64BinaryExpr217=base64BinaryExpr();
+                    dbg.location(189,67);
+                    LPAREN213=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_containsOp1320); if (state.failed) return retval;
+                    dbg.location(189,69);
+                    pushFollow(FOLLOW_base64BinaryExpr_in_containsOp1323);
+                    base64BinaryExpr214=base64BinaryExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr217.getTree());
-                    dbg.location(193,92);
-                    RPAREN218=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1293); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr214.getTree());
+                    dbg.location(189,92);
+                    RPAREN215=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_containsOp1325); if (state.failed) return retval;
 
                     }
                     break;
@@ -3406,7 +3413,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(194, 1);
+        dbg.location(190, 1);
 
         }
         finally {
@@ -3421,13 +3428,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class equalityExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "equalityExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:196:1: equalityExpr : ( integerExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ integerExpr | doubleExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ doubleExpr | stringExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ stringExpr | anyUriExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ anyUriExpr | dateExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateExpr | timeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ timeExpr | dateTimeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateTimeExpr | yearMonthDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ yearMonthDurationExpr | x500NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ x500NameExpr | rfc822NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ rfc822NameExpr | dayTimeDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dayTimeDurationExpr | base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ base64BinaryExpr );
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:192:1: equalityExpr returns [SomeType o] : ( integerExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ integerExpr | doubleExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ doubleExpr | stringExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ stringExpr | anyUriExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ anyUriExpr | dateExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateExpr | timeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ timeExpr | dateTimeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateTimeExpr | yearMonthDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ yearMonthDurationExpr | x500NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ x500NameExpr | rfc822NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ rfc822NameExpr | dayTimeDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dayTimeDurationExpr | base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ base64BinaryExpr );
     public final GrammarParser.equalityExpr_return equalityExpr() throws RecognitionException {
         GrammarParser.equalityExpr_return retval = new GrammarParser.equalityExpr_return();
         retval.start = input.LT(1);
@@ -3435,6 +3443,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
+        Token set217=null;
         Token set220=null;
         Token set223=null;
         Token set226=null;
@@ -3446,56 +3455,56 @@ public TreeAdaptor getTreeAdaptor() {
         Token set244=null;
         Token set247=null;
         Token set250=null;
-        Token set253=null;
-        GrammarParser.integerExpr_return integerExpr219 =null;
+        GrammarParser.integerExpr_return integerExpr216 =null;
 
-        GrammarParser.integerExpr_return integerExpr221 =null;
+        GrammarParser.integerExpr_return integerExpr218 =null;
 
-        GrammarParser.doubleExpr_return doubleExpr222 =null;
+        GrammarParser.doubleExpr_return doubleExpr219 =null;
 
-        GrammarParser.doubleExpr_return doubleExpr224 =null;
+        GrammarParser.doubleExpr_return doubleExpr221 =null;
 
-        GrammarParser.stringExpr_return stringExpr225 =null;
+        GrammarParser.stringExpr_return stringExpr222 =null;
 
-        GrammarParser.stringExpr_return stringExpr227 =null;
+        GrammarParser.stringExpr_return stringExpr224 =null;
 
-        GrammarParser.anyUriExpr_return anyUriExpr228 =null;
+        GrammarParser.anyUriExpr_return anyUriExpr225 =null;
 
-        GrammarParser.anyUriExpr_return anyUriExpr230 =null;
+        GrammarParser.anyUriExpr_return anyUriExpr227 =null;
 
-        GrammarParser.dateExpr_return dateExpr231 =null;
+        GrammarParser.dateExpr_return dateExpr228 =null;
 
-        GrammarParser.dateExpr_return dateExpr233 =null;
+        GrammarParser.dateExpr_return dateExpr230 =null;
 
-        GrammarParser.timeExpr_return timeExpr234 =null;
+        GrammarParser.timeExpr_return timeExpr231 =null;
 
-        GrammarParser.timeExpr_return timeExpr236 =null;
+        GrammarParser.timeExpr_return timeExpr233 =null;
 
-        GrammarParser.dateTimeExpr_return dateTimeExpr237 =null;
+        GrammarParser.dateTimeExpr_return dateTimeExpr234 =null;
 
-        GrammarParser.dateTimeExpr_return dateTimeExpr239 =null;
+        GrammarParser.dateTimeExpr_return dateTimeExpr236 =null;
 
-        GrammarParser.yearMonthDurationExpr_return yearMonthDurationExpr240 =null;
+        GrammarParser.yearMonthDurationExpr_return yearMonthDurationExpr237 =null;
 
-        GrammarParser.yearMonthDurationExpr_return yearMonthDurationExpr242 =null;
+        GrammarParser.yearMonthDurationExpr_return yearMonthDurationExpr239 =null;
 
-        GrammarParser.x500NameExpr_return x500NameExpr243 =null;
+        GrammarParser.x500NameExpr_return x500NameExpr240 =null;
 
-        GrammarParser.x500NameExpr_return x500NameExpr245 =null;
+        GrammarParser.x500NameExpr_return x500NameExpr242 =null;
 
-        GrammarParser.rfc822NameExpr_return rfc822NameExpr246 =null;
+        GrammarParser.rfc822NameExpr_return rfc822NameExpr243 =null;
 
-        GrammarParser.rfc822NameExpr_return rfc822NameExpr248 =null;
+        GrammarParser.rfc822NameExpr_return rfc822NameExpr245 =null;
 
-        GrammarParser.dayTimeDurationExpr_return dayTimeDurationExpr249 =null;
+        GrammarParser.dayTimeDurationExpr_return dayTimeDurationExpr246 =null;
 
-        GrammarParser.dayTimeDurationExpr_return dayTimeDurationExpr251 =null;
+        GrammarParser.dayTimeDurationExpr_return dayTimeDurationExpr248 =null;
 
-        GrammarParser.base64BinaryExpr_return base64BinaryExpr252 =null;
+        GrammarParser.base64BinaryExpr_return base64BinaryExpr249 =null;
 
-        GrammarParser.base64BinaryExpr_return base64BinaryExpr254 =null;
+        GrammarParser.base64BinaryExpr_return base64BinaryExpr251 =null;
 
 
+        Object set217_tree=null;
         Object set220_tree=null;
         Object set223_tree=null;
         Object set226_tree=null;
@@ -3507,15 +3516,14 @@ public TreeAdaptor getTreeAdaptor() {
         Object set244_tree=null;
         Object set247_tree=null;
         Object set250_tree=null;
-        Object set253_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "equalityExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(196, 0);
+        dbg.location(192, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:197:2: ( integerExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ integerExpr | doubleExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ doubleExpr | stringExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ stringExpr | anyUriExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ anyUriExpr | dateExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateExpr | timeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ timeExpr | dateTimeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateTimeExpr | yearMonthDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ yearMonthDurationExpr | x500NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ x500NameExpr | rfc822NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ rfc822NameExpr | dayTimeDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dayTimeDurationExpr | base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ base64BinaryExpr )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:193:2: ( integerExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ integerExpr | doubleExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ doubleExpr | stringExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ stringExpr | anyUriExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ anyUriExpr | dateExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateExpr | timeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ timeExpr | dateTimeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateTimeExpr | yearMonthDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ yearMonthDurationExpr | x500NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ x500NameExpr | rfc822NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ rfc822NameExpr | dayTimeDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dayTimeDurationExpr | base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ base64BinaryExpr )
             int alt13=12;
             try { dbg.enterDecision(13, decisionCanBacktrack[13]);
 
@@ -3533,19 +3541,64 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:197:4: integerExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ integerExpr
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:193:4: integerExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ integerExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(197,4);
-                    pushFollow(FOLLOW_integerExpr_in_equalityExpr1305);
-                    integerExpr219=integerExpr();
+                    dbg.location(193,4);
+                    pushFollow(FOLLOW_integerExpr_in_equalityExpr1341);
+                    integerExpr216=integerExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerExpr219.getTree());
-                    dbg.location(197,50);
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerExpr216.getTree());
+                    dbg.location(193,50);
+                    set217=(Token)input.LT(1);
+
+                    set217=(Token)input.LT(1);
+
+                    if ( (input.LA(1) >= 85 && input.LA(1) <= 89) ) {
+                        input.consume();
+                        if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
+                        (Object)adaptor.create(set217)
+                        , root_0);
+                        state.errorRecovery=false;
+                        state.failed=false;
+                    }
+                    else {
+                        if (state.backtracking>0) {state.failed=true; return retval;}
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        dbg.recognitionException(mse);
+                        throw mse;
+                    }
+
+                    dbg.location(193,52);
+                    pushFollow(FOLLOW_integerExpr_in_equalityExpr1366);
+                    integerExpr218=integerExpr();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerExpr218.getTree());
+
+                    }
+                    break;
+                case 2 :
+                    dbg.enterAlt(2);
+
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:194:4: doubleExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ doubleExpr
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+
+                    dbg.location(194,4);
+                    pushFollow(FOLLOW_doubleExpr_in_equalityExpr1371);
+                    doubleExpr219=doubleExpr();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleExpr219.getTree());
+                    dbg.location(194,49);
                     set220=(Token)input.LT(1);
 
                     set220=(Token)input.LT(1);
@@ -3565,32 +3618,32 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(197,52);
-                    pushFollow(FOLLOW_integerExpr_in_equalityExpr1330);
-                    integerExpr221=integerExpr();
+                    dbg.location(194,51);
+                    pushFollow(FOLLOW_doubleExpr_in_equalityExpr1396);
+                    doubleExpr221=doubleExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerExpr221.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleExpr221.getTree());
 
                     }
                     break;
-                case 2 :
-                    dbg.enterAlt(2);
+                case 3 :
+                    dbg.enterAlt(3);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:198:4: doubleExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ doubleExpr
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:195:4: stringExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ stringExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(198,4);
-                    pushFollow(FOLLOW_doubleExpr_in_equalityExpr1335);
-                    doubleExpr222=doubleExpr();
+                    dbg.location(195,4);
+                    pushFollow(FOLLOW_stringExpr_in_equalityExpr1401);
+                    stringExpr222=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleExpr222.getTree());
-                    dbg.location(198,49);
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr222.getTree());
+                    dbg.location(195,49);
                     set223=(Token)input.LT(1);
 
                     set223=(Token)input.LT(1);
@@ -3610,32 +3663,32 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(198,51);
-                    pushFollow(FOLLOW_doubleExpr_in_equalityExpr1360);
-                    doubleExpr224=doubleExpr();
+                    dbg.location(195,51);
+                    pushFollow(FOLLOW_stringExpr_in_equalityExpr1426);
+                    stringExpr224=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleExpr224.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr224.getTree());
 
                     }
                     break;
-                case 3 :
-                    dbg.enterAlt(3);
+                case 4 :
+                    dbg.enterAlt(4);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:199:4: stringExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ stringExpr
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:196:4: anyUriExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ anyUriExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(199,4);
-                    pushFollow(FOLLOW_stringExpr_in_equalityExpr1365);
-                    stringExpr225=stringExpr();
+                    dbg.location(196,4);
+                    pushFollow(FOLLOW_anyUriExpr_in_equalityExpr1431);
+                    anyUriExpr225=anyUriExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr225.getTree());
-                    dbg.location(199,49);
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriExpr225.getTree());
+                    dbg.location(196,49);
                     set226=(Token)input.LT(1);
 
                     set226=(Token)input.LT(1);
@@ -3655,32 +3708,32 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(199,51);
-                    pushFollow(FOLLOW_stringExpr_in_equalityExpr1390);
-                    stringExpr227=stringExpr();
+                    dbg.location(196,51);
+                    pushFollow(FOLLOW_anyUriExpr_in_equalityExpr1456);
+                    anyUriExpr227=anyUriExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr227.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriExpr227.getTree());
 
                     }
                     break;
-                case 4 :
-                    dbg.enterAlt(4);
+                case 5 :
+                    dbg.enterAlt(5);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:200:4: anyUriExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ anyUriExpr
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:197:4: dateExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(200,4);
-                    pushFollow(FOLLOW_anyUriExpr_in_equalityExpr1395);
-                    anyUriExpr228=anyUriExpr();
+                    dbg.location(197,4);
+                    pushFollow(FOLLOW_dateExpr_in_equalityExpr1461);
+                    dateExpr228=dateExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriExpr228.getTree());
-                    dbg.location(200,49);
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateExpr228.getTree());
+                    dbg.location(197,47);
                     set229=(Token)input.LT(1);
 
                     set229=(Token)input.LT(1);
@@ -3700,32 +3753,32 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(200,51);
-                    pushFollow(FOLLOW_anyUriExpr_in_equalityExpr1420);
-                    anyUriExpr230=anyUriExpr();
+                    dbg.location(197,49);
+                    pushFollow(FOLLOW_dateExpr_in_equalityExpr1486);
+                    dateExpr230=dateExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriExpr230.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateExpr230.getTree());
 
                     }
                     break;
-                case 5 :
-                    dbg.enterAlt(5);
+                case 6 :
+                    dbg.enterAlt(6);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:201:4: dateExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateExpr
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:198:4: timeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ timeExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(201,4);
-                    pushFollow(FOLLOW_dateExpr_in_equalityExpr1425);
-                    dateExpr231=dateExpr();
+                    dbg.location(198,4);
+                    pushFollow(FOLLOW_timeExpr_in_equalityExpr1491);
+                    timeExpr231=timeExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateExpr231.getTree());
-                    dbg.location(201,47);
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeExpr231.getTree());
+                    dbg.location(198,47);
                     set232=(Token)input.LT(1);
 
                     set232=(Token)input.LT(1);
@@ -3745,32 +3798,32 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(201,49);
-                    pushFollow(FOLLOW_dateExpr_in_equalityExpr1450);
-                    dateExpr233=dateExpr();
+                    dbg.location(198,49);
+                    pushFollow(FOLLOW_timeExpr_in_equalityExpr1516);
+                    timeExpr233=timeExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateExpr233.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeExpr233.getTree());
 
                     }
                     break;
-                case 6 :
-                    dbg.enterAlt(6);
+                case 7 :
+                    dbg.enterAlt(7);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:202:4: timeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ timeExpr
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:199:4: dateTimeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateTimeExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(202,4);
-                    pushFollow(FOLLOW_timeExpr_in_equalityExpr1455);
-                    timeExpr234=timeExpr();
+                    dbg.location(199,4);
+                    pushFollow(FOLLOW_dateTimeExpr_in_equalityExpr1521);
+                    dateTimeExpr234=dateTimeExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeExpr234.getTree());
-                    dbg.location(202,47);
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeExpr234.getTree());
+                    dbg.location(199,51);
                     set235=(Token)input.LT(1);
 
                     set235=(Token)input.LT(1);
@@ -3790,32 +3843,32 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(202,49);
-                    pushFollow(FOLLOW_timeExpr_in_equalityExpr1480);
-                    timeExpr236=timeExpr();
+                    dbg.location(199,53);
+                    pushFollow(FOLLOW_dateTimeExpr_in_equalityExpr1546);
+                    dateTimeExpr236=dateTimeExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeExpr236.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeExpr236.getTree());
 
                     }
                     break;
-                case 7 :
-                    dbg.enterAlt(7);
+                case 8 :
+                    dbg.enterAlt(8);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:203:4: dateTimeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateTimeExpr
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:200:4: yearMonthDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ yearMonthDurationExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(203,4);
-                    pushFollow(FOLLOW_dateTimeExpr_in_equalityExpr1485);
-                    dateTimeExpr237=dateTimeExpr();
+                    dbg.location(200,4);
+                    pushFollow(FOLLOW_yearMonthDurationExpr_in_equalityExpr1551);
+                    yearMonthDurationExpr237=yearMonthDurationExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeExpr237.getTree());
-                    dbg.location(203,51);
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationExpr237.getTree());
+                    dbg.location(200,60);
                     set238=(Token)input.LT(1);
 
                     set238=(Token)input.LT(1);
@@ -3835,32 +3888,32 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(203,53);
-                    pushFollow(FOLLOW_dateTimeExpr_in_equalityExpr1510);
-                    dateTimeExpr239=dateTimeExpr();
+                    dbg.location(200,62);
+                    pushFollow(FOLLOW_yearMonthDurationExpr_in_equalityExpr1576);
+                    yearMonthDurationExpr239=yearMonthDurationExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeExpr239.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationExpr239.getTree());
 
                     }
                     break;
-                case 8 :
-                    dbg.enterAlt(8);
+                case 9 :
+                    dbg.enterAlt(9);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:204:4: yearMonthDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ yearMonthDurationExpr
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:201:4: x500NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ x500NameExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(204,4);
-                    pushFollow(FOLLOW_yearMonthDurationExpr_in_equalityExpr1515);
-                    yearMonthDurationExpr240=yearMonthDurationExpr();
+                    dbg.location(201,4);
+                    pushFollow(FOLLOW_x500NameExpr_in_equalityExpr1581);
+                    x500NameExpr240=x500NameExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationExpr240.getTree());
-                    dbg.location(204,60);
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameExpr240.getTree());
+                    dbg.location(201,51);
                     set241=(Token)input.LT(1);
 
                     set241=(Token)input.LT(1);
@@ -3880,32 +3933,32 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(204,62);
-                    pushFollow(FOLLOW_yearMonthDurationExpr_in_equalityExpr1540);
-                    yearMonthDurationExpr242=yearMonthDurationExpr();
+                    dbg.location(201,53);
+                    pushFollow(FOLLOW_x500NameExpr_in_equalityExpr1606);
+                    x500NameExpr242=x500NameExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationExpr242.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameExpr242.getTree());
 
                     }
                     break;
-                case 9 :
-                    dbg.enterAlt(9);
+                case 10 :
+                    dbg.enterAlt(10);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:205:4: x500NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ x500NameExpr
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:202:4: rfc822NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ rfc822NameExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(205,4);
-                    pushFollow(FOLLOW_x500NameExpr_in_equalityExpr1545);
-                    x500NameExpr243=x500NameExpr();
+                    dbg.location(202,4);
+                    pushFollow(FOLLOW_rfc822NameExpr_in_equalityExpr1611);
+                    rfc822NameExpr243=rfc822NameExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameExpr243.getTree());
-                    dbg.location(205,51);
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameExpr243.getTree());
+                    dbg.location(202,54);
                     set244=(Token)input.LT(1);
 
                     set244=(Token)input.LT(1);
@@ -3925,32 +3978,32 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(205,53);
-                    pushFollow(FOLLOW_x500NameExpr_in_equalityExpr1570);
-                    x500NameExpr245=x500NameExpr();
+                    dbg.location(202,56);
+                    pushFollow(FOLLOW_rfc822NameExpr_in_equalityExpr1637);
+                    rfc822NameExpr245=rfc822NameExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameExpr245.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameExpr245.getTree());
 
                     }
                     break;
-                case 10 :
-                    dbg.enterAlt(10);
+                case 11 :
+                    dbg.enterAlt(11);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:206:4: rfc822NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ rfc822NameExpr
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:203:4: dayTimeDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dayTimeDurationExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(206,4);
-                    pushFollow(FOLLOW_rfc822NameExpr_in_equalityExpr1575);
-                    rfc822NameExpr246=rfc822NameExpr();
+                    dbg.location(203,4);
+                    pushFollow(FOLLOW_dayTimeDurationExpr_in_equalityExpr1642);
+                    dayTimeDurationExpr246=dayTimeDurationExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameExpr246.getTree());
-                    dbg.location(206,54);
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationExpr246.getTree());
+                    dbg.location(203,58);
                     set247=(Token)input.LT(1);
 
                     set247=(Token)input.LT(1);
@@ -3970,32 +4023,32 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(206,56);
-                    pushFollow(FOLLOW_rfc822NameExpr_in_equalityExpr1601);
-                    rfc822NameExpr248=rfc822NameExpr();
+                    dbg.location(203,60);
+                    pushFollow(FOLLOW_dayTimeDurationExpr_in_equalityExpr1667);
+                    dayTimeDurationExpr248=dayTimeDurationExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameExpr248.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationExpr248.getTree());
 
                     }
                     break;
-                case 11 :
-                    dbg.enterAlt(11);
+                case 12 :
+                    dbg.enterAlt(12);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:207:4: dayTimeDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dayTimeDurationExpr
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:204:4: base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ base64BinaryExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(207,4);
-                    pushFollow(FOLLOW_dayTimeDurationExpr_in_equalityExpr1606);
-                    dayTimeDurationExpr249=dayTimeDurationExpr();
+                    dbg.location(204,4);
+                    pushFollow(FOLLOW_base64BinaryExpr_in_equalityExpr1672);
+                    base64BinaryExpr249=base64BinaryExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationExpr249.getTree());
-                    dbg.location(207,58);
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr249.getTree());
+                    dbg.location(204,55);
                     set250=(Token)input.LT(1);
 
                     set250=(Token)input.LT(1);
@@ -4015,58 +4068,13 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(207,60);
-                    pushFollow(FOLLOW_dayTimeDurationExpr_in_equalityExpr1631);
-                    dayTimeDurationExpr251=dayTimeDurationExpr();
+                    dbg.location(204,57);
+                    pushFollow(FOLLOW_base64BinaryExpr_in_equalityExpr1697);
+                    base64BinaryExpr251=base64BinaryExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationExpr251.getTree());
-
-                    }
-                    break;
-                case 12 :
-                    dbg.enterAlt(12);
-
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:208:4: base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ base64BinaryExpr
-                    {
-                    root_0 = (Object)adaptor.nil();
-
-
-                    dbg.location(208,4);
-                    pushFollow(FOLLOW_base64BinaryExpr_in_equalityExpr1636);
-                    base64BinaryExpr252=base64BinaryExpr();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr252.getTree());
-                    dbg.location(208,55);
-                    set253=(Token)input.LT(1);
-
-                    set253=(Token)input.LT(1);
-
-                    if ( (input.LA(1) >= 85 && input.LA(1) <= 89) ) {
-                        input.consume();
-                        if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set253)
-                        , root_0);
-                        state.errorRecovery=false;
-                        state.failed=false;
-                    }
-                    else {
-                        if (state.backtracking>0) {state.failed=true; return retval;}
-                        MismatchedSetException mse = new MismatchedSetException(null,input);
-                        dbg.recognitionException(mse);
-                        throw mse;
-                    }
-
-                    dbg.location(208,57);
-                    pushFollow(FOLLOW_base64BinaryExpr_in_equalityExpr1661);
-                    base64BinaryExpr254=base64BinaryExpr();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr254.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr251.getTree());
 
                     }
                     break;
@@ -4091,7 +4099,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(209, 2);
+        dbg.location(205, 2);
 
         }
         finally {
@@ -4106,13 +4114,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class regexOp_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "regexOp"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:211:1: regexOp : ( integerExpr '.' REGEXMATCH_TOK ^ LPAREN ! integerExpr RPAREN !| doubleExpr '.' REGEXMATCH_TOK ^ LPAREN ! doubleExpr RPAREN !| stringExpr '.' REGEXMATCH_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriExpr '.' REGEXMATCH_TOK ^ LPAREN ! anyUriExpr RPAREN !| dateExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateExpr RPAREN !| timeExpr '.' REGEXMATCH_TOK ^ LPAREN ! timeExpr RPAREN !| dateTimeExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateTimeExpr RPAREN !| dayTimeDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !| yearMonthDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !| x500NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! x500NameExpr RPAREN !| rfc822NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! rfc822NameExpr RPAREN !| base64BinaryExpr '.' REGEXMATCH_TOK ^ LPAREN ! base64BinaryExpr RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:207:1: regexOp returns [SomeType o] : ( integerExpr '.' REGEXMATCH_TOK ^ LPAREN ! integerExpr RPAREN !| doubleExpr '.' REGEXMATCH_TOK ^ LPAREN ! doubleExpr RPAREN !| stringExpr '.' REGEXMATCH_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriExpr '.' REGEXMATCH_TOK ^ LPAREN ! anyUriExpr RPAREN !| dateExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateExpr RPAREN !| timeExpr '.' REGEXMATCH_TOK ^ LPAREN ! timeExpr RPAREN !| dateTimeExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateTimeExpr RPAREN !| dayTimeDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !| yearMonthDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !| x500NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! x500NameExpr RPAREN !| rfc822NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! rfc822NameExpr RPAREN !| base64BinaryExpr '.' REGEXMATCH_TOK ^ LPAREN ! base64BinaryExpr RPAREN !);
     public final GrammarParser.regexOp_return regexOp() throws RecognitionException {
         GrammarParser.regexOp_return retval = new GrammarParser.regexOp_return();
         retval.start = input.LT(1);
@@ -4120,159 +4129,159 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token char_literal256=null;
-        Token REGEXMATCH_TOK257=null;
-        Token LPAREN258=null;
-        Token RPAREN260=null;
-        Token char_literal262=null;
-        Token REGEXMATCH_TOK263=null;
-        Token LPAREN264=null;
-        Token RPAREN266=null;
-        Token char_literal268=null;
-        Token REGEXMATCH_TOK269=null;
-        Token LPAREN270=null;
-        Token RPAREN272=null;
-        Token char_literal274=null;
-        Token REGEXMATCH_TOK275=null;
-        Token LPAREN276=null;
-        Token RPAREN278=null;
-        Token char_literal280=null;
-        Token REGEXMATCH_TOK281=null;
-        Token LPAREN282=null;
-        Token RPAREN284=null;
-        Token char_literal286=null;
-        Token REGEXMATCH_TOK287=null;
-        Token LPAREN288=null;
-        Token RPAREN290=null;
-        Token char_literal292=null;
-        Token REGEXMATCH_TOK293=null;
-        Token LPAREN294=null;
-        Token RPAREN296=null;
-        Token char_literal298=null;
-        Token REGEXMATCH_TOK299=null;
-        Token LPAREN300=null;
-        Token RPAREN302=null;
-        Token char_literal304=null;
-        Token REGEXMATCH_TOK305=null;
-        Token LPAREN306=null;
-        Token RPAREN308=null;
-        Token char_literal310=null;
-        Token REGEXMATCH_TOK311=null;
-        Token LPAREN312=null;
-        Token RPAREN314=null;
-        Token char_literal316=null;
-        Token REGEXMATCH_TOK317=null;
-        Token LPAREN318=null;
-        Token RPAREN320=null;
-        Token char_literal322=null;
-        Token REGEXMATCH_TOK323=null;
-        Token LPAREN324=null;
-        Token RPAREN326=null;
-        GrammarParser.integerExpr_return integerExpr255 =null;
+        Token char_literal253=null;
+        Token REGEXMATCH_TOK254=null;
+        Token LPAREN255=null;
+        Token RPAREN257=null;
+        Token char_literal259=null;
+        Token REGEXMATCH_TOK260=null;
+        Token LPAREN261=null;
+        Token RPAREN263=null;
+        Token char_literal265=null;
+        Token REGEXMATCH_TOK266=null;
+        Token LPAREN267=null;
+        Token RPAREN269=null;
+        Token char_literal271=null;
+        Token REGEXMATCH_TOK272=null;
+        Token LPAREN273=null;
+        Token RPAREN275=null;
+        Token char_literal277=null;
+        Token REGEXMATCH_TOK278=null;
+        Token LPAREN279=null;
+        Token RPAREN281=null;
+        Token char_literal283=null;
+        Token REGEXMATCH_TOK284=null;
+        Token LPAREN285=null;
+        Token RPAREN287=null;
+        Token char_literal289=null;
+        Token REGEXMATCH_TOK290=null;
+        Token LPAREN291=null;
+        Token RPAREN293=null;
+        Token char_literal295=null;
+        Token REGEXMATCH_TOK296=null;
+        Token LPAREN297=null;
+        Token RPAREN299=null;
+        Token char_literal301=null;
+        Token REGEXMATCH_TOK302=null;
+        Token LPAREN303=null;
+        Token RPAREN305=null;
+        Token char_literal307=null;
+        Token REGEXMATCH_TOK308=null;
+        Token LPAREN309=null;
+        Token RPAREN311=null;
+        Token char_literal313=null;
+        Token REGEXMATCH_TOK314=null;
+        Token LPAREN315=null;
+        Token RPAREN317=null;
+        Token char_literal319=null;
+        Token REGEXMATCH_TOK320=null;
+        Token LPAREN321=null;
+        Token RPAREN323=null;
+        GrammarParser.integerExpr_return integerExpr252 =null;
 
-        GrammarParser.integerExpr_return integerExpr259 =null;
+        GrammarParser.integerExpr_return integerExpr256 =null;
 
-        GrammarParser.doubleExpr_return doubleExpr261 =null;
+        GrammarParser.doubleExpr_return doubleExpr258 =null;
 
-        GrammarParser.doubleExpr_return doubleExpr265 =null;
+        GrammarParser.doubleExpr_return doubleExpr262 =null;
 
-        GrammarParser.stringExpr_return stringExpr267 =null;
+        GrammarParser.stringExpr_return stringExpr264 =null;
 
-        GrammarParser.stringExpr_return stringExpr271 =null;
+        GrammarParser.stringExpr_return stringExpr268 =null;
 
-        GrammarParser.anyUriExpr_return anyUriExpr273 =null;
+        GrammarParser.anyUriExpr_return anyUriExpr270 =null;
 
-        GrammarParser.anyUriExpr_return anyUriExpr277 =null;
+        GrammarParser.anyUriExpr_return anyUriExpr274 =null;
 
-        GrammarParser.dateExpr_return dateExpr279 =null;
+        GrammarParser.dateExpr_return dateExpr276 =null;
 
-        GrammarParser.dateExpr_return dateExpr283 =null;
+        GrammarParser.dateExpr_return dateExpr280 =null;
 
-        GrammarParser.timeExpr_return timeExpr285 =null;
+        GrammarParser.timeExpr_return timeExpr282 =null;
 
-        GrammarParser.timeExpr_return timeExpr289 =null;
+        GrammarParser.timeExpr_return timeExpr286 =null;
 
-        GrammarParser.dateTimeExpr_return dateTimeExpr291 =null;
+        GrammarParser.dateTimeExpr_return dateTimeExpr288 =null;
 
-        GrammarParser.dateTimeExpr_return dateTimeExpr295 =null;
+        GrammarParser.dateTimeExpr_return dateTimeExpr292 =null;
 
-        GrammarParser.dayTimeDurationExpr_return dayTimeDurationExpr297 =null;
+        GrammarParser.dayTimeDurationExpr_return dayTimeDurationExpr294 =null;
 
-        GrammarParser.dayTimeDurationExpr_return dayTimeDurationExpr301 =null;
+        GrammarParser.dayTimeDurationExpr_return dayTimeDurationExpr298 =null;
 
-        GrammarParser.yearMonthDurationExpr_return yearMonthDurationExpr303 =null;
+        GrammarParser.yearMonthDurationExpr_return yearMonthDurationExpr300 =null;
 
-        GrammarParser.yearMonthDurationExpr_return yearMonthDurationExpr307 =null;
+        GrammarParser.yearMonthDurationExpr_return yearMonthDurationExpr304 =null;
 
-        GrammarParser.x500NameExpr_return x500NameExpr309 =null;
+        GrammarParser.x500NameExpr_return x500NameExpr306 =null;
 
-        GrammarParser.x500NameExpr_return x500NameExpr313 =null;
+        GrammarParser.x500NameExpr_return x500NameExpr310 =null;
 
-        GrammarParser.rfc822NameExpr_return rfc822NameExpr315 =null;
+        GrammarParser.rfc822NameExpr_return rfc822NameExpr312 =null;
 
-        GrammarParser.rfc822NameExpr_return rfc822NameExpr319 =null;
+        GrammarParser.rfc822NameExpr_return rfc822NameExpr316 =null;
 
-        GrammarParser.base64BinaryExpr_return base64BinaryExpr321 =null;
+        GrammarParser.base64BinaryExpr_return base64BinaryExpr318 =null;
 
-        GrammarParser.base64BinaryExpr_return base64BinaryExpr325 =null;
+        GrammarParser.base64BinaryExpr_return base64BinaryExpr322 =null;
 
 
-        Object char_literal256_tree=null;
-        Object REGEXMATCH_TOK257_tree=null;
-        Object LPAREN258_tree=null;
-        Object RPAREN260_tree=null;
-        Object char_literal262_tree=null;
-        Object REGEXMATCH_TOK263_tree=null;
-        Object LPAREN264_tree=null;
-        Object RPAREN266_tree=null;
-        Object char_literal268_tree=null;
-        Object REGEXMATCH_TOK269_tree=null;
-        Object LPAREN270_tree=null;
-        Object RPAREN272_tree=null;
-        Object char_literal274_tree=null;
-        Object REGEXMATCH_TOK275_tree=null;
-        Object LPAREN276_tree=null;
-        Object RPAREN278_tree=null;
-        Object char_literal280_tree=null;
-        Object REGEXMATCH_TOK281_tree=null;
-        Object LPAREN282_tree=null;
-        Object RPAREN284_tree=null;
-        Object char_literal286_tree=null;
-        Object REGEXMATCH_TOK287_tree=null;
-        Object LPAREN288_tree=null;
-        Object RPAREN290_tree=null;
-        Object char_literal292_tree=null;
-        Object REGEXMATCH_TOK293_tree=null;
-        Object LPAREN294_tree=null;
-        Object RPAREN296_tree=null;
-        Object char_literal298_tree=null;
-        Object REGEXMATCH_TOK299_tree=null;
-        Object LPAREN300_tree=null;
-        Object RPAREN302_tree=null;
-        Object char_literal304_tree=null;
-        Object REGEXMATCH_TOK305_tree=null;
-        Object LPAREN306_tree=null;
-        Object RPAREN308_tree=null;
-        Object char_literal310_tree=null;
-        Object REGEXMATCH_TOK311_tree=null;
-        Object LPAREN312_tree=null;
-        Object RPAREN314_tree=null;
-        Object char_literal316_tree=null;
-        Object REGEXMATCH_TOK317_tree=null;
-        Object LPAREN318_tree=null;
-        Object RPAREN320_tree=null;
-        Object char_literal322_tree=null;
-        Object REGEXMATCH_TOK323_tree=null;
-        Object LPAREN324_tree=null;
-        Object RPAREN326_tree=null;
+        Object char_literal253_tree=null;
+        Object REGEXMATCH_TOK254_tree=null;
+        Object LPAREN255_tree=null;
+        Object RPAREN257_tree=null;
+        Object char_literal259_tree=null;
+        Object REGEXMATCH_TOK260_tree=null;
+        Object LPAREN261_tree=null;
+        Object RPAREN263_tree=null;
+        Object char_literal265_tree=null;
+        Object REGEXMATCH_TOK266_tree=null;
+        Object LPAREN267_tree=null;
+        Object RPAREN269_tree=null;
+        Object char_literal271_tree=null;
+        Object REGEXMATCH_TOK272_tree=null;
+        Object LPAREN273_tree=null;
+        Object RPAREN275_tree=null;
+        Object char_literal277_tree=null;
+        Object REGEXMATCH_TOK278_tree=null;
+        Object LPAREN279_tree=null;
+        Object RPAREN281_tree=null;
+        Object char_literal283_tree=null;
+        Object REGEXMATCH_TOK284_tree=null;
+        Object LPAREN285_tree=null;
+        Object RPAREN287_tree=null;
+        Object char_literal289_tree=null;
+        Object REGEXMATCH_TOK290_tree=null;
+        Object LPAREN291_tree=null;
+        Object RPAREN293_tree=null;
+        Object char_literal295_tree=null;
+        Object REGEXMATCH_TOK296_tree=null;
+        Object LPAREN297_tree=null;
+        Object RPAREN299_tree=null;
+        Object char_literal301_tree=null;
+        Object REGEXMATCH_TOK302_tree=null;
+        Object LPAREN303_tree=null;
+        Object RPAREN305_tree=null;
+        Object char_literal307_tree=null;
+        Object REGEXMATCH_TOK308_tree=null;
+        Object LPAREN309_tree=null;
+        Object RPAREN311_tree=null;
+        Object char_literal313_tree=null;
+        Object REGEXMATCH_TOK314_tree=null;
+        Object LPAREN315_tree=null;
+        Object RPAREN317_tree=null;
+        Object char_literal319_tree=null;
+        Object REGEXMATCH_TOK320_tree=null;
+        Object LPAREN321_tree=null;
+        Object RPAREN323_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "regexOp");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(211, 0);
+        dbg.location(207, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:212:2: ( integerExpr '.' REGEXMATCH_TOK ^ LPAREN ! integerExpr RPAREN !| doubleExpr '.' REGEXMATCH_TOK ^ LPAREN ! doubleExpr RPAREN !| stringExpr '.' REGEXMATCH_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriExpr '.' REGEXMATCH_TOK ^ LPAREN ! anyUriExpr RPAREN !| dateExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateExpr RPAREN !| timeExpr '.' REGEXMATCH_TOK ^ LPAREN ! timeExpr RPAREN !| dateTimeExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateTimeExpr RPAREN !| dayTimeDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !| yearMonthDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !| x500NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! x500NameExpr RPAREN !| rfc822NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! rfc822NameExpr RPAREN !| base64BinaryExpr '.' REGEXMATCH_TOK ^ LPAREN ! base64BinaryExpr RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:208:2: ( integerExpr '.' REGEXMATCH_TOK ^ LPAREN ! integerExpr RPAREN !| doubleExpr '.' REGEXMATCH_TOK ^ LPAREN ! doubleExpr RPAREN !| stringExpr '.' REGEXMATCH_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriExpr '.' REGEXMATCH_TOK ^ LPAREN ! anyUriExpr RPAREN !| dateExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateExpr RPAREN !| timeExpr '.' REGEXMATCH_TOK ^ LPAREN ! timeExpr RPAREN !| dateTimeExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateTimeExpr RPAREN !| dayTimeDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !| yearMonthDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !| x500NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! x500NameExpr RPAREN !| rfc822NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! rfc822NameExpr RPAREN !| base64BinaryExpr '.' REGEXMATCH_TOK ^ LPAREN ! base64BinaryExpr RPAREN !)
             int alt14=12;
             try { dbg.enterDecision(14, decisionCanBacktrack[14]);
 
@@ -4290,540 +4299,540 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:212:4: integerExpr '.' REGEXMATCH_TOK ^ LPAREN ! integerExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:208:4: integerExpr '.' REGEXMATCH_TOK ^ LPAREN ! integerExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(212,4);
-                    pushFollow(FOLLOW_integerExpr_in_regexOp1673);
-                    integerExpr255=integerExpr();
+                    dbg.location(208,4);
+                    pushFollow(FOLLOW_integerExpr_in_regexOp1713);
+                    integerExpr252=integerExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerExpr255.getTree());
-                    dbg.location(212,17);
-                    char_literal256=(Token)match(input,84,FOLLOW_84_in_regexOp1676); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerExpr252.getTree());
+                    dbg.location(208,17);
+                    char_literal253=(Token)match(input,84,FOLLOW_84_in_regexOp1716); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal256_tree = 
-                    (Object)adaptor.create(char_literal256)
+                    char_literal253_tree = 
+                    (Object)adaptor.create(char_literal253)
                     ;
-                    adaptor.addChild(root_0, char_literal256_tree);
+                    adaptor.addChild(root_0, char_literal253_tree);
                     }
-                    dbg.location(212,35);
-                    REGEXMATCH_TOK257=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1678); if (state.failed) return retval;
+                    dbg.location(208,35);
+                    REGEXMATCH_TOK254=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1718); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    REGEXMATCH_TOK257_tree = 
-                    (Object)adaptor.create(REGEXMATCH_TOK257)
+                    REGEXMATCH_TOK254_tree = 
+                    (Object)adaptor.create(REGEXMATCH_TOK254)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK257_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK254_tree, root_0);
                     }
-                    dbg.location(212,43);
-                    LPAREN258=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1681); if (state.failed) return retval;
-                    dbg.location(212,45);
-                    pushFollow(FOLLOW_integerExpr_in_regexOp1684);
-                    integerExpr259=integerExpr();
+                    dbg.location(208,43);
+                    LPAREN255=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1721); if (state.failed) return retval;
+                    dbg.location(208,45);
+                    pushFollow(FOLLOW_integerExpr_in_regexOp1724);
+                    integerExpr256=integerExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerExpr259.getTree());
-                    dbg.location(212,63);
-                    RPAREN260=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1686); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerExpr256.getTree());
+                    dbg.location(208,63);
+                    RPAREN257=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1726); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:213:4: doubleExpr '.' REGEXMATCH_TOK ^ LPAREN ! doubleExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:209:4: doubleExpr '.' REGEXMATCH_TOK ^ LPAREN ! doubleExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(213,4);
-                    pushFollow(FOLLOW_doubleExpr_in_regexOp1692);
-                    doubleExpr261=doubleExpr();
+                    dbg.location(209,4);
+                    pushFollow(FOLLOW_doubleExpr_in_regexOp1732);
+                    doubleExpr258=doubleExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleExpr261.getTree());
-                    dbg.location(213,15);
-                    char_literal262=(Token)match(input,84,FOLLOW_84_in_regexOp1694); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleExpr258.getTree());
+                    dbg.location(209,15);
+                    char_literal259=(Token)match(input,84,FOLLOW_84_in_regexOp1734); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal262_tree = 
-                    (Object)adaptor.create(char_literal262)
+                    char_literal259_tree = 
+                    (Object)adaptor.create(char_literal259)
                     ;
-                    adaptor.addChild(root_0, char_literal262_tree);
+                    adaptor.addChild(root_0, char_literal259_tree);
                     }
-                    dbg.location(213,33);
-                    REGEXMATCH_TOK263=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1696); if (state.failed) return retval;
+                    dbg.location(209,33);
+                    REGEXMATCH_TOK260=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1736); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    REGEXMATCH_TOK263_tree = 
-                    (Object)adaptor.create(REGEXMATCH_TOK263)
+                    REGEXMATCH_TOK260_tree = 
+                    (Object)adaptor.create(REGEXMATCH_TOK260)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK263_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK260_tree, root_0);
                     }
-                    dbg.location(213,41);
-                    LPAREN264=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1699); if (state.failed) return retval;
-                    dbg.location(213,43);
-                    pushFollow(FOLLOW_doubleExpr_in_regexOp1702);
-                    doubleExpr265=doubleExpr();
+                    dbg.location(209,41);
+                    LPAREN261=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1739); if (state.failed) return retval;
+                    dbg.location(209,43);
+                    pushFollow(FOLLOW_doubleExpr_in_regexOp1742);
+                    doubleExpr262=doubleExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleExpr265.getTree());
-                    dbg.location(213,60);
-                    RPAREN266=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1704); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleExpr262.getTree());
+                    dbg.location(209,60);
+                    RPAREN263=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1744); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:214:4: stringExpr '.' REGEXMATCH_TOK ^ LPAREN ! stringExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:210:4: stringExpr '.' REGEXMATCH_TOK ^ LPAREN ! stringExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(214,4);
-                    pushFollow(FOLLOW_stringExpr_in_regexOp1710);
-                    stringExpr267=stringExpr();
+                    dbg.location(210,4);
+                    pushFollow(FOLLOW_stringExpr_in_regexOp1750);
+                    stringExpr264=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr267.getTree());
-                    dbg.location(214,15);
-                    char_literal268=(Token)match(input,84,FOLLOW_84_in_regexOp1712); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr264.getTree());
+                    dbg.location(210,15);
+                    char_literal265=(Token)match(input,84,FOLLOW_84_in_regexOp1752); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal268_tree = 
-                    (Object)adaptor.create(char_literal268)
+                    char_literal265_tree = 
+                    (Object)adaptor.create(char_literal265)
                     ;
-                    adaptor.addChild(root_0, char_literal268_tree);
+                    adaptor.addChild(root_0, char_literal265_tree);
                     }
-                    dbg.location(214,33);
-                    REGEXMATCH_TOK269=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1714); if (state.failed) return retval;
+                    dbg.location(210,33);
+                    REGEXMATCH_TOK266=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1754); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    REGEXMATCH_TOK269_tree = 
-                    (Object)adaptor.create(REGEXMATCH_TOK269)
+                    REGEXMATCH_TOK266_tree = 
+                    (Object)adaptor.create(REGEXMATCH_TOK266)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK269_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK266_tree, root_0);
                     }
-                    dbg.location(214,41);
-                    LPAREN270=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1717); if (state.failed) return retval;
-                    dbg.location(214,43);
-                    pushFollow(FOLLOW_stringExpr_in_regexOp1720);
-                    stringExpr271=stringExpr();
+                    dbg.location(210,41);
+                    LPAREN267=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1757); if (state.failed) return retval;
+                    dbg.location(210,43);
+                    pushFollow(FOLLOW_stringExpr_in_regexOp1760);
+                    stringExpr268=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr271.getTree());
-                    dbg.location(214,60);
-                    RPAREN272=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1722); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr268.getTree());
+                    dbg.location(210,60);
+                    RPAREN269=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1762); if (state.failed) return retval;
 
                     }
                     break;
                 case 4 :
                     dbg.enterAlt(4);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:215:4: anyUriExpr '.' REGEXMATCH_TOK ^ LPAREN ! anyUriExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:211:4: anyUriExpr '.' REGEXMATCH_TOK ^ LPAREN ! anyUriExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(215,4);
-                    pushFollow(FOLLOW_anyUriExpr_in_regexOp1728);
-                    anyUriExpr273=anyUriExpr();
+                    dbg.location(211,4);
+                    pushFollow(FOLLOW_anyUriExpr_in_regexOp1768);
+                    anyUriExpr270=anyUriExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriExpr273.getTree());
-                    dbg.location(215,15);
-                    char_literal274=(Token)match(input,84,FOLLOW_84_in_regexOp1730); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriExpr270.getTree());
+                    dbg.location(211,15);
+                    char_literal271=(Token)match(input,84,FOLLOW_84_in_regexOp1770); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal274_tree = 
-                    (Object)adaptor.create(char_literal274)
+                    char_literal271_tree = 
+                    (Object)adaptor.create(char_literal271)
                     ;
-                    adaptor.addChild(root_0, char_literal274_tree);
+                    adaptor.addChild(root_0, char_literal271_tree);
                     }
-                    dbg.location(215,33);
-                    REGEXMATCH_TOK275=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1732); if (state.failed) return retval;
+                    dbg.location(211,33);
+                    REGEXMATCH_TOK272=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1772); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    REGEXMATCH_TOK275_tree = 
-                    (Object)adaptor.create(REGEXMATCH_TOK275)
+                    REGEXMATCH_TOK272_tree = 
+                    (Object)adaptor.create(REGEXMATCH_TOK272)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK275_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK272_tree, root_0);
                     }
-                    dbg.location(215,41);
-                    LPAREN276=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1735); if (state.failed) return retval;
-                    dbg.location(215,43);
-                    pushFollow(FOLLOW_anyUriExpr_in_regexOp1738);
-                    anyUriExpr277=anyUriExpr();
+                    dbg.location(211,41);
+                    LPAREN273=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1775); if (state.failed) return retval;
+                    dbg.location(211,43);
+                    pushFollow(FOLLOW_anyUriExpr_in_regexOp1778);
+                    anyUriExpr274=anyUriExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriExpr277.getTree());
-                    dbg.location(215,60);
-                    RPAREN278=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1740); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriExpr274.getTree());
+                    dbg.location(211,60);
+                    RPAREN275=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1780); if (state.failed) return retval;
 
                     }
                     break;
                 case 5 :
                     dbg.enterAlt(5);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:216:4: dateExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:212:4: dateExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(216,4);
-                    pushFollow(FOLLOW_dateExpr_in_regexOp1746);
-                    dateExpr279=dateExpr();
+                    dbg.location(212,4);
+                    pushFollow(FOLLOW_dateExpr_in_regexOp1786);
+                    dateExpr276=dateExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateExpr279.getTree());
-                    dbg.location(216,13);
-                    char_literal280=(Token)match(input,84,FOLLOW_84_in_regexOp1748); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateExpr276.getTree());
+                    dbg.location(212,13);
+                    char_literal277=(Token)match(input,84,FOLLOW_84_in_regexOp1788); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal280_tree = 
-                    (Object)adaptor.create(char_literal280)
+                    char_literal277_tree = 
+                    (Object)adaptor.create(char_literal277)
                     ;
-                    adaptor.addChild(root_0, char_literal280_tree);
+                    adaptor.addChild(root_0, char_literal277_tree);
                     }
-                    dbg.location(216,31);
-                    REGEXMATCH_TOK281=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1750); if (state.failed) return retval;
+                    dbg.location(212,31);
+                    REGEXMATCH_TOK278=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1790); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    REGEXMATCH_TOK281_tree = 
-                    (Object)adaptor.create(REGEXMATCH_TOK281)
+                    REGEXMATCH_TOK278_tree = 
+                    (Object)adaptor.create(REGEXMATCH_TOK278)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK281_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK278_tree, root_0);
                     }
-                    dbg.location(216,39);
-                    LPAREN282=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1753); if (state.failed) return retval;
-                    dbg.location(216,41);
-                    pushFollow(FOLLOW_dateExpr_in_regexOp1756);
-                    dateExpr283=dateExpr();
+                    dbg.location(212,39);
+                    LPAREN279=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1793); if (state.failed) return retval;
+                    dbg.location(212,41);
+                    pushFollow(FOLLOW_dateExpr_in_regexOp1796);
+                    dateExpr280=dateExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateExpr283.getTree());
-                    dbg.location(216,56);
-                    RPAREN284=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1758); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateExpr280.getTree());
+                    dbg.location(212,56);
+                    RPAREN281=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1798); if (state.failed) return retval;
 
                     }
                     break;
                 case 6 :
                     dbg.enterAlt(6);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:217:4: timeExpr '.' REGEXMATCH_TOK ^ LPAREN ! timeExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:213:4: timeExpr '.' REGEXMATCH_TOK ^ LPAREN ! timeExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(217,4);
-                    pushFollow(FOLLOW_timeExpr_in_regexOp1764);
-                    timeExpr285=timeExpr();
+                    dbg.location(213,4);
+                    pushFollow(FOLLOW_timeExpr_in_regexOp1804);
+                    timeExpr282=timeExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeExpr285.getTree());
-                    dbg.location(217,13);
-                    char_literal286=(Token)match(input,84,FOLLOW_84_in_regexOp1766); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeExpr282.getTree());
+                    dbg.location(213,13);
+                    char_literal283=(Token)match(input,84,FOLLOW_84_in_regexOp1806); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal286_tree = 
-                    (Object)adaptor.create(char_literal286)
+                    char_literal283_tree = 
+                    (Object)adaptor.create(char_literal283)
                     ;
-                    adaptor.addChild(root_0, char_literal286_tree);
+                    adaptor.addChild(root_0, char_literal283_tree);
                     }
-                    dbg.location(217,31);
-                    REGEXMATCH_TOK287=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1768); if (state.failed) return retval;
+                    dbg.location(213,31);
+                    REGEXMATCH_TOK284=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1808); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    REGEXMATCH_TOK287_tree = 
-                    (Object)adaptor.create(REGEXMATCH_TOK287)
+                    REGEXMATCH_TOK284_tree = 
+                    (Object)adaptor.create(REGEXMATCH_TOK284)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK287_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK284_tree, root_0);
                     }
-                    dbg.location(217,39);
-                    LPAREN288=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1771); if (state.failed) return retval;
-                    dbg.location(217,41);
-                    pushFollow(FOLLOW_timeExpr_in_regexOp1774);
-                    timeExpr289=timeExpr();
+                    dbg.location(213,39);
+                    LPAREN285=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1811); if (state.failed) return retval;
+                    dbg.location(213,41);
+                    pushFollow(FOLLOW_timeExpr_in_regexOp1814);
+                    timeExpr286=timeExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeExpr289.getTree());
-                    dbg.location(217,56);
-                    RPAREN290=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1776); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeExpr286.getTree());
+                    dbg.location(213,56);
+                    RPAREN287=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1816); if (state.failed) return retval;
 
                     }
                     break;
                 case 7 :
                     dbg.enterAlt(7);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:218:4: dateTimeExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateTimeExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:214:4: dateTimeExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateTimeExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(218,4);
-                    pushFollow(FOLLOW_dateTimeExpr_in_regexOp1782);
-                    dateTimeExpr291=dateTimeExpr();
+                    dbg.location(214,4);
+                    pushFollow(FOLLOW_dateTimeExpr_in_regexOp1822);
+                    dateTimeExpr288=dateTimeExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeExpr291.getTree());
-                    dbg.location(218,17);
-                    char_literal292=(Token)match(input,84,FOLLOW_84_in_regexOp1784); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeExpr288.getTree());
+                    dbg.location(214,17);
+                    char_literal289=(Token)match(input,84,FOLLOW_84_in_regexOp1824); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal292_tree = 
-                    (Object)adaptor.create(char_literal292)
+                    char_literal289_tree = 
+                    (Object)adaptor.create(char_literal289)
                     ;
-                    adaptor.addChild(root_0, char_literal292_tree);
+                    adaptor.addChild(root_0, char_literal289_tree);
                     }
-                    dbg.location(218,35);
-                    REGEXMATCH_TOK293=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1786); if (state.failed) return retval;
+                    dbg.location(214,35);
+                    REGEXMATCH_TOK290=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1826); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    REGEXMATCH_TOK293_tree = 
-                    (Object)adaptor.create(REGEXMATCH_TOK293)
+                    REGEXMATCH_TOK290_tree = 
+                    (Object)adaptor.create(REGEXMATCH_TOK290)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK293_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK290_tree, root_0);
                     }
-                    dbg.location(218,43);
-                    LPAREN294=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1789); if (state.failed) return retval;
-                    dbg.location(218,45);
-                    pushFollow(FOLLOW_dateTimeExpr_in_regexOp1792);
-                    dateTimeExpr295=dateTimeExpr();
+                    dbg.location(214,43);
+                    LPAREN291=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1829); if (state.failed) return retval;
+                    dbg.location(214,45);
+                    pushFollow(FOLLOW_dateTimeExpr_in_regexOp1832);
+                    dateTimeExpr292=dateTimeExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeExpr295.getTree());
-                    dbg.location(218,64);
-                    RPAREN296=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1794); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeExpr292.getTree());
+                    dbg.location(214,64);
+                    RPAREN293=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1834); if (state.failed) return retval;
 
                     }
                     break;
                 case 8 :
                     dbg.enterAlt(8);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:219:4: dayTimeDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:215:4: dayTimeDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(219,4);
-                    pushFollow(FOLLOW_dayTimeDurationExpr_in_regexOp1800);
-                    dayTimeDurationExpr297=dayTimeDurationExpr();
+                    dbg.location(215,4);
+                    pushFollow(FOLLOW_dayTimeDurationExpr_in_regexOp1840);
+                    dayTimeDurationExpr294=dayTimeDurationExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationExpr297.getTree());
-                    dbg.location(219,24);
-                    char_literal298=(Token)match(input,84,FOLLOW_84_in_regexOp1802); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationExpr294.getTree());
+                    dbg.location(215,24);
+                    char_literal295=(Token)match(input,84,FOLLOW_84_in_regexOp1842); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal298_tree = 
-                    (Object)adaptor.create(char_literal298)
+                    char_literal295_tree = 
+                    (Object)adaptor.create(char_literal295)
                     ;
-                    adaptor.addChild(root_0, char_literal298_tree);
+                    adaptor.addChild(root_0, char_literal295_tree);
                     }
-                    dbg.location(219,42);
-                    REGEXMATCH_TOK299=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1804); if (state.failed) return retval;
+                    dbg.location(215,42);
+                    REGEXMATCH_TOK296=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1844); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    REGEXMATCH_TOK299_tree = 
-                    (Object)adaptor.create(REGEXMATCH_TOK299)
+                    REGEXMATCH_TOK296_tree = 
+                    (Object)adaptor.create(REGEXMATCH_TOK296)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK299_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK296_tree, root_0);
                     }
-                    dbg.location(219,50);
-                    LPAREN300=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1807); if (state.failed) return retval;
-                    dbg.location(219,52);
-                    pushFollow(FOLLOW_dayTimeDurationExpr_in_regexOp1810);
-                    dayTimeDurationExpr301=dayTimeDurationExpr();
+                    dbg.location(215,50);
+                    LPAREN297=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1847); if (state.failed) return retval;
+                    dbg.location(215,52);
+                    pushFollow(FOLLOW_dayTimeDurationExpr_in_regexOp1850);
+                    dayTimeDurationExpr298=dayTimeDurationExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationExpr301.getTree());
-                    dbg.location(219,78);
-                    RPAREN302=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1812); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationExpr298.getTree());
+                    dbg.location(215,78);
+                    RPAREN299=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1852); if (state.failed) return retval;
 
                     }
                     break;
                 case 9 :
                     dbg.enterAlt(9);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:220:4: yearMonthDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:216:4: yearMonthDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(220,4);
-                    pushFollow(FOLLOW_yearMonthDurationExpr_in_regexOp1818);
-                    yearMonthDurationExpr303=yearMonthDurationExpr();
+                    dbg.location(216,4);
+                    pushFollow(FOLLOW_yearMonthDurationExpr_in_regexOp1858);
+                    yearMonthDurationExpr300=yearMonthDurationExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationExpr303.getTree());
-                    dbg.location(220,26);
-                    char_literal304=(Token)match(input,84,FOLLOW_84_in_regexOp1820); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationExpr300.getTree());
+                    dbg.location(216,26);
+                    char_literal301=(Token)match(input,84,FOLLOW_84_in_regexOp1860); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal304_tree = 
-                    (Object)adaptor.create(char_literal304)
+                    char_literal301_tree = 
+                    (Object)adaptor.create(char_literal301)
                     ;
-                    adaptor.addChild(root_0, char_literal304_tree);
+                    adaptor.addChild(root_0, char_literal301_tree);
                     }
-                    dbg.location(220,44);
-                    REGEXMATCH_TOK305=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1822); if (state.failed) return retval;
+                    dbg.location(216,44);
+                    REGEXMATCH_TOK302=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1862); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    REGEXMATCH_TOK305_tree = 
-                    (Object)adaptor.create(REGEXMATCH_TOK305)
+                    REGEXMATCH_TOK302_tree = 
+                    (Object)adaptor.create(REGEXMATCH_TOK302)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK305_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK302_tree, root_0);
                     }
-                    dbg.location(220,52);
-                    LPAREN306=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1825); if (state.failed) return retval;
-                    dbg.location(220,54);
-                    pushFollow(FOLLOW_yearMonthDurationExpr_in_regexOp1828);
-                    yearMonthDurationExpr307=yearMonthDurationExpr();
+                    dbg.location(216,52);
+                    LPAREN303=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1865); if (state.failed) return retval;
+                    dbg.location(216,54);
+                    pushFollow(FOLLOW_yearMonthDurationExpr_in_regexOp1868);
+                    yearMonthDurationExpr304=yearMonthDurationExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationExpr307.getTree());
-                    dbg.location(220,82);
-                    RPAREN308=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1830); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationExpr304.getTree());
+                    dbg.location(216,82);
+                    RPAREN305=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1870); if (state.failed) return retval;
 
                     }
                     break;
                 case 10 :
                     dbg.enterAlt(10);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:221:4: x500NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! x500NameExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:217:4: x500NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! x500NameExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(221,4);
-                    pushFollow(FOLLOW_x500NameExpr_in_regexOp1836);
-                    x500NameExpr309=x500NameExpr();
+                    dbg.location(217,4);
+                    pushFollow(FOLLOW_x500NameExpr_in_regexOp1876);
+                    x500NameExpr306=x500NameExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameExpr309.getTree());
-                    dbg.location(221,17);
-                    char_literal310=(Token)match(input,84,FOLLOW_84_in_regexOp1838); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameExpr306.getTree());
+                    dbg.location(217,17);
+                    char_literal307=(Token)match(input,84,FOLLOW_84_in_regexOp1878); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal310_tree = 
-                    (Object)adaptor.create(char_literal310)
+                    char_literal307_tree = 
+                    (Object)adaptor.create(char_literal307)
                     ;
-                    adaptor.addChild(root_0, char_literal310_tree);
+                    adaptor.addChild(root_0, char_literal307_tree);
                     }
-                    dbg.location(221,35);
-                    REGEXMATCH_TOK311=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1840); if (state.failed) return retval;
+                    dbg.location(217,35);
+                    REGEXMATCH_TOK308=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1880); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    REGEXMATCH_TOK311_tree = 
-                    (Object)adaptor.create(REGEXMATCH_TOK311)
+                    REGEXMATCH_TOK308_tree = 
+                    (Object)adaptor.create(REGEXMATCH_TOK308)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK311_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK308_tree, root_0);
                     }
-                    dbg.location(221,43);
-                    LPAREN312=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1843); if (state.failed) return retval;
-                    dbg.location(221,45);
-                    pushFollow(FOLLOW_x500NameExpr_in_regexOp1846);
-                    x500NameExpr313=x500NameExpr();
+                    dbg.location(217,43);
+                    LPAREN309=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1883); if (state.failed) return retval;
+                    dbg.location(217,45);
+                    pushFollow(FOLLOW_x500NameExpr_in_regexOp1886);
+                    x500NameExpr310=x500NameExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameExpr313.getTree());
-                    dbg.location(221,64);
-                    RPAREN314=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1848); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameExpr310.getTree());
+                    dbg.location(217,64);
+                    RPAREN311=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1888); if (state.failed) return retval;
 
                     }
                     break;
                 case 11 :
                     dbg.enterAlt(11);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:222:4: rfc822NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! rfc822NameExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:218:4: rfc822NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! rfc822NameExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(222,4);
-                    pushFollow(FOLLOW_rfc822NameExpr_in_regexOp1854);
-                    rfc822NameExpr315=rfc822NameExpr();
+                    dbg.location(218,4);
+                    pushFollow(FOLLOW_rfc822NameExpr_in_regexOp1894);
+                    rfc822NameExpr312=rfc822NameExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameExpr315.getTree());
-                    dbg.location(222,19);
-                    char_literal316=(Token)match(input,84,FOLLOW_84_in_regexOp1856); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameExpr312.getTree());
+                    dbg.location(218,19);
+                    char_literal313=(Token)match(input,84,FOLLOW_84_in_regexOp1896); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal316_tree = 
-                    (Object)adaptor.create(char_literal316)
+                    char_literal313_tree = 
+                    (Object)adaptor.create(char_literal313)
                     ;
-                    adaptor.addChild(root_0, char_literal316_tree);
+                    adaptor.addChild(root_0, char_literal313_tree);
                     }
-                    dbg.location(222,37);
-                    REGEXMATCH_TOK317=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1858); if (state.failed) return retval;
+                    dbg.location(218,37);
+                    REGEXMATCH_TOK314=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1898); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    REGEXMATCH_TOK317_tree = 
-                    (Object)adaptor.create(REGEXMATCH_TOK317)
+                    REGEXMATCH_TOK314_tree = 
+                    (Object)adaptor.create(REGEXMATCH_TOK314)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK317_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK314_tree, root_0);
                     }
-                    dbg.location(222,45);
-                    LPAREN318=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1861); if (state.failed) return retval;
-                    dbg.location(222,47);
-                    pushFollow(FOLLOW_rfc822NameExpr_in_regexOp1864);
-                    rfc822NameExpr319=rfc822NameExpr();
+                    dbg.location(218,45);
+                    LPAREN315=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1901); if (state.failed) return retval;
+                    dbg.location(218,47);
+                    pushFollow(FOLLOW_rfc822NameExpr_in_regexOp1904);
+                    rfc822NameExpr316=rfc822NameExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameExpr319.getTree());
-                    dbg.location(222,68);
-                    RPAREN320=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1866); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameExpr316.getTree());
+                    dbg.location(218,68);
+                    RPAREN317=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1906); if (state.failed) return retval;
 
                     }
                     break;
                 case 12 :
                     dbg.enterAlt(12);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:223:4: base64BinaryExpr '.' REGEXMATCH_TOK ^ LPAREN ! base64BinaryExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:219:4: base64BinaryExpr '.' REGEXMATCH_TOK ^ LPAREN ! base64BinaryExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(223,4);
-                    pushFollow(FOLLOW_base64BinaryExpr_in_regexOp1872);
-                    base64BinaryExpr321=base64BinaryExpr();
+                    dbg.location(219,4);
+                    pushFollow(FOLLOW_base64BinaryExpr_in_regexOp1912);
+                    base64BinaryExpr318=base64BinaryExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr321.getTree());
-                    dbg.location(223,21);
-                    char_literal322=(Token)match(input,84,FOLLOW_84_in_regexOp1874); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr318.getTree());
+                    dbg.location(219,21);
+                    char_literal319=(Token)match(input,84,FOLLOW_84_in_regexOp1914); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal322_tree = 
-                    (Object)adaptor.create(char_literal322)
+                    char_literal319_tree = 
+                    (Object)adaptor.create(char_literal319)
                     ;
-                    adaptor.addChild(root_0, char_literal322_tree);
+                    adaptor.addChild(root_0, char_literal319_tree);
                     }
-                    dbg.location(223,39);
-                    REGEXMATCH_TOK323=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1876); if (state.failed) return retval;
+                    dbg.location(219,39);
+                    REGEXMATCH_TOK320=(Token)match(input,REGEXMATCH_TOK,FOLLOW_REGEXMATCH_TOK_in_regexOp1916); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    REGEXMATCH_TOK323_tree = 
-                    (Object)adaptor.create(REGEXMATCH_TOK323)
+                    REGEXMATCH_TOK320_tree = 
+                    (Object)adaptor.create(REGEXMATCH_TOK320)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK323_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(REGEXMATCH_TOK320_tree, root_0);
                     }
-                    dbg.location(223,47);
-                    LPAREN324=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1879); if (state.failed) return retval;
-                    dbg.location(223,49);
-                    pushFollow(FOLLOW_base64BinaryExpr_in_regexOp1882);
-                    base64BinaryExpr325=base64BinaryExpr();
+                    dbg.location(219,47);
+                    LPAREN321=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_regexOp1919); if (state.failed) return retval;
+                    dbg.location(219,49);
+                    pushFollow(FOLLOW_base64BinaryExpr_in_regexOp1922);
+                    base64BinaryExpr322=base64BinaryExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr325.getTree());
-                    dbg.location(223,72);
-                    RPAREN326=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1884); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryExpr322.getTree());
+                    dbg.location(219,72);
+                    RPAREN323=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_regexOp1924); if (state.failed) return retval;
 
                     }
                     break;
@@ -4848,7 +4857,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(224, 1);
+        dbg.location(220, 1);
 
         }
         finally {
@@ -4863,13 +4872,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class bagOp_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "bagOp"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:226:1: bagOp : ( ( booleanBag )=> booleanBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! booleanBag RPAREN !| ( integerBag )=> integerBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! integerBag RPAREN !| ( doubleBag )=> doubleBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! doubleBag RPAREN !| ( stringBag )=> stringBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! stringBag RPAREN !| ( dateBag )=> dateBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dateBag RPAREN !| ( timeBag )=> timeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! timeBag RPAREN !| ( dateTimeBag )=> dateTimeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dateTimeBag RPAREN !| ( base64BinaryBag )=> base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! base64BinaryBag RPAREN !| ( dayTimeDurationBag )=> dayTimeDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dayTimeDurationBag RPAREN !| ( yearMonthDurationBag )=> yearMonthDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! yearMonthDurationBag RPAREN !| ( anyUriBag )=> anyUriBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! anyUriBag RPAREN !| ( x500NameBag )=> x500NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! x500NameBag RPAREN !| ( rfc822NameBag )=> rfc822NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! rfc822NameBag RPAREN !| ( hexBinaryBag )=> hexBinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! hexBinaryBag RPAREN !| ( base64BinaryBag )=> base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! base64BinaryBag RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:222:1: bagOp returns [SomeType o] : ( ( booleanBag )=> booleanBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! booleanBag RPAREN !| ( integerBag )=> integerBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! integerBag RPAREN !| ( doubleBag )=> doubleBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! doubleBag RPAREN !| ( stringBag )=> stringBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! stringBag RPAREN !| ( dateBag )=> dateBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dateBag RPAREN !| ( timeBag )=> timeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! timeBag RPAREN !| ( dateTimeBag )=> dateTimeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dateTimeBag RPAREN !| ( base64BinaryBag )=> base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! base64BinaryBag RPAREN !| ( dayTimeDurationBag )=> dayTimeDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dayTimeDurationBag RPAREN !| ( yearMonthDurationBag )=> yearMonthDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! yearMonthDurationBag RPAREN !| ( anyUriBag )=> anyUriBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! anyUriBag RPAREN !| ( x500NameBag )=> x500NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! x500NameBag RPAREN !| ( rfc822NameBag )=> rfc822NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! rfc822NameBag RPAREN !| ( hexBinaryBag )=> hexBinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! hexBinaryBag RPAREN !| ( base64BinaryBag )=> base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! base64BinaryBag RPAREN !);
     public final GrammarParser.bagOp_return bagOp() throws RecognitionException {
         GrammarParser.bagOp_return retval = new GrammarParser.bagOp_return();
         retval.start = input.LT(1);
@@ -4877,195 +4887,195 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token char_literal328=null;
-        Token set329=null;
-        Token LPAREN330=null;
-        Token RPAREN332=null;
-        Token char_literal334=null;
-        Token set335=null;
-        Token LPAREN336=null;
-        Token RPAREN338=null;
-        Token char_literal340=null;
-        Token set341=null;
-        Token LPAREN342=null;
-        Token RPAREN344=null;
-        Token char_literal346=null;
-        Token set347=null;
-        Token LPAREN348=null;
-        Token RPAREN350=null;
-        Token char_literal352=null;
-        Token set353=null;
-        Token LPAREN354=null;
-        Token RPAREN356=null;
-        Token char_literal358=null;
-        Token set359=null;
-        Token LPAREN360=null;
-        Token RPAREN362=null;
-        Token char_literal364=null;
-        Token set365=null;
-        Token LPAREN366=null;
-        Token RPAREN368=null;
-        Token char_literal370=null;
-        Token set371=null;
-        Token LPAREN372=null;
-        Token RPAREN374=null;
-        Token char_literal376=null;
-        Token set377=null;
-        Token LPAREN378=null;
-        Token RPAREN380=null;
-        Token char_literal382=null;
-        Token set383=null;
-        Token LPAREN384=null;
-        Token RPAREN386=null;
-        Token char_literal388=null;
-        Token set389=null;
-        Token LPAREN390=null;
-        Token RPAREN392=null;
-        Token char_literal394=null;
-        Token set395=null;
-        Token LPAREN396=null;
-        Token RPAREN398=null;
-        Token char_literal400=null;
-        Token set401=null;
-        Token LPAREN402=null;
-        Token RPAREN404=null;
-        Token char_literal406=null;
-        Token set407=null;
-        Token LPAREN408=null;
-        Token RPAREN410=null;
-        Token char_literal412=null;
-        Token set413=null;
-        Token LPAREN414=null;
-        Token RPAREN416=null;
-        GrammarParser.booleanBag_return booleanBag327 =null;
+        Token char_literal325=null;
+        Token set326=null;
+        Token LPAREN327=null;
+        Token RPAREN329=null;
+        Token char_literal331=null;
+        Token set332=null;
+        Token LPAREN333=null;
+        Token RPAREN335=null;
+        Token char_literal337=null;
+        Token set338=null;
+        Token LPAREN339=null;
+        Token RPAREN341=null;
+        Token char_literal343=null;
+        Token set344=null;
+        Token LPAREN345=null;
+        Token RPAREN347=null;
+        Token char_literal349=null;
+        Token set350=null;
+        Token LPAREN351=null;
+        Token RPAREN353=null;
+        Token char_literal355=null;
+        Token set356=null;
+        Token LPAREN357=null;
+        Token RPAREN359=null;
+        Token char_literal361=null;
+        Token set362=null;
+        Token LPAREN363=null;
+        Token RPAREN365=null;
+        Token char_literal367=null;
+        Token set368=null;
+        Token LPAREN369=null;
+        Token RPAREN371=null;
+        Token char_literal373=null;
+        Token set374=null;
+        Token LPAREN375=null;
+        Token RPAREN377=null;
+        Token char_literal379=null;
+        Token set380=null;
+        Token LPAREN381=null;
+        Token RPAREN383=null;
+        Token char_literal385=null;
+        Token set386=null;
+        Token LPAREN387=null;
+        Token RPAREN389=null;
+        Token char_literal391=null;
+        Token set392=null;
+        Token LPAREN393=null;
+        Token RPAREN395=null;
+        Token char_literal397=null;
+        Token set398=null;
+        Token LPAREN399=null;
+        Token RPAREN401=null;
+        Token char_literal403=null;
+        Token set404=null;
+        Token LPAREN405=null;
+        Token RPAREN407=null;
+        Token char_literal409=null;
+        Token set410=null;
+        Token LPAREN411=null;
+        Token RPAREN413=null;
+        GrammarParser.booleanBag_return booleanBag324 =null;
 
-        GrammarParser.booleanBag_return booleanBag331 =null;
+        GrammarParser.booleanBag_return booleanBag328 =null;
 
-        GrammarParser.integerBag_return integerBag333 =null;
+        GrammarParser.integerBag_return integerBag330 =null;
 
-        GrammarParser.integerBag_return integerBag337 =null;
+        GrammarParser.integerBag_return integerBag334 =null;
 
-        GrammarParser.doubleBag_return doubleBag339 =null;
+        GrammarParser.doubleBag_return doubleBag336 =null;
 
-        GrammarParser.doubleBag_return doubleBag343 =null;
+        GrammarParser.doubleBag_return doubleBag340 =null;
 
-        GrammarParser.stringBag_return stringBag345 =null;
+        GrammarParser.stringBag_return stringBag342 =null;
 
-        GrammarParser.stringBag_return stringBag349 =null;
+        GrammarParser.stringBag_return stringBag346 =null;
 
-        GrammarParser.dateBag_return dateBag351 =null;
+        GrammarParser.dateBag_return dateBag348 =null;
 
-        GrammarParser.dateBag_return dateBag355 =null;
+        GrammarParser.dateBag_return dateBag352 =null;
 
-        GrammarParser.timeBag_return timeBag357 =null;
+        GrammarParser.timeBag_return timeBag354 =null;
 
-        GrammarParser.timeBag_return timeBag361 =null;
+        GrammarParser.timeBag_return timeBag358 =null;
 
-        GrammarParser.dateTimeBag_return dateTimeBag363 =null;
+        GrammarParser.dateTimeBag_return dateTimeBag360 =null;
 
-        GrammarParser.dateTimeBag_return dateTimeBag367 =null;
+        GrammarParser.dateTimeBag_return dateTimeBag364 =null;
 
-        GrammarParser.base64BinaryBag_return base64BinaryBag369 =null;
+        GrammarParser.base64BinaryBag_return base64BinaryBag366 =null;
 
-        GrammarParser.base64BinaryBag_return base64BinaryBag373 =null;
+        GrammarParser.base64BinaryBag_return base64BinaryBag370 =null;
 
-        GrammarParser.dayTimeDurationBag_return dayTimeDurationBag375 =null;
+        GrammarParser.dayTimeDurationBag_return dayTimeDurationBag372 =null;
 
-        GrammarParser.dayTimeDurationBag_return dayTimeDurationBag379 =null;
+        GrammarParser.dayTimeDurationBag_return dayTimeDurationBag376 =null;
 
-        GrammarParser.yearMonthDurationBag_return yearMonthDurationBag381 =null;
+        GrammarParser.yearMonthDurationBag_return yearMonthDurationBag378 =null;
 
-        GrammarParser.yearMonthDurationBag_return yearMonthDurationBag385 =null;
+        GrammarParser.yearMonthDurationBag_return yearMonthDurationBag382 =null;
 
-        GrammarParser.anyUriBag_return anyUriBag387 =null;
+        GrammarParser.anyUriBag_return anyUriBag384 =null;
 
-        GrammarParser.anyUriBag_return anyUriBag391 =null;
+        GrammarParser.anyUriBag_return anyUriBag388 =null;
 
-        GrammarParser.x500NameBag_return x500NameBag393 =null;
+        GrammarParser.x500NameBag_return x500NameBag390 =null;
 
-        GrammarParser.x500NameBag_return x500NameBag397 =null;
+        GrammarParser.x500NameBag_return x500NameBag394 =null;
 
-        GrammarParser.rfc822NameBag_return rfc822NameBag399 =null;
+        GrammarParser.rfc822NameBag_return rfc822NameBag396 =null;
 
-        GrammarParser.rfc822NameBag_return rfc822NameBag403 =null;
+        GrammarParser.rfc822NameBag_return rfc822NameBag400 =null;
 
-        GrammarParser.hexBinaryBag_return hexBinaryBag405 =null;
+        GrammarParser.hexBinaryBag_return hexBinaryBag402 =null;
 
-        GrammarParser.hexBinaryBag_return hexBinaryBag409 =null;
+        GrammarParser.hexBinaryBag_return hexBinaryBag406 =null;
 
-        GrammarParser.base64BinaryBag_return base64BinaryBag411 =null;
+        GrammarParser.base64BinaryBag_return base64BinaryBag408 =null;
 
-        GrammarParser.base64BinaryBag_return base64BinaryBag415 =null;
+        GrammarParser.base64BinaryBag_return base64BinaryBag412 =null;
 
 
-        Object char_literal328_tree=null;
-        Object set329_tree=null;
-        Object LPAREN330_tree=null;
-        Object RPAREN332_tree=null;
-        Object char_literal334_tree=null;
-        Object set335_tree=null;
-        Object LPAREN336_tree=null;
-        Object RPAREN338_tree=null;
-        Object char_literal340_tree=null;
-        Object set341_tree=null;
-        Object LPAREN342_tree=null;
-        Object RPAREN344_tree=null;
-        Object char_literal346_tree=null;
-        Object set347_tree=null;
-        Object LPAREN348_tree=null;
-        Object RPAREN350_tree=null;
-        Object char_literal352_tree=null;
-        Object set353_tree=null;
-        Object LPAREN354_tree=null;
-        Object RPAREN356_tree=null;
-        Object char_literal358_tree=null;
-        Object set359_tree=null;
-        Object LPAREN360_tree=null;
-        Object RPAREN362_tree=null;
-        Object char_literal364_tree=null;
-        Object set365_tree=null;
-        Object LPAREN366_tree=null;
-        Object RPAREN368_tree=null;
-        Object char_literal370_tree=null;
-        Object set371_tree=null;
-        Object LPAREN372_tree=null;
-        Object RPAREN374_tree=null;
-        Object char_literal376_tree=null;
-        Object set377_tree=null;
-        Object LPAREN378_tree=null;
-        Object RPAREN380_tree=null;
-        Object char_literal382_tree=null;
-        Object set383_tree=null;
-        Object LPAREN384_tree=null;
-        Object RPAREN386_tree=null;
-        Object char_literal388_tree=null;
-        Object set389_tree=null;
-        Object LPAREN390_tree=null;
-        Object RPAREN392_tree=null;
-        Object char_literal394_tree=null;
-        Object set395_tree=null;
-        Object LPAREN396_tree=null;
-        Object RPAREN398_tree=null;
-        Object char_literal400_tree=null;
-        Object set401_tree=null;
-        Object LPAREN402_tree=null;
-        Object RPAREN404_tree=null;
-        Object char_literal406_tree=null;
-        Object set407_tree=null;
-        Object LPAREN408_tree=null;
-        Object RPAREN410_tree=null;
-        Object char_literal412_tree=null;
-        Object set413_tree=null;
-        Object LPAREN414_tree=null;
-        Object RPAREN416_tree=null;
+        Object char_literal325_tree=null;
+        Object set326_tree=null;
+        Object LPAREN327_tree=null;
+        Object RPAREN329_tree=null;
+        Object char_literal331_tree=null;
+        Object set332_tree=null;
+        Object LPAREN333_tree=null;
+        Object RPAREN335_tree=null;
+        Object char_literal337_tree=null;
+        Object set338_tree=null;
+        Object LPAREN339_tree=null;
+        Object RPAREN341_tree=null;
+        Object char_literal343_tree=null;
+        Object set344_tree=null;
+        Object LPAREN345_tree=null;
+        Object RPAREN347_tree=null;
+        Object char_literal349_tree=null;
+        Object set350_tree=null;
+        Object LPAREN351_tree=null;
+        Object RPAREN353_tree=null;
+        Object char_literal355_tree=null;
+        Object set356_tree=null;
+        Object LPAREN357_tree=null;
+        Object RPAREN359_tree=null;
+        Object char_literal361_tree=null;
+        Object set362_tree=null;
+        Object LPAREN363_tree=null;
+        Object RPAREN365_tree=null;
+        Object char_literal367_tree=null;
+        Object set368_tree=null;
+        Object LPAREN369_tree=null;
+        Object RPAREN371_tree=null;
+        Object char_literal373_tree=null;
+        Object set374_tree=null;
+        Object LPAREN375_tree=null;
+        Object RPAREN377_tree=null;
+        Object char_literal379_tree=null;
+        Object set380_tree=null;
+        Object LPAREN381_tree=null;
+        Object RPAREN383_tree=null;
+        Object char_literal385_tree=null;
+        Object set386_tree=null;
+        Object LPAREN387_tree=null;
+        Object RPAREN389_tree=null;
+        Object char_literal391_tree=null;
+        Object set392_tree=null;
+        Object LPAREN393_tree=null;
+        Object RPAREN395_tree=null;
+        Object char_literal397_tree=null;
+        Object set398_tree=null;
+        Object LPAREN399_tree=null;
+        Object RPAREN401_tree=null;
+        Object char_literal403_tree=null;
+        Object set404_tree=null;
+        Object LPAREN405_tree=null;
+        Object RPAREN407_tree=null;
+        Object char_literal409_tree=null;
+        Object set410_tree=null;
+        Object LPAREN411_tree=null;
+        Object RPAREN413_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "bagOp");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(226, 0);
+        dbg.location(222, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:227:2: ( ( booleanBag )=> booleanBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! booleanBag RPAREN !| ( integerBag )=> integerBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! integerBag RPAREN !| ( doubleBag )=> doubleBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! doubleBag RPAREN !| ( stringBag )=> stringBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! stringBag RPAREN !| ( dateBag )=> dateBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dateBag RPAREN !| ( timeBag )=> timeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! timeBag RPAREN !| ( dateTimeBag )=> dateTimeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dateTimeBag RPAREN !| ( base64BinaryBag )=> base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! base64BinaryBag RPAREN !| ( dayTimeDurationBag )=> dayTimeDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dayTimeDurationBag RPAREN !| ( yearMonthDurationBag )=> yearMonthDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! yearMonthDurationBag RPAREN !| ( anyUriBag )=> anyUriBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! anyUriBag RPAREN !| ( x500NameBag )=> x500NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! x500NameBag RPAREN !| ( rfc822NameBag )=> rfc822NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! rfc822NameBag RPAREN !| ( hexBinaryBag )=> hexBinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! hexBinaryBag RPAREN !| ( base64BinaryBag )=> base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! base64BinaryBag RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:223:2: ( ( booleanBag )=> booleanBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! booleanBag RPAREN !| ( integerBag )=> integerBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! integerBag RPAREN !| ( doubleBag )=> doubleBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! doubleBag RPAREN !| ( stringBag )=> stringBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! stringBag RPAREN !| ( dateBag )=> dateBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dateBag RPAREN !| ( timeBag )=> timeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! timeBag RPAREN !| ( dateTimeBag )=> dateTimeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dateTimeBag RPAREN !| ( base64BinaryBag )=> base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! base64BinaryBag RPAREN !| ( dayTimeDurationBag )=> dayTimeDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dayTimeDurationBag RPAREN !| ( yearMonthDurationBag )=> yearMonthDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! yearMonthDurationBag RPAREN !| ( anyUriBag )=> anyUriBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! anyUriBag RPAREN !| ( x500NameBag )=> x500NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! x500NameBag RPAREN !| ( rfc822NameBag )=> rfc822NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! rfc822NameBag RPAREN !| ( hexBinaryBag )=> hexBinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! hexBinaryBag RPAREN !| ( base64BinaryBag )=> base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! base64BinaryBag RPAREN !)
             int alt15=15;
             try { dbg.enterDecision(15, decisionCanBacktrack[15]);
 
@@ -5241,35 +5251,35 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:227:4: ( booleanBag )=> booleanBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! booleanBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:223:4: ( booleanBag )=> booleanBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! booleanBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(227,20);
-                    pushFollow(FOLLOW_booleanBag_in_bagOp1902);
-                    booleanBag327=booleanBag();
+                    dbg.location(223,20);
+                    pushFollow(FOLLOW_booleanBag_in_bagOp1946);
+                    booleanBag324=booleanBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanBag327.getTree());
-                    dbg.location(227,31);
-                    char_literal328=(Token)match(input,84,FOLLOW_84_in_bagOp1904); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanBag324.getTree());
+                    dbg.location(223,31);
+                    char_literal325=(Token)match(input,84,FOLLOW_84_in_bagOp1948); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal328_tree = 
-                    (Object)adaptor.create(char_literal328)
+                    char_literal325_tree = 
+                    (Object)adaptor.create(char_literal325)
                     ;
-                    adaptor.addChild(root_0, char_literal328_tree);
+                    adaptor.addChild(root_0, char_literal325_tree);
                     }
-                    dbg.location(227,90);
-                    set329=(Token)input.LT(1);
+                    dbg.location(223,90);
+                    set326=(Token)input.LT(1);
 
-                    set329=(Token)input.LT(1);
+                    set326=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set329)
+                        (Object)adaptor.create(set326)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -5281,52 +5291,52 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(227,98);
-                    LPAREN330=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp1921); if (state.failed) return retval;
-                    dbg.location(227,100);
-                    pushFollow(FOLLOW_booleanBag_in_bagOp1924);
-                    booleanBag331=booleanBag();
+                    dbg.location(223,98);
+                    LPAREN327=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp1965); if (state.failed) return retval;
+                    dbg.location(223,100);
+                    pushFollow(FOLLOW_booleanBag_in_bagOp1968);
+                    booleanBag328=booleanBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanBag331.getTree());
-                    dbg.location(227,117);
-                    RPAREN332=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp1926); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanBag328.getTree());
+                    dbg.location(223,117);
+                    RPAREN329=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp1970); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:228:4: ( integerBag )=> integerBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! integerBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:224:4: ( integerBag )=> integerBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! integerBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(228,20);
-                    pushFollow(FOLLOW_integerBag_in_bagOp1938);
-                    integerBag333=integerBag();
+                    dbg.location(224,20);
+                    pushFollow(FOLLOW_integerBag_in_bagOp1982);
+                    integerBag330=integerBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerBag333.getTree());
-                    dbg.location(228,31);
-                    char_literal334=(Token)match(input,84,FOLLOW_84_in_bagOp1940); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerBag330.getTree());
+                    dbg.location(224,31);
+                    char_literal331=(Token)match(input,84,FOLLOW_84_in_bagOp1984); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal334_tree = 
-                    (Object)adaptor.create(char_literal334)
+                    char_literal331_tree = 
+                    (Object)adaptor.create(char_literal331)
                     ;
-                    adaptor.addChild(root_0, char_literal334_tree);
+                    adaptor.addChild(root_0, char_literal331_tree);
                     }
-                    dbg.location(228,91);
-                    set335=(Token)input.LT(1);
+                    dbg.location(224,91);
+                    set332=(Token)input.LT(1);
 
-                    set335=(Token)input.LT(1);
+                    set332=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set335)
+                        (Object)adaptor.create(set332)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -5338,52 +5348,52 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(228,99);
-                    LPAREN336=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp1958); if (state.failed) return retval;
-                    dbg.location(228,102);
-                    pushFollow(FOLLOW_integerBag_in_bagOp1962);
-                    integerBag337=integerBag();
+                    dbg.location(224,99);
+                    LPAREN333=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2002); if (state.failed) return retval;
+                    dbg.location(224,102);
+                    pushFollow(FOLLOW_integerBag_in_bagOp2006);
+                    integerBag334=integerBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerBag337.getTree());
-                    dbg.location(228,119);
-                    RPAREN338=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp1964); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerBag334.getTree());
+                    dbg.location(224,119);
+                    RPAREN335=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2008); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:229:4: ( doubleBag )=> doubleBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! doubleBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:225:4: ( doubleBag )=> doubleBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! doubleBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(229,19);
-                    pushFollow(FOLLOW_doubleBag_in_bagOp1976);
-                    doubleBag339=doubleBag();
+                    dbg.location(225,19);
+                    pushFollow(FOLLOW_doubleBag_in_bagOp2020);
+                    doubleBag336=doubleBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleBag339.getTree());
-                    dbg.location(229,29);
-                    char_literal340=(Token)match(input,84,FOLLOW_84_in_bagOp1978); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleBag336.getTree());
+                    dbg.location(225,29);
+                    char_literal337=(Token)match(input,84,FOLLOW_84_in_bagOp2022); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal340_tree = 
-                    (Object)adaptor.create(char_literal340)
+                    char_literal337_tree = 
+                    (Object)adaptor.create(char_literal337)
                     ;
-                    adaptor.addChild(root_0, char_literal340_tree);
+                    adaptor.addChild(root_0, char_literal337_tree);
                     }
-                    dbg.location(229,89);
-                    set341=(Token)input.LT(1);
+                    dbg.location(225,89);
+                    set338=(Token)input.LT(1);
 
-                    set341=(Token)input.LT(1);
+                    set338=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set341)
+                        (Object)adaptor.create(set338)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -5395,52 +5405,52 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(229,97);
-                    LPAREN342=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp1996); if (state.failed) return retval;
-                    dbg.location(229,100);
-                    pushFollow(FOLLOW_doubleBag_in_bagOp2000);
-                    doubleBag343=doubleBag();
+                    dbg.location(225,97);
+                    LPAREN339=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2040); if (state.failed) return retval;
+                    dbg.location(225,100);
+                    pushFollow(FOLLOW_doubleBag_in_bagOp2044);
+                    doubleBag340=doubleBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleBag343.getTree());
-                    dbg.location(229,116);
-                    RPAREN344=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2002); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleBag340.getTree());
+                    dbg.location(225,116);
+                    RPAREN341=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2046); if (state.failed) return retval;
 
                     }
                     break;
                 case 4 :
                     dbg.enterAlt(4);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:230:4: ( stringBag )=> stringBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! stringBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:226:4: ( stringBag )=> stringBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! stringBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(230,20);
-                    pushFollow(FOLLOW_stringBag_in_bagOp2015);
-                    stringBag345=stringBag();
+                    dbg.location(226,20);
+                    pushFollow(FOLLOW_stringBag_in_bagOp2059);
+                    stringBag342=stringBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringBag345.getTree());
-                    dbg.location(230,30);
-                    char_literal346=(Token)match(input,84,FOLLOW_84_in_bagOp2017); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringBag342.getTree());
+                    dbg.location(226,30);
+                    char_literal343=(Token)match(input,84,FOLLOW_84_in_bagOp2061); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal346_tree = 
-                    (Object)adaptor.create(char_literal346)
+                    char_literal343_tree = 
+                    (Object)adaptor.create(char_literal343)
                     ;
-                    adaptor.addChild(root_0, char_literal346_tree);
+                    adaptor.addChild(root_0, char_literal343_tree);
                     }
-                    dbg.location(230,90);
-                    set347=(Token)input.LT(1);
+                    dbg.location(226,90);
+                    set344=(Token)input.LT(1);
 
-                    set347=(Token)input.LT(1);
+                    set344=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set347)
+                        (Object)adaptor.create(set344)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -5452,52 +5462,52 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(230,98);
-                    LPAREN348=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2035); if (state.failed) return retval;
-                    dbg.location(230,101);
-                    pushFollow(FOLLOW_stringBag_in_bagOp2039);
-                    stringBag349=stringBag();
+                    dbg.location(226,98);
+                    LPAREN345=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2079); if (state.failed) return retval;
+                    dbg.location(226,101);
+                    pushFollow(FOLLOW_stringBag_in_bagOp2083);
+                    stringBag346=stringBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringBag349.getTree());
-                    dbg.location(230,117);
-                    RPAREN350=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2041); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringBag346.getTree());
+                    dbg.location(226,117);
+                    RPAREN347=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2085); if (state.failed) return retval;
 
                     }
                     break;
                 case 5 :
                     dbg.enterAlt(5);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:231:4: ( dateBag )=> dateBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dateBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:227:4: ( dateBag )=> dateBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dateBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(231,18);
-                    pushFollow(FOLLOW_dateBag_in_bagOp2054);
-                    dateBag351=dateBag();
+                    dbg.location(227,18);
+                    pushFollow(FOLLOW_dateBag_in_bagOp2098);
+                    dateBag348=dateBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateBag351.getTree());
-                    dbg.location(231,26);
-                    char_literal352=(Token)match(input,84,FOLLOW_84_in_bagOp2056); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateBag348.getTree());
+                    dbg.location(227,26);
+                    char_literal349=(Token)match(input,84,FOLLOW_84_in_bagOp2100); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal352_tree = 
-                    (Object)adaptor.create(char_literal352)
+                    char_literal349_tree = 
+                    (Object)adaptor.create(char_literal349)
                     ;
-                    adaptor.addChild(root_0, char_literal352_tree);
+                    adaptor.addChild(root_0, char_literal349_tree);
                     }
-                    dbg.location(231,86);
-                    set353=(Token)input.LT(1);
+                    dbg.location(227,86);
+                    set350=(Token)input.LT(1);
 
-                    set353=(Token)input.LT(1);
+                    set350=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set353)
+                        (Object)adaptor.create(set350)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -5509,52 +5519,52 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(231,94);
-                    LPAREN354=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2074); if (state.failed) return retval;
-                    dbg.location(231,97);
-                    pushFollow(FOLLOW_dateBag_in_bagOp2078);
-                    dateBag355=dateBag();
+                    dbg.location(227,94);
+                    LPAREN351=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2118); if (state.failed) return retval;
+                    dbg.location(227,97);
+                    pushFollow(FOLLOW_dateBag_in_bagOp2122);
+                    dateBag352=dateBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateBag355.getTree());
-                    dbg.location(231,111);
-                    RPAREN356=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2080); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateBag352.getTree());
+                    dbg.location(227,111);
+                    RPAREN353=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2124); if (state.failed) return retval;
 
                     }
                     break;
                 case 6 :
                     dbg.enterAlt(6);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:232:4: ( timeBag )=> timeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! timeBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:228:4: ( timeBag )=> timeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! timeBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(232,18);
-                    pushFollow(FOLLOW_timeBag_in_bagOp2093);
-                    timeBag357=timeBag();
+                    dbg.location(228,18);
+                    pushFollow(FOLLOW_timeBag_in_bagOp2137);
+                    timeBag354=timeBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeBag357.getTree());
-                    dbg.location(232,26);
-                    char_literal358=(Token)match(input,84,FOLLOW_84_in_bagOp2095); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeBag354.getTree());
+                    dbg.location(228,26);
+                    char_literal355=(Token)match(input,84,FOLLOW_84_in_bagOp2139); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal358_tree = 
-                    (Object)adaptor.create(char_literal358)
+                    char_literal355_tree = 
+                    (Object)adaptor.create(char_literal355)
                     ;
-                    adaptor.addChild(root_0, char_literal358_tree);
+                    adaptor.addChild(root_0, char_literal355_tree);
                     }
-                    dbg.location(232,86);
-                    set359=(Token)input.LT(1);
+                    dbg.location(228,86);
+                    set356=(Token)input.LT(1);
 
-                    set359=(Token)input.LT(1);
+                    set356=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set359)
+                        (Object)adaptor.create(set356)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -5566,52 +5576,52 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(232,94);
-                    LPAREN360=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2113); if (state.failed) return retval;
-                    dbg.location(232,97);
-                    pushFollow(FOLLOW_timeBag_in_bagOp2117);
-                    timeBag361=timeBag();
+                    dbg.location(228,94);
+                    LPAREN357=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2157); if (state.failed) return retval;
+                    dbg.location(228,97);
+                    pushFollow(FOLLOW_timeBag_in_bagOp2161);
+                    timeBag358=timeBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeBag361.getTree());
-                    dbg.location(232,111);
-                    RPAREN362=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2119); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeBag358.getTree());
+                    dbg.location(228,111);
+                    RPAREN359=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2163); if (state.failed) return retval;
 
                     }
                     break;
                 case 7 :
                     dbg.enterAlt(7);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:233:4: ( dateTimeBag )=> dateTimeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dateTimeBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:229:4: ( dateTimeBag )=> dateTimeBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dateTimeBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(233,22);
-                    pushFollow(FOLLOW_dateTimeBag_in_bagOp2132);
-                    dateTimeBag363=dateTimeBag();
+                    dbg.location(229,22);
+                    pushFollow(FOLLOW_dateTimeBag_in_bagOp2176);
+                    dateTimeBag360=dateTimeBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeBag363.getTree());
-                    dbg.location(233,34);
-                    char_literal364=(Token)match(input,84,FOLLOW_84_in_bagOp2134); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeBag360.getTree());
+                    dbg.location(229,34);
+                    char_literal361=(Token)match(input,84,FOLLOW_84_in_bagOp2178); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal364_tree = 
-                    (Object)adaptor.create(char_literal364)
+                    char_literal361_tree = 
+                    (Object)adaptor.create(char_literal361)
                     ;
-                    adaptor.addChild(root_0, char_literal364_tree);
+                    adaptor.addChild(root_0, char_literal361_tree);
                     }
-                    dbg.location(233,94);
-                    set365=(Token)input.LT(1);
+                    dbg.location(229,94);
+                    set362=(Token)input.LT(1);
 
-                    set365=(Token)input.LT(1);
+                    set362=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set365)
+                        (Object)adaptor.create(set362)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -5623,52 +5633,52 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(233,102);
-                    LPAREN366=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2152); if (state.failed) return retval;
-                    dbg.location(233,105);
-                    pushFollow(FOLLOW_dateTimeBag_in_bagOp2156);
-                    dateTimeBag367=dateTimeBag();
+                    dbg.location(229,102);
+                    LPAREN363=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2196); if (state.failed) return retval;
+                    dbg.location(229,105);
+                    pushFollow(FOLLOW_dateTimeBag_in_bagOp2200);
+                    dateTimeBag364=dateTimeBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeBag367.getTree());
-                    dbg.location(233,123);
-                    RPAREN368=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2158); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeBag364.getTree());
+                    dbg.location(229,123);
+                    RPAREN365=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2202); if (state.failed) return retval;
 
                     }
                     break;
                 case 8 :
                     dbg.enterAlt(8);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:234:4: ( base64BinaryBag )=> base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! base64BinaryBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:230:4: ( base64BinaryBag )=> base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! base64BinaryBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(234,26);
-                    pushFollow(FOLLOW_base64BinaryBag_in_bagOp2171);
-                    base64BinaryBag369=base64BinaryBag();
+                    dbg.location(230,26);
+                    pushFollow(FOLLOW_base64BinaryBag_in_bagOp2215);
+                    base64BinaryBag366=base64BinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag369.getTree());
-                    dbg.location(234,42);
-                    char_literal370=(Token)match(input,84,FOLLOW_84_in_bagOp2173); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag366.getTree());
+                    dbg.location(230,42);
+                    char_literal367=(Token)match(input,84,FOLLOW_84_in_bagOp2217); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal370_tree = 
-                    (Object)adaptor.create(char_literal370)
+                    char_literal367_tree = 
+                    (Object)adaptor.create(char_literal367)
                     ;
-                    adaptor.addChild(root_0, char_literal370_tree);
+                    adaptor.addChild(root_0, char_literal367_tree);
                     }
-                    dbg.location(234,101);
-                    set371=(Token)input.LT(1);
+                    dbg.location(230,101);
+                    set368=(Token)input.LT(1);
 
-                    set371=(Token)input.LT(1);
+                    set368=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set371)
+                        (Object)adaptor.create(set368)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -5680,52 +5690,52 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(234,109);
-                    LPAREN372=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2190); if (state.failed) return retval;
-                    dbg.location(234,112);
-                    pushFollow(FOLLOW_base64BinaryBag_in_bagOp2194);
-                    base64BinaryBag373=base64BinaryBag();
+                    dbg.location(230,109);
+                    LPAREN369=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2234); if (state.failed) return retval;
+                    dbg.location(230,112);
+                    pushFollow(FOLLOW_base64BinaryBag_in_bagOp2238);
+                    base64BinaryBag370=base64BinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag373.getTree());
-                    dbg.location(234,134);
-                    RPAREN374=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2196); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag370.getTree());
+                    dbg.location(230,134);
+                    RPAREN371=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2240); if (state.failed) return retval;
 
                     }
                     break;
                 case 9 :
                     dbg.enterAlt(9);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:235:4: ( dayTimeDurationBag )=> dayTimeDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dayTimeDurationBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:231:4: ( dayTimeDurationBag )=> dayTimeDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! dayTimeDurationBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(235,29);
-                    pushFollow(FOLLOW_dayTimeDurationBag_in_bagOp2209);
-                    dayTimeDurationBag375=dayTimeDurationBag();
+                    dbg.location(231,29);
+                    pushFollow(FOLLOW_dayTimeDurationBag_in_bagOp2253);
+                    dayTimeDurationBag372=dayTimeDurationBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationBag375.getTree());
-                    dbg.location(235,48);
-                    char_literal376=(Token)match(input,84,FOLLOW_84_in_bagOp2211); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationBag372.getTree());
+                    dbg.location(231,48);
+                    char_literal373=(Token)match(input,84,FOLLOW_84_in_bagOp2255); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal376_tree = 
-                    (Object)adaptor.create(char_literal376)
+                    char_literal373_tree = 
+                    (Object)adaptor.create(char_literal373)
                     ;
-                    adaptor.addChild(root_0, char_literal376_tree);
+                    adaptor.addChild(root_0, char_literal373_tree);
                     }
-                    dbg.location(235,107);
-                    set377=(Token)input.LT(1);
+                    dbg.location(231,107);
+                    set374=(Token)input.LT(1);
 
-                    set377=(Token)input.LT(1);
+                    set374=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set377)
+                        (Object)adaptor.create(set374)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -5737,52 +5747,52 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(235,115);
-                    LPAREN378=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2228); if (state.failed) return retval;
-                    dbg.location(235,118);
-                    pushFollow(FOLLOW_dayTimeDurationBag_in_bagOp2232);
-                    dayTimeDurationBag379=dayTimeDurationBag();
+                    dbg.location(231,115);
+                    LPAREN375=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2272); if (state.failed) return retval;
+                    dbg.location(231,118);
+                    pushFollow(FOLLOW_dayTimeDurationBag_in_bagOp2276);
+                    dayTimeDurationBag376=dayTimeDurationBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationBag379.getTree());
-                    dbg.location(235,143);
-                    RPAREN380=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2234); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationBag376.getTree());
+                    dbg.location(231,143);
+                    RPAREN377=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2278); if (state.failed) return retval;
 
                     }
                     break;
                 case 10 :
                     dbg.enterAlt(10);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:236:4: ( yearMonthDurationBag )=> yearMonthDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! yearMonthDurationBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:232:4: ( yearMonthDurationBag )=> yearMonthDurationBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! yearMonthDurationBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(236,31);
-                    pushFollow(FOLLOW_yearMonthDurationBag_in_bagOp2247);
-                    yearMonthDurationBag381=yearMonthDurationBag();
+                    dbg.location(232,31);
+                    pushFollow(FOLLOW_yearMonthDurationBag_in_bagOp2291);
+                    yearMonthDurationBag378=yearMonthDurationBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationBag381.getTree());
-                    dbg.location(236,52);
-                    char_literal382=(Token)match(input,84,FOLLOW_84_in_bagOp2249); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationBag378.getTree());
+                    dbg.location(232,52);
+                    char_literal379=(Token)match(input,84,FOLLOW_84_in_bagOp2293); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal382_tree = 
-                    (Object)adaptor.create(char_literal382)
+                    char_literal379_tree = 
+                    (Object)adaptor.create(char_literal379)
                     ;
-                    adaptor.addChild(root_0, char_literal382_tree);
+                    adaptor.addChild(root_0, char_literal379_tree);
                     }
-                    dbg.location(236,112);
-                    set383=(Token)input.LT(1);
+                    dbg.location(232,112);
+                    set380=(Token)input.LT(1);
 
-                    set383=(Token)input.LT(1);
+                    set380=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set383)
+                        (Object)adaptor.create(set380)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -5794,52 +5804,52 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(236,120);
-                    LPAREN384=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2267); if (state.failed) return retval;
-                    dbg.location(236,123);
-                    pushFollow(FOLLOW_yearMonthDurationBag_in_bagOp2271);
-                    yearMonthDurationBag385=yearMonthDurationBag();
+                    dbg.location(232,120);
+                    LPAREN381=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2311); if (state.failed) return retval;
+                    dbg.location(232,123);
+                    pushFollow(FOLLOW_yearMonthDurationBag_in_bagOp2315);
+                    yearMonthDurationBag382=yearMonthDurationBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationBag385.getTree());
-                    dbg.location(236,150);
-                    RPAREN386=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2273); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationBag382.getTree());
+                    dbg.location(232,150);
+                    RPAREN383=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2317); if (state.failed) return retval;
 
                     }
                     break;
                 case 11 :
                     dbg.enterAlt(11);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:237:4: ( anyUriBag )=> anyUriBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! anyUriBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:233:4: ( anyUriBag )=> anyUriBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! anyUriBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(237,20);
-                    pushFollow(FOLLOW_anyUriBag_in_bagOp2286);
-                    anyUriBag387=anyUriBag();
+                    dbg.location(233,20);
+                    pushFollow(FOLLOW_anyUriBag_in_bagOp2330);
+                    anyUriBag384=anyUriBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriBag387.getTree());
-                    dbg.location(237,30);
-                    char_literal388=(Token)match(input,84,FOLLOW_84_in_bagOp2288); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriBag384.getTree());
+                    dbg.location(233,30);
+                    char_literal385=(Token)match(input,84,FOLLOW_84_in_bagOp2332); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal388_tree = 
-                    (Object)adaptor.create(char_literal388)
+                    char_literal385_tree = 
+                    (Object)adaptor.create(char_literal385)
                     ;
-                    adaptor.addChild(root_0, char_literal388_tree);
+                    adaptor.addChild(root_0, char_literal385_tree);
                     }
-                    dbg.location(237,90);
-                    set389=(Token)input.LT(1);
+                    dbg.location(233,90);
+                    set386=(Token)input.LT(1);
 
-                    set389=(Token)input.LT(1);
+                    set386=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set389)
+                        (Object)adaptor.create(set386)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -5851,52 +5861,52 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(237,98);
-                    LPAREN390=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2306); if (state.failed) return retval;
-                    dbg.location(237,101);
-                    pushFollow(FOLLOW_anyUriBag_in_bagOp2310);
-                    anyUriBag391=anyUriBag();
+                    dbg.location(233,98);
+                    LPAREN387=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2350); if (state.failed) return retval;
+                    dbg.location(233,101);
+                    pushFollow(FOLLOW_anyUriBag_in_bagOp2354);
+                    anyUriBag388=anyUriBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriBag391.getTree());
-                    dbg.location(237,117);
-                    RPAREN392=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2312); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriBag388.getTree());
+                    dbg.location(233,117);
+                    RPAREN389=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2356); if (state.failed) return retval;
 
                     }
                     break;
                 case 12 :
                     dbg.enterAlt(12);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:238:4: ( x500NameBag )=> x500NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! x500NameBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:234:4: ( x500NameBag )=> x500NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! x500NameBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(238,22);
-                    pushFollow(FOLLOW_x500NameBag_in_bagOp2325);
-                    x500NameBag393=x500NameBag();
+                    dbg.location(234,22);
+                    pushFollow(FOLLOW_x500NameBag_in_bagOp2369);
+                    x500NameBag390=x500NameBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameBag393.getTree());
-                    dbg.location(238,34);
-                    char_literal394=(Token)match(input,84,FOLLOW_84_in_bagOp2327); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameBag390.getTree());
+                    dbg.location(234,34);
+                    char_literal391=(Token)match(input,84,FOLLOW_84_in_bagOp2371); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal394_tree = 
-                    (Object)adaptor.create(char_literal394)
+                    char_literal391_tree = 
+                    (Object)adaptor.create(char_literal391)
                     ;
-                    adaptor.addChild(root_0, char_literal394_tree);
+                    adaptor.addChild(root_0, char_literal391_tree);
                     }
-                    dbg.location(238,94);
-                    set395=(Token)input.LT(1);
+                    dbg.location(234,94);
+                    set392=(Token)input.LT(1);
 
-                    set395=(Token)input.LT(1);
+                    set392=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set395)
+                        (Object)adaptor.create(set392)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -5908,52 +5918,52 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(238,102);
-                    LPAREN396=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2345); if (state.failed) return retval;
-                    dbg.location(238,105);
-                    pushFollow(FOLLOW_x500NameBag_in_bagOp2349);
-                    x500NameBag397=x500NameBag();
+                    dbg.location(234,102);
+                    LPAREN393=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2389); if (state.failed) return retval;
+                    dbg.location(234,105);
+                    pushFollow(FOLLOW_x500NameBag_in_bagOp2393);
+                    x500NameBag394=x500NameBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameBag397.getTree());
-                    dbg.location(238,123);
-                    RPAREN398=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2351); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameBag394.getTree());
+                    dbg.location(234,123);
+                    RPAREN395=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2395); if (state.failed) return retval;
 
                     }
                     break;
                 case 13 :
                     dbg.enterAlt(13);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:239:4: ( rfc822NameBag )=> rfc822NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! rfc822NameBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:235:4: ( rfc822NameBag )=> rfc822NameBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! rfc822NameBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(239,24);
-                    pushFollow(FOLLOW_rfc822NameBag_in_bagOp2364);
-                    rfc822NameBag399=rfc822NameBag();
+                    dbg.location(235,24);
+                    pushFollow(FOLLOW_rfc822NameBag_in_bagOp2408);
+                    rfc822NameBag396=rfc822NameBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameBag399.getTree());
-                    dbg.location(239,38);
-                    char_literal400=(Token)match(input,84,FOLLOW_84_in_bagOp2366); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameBag396.getTree());
+                    dbg.location(235,38);
+                    char_literal397=(Token)match(input,84,FOLLOW_84_in_bagOp2410); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal400_tree = 
-                    (Object)adaptor.create(char_literal400)
+                    char_literal397_tree = 
+                    (Object)adaptor.create(char_literal397)
                     ;
-                    adaptor.addChild(root_0, char_literal400_tree);
+                    adaptor.addChild(root_0, char_literal397_tree);
                     }
-                    dbg.location(239,97);
-                    set401=(Token)input.LT(1);
+                    dbg.location(235,97);
+                    set398=(Token)input.LT(1);
 
-                    set401=(Token)input.LT(1);
+                    set398=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set401)
+                        (Object)adaptor.create(set398)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -5965,52 +5975,52 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(239,105);
-                    LPAREN402=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2383); if (state.failed) return retval;
-                    dbg.location(239,108);
-                    pushFollow(FOLLOW_rfc822NameBag_in_bagOp2387);
-                    rfc822NameBag403=rfc822NameBag();
+                    dbg.location(235,105);
+                    LPAREN399=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2427); if (state.failed) return retval;
+                    dbg.location(235,108);
+                    pushFollow(FOLLOW_rfc822NameBag_in_bagOp2431);
+                    rfc822NameBag400=rfc822NameBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameBag403.getTree());
-                    dbg.location(239,128);
-                    RPAREN404=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2389); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameBag400.getTree());
+                    dbg.location(235,128);
+                    RPAREN401=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2433); if (state.failed) return retval;
 
                     }
                     break;
                 case 14 :
                     dbg.enterAlt(14);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:240:4: ( hexBinaryBag )=> hexBinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! hexBinaryBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:236:4: ( hexBinaryBag )=> hexBinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! hexBinaryBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(240,23);
-                    pushFollow(FOLLOW_hexBinaryBag_in_bagOp2402);
-                    hexBinaryBag405=hexBinaryBag();
+                    dbg.location(236,23);
+                    pushFollow(FOLLOW_hexBinaryBag_in_bagOp2446);
+                    hexBinaryBag402=hexBinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryBag405.getTree());
-                    dbg.location(240,36);
-                    char_literal406=(Token)match(input,84,FOLLOW_84_in_bagOp2404); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryBag402.getTree());
+                    dbg.location(236,36);
+                    char_literal403=(Token)match(input,84,FOLLOW_84_in_bagOp2448); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal406_tree = 
-                    (Object)adaptor.create(char_literal406)
+                    char_literal403_tree = 
+                    (Object)adaptor.create(char_literal403)
                     ;
-                    adaptor.addChild(root_0, char_literal406_tree);
+                    adaptor.addChild(root_0, char_literal403_tree);
                     }
-                    dbg.location(240,96);
-                    set407=(Token)input.LT(1);
+                    dbg.location(236,96);
+                    set404=(Token)input.LT(1);
 
-                    set407=(Token)input.LT(1);
+                    set404=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set407)
+                        (Object)adaptor.create(set404)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -6022,52 +6032,52 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(240,104);
-                    LPAREN408=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2422); if (state.failed) return retval;
-                    dbg.location(240,107);
-                    pushFollow(FOLLOW_hexBinaryBag_in_bagOp2426);
-                    hexBinaryBag409=hexBinaryBag();
+                    dbg.location(236,104);
+                    LPAREN405=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2466); if (state.failed) return retval;
+                    dbg.location(236,107);
+                    pushFollow(FOLLOW_hexBinaryBag_in_bagOp2470);
+                    hexBinaryBag406=hexBinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryBag409.getTree());
-                    dbg.location(240,126);
-                    RPAREN410=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2428); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryBag406.getTree());
+                    dbg.location(236,126);
+                    RPAREN407=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2472); if (state.failed) return retval;
 
                     }
                     break;
                 case 15 :
                     dbg.enterAlt(15);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:241:4: ( base64BinaryBag )=> base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! base64BinaryBag RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:237:4: ( base64BinaryBag )=> base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) ^ LPAREN ! base64BinaryBag RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(241,25);
-                    pushFollow(FOLLOW_base64BinaryBag_in_bagOp2440);
-                    base64BinaryBag411=base64BinaryBag();
+                    dbg.location(237,25);
+                    pushFollow(FOLLOW_base64BinaryBag_in_bagOp2484);
+                    base64BinaryBag408=base64BinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag411.getTree());
-                    dbg.location(241,41);
-                    char_literal412=(Token)match(input,84,FOLLOW_84_in_bagOp2442); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag408.getTree());
+                    dbg.location(237,41);
+                    char_literal409=(Token)match(input,84,FOLLOW_84_in_bagOp2486); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal412_tree = 
-                    (Object)adaptor.create(char_literal412)
+                    char_literal409_tree = 
+                    (Object)adaptor.create(char_literal409)
                     ;
-                    adaptor.addChild(root_0, char_literal412_tree);
+                    adaptor.addChild(root_0, char_literal409_tree);
                     }
-                    dbg.location(241,101);
-                    set413=(Token)input.LT(1);
+                    dbg.location(237,101);
+                    set410=(Token)input.LT(1);
 
-                    set413=(Token)input.LT(1);
+                    set410=(Token)input.LT(1);
 
                     if ( input.LA(1)==ATLEASTONEMENBEROF_TOK||input.LA(1)==SETEQUALS_TOK||input.LA(1)==SUBSET_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set413)
+                        (Object)adaptor.create(set410)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -6079,17 +6089,17 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(241,109);
-                    LPAREN414=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2460); if (state.failed) return retval;
-                    dbg.location(241,112);
-                    pushFollow(FOLLOW_base64BinaryBag_in_bagOp2464);
-                    base64BinaryBag415=base64BinaryBag();
+                    dbg.location(237,109);
+                    LPAREN411=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_bagOp2504); if (state.failed) return retval;
+                    dbg.location(237,112);
+                    pushFollow(FOLLOW_base64BinaryBag_in_bagOp2508);
+                    base64BinaryBag412=base64BinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag415.getTree());
-                    dbg.location(241,134);
-                    RPAREN416=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2466); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag412.getTree());
+                    dbg.location(237,134);
+                    RPAREN413=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_bagOp2510); if (state.failed) return retval;
 
                     }
                     break;
@@ -6114,7 +6124,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(242, 1);
+        dbg.location(238, 1);
 
         }
         finally {
@@ -6129,13 +6139,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class integerExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "integerExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:244:1: integerExpr : ( INTEGER_CONSTANT ^| stringExpr '.' ( INTEGER_TOK | NODECOUNT_TOK ) ^ LPAREN ! RPAREN !| anyBag '.' SIZE_TOK ^ LPAREN ! RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:240:1: integerExpr returns [SomeType o] : ( INTEGER_CONSTANT ^| stringExpr '.' ( INTEGER_TOK | NODECOUNT_TOK ) ^ LPAREN ! RPAREN !| anyBag '.' SIZE_TOK ^ LPAREN ! RPAREN !);
     public final GrammarParser.integerExpr_return integerExpr() throws RecognitionException {
         GrammarParser.integerExpr_return retval = new GrammarParser.integerExpr_return();
         retval.start = input.LT(1);
@@ -6143,37 +6154,37 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token INTEGER_CONSTANT417=null;
-        Token char_literal419=null;
-        Token set420=null;
-        Token LPAREN421=null;
-        Token RPAREN422=null;
-        Token char_literal424=null;
-        Token SIZE_TOK425=null;
-        Token LPAREN426=null;
-        Token RPAREN427=null;
-        GrammarParser.stringExpr_return stringExpr418 =null;
+        Token INTEGER_CONSTANT414=null;
+        Token char_literal416=null;
+        Token set417=null;
+        Token LPAREN418=null;
+        Token RPAREN419=null;
+        Token char_literal421=null;
+        Token SIZE_TOK422=null;
+        Token LPAREN423=null;
+        Token RPAREN424=null;
+        GrammarParser.stringExpr_return stringExpr415 =null;
 
-        GrammarParser.anyBag_return anyBag423 =null;
+        GrammarParser.anyBag_return anyBag420 =null;
 
 
-        Object INTEGER_CONSTANT417_tree=null;
-        Object char_literal419_tree=null;
-        Object set420_tree=null;
-        Object LPAREN421_tree=null;
-        Object RPAREN422_tree=null;
-        Object char_literal424_tree=null;
-        Object SIZE_TOK425_tree=null;
-        Object LPAREN426_tree=null;
-        Object RPAREN427_tree=null;
+        Object INTEGER_CONSTANT414_tree=null;
+        Object char_literal416_tree=null;
+        Object set417_tree=null;
+        Object LPAREN418_tree=null;
+        Object RPAREN419_tree=null;
+        Object char_literal421_tree=null;
+        Object SIZE_TOK422_tree=null;
+        Object LPAREN423_tree=null;
+        Object RPAREN424_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "integerExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(244, 0);
+        dbg.location(240, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:245:2: ( INTEGER_CONSTANT ^| stringExpr '.' ( INTEGER_TOK | NODECOUNT_TOK ) ^ LPAREN ! RPAREN !| anyBag '.' SIZE_TOK ^ LPAREN ! RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:241:2: ( INTEGER_CONSTANT ^| stringExpr '.' ( INTEGER_TOK | NODECOUNT_TOK ) ^ LPAREN ! RPAREN !| anyBag '.' SIZE_TOK ^ LPAREN ! RPAREN !)
             int alt16=3;
             try { dbg.enterDecision(16, decisionCanBacktrack[16]);
 
@@ -6191,18 +6202,18 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:245:4: INTEGER_CONSTANT ^
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:241:4: INTEGER_CONSTANT ^
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(245,20);
-                    INTEGER_CONSTANT417=(Token)match(input,INTEGER_CONSTANT,FOLLOW_INTEGER_CONSTANT_in_integerExpr2478); if (state.failed) return retval;
+                    dbg.location(241,20);
+                    INTEGER_CONSTANT414=(Token)match(input,INTEGER_CONSTANT,FOLLOW_INTEGER_CONSTANT_in_integerExpr2526); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    INTEGER_CONSTANT417_tree = 
-                    (Object)adaptor.create(INTEGER_CONSTANT417)
+                    INTEGER_CONSTANT414_tree = 
+                    (Object)adaptor.create(INTEGER_CONSTANT414)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(INTEGER_CONSTANT417_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(INTEGER_CONSTANT414_tree, root_0);
                     }
 
                     }
@@ -6210,35 +6221,35 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:246:4: stringExpr '.' ( INTEGER_TOK | NODECOUNT_TOK ) ^ LPAREN ! RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:242:4: stringExpr '.' ( INTEGER_TOK | NODECOUNT_TOK ) ^ LPAREN ! RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(246,4);
-                    pushFollow(FOLLOW_stringExpr_in_integerExpr2484);
-                    stringExpr418=stringExpr();
+                    dbg.location(242,4);
+                    pushFollow(FOLLOW_stringExpr_in_integerExpr2532);
+                    stringExpr415=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr418.getTree());
-                    dbg.location(246,15);
-                    char_literal419=(Token)match(input,84,FOLLOW_84_in_integerExpr2486); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr415.getTree());
+                    dbg.location(242,15);
+                    char_literal416=(Token)match(input,84,FOLLOW_84_in_integerExpr2534); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal419_tree = 
-                    (Object)adaptor.create(char_literal419)
+                    char_literal416_tree = 
+                    (Object)adaptor.create(char_literal416)
                     ;
-                    adaptor.addChild(root_0, char_literal419_tree);
+                    adaptor.addChild(root_0, char_literal416_tree);
                     }
-                    dbg.location(246,50);
-                    set420=(Token)input.LT(1);
+                    dbg.location(242,50);
+                    set417=(Token)input.LT(1);
 
-                    set420=(Token)input.LT(1);
+                    set417=(Token)input.LT(1);
 
                     if ( input.LA(1)==INTEGER_TOK||input.LA(1)==NODECOUNT_TOK ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                        (Object)adaptor.create(set420)
+                        (Object)adaptor.create(set417)
                         , root_0);
                         state.errorRecovery=false;
                         state.failed=false;
@@ -6250,48 +6261,48 @@ public TreeAdaptor getTreeAdaptor() {
                         throw mse;
                     }
 
-                    dbg.location(246,58);
-                    LPAREN421=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_integerExpr2499); if (state.failed) return retval;
-                    dbg.location(246,67);
-                    RPAREN422=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_integerExpr2503); if (state.failed) return retval;
+                    dbg.location(242,58);
+                    LPAREN418=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_integerExpr2547); if (state.failed) return retval;
+                    dbg.location(242,67);
+                    RPAREN419=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_integerExpr2551); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:247:4: anyBag '.' SIZE_TOK ^ LPAREN ! RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:243:4: anyBag '.' SIZE_TOK ^ LPAREN ! RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(247,4);
-                    pushFollow(FOLLOW_anyBag_in_integerExpr2509);
-                    anyBag423=anyBag();
+                    dbg.location(243,4);
+                    pushFollow(FOLLOW_anyBag_in_integerExpr2557);
+                    anyBag420=anyBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyBag423.getTree());
-                    dbg.location(247,11);
-                    char_literal424=(Token)match(input,84,FOLLOW_84_in_integerExpr2511); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyBag420.getTree());
+                    dbg.location(243,11);
+                    char_literal421=(Token)match(input,84,FOLLOW_84_in_integerExpr2559); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal424_tree = 
-                    (Object)adaptor.create(char_literal424)
+                    char_literal421_tree = 
+                    (Object)adaptor.create(char_literal421)
                     ;
-                    adaptor.addChild(root_0, char_literal424_tree);
+                    adaptor.addChild(root_0, char_literal421_tree);
                     }
-                    dbg.location(247,23);
-                    SIZE_TOK425=(Token)match(input,SIZE_TOK,FOLLOW_SIZE_TOK_in_integerExpr2513); if (state.failed) return retval;
+                    dbg.location(243,23);
+                    SIZE_TOK422=(Token)match(input,SIZE_TOK,FOLLOW_SIZE_TOK_in_integerExpr2561); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SIZE_TOK425_tree = 
-                    (Object)adaptor.create(SIZE_TOK425)
+                    SIZE_TOK422_tree = 
+                    (Object)adaptor.create(SIZE_TOK422)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(SIZE_TOK425_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(SIZE_TOK422_tree, root_0);
                     }
-                    dbg.location(247,31);
-                    LPAREN426=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_integerExpr2516); if (state.failed) return retval;
-                    dbg.location(247,39);
-                    RPAREN427=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_integerExpr2519); if (state.failed) return retval;
+                    dbg.location(243,31);
+                    LPAREN423=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_integerExpr2564); if (state.failed) return retval;
+                    dbg.location(243,39);
+                    RPAREN424=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_integerExpr2567); if (state.failed) return retval;
 
                     }
                     break;
@@ -6316,7 +6327,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(251, 1);
+        dbg.location(247, 1);
 
         }
         finally {
@@ -6331,13 +6342,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class integerBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "integerBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:252:1: integerBag : ( INTEGER_TOK STRING_CONSTANT_LIST | BAG_TOK ^ LPAREN ! integerExpr ( ',' ! integerExpr )+ RPAREN !) ( '.' ( INTERSECTION_TOK | UNION_TOK ) ^ LPAREN ! integerBag RPAREN !)* ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:248:1: integerBag returns [SomeType o] : ( INTEGER_TOK STRING_CONSTANT_LIST | BAG_TOK ^ LPAREN ! integerExpr ( ',' ! integerExpr )+ RPAREN !) ( '.' ( INTERSECTION_TOK | UNION_TOK ) ^ LPAREN ! integerBag RPAREN !)* ;
     public final GrammarParser.integerBag_return integerBag() throws RecognitionException {
         GrammarParser.integerBag_return retval = new GrammarParser.integerBag_return();
         retval.start = input.LT(1);
@@ -6345,50 +6357,50 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token INTEGER_TOK428=null;
-        Token STRING_CONSTANT_LIST429=null;
-        Token BAG_TOK430=null;
-        Token LPAREN431=null;
+        Token INTEGER_TOK425=null;
+        Token STRING_CONSTANT_LIST426=null;
+        Token BAG_TOK427=null;
+        Token LPAREN428=null;
+        Token char_literal430=null;
+        Token RPAREN432=null;
         Token char_literal433=null;
-        Token RPAREN435=null;
-        Token char_literal436=null;
-        Token set437=null;
-        Token LPAREN438=null;
-        Token RPAREN440=null;
-        GrammarParser.integerExpr_return integerExpr432 =null;
+        Token set434=null;
+        Token LPAREN435=null;
+        Token RPAREN437=null;
+        GrammarParser.integerExpr_return integerExpr429 =null;
 
-        GrammarParser.integerExpr_return integerExpr434 =null;
+        GrammarParser.integerExpr_return integerExpr431 =null;
 
-        GrammarParser.integerBag_return integerBag439 =null;
+        GrammarParser.integerBag_return integerBag436 =null;
 
 
-        Object INTEGER_TOK428_tree=null;
-        Object STRING_CONSTANT_LIST429_tree=null;
-        Object BAG_TOK430_tree=null;
-        Object LPAREN431_tree=null;
+        Object INTEGER_TOK425_tree=null;
+        Object STRING_CONSTANT_LIST426_tree=null;
+        Object BAG_TOK427_tree=null;
+        Object LPAREN428_tree=null;
+        Object char_literal430_tree=null;
+        Object RPAREN432_tree=null;
         Object char_literal433_tree=null;
-        Object RPAREN435_tree=null;
-        Object char_literal436_tree=null;
-        Object set437_tree=null;
-        Object LPAREN438_tree=null;
-        Object RPAREN440_tree=null;
+        Object set434_tree=null;
+        Object LPAREN435_tree=null;
+        Object RPAREN437_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "integerBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(252, 0);
+        dbg.location(248, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:253:2: ( ( INTEGER_TOK STRING_CONSTANT_LIST | BAG_TOK ^ LPAREN ! integerExpr ( ',' ! integerExpr )+ RPAREN !) ( '.' ( INTERSECTION_TOK | UNION_TOK ) ^ LPAREN ! integerBag RPAREN !)* )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:249:2: ( ( INTEGER_TOK STRING_CONSTANT_LIST | BAG_TOK ^ LPAREN ! integerExpr ( ',' ! integerExpr )+ RPAREN !) ( '.' ( INTERSECTION_TOK | UNION_TOK ) ^ LPAREN ! integerBag RPAREN !)* )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:253:4: ( INTEGER_TOK STRING_CONSTANT_LIST | BAG_TOK ^ LPAREN ! integerExpr ( ',' ! integerExpr )+ RPAREN !) ( '.' ( INTERSECTION_TOK | UNION_TOK ) ^ LPAREN ! integerBag RPAREN !)*
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:249:4: ( INTEGER_TOK STRING_CONSTANT_LIST | BAG_TOK ^ LPAREN ! integerExpr ( ',' ! integerExpr )+ RPAREN !) ( '.' ( INTERSECTION_TOK | UNION_TOK ) ^ LPAREN ! integerBag RPAREN !)*
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(253,4);
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:253:4: ( INTEGER_TOK STRING_CONSTANT_LIST | BAG_TOK ^ LPAREN ! integerExpr ( ',' ! integerExpr )+ RPAREN !)
+            dbg.location(249,4);
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:249:4: ( INTEGER_TOK STRING_CONSTANT_LIST | BAG_TOK ^ LPAREN ! integerExpr ( ',' ! integerExpr )+ RPAREN !)
             int alt18=2;
             try { dbg.enterSubRule(18);
             try { dbg.enterDecision(18, decisionCanBacktrack[18]);
@@ -6416,23 +6428,23 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:253:5: INTEGER_TOK STRING_CONSTANT_LIST
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:249:5: INTEGER_TOK STRING_CONSTANT_LIST
                     {
-                    dbg.location(253,5);
-                    INTEGER_TOK428=(Token)match(input,INTEGER_TOK,FOLLOW_INTEGER_TOK_in_integerBag2534); if (state.failed) return retval;
+                    dbg.location(249,5);
+                    INTEGER_TOK425=(Token)match(input,INTEGER_TOK,FOLLOW_INTEGER_TOK_in_integerBag2586); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    INTEGER_TOK428_tree = 
-                    (Object)adaptor.create(INTEGER_TOK428)
+                    INTEGER_TOK425_tree = 
+                    (Object)adaptor.create(INTEGER_TOK425)
                     ;
-                    adaptor.addChild(root_0, INTEGER_TOK428_tree);
+                    adaptor.addChild(root_0, INTEGER_TOK425_tree);
                     }
-                    dbg.location(253,17);
-                    STRING_CONSTANT_LIST429=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_integerBag2536); if (state.failed) return retval;
+                    dbg.location(249,17);
+                    STRING_CONSTANT_LIST426=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_integerBag2588); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    STRING_CONSTANT_LIST429_tree = 
-                    (Object)adaptor.create(STRING_CONSTANT_LIST429)
+                    STRING_CONSTANT_LIST426_tree = 
+                    (Object)adaptor.create(STRING_CONSTANT_LIST426)
                     ;
-                    adaptor.addChild(root_0, STRING_CONSTANT_LIST429_tree);
+                    adaptor.addChild(root_0, STRING_CONSTANT_LIST426_tree);
                     }
 
                     }
@@ -6440,27 +6452,27 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:253:40: BAG_TOK ^ LPAREN ! integerExpr ( ',' ! integerExpr )+ RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:249:40: BAG_TOK ^ LPAREN ! integerExpr ( ',' ! integerExpr )+ RPAREN !
                     {
-                    dbg.location(253,47);
-                    BAG_TOK430=(Token)match(input,BAG_TOK,FOLLOW_BAG_TOK_in_integerBag2540); if (state.failed) return retval;
+                    dbg.location(249,47);
+                    BAG_TOK427=(Token)match(input,BAG_TOK,FOLLOW_BAG_TOK_in_integerBag2592); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    BAG_TOK430_tree = 
-                    (Object)adaptor.create(BAG_TOK430)
+                    BAG_TOK427_tree = 
+                    (Object)adaptor.create(BAG_TOK427)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(BAG_TOK430_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(BAG_TOK427_tree, root_0);
                     }
-                    dbg.location(253,55);
-                    LPAREN431=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_integerBag2543); if (state.failed) return retval;
-                    dbg.location(253,57);
-                    pushFollow(FOLLOW_integerExpr_in_integerBag2546);
-                    integerExpr432=integerExpr();
+                    dbg.location(249,55);
+                    LPAREN428=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_integerBag2595); if (state.failed) return retval;
+                    dbg.location(249,57);
+                    pushFollow(FOLLOW_integerExpr_in_integerBag2598);
+                    integerExpr429=integerExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerExpr432.getTree());
-                    dbg.location(253,69);
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:253:69: ( ',' ! integerExpr )+
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerExpr429.getTree());
+                    dbg.location(249,69);
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:249:69: ( ',' ! integerExpr )+
                     int cnt17=0;
                     try { dbg.enterSubRule(17);
 
@@ -6482,17 +6494,17 @@ public TreeAdaptor getTreeAdaptor() {
                     	case 1 :
                     	    dbg.enterAlt(1);
 
-                    	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:253:71: ',' ! integerExpr
+                    	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:249:71: ',' ! integerExpr
                     	    {
-                    	    dbg.location(253,74);
-                    	    char_literal433=(Token)match(input,83,FOLLOW_83_in_integerBag2550); if (state.failed) return retval;
-                    	    dbg.location(253,76);
-                    	    pushFollow(FOLLOW_integerExpr_in_integerBag2553);
-                    	    integerExpr434=integerExpr();
+                    	    dbg.location(249,74);
+                    	    char_literal430=(Token)match(input,83,FOLLOW_83_in_integerBag2602); if (state.failed) return retval;
+                    	    dbg.location(249,76);
+                    	    pushFollow(FOLLOW_integerExpr_in_integerBag2605);
+                    	    integerExpr431=integerExpr();
 
                     	    state._fsp--;
                     	    if (state.failed) return retval;
-                    	    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerExpr434.getTree());
+                    	    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerExpr431.getTree());
 
                     	    }
                     	    break;
@@ -6510,8 +6522,8 @@ public TreeAdaptor getTreeAdaptor() {
                     } while (true);
                     } finally {dbg.exitSubRule(17);}
 
-                    dbg.location(253,96);
-                    RPAREN435=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_integerBag2557); if (state.failed) return retval;
+                    dbg.location(249,96);
+                    RPAREN432=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_integerBag2609); if (state.failed) return retval;
 
                     }
                     break;
@@ -6519,8 +6531,8 @@ public TreeAdaptor getTreeAdaptor() {
             }
             } finally {dbg.exitSubRule(18);}
 
-            dbg.location(253,99);
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:253:99: ( '.' ( INTERSECTION_TOK | UNION_TOK ) ^ LPAREN ! integerBag RPAREN !)*
+            dbg.location(249,99);
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:249:99: ( '.' ( INTERSECTION_TOK | UNION_TOK ) ^ LPAREN ! integerBag RPAREN !)*
             try { dbg.enterSubRule(19);
 
             loop19:
@@ -6547,25 +6559,25 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    dbg.enterAlt(1);
 
-            	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:253:100: '.' ( INTERSECTION_TOK | UNION_TOK ) ^ LPAREN ! integerBag RPAREN !
+            	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:249:100: '.' ( INTERSECTION_TOK | UNION_TOK ) ^ LPAREN ! integerBag RPAREN !
             	    {
-            	    dbg.location(253,100);
-            	    char_literal436=(Token)match(input,84,FOLLOW_84_in_integerBag2562); if (state.failed) return retval;
+            	    dbg.location(249,100);
+            	    char_literal433=(Token)match(input,84,FOLLOW_84_in_integerBag2614); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    char_literal436_tree = 
-            	    (Object)adaptor.create(char_literal436)
+            	    char_literal433_tree = 
+            	    (Object)adaptor.create(char_literal433)
             	    ;
-            	    adaptor.addChild(root_0, char_literal436_tree);
+            	    adaptor.addChild(root_0, char_literal433_tree);
             	    }
-            	    dbg.location(253,136);
-            	    set437=(Token)input.LT(1);
+            	    dbg.location(249,136);
+            	    set434=(Token)input.LT(1);
 
-            	    set437=(Token)input.LT(1);
+            	    set434=(Token)input.LT(1);
 
             	    if ( input.LA(1)==INTERSECTION_TOK||input.LA(1)==UNION_TOK ) {
             	        input.consume();
             	        if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-            	        (Object)adaptor.create(set437)
+            	        (Object)adaptor.create(set434)
             	        , root_0);
             	        state.errorRecovery=false;
             	        state.failed=false;
@@ -6577,17 +6589,17 @@ public TreeAdaptor getTreeAdaptor() {
             	        throw mse;
             	    }
 
-            	    dbg.location(253,144);
-            	    LPAREN438=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_integerBag2575); if (state.failed) return retval;
-            	    dbg.location(253,146);
-            	    pushFollow(FOLLOW_integerBag_in_integerBag2578);
-            	    integerBag439=integerBag();
+            	    dbg.location(249,144);
+            	    LPAREN435=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_integerBag2627); if (state.failed) return retval;
+            	    dbg.location(249,146);
+            	    pushFollow(FOLLOW_integerBag_in_integerBag2630);
+            	    integerBag436=integerBag();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerBag439.getTree());
-            	    dbg.location(253,163);
-            	    RPAREN440=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_integerBag2580); if (state.failed) return retval;
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerBag436.getTree());
+            	    dbg.location(249,163);
+            	    RPAREN437=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_integerBag2632); if (state.failed) return retval;
 
             	    }
             	    break;
@@ -6620,7 +6632,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(254, 1);
+        dbg.location(250, 1);
 
         }
         finally {
@@ -6635,13 +6647,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class doubleExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "doubleExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:256:1: doubleExpr : ( DOUBLE_CONSTANT ^| DOUBLE_TOK ^ LPAREN ! stringExpr RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:252:1: doubleExpr returns [SomeType o] : ( DOUBLE_CONSTANT ^| DOUBLE_TOK ^ LPAREN ! stringExpr RPAREN !);
     public final GrammarParser.doubleExpr_return doubleExpr() throws RecognitionException {
         GrammarParser.doubleExpr_return retval = new GrammarParser.doubleExpr_return();
         retval.start = input.LT(1);
@@ -6649,25 +6662,25 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token DOUBLE_CONSTANT441=null;
-        Token DOUBLE_TOK442=null;
-        Token LPAREN443=null;
-        Token RPAREN445=null;
-        GrammarParser.stringExpr_return stringExpr444 =null;
+        Token DOUBLE_CONSTANT438=null;
+        Token DOUBLE_TOK439=null;
+        Token LPAREN440=null;
+        Token RPAREN442=null;
+        GrammarParser.stringExpr_return stringExpr441 =null;
 
 
-        Object DOUBLE_CONSTANT441_tree=null;
-        Object DOUBLE_TOK442_tree=null;
-        Object LPAREN443_tree=null;
-        Object RPAREN445_tree=null;
+        Object DOUBLE_CONSTANT438_tree=null;
+        Object DOUBLE_TOK439_tree=null;
+        Object LPAREN440_tree=null;
+        Object RPAREN442_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "doubleExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(256, 0);
+        dbg.location(252, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:257:2: ( DOUBLE_CONSTANT ^| DOUBLE_TOK ^ LPAREN ! stringExpr RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:253:2: ( DOUBLE_CONSTANT ^| DOUBLE_TOK ^ LPAREN ! stringExpr RPAREN !)
             int alt20=2;
             try { dbg.enterDecision(20, decisionCanBacktrack[20]);
 
@@ -6694,18 +6707,18 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:257:4: DOUBLE_CONSTANT ^
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:253:4: DOUBLE_CONSTANT ^
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(257,19);
-                    DOUBLE_CONSTANT441=(Token)match(input,DOUBLE_CONSTANT,FOLLOW_DOUBLE_CONSTANT_in_doubleExpr2594); if (state.failed) return retval;
+                    dbg.location(253,19);
+                    DOUBLE_CONSTANT438=(Token)match(input,DOUBLE_CONSTANT,FOLLOW_DOUBLE_CONSTANT_in_doubleExpr2650); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    DOUBLE_CONSTANT441_tree = 
-                    (Object)adaptor.create(DOUBLE_CONSTANT441)
+                    DOUBLE_CONSTANT438_tree = 
+                    (Object)adaptor.create(DOUBLE_CONSTANT438)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(DOUBLE_CONSTANT441_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(DOUBLE_CONSTANT438_tree, root_0);
                     }
 
                     }
@@ -6713,30 +6726,30 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:258:4: DOUBLE_TOK ^ LPAREN ! stringExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:254:4: DOUBLE_TOK ^ LPAREN ! stringExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(258,14);
-                    DOUBLE_TOK442=(Token)match(input,DOUBLE_TOK,FOLLOW_DOUBLE_TOK_in_doubleExpr2600); if (state.failed) return retval;
+                    dbg.location(254,14);
+                    DOUBLE_TOK439=(Token)match(input,DOUBLE_TOK,FOLLOW_DOUBLE_TOK_in_doubleExpr2656); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    DOUBLE_TOK442_tree = 
-                    (Object)adaptor.create(DOUBLE_TOK442)
+                    DOUBLE_TOK439_tree = 
+                    (Object)adaptor.create(DOUBLE_TOK439)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(DOUBLE_TOK442_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(DOUBLE_TOK439_tree, root_0);
                     }
-                    dbg.location(258,22);
-                    LPAREN443=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_doubleExpr2603); if (state.failed) return retval;
-                    dbg.location(258,24);
-                    pushFollow(FOLLOW_stringExpr_in_doubleExpr2606);
-                    stringExpr444=stringExpr();
+                    dbg.location(254,22);
+                    LPAREN440=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_doubleExpr2659); if (state.failed) return retval;
+                    dbg.location(254,24);
+                    pushFollow(FOLLOW_stringExpr_in_doubleExpr2662);
+                    stringExpr441=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr444.getTree());
-                    dbg.location(258,41);
-                    RPAREN445=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_doubleExpr2608); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr441.getTree());
+                    dbg.location(254,41);
+                    RPAREN442=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_doubleExpr2664); if (state.failed) return retval;
 
                     }
                     break;
@@ -6761,7 +6774,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(261, 1);
+        dbg.location(257, 1);
 
         }
         finally {
@@ -6776,13 +6789,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class doubleBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "doubleBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:262:1: doubleBag : DOUBLE_TOK ^ STRING_CONSTANT_LIST ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:258:1: doubleBag returns [SomeType o] : DOUBLE_TOK ^ STRING_CONSTANT_LIST ;
     public final GrammarParser.doubleBag_return doubleBag() throws RecognitionException {
         GrammarParser.doubleBag_return retval = new GrammarParser.doubleBag_return();
         retval.start = input.LT(1);
@@ -6790,41 +6804,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token DOUBLE_TOK446=null;
-        Token STRING_CONSTANT_LIST447=null;
+        Token DOUBLE_TOK443=null;
+        Token STRING_CONSTANT_LIST444=null;
 
-        Object DOUBLE_TOK446_tree=null;
-        Object STRING_CONSTANT_LIST447_tree=null;
+        Object DOUBLE_TOK443_tree=null;
+        Object STRING_CONSTANT_LIST444_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "doubleBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(262, 0);
+        dbg.location(258, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:263:2: ( DOUBLE_TOK ^ STRING_CONSTANT_LIST )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:259:2: ( DOUBLE_TOK ^ STRING_CONSTANT_LIST )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:263:4: DOUBLE_TOK ^ STRING_CONSTANT_LIST
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:259:4: DOUBLE_TOK ^ STRING_CONSTANT_LIST
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(263,14);
-            DOUBLE_TOK446=(Token)match(input,DOUBLE_TOK,FOLLOW_DOUBLE_TOK_in_doubleBag2621); if (state.failed) return retval;
+            dbg.location(259,14);
+            DOUBLE_TOK443=(Token)match(input,DOUBLE_TOK,FOLLOW_DOUBLE_TOK_in_doubleBag2681); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            DOUBLE_TOK446_tree = 
-            (Object)adaptor.create(DOUBLE_TOK446)
+            DOUBLE_TOK443_tree = 
+            (Object)adaptor.create(DOUBLE_TOK443)
             ;
-            root_0 = (Object)adaptor.becomeRoot(DOUBLE_TOK446_tree, root_0);
+            root_0 = (Object)adaptor.becomeRoot(DOUBLE_TOK443_tree, root_0);
             }
-            dbg.location(263,16);
-            STRING_CONSTANT_LIST447=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_doubleBag2624); if (state.failed) return retval;
+            dbg.location(259,16);
+            STRING_CONSTANT_LIST444=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_doubleBag2684); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STRING_CONSTANT_LIST447_tree = 
-            (Object)adaptor.create(STRING_CONSTANT_LIST447)
+            STRING_CONSTANT_LIST444_tree = 
+            (Object)adaptor.create(STRING_CONSTANT_LIST444)
             ;
-            adaptor.addChild(root_0, STRING_CONSTANT_LIST447_tree);
+            adaptor.addChild(root_0, STRING_CONSTANT_LIST444_tree);
             }
 
             }
@@ -6848,7 +6862,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(266, 1);
+        dbg.location(262, 1);
 
         }
         finally {
@@ -6863,13 +6877,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class stringExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "stringExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:268:1: stringExpr : ( STRING_CONSTANT ^| stringBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !) ( '.' ( REQUIRED_TOK | NORMALIZESPACE_TOK | NORMALIZETOLOWERCASE_TOK ) LPAREN ! RPAREN !)* ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:264:1: stringExpr returns [SomeType o] : ( STRING_CONSTANT ^| stringBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !) ( '.' ( REQUIRED_TOK | NORMALIZESPACE_TOK | NORMALIZETOLOWERCASE_TOK ) LPAREN ! RPAREN !)* ;
     public final GrammarParser.stringExpr_return stringExpr() throws RecognitionException {
         GrammarParser.stringExpr_return retval = new GrammarParser.stringExpr_return();
         retval.start = input.LT(1);
@@ -6877,44 +6892,44 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token STRING_CONSTANT448=null;
-        Token char_literal450=null;
-        Token ONEANDONLY_TOK451=null;
-        Token LPAREN452=null;
-        Token RPAREN453=null;
-        Token char_literal454=null;
-        Token set455=null;
-        Token LPAREN456=null;
-        Token RPAREN457=null;
-        GrammarParser.stringBag_return stringBag449 =null;
+        Token STRING_CONSTANT445=null;
+        Token char_literal447=null;
+        Token ONEANDONLY_TOK448=null;
+        Token LPAREN449=null;
+        Token RPAREN450=null;
+        Token char_literal451=null;
+        Token set452=null;
+        Token LPAREN453=null;
+        Token RPAREN454=null;
+        GrammarParser.stringBag_return stringBag446 =null;
 
 
-        Object STRING_CONSTANT448_tree=null;
-        Object char_literal450_tree=null;
-        Object ONEANDONLY_TOK451_tree=null;
-        Object LPAREN452_tree=null;
-        Object RPAREN453_tree=null;
-        Object char_literal454_tree=null;
-        Object set455_tree=null;
-        Object LPAREN456_tree=null;
-        Object RPAREN457_tree=null;
+        Object STRING_CONSTANT445_tree=null;
+        Object char_literal447_tree=null;
+        Object ONEANDONLY_TOK448_tree=null;
+        Object LPAREN449_tree=null;
+        Object RPAREN450_tree=null;
+        Object char_literal451_tree=null;
+        Object set452_tree=null;
+        Object LPAREN453_tree=null;
+        Object RPAREN454_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "stringExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(268, 0);
+        dbg.location(264, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:269:2: ( ( STRING_CONSTANT ^| stringBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !) ( '.' ( REQUIRED_TOK | NORMALIZESPACE_TOK | NORMALIZETOLOWERCASE_TOK ) LPAREN ! RPAREN !)* )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:265:2: ( ( STRING_CONSTANT ^| stringBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !) ( '.' ( REQUIRED_TOK | NORMALIZESPACE_TOK | NORMALIZETOLOWERCASE_TOK ) LPAREN ! RPAREN !)* )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:269:4: ( STRING_CONSTANT ^| stringBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !) ( '.' ( REQUIRED_TOK | NORMALIZESPACE_TOK | NORMALIZETOLOWERCASE_TOK ) LPAREN ! RPAREN !)*
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:265:4: ( STRING_CONSTANT ^| stringBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !) ( '.' ( REQUIRED_TOK | NORMALIZESPACE_TOK | NORMALIZETOLOWERCASE_TOK ) LPAREN ! RPAREN !)*
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(269,4);
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:269:4: ( STRING_CONSTANT ^| stringBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
+            dbg.location(265,4);
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:265:4: ( STRING_CONSTANT ^| stringBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
             int alt21=2;
             try { dbg.enterSubRule(21);
             try { dbg.enterDecision(21, decisionCanBacktrack[21]);
@@ -6942,15 +6957,15 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:269:5: STRING_CONSTANT ^
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:265:5: STRING_CONSTANT ^
                     {
-                    dbg.location(269,20);
-                    STRING_CONSTANT448=(Token)match(input,STRING_CONSTANT,FOLLOW_STRING_CONSTANT_in_stringExpr2638); if (state.failed) return retval;
+                    dbg.location(265,20);
+                    STRING_CONSTANT445=(Token)match(input,STRING_CONSTANT,FOLLOW_STRING_CONSTANT_in_stringExpr2702); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    STRING_CONSTANT448_tree = 
-                    (Object)adaptor.create(STRING_CONSTANT448)
+                    STRING_CONSTANT445_tree = 
+                    (Object)adaptor.create(STRING_CONSTANT445)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(STRING_CONSTANT448_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(STRING_CONSTANT445_tree, root_0);
                     }
 
                     }
@@ -6958,35 +6973,35 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:270:5: stringBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:266:5: stringBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
                     {
-                    dbg.location(270,5);
-                    pushFollow(FOLLOW_stringBag_in_stringExpr2645);
-                    stringBag449=stringBag();
+                    dbg.location(266,5);
+                    pushFollow(FOLLOW_stringBag_in_stringExpr2709);
+                    stringBag446=stringBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringBag449.getTree());
-                    dbg.location(270,15);
-                    char_literal450=(Token)match(input,84,FOLLOW_84_in_stringExpr2647); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringBag446.getTree());
+                    dbg.location(266,15);
+                    char_literal447=(Token)match(input,84,FOLLOW_84_in_stringExpr2711); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal450_tree = 
-                    (Object)adaptor.create(char_literal450)
+                    char_literal447_tree = 
+                    (Object)adaptor.create(char_literal447)
                     ;
-                    adaptor.addChild(root_0, char_literal450_tree);
+                    adaptor.addChild(root_0, char_literal447_tree);
                     }
-                    dbg.location(270,33);
-                    ONEANDONLY_TOK451=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_stringExpr2649); if (state.failed) return retval;
+                    dbg.location(266,33);
+                    ONEANDONLY_TOK448=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_stringExpr2713); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ONEANDONLY_TOK451_tree = 
-                    (Object)adaptor.create(ONEANDONLY_TOK451)
+                    ONEANDONLY_TOK448_tree = 
+                    (Object)adaptor.create(ONEANDONLY_TOK448)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK451_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK448_tree, root_0);
                     }
-                    dbg.location(270,41);
-                    LPAREN452=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_stringExpr2652); if (state.failed) return retval;
-                    dbg.location(270,49);
-                    RPAREN453=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_stringExpr2655); if (state.failed) return retval;
+                    dbg.location(266,41);
+                    LPAREN449=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_stringExpr2716); if (state.failed) return retval;
+                    dbg.location(266,49);
+                    RPAREN450=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_stringExpr2719); if (state.failed) return retval;
 
                     }
                     break;
@@ -6994,8 +7009,8 @@ public TreeAdaptor getTreeAdaptor() {
             }
             } finally {dbg.exitSubRule(21);}
 
-            dbg.location(271,3);
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:271:3: ( '.' ( REQUIRED_TOK | NORMALIZESPACE_TOK | NORMALIZETOLOWERCASE_TOK ) LPAREN ! RPAREN !)*
+            dbg.location(267,3);
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:267:3: ( '.' ( REQUIRED_TOK | NORMALIZESPACE_TOK | NORMALIZETOLOWERCASE_TOK ) LPAREN ! RPAREN !)*
             try { dbg.enterSubRule(22);
 
             loop22:
@@ -7022,23 +7037,23 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    dbg.enterAlt(1);
 
-            	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:271:4: '.' ( REQUIRED_TOK | NORMALIZESPACE_TOK | NORMALIZETOLOWERCASE_TOK ) LPAREN ! RPAREN !
+            	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:267:4: '.' ( REQUIRED_TOK | NORMALIZESPACE_TOK | NORMALIZETOLOWERCASE_TOK ) LPAREN ! RPAREN !
             	    {
-            	    dbg.location(271,4);
-            	    char_literal454=(Token)match(input,84,FOLLOW_84_in_stringExpr2662); if (state.failed) return retval;
+            	    dbg.location(267,4);
+            	    char_literal451=(Token)match(input,84,FOLLOW_84_in_stringExpr2726); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    char_literal454_tree = 
-            	    (Object)adaptor.create(char_literal454)
+            	    char_literal451_tree = 
+            	    (Object)adaptor.create(char_literal451)
             	    ;
-            	    adaptor.addChild(root_0, char_literal454_tree);
+            	    adaptor.addChild(root_0, char_literal451_tree);
             	    }
-            	    dbg.location(271,8);
-            	    set455=(Token)input.LT(1);
+            	    dbg.location(267,8);
+            	    set452=(Token)input.LT(1);
 
             	    if ( (input.LA(1) >= NORMALIZESPACE_TOK && input.LA(1) <= NORMALIZETOLOWERCASE_TOK)||input.LA(1)==REQUIRED_TOK ) {
             	        input.consume();
             	        if ( state.backtracking==0 ) adaptor.addChild(root_0, 
-            	        (Object)adaptor.create(set455)
+            	        (Object)adaptor.create(set452)
             	        );
             	        state.errorRecovery=false;
             	        state.failed=false;
@@ -7050,10 +7065,10 @@ public TreeAdaptor getTreeAdaptor() {
             	        throw mse;
             	    }
 
-            	    dbg.location(271,78);
-            	    LPAREN456=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_stringExpr2677); if (state.failed) return retval;
-            	    dbg.location(271,86);
-            	    RPAREN457=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_stringExpr2680); if (state.failed) return retval;
+            	    dbg.location(267,78);
+            	    LPAREN453=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_stringExpr2741); if (state.failed) return retval;
+            	    dbg.location(267,86);
+            	    RPAREN454=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_stringExpr2744); if (state.failed) return retval;
 
             	    }
             	    break;
@@ -7086,7 +7101,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(272, 1);
+        dbg.location(268, 1);
 
         }
         finally {
@@ -7101,13 +7116,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class stringBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "stringBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:274:1: stringBag : ( STRING_TOK ^ STRING_CONSTANT_LIST | attributeExpr );
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:270:1: stringBag returns [SomeType o] : ( STRING_TOK ^ STRING_CONSTANT_LIST | attributeExpr );
     public final GrammarParser.stringBag_return stringBag() throws RecognitionException {
         GrammarParser.stringBag_return retval = new GrammarParser.stringBag_return();
         retval.start = input.LT(1);
@@ -7115,21 +7131,21 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token STRING_TOK458=null;
-        Token STRING_CONSTANT_LIST459=null;
-        GrammarParser.attributeExpr_return attributeExpr460 =null;
+        Token STRING_TOK455=null;
+        Token STRING_CONSTANT_LIST456=null;
+        GrammarParser.attributeExpr_return attributeExpr457 =null;
 
 
-        Object STRING_TOK458_tree=null;
-        Object STRING_CONSTANT_LIST459_tree=null;
+        Object STRING_TOK455_tree=null;
+        Object STRING_CONSTANT_LIST456_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "stringBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(274, 0);
+        dbg.location(270, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:275:2: ( STRING_TOK ^ STRING_CONSTANT_LIST | attributeExpr )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:271:2: ( STRING_TOK ^ STRING_CONSTANT_LIST | attributeExpr )
             int alt23=2;
             try { dbg.enterDecision(23, decisionCanBacktrack[23]);
 
@@ -7156,26 +7172,26 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:275:4: STRING_TOK ^ STRING_CONSTANT_LIST
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:271:4: STRING_TOK ^ STRING_CONSTANT_LIST
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(275,14);
-                    STRING_TOK458=(Token)match(input,STRING_TOK,FOLLOW_STRING_TOK_in_stringBag2694); if (state.failed) return retval;
+                    dbg.location(271,14);
+                    STRING_TOK455=(Token)match(input,STRING_TOK,FOLLOW_STRING_TOK_in_stringBag2762); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    STRING_TOK458_tree = 
-                    (Object)adaptor.create(STRING_TOK458)
+                    STRING_TOK455_tree = 
+                    (Object)adaptor.create(STRING_TOK455)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(STRING_TOK458_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(STRING_TOK455_tree, root_0);
                     }
-                    dbg.location(275,16);
-                    STRING_CONSTANT_LIST459=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_stringBag2697); if (state.failed) return retval;
+                    dbg.location(271,16);
+                    STRING_CONSTANT_LIST456=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_stringBag2765); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    STRING_CONSTANT_LIST459_tree = 
-                    (Object)adaptor.create(STRING_CONSTANT_LIST459)
+                    STRING_CONSTANT_LIST456_tree = 
+                    (Object)adaptor.create(STRING_CONSTANT_LIST456)
                     ;
-                    adaptor.addChild(root_0, STRING_CONSTANT_LIST459_tree);
+                    adaptor.addChild(root_0, STRING_CONSTANT_LIST456_tree);
                     }
 
                     }
@@ -7183,18 +7199,18 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:276:4: attributeExpr
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:272:4: attributeExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(276,4);
-                    pushFollow(FOLLOW_attributeExpr_in_stringBag2702);
-                    attributeExpr460=attributeExpr();
+                    dbg.location(272,4);
+                    pushFollow(FOLLOW_attributeExpr_in_stringBag2770);
+                    attributeExpr457=attributeExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, attributeExpr460.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, attributeExpr457.getTree());
 
                     }
                     break;
@@ -7219,7 +7235,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(278, 1);
+        dbg.location(274, 1);
 
         }
         finally {
@@ -7234,13 +7250,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class attributeExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "attributeExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:281:1: attributeExpr : ( SUBJECT_TOK | RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK ) ^ ( '.' LOWERCASEIDENTIFIER )+ ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:277:1: attributeExpr returns [SomeType o] : ( SUBJECT_TOK | RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK ) ^ ( '.' LOWERCASEIDENTIFIER )+ ;
     public final GrammarParser.attributeExpr_return attributeExpr() throws RecognitionException {
         GrammarParser.attributeExpr_return retval = new GrammarParser.attributeExpr_return();
         retval.start = input.LT(1);
@@ -7248,37 +7265,37 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set461=null;
-        Token char_literal462=null;
-        Token LOWERCASEIDENTIFIER463=null;
+        Token set458=null;
+        Token char_literal459=null;
+        Token LOWERCASEIDENTIFIER460=null;
 
-        Object set461_tree=null;
-        Object char_literal462_tree=null;
-        Object LOWERCASEIDENTIFIER463_tree=null;
+        Object set458_tree=null;
+        Object char_literal459_tree=null;
+        Object LOWERCASEIDENTIFIER460_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "attributeExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(281, 0);
+        dbg.location(277, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:282:2: ( ( SUBJECT_TOK | RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK ) ^ ( '.' LOWERCASEIDENTIFIER )+ )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:278:2: ( ( SUBJECT_TOK | RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK ) ^ ( '.' LOWERCASEIDENTIFIER )+ )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:282:4: ( SUBJECT_TOK | RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK ) ^ ( '.' LOWERCASEIDENTIFIER )+
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:278:4: ( SUBJECT_TOK | RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK ) ^ ( '.' LOWERCASEIDENTIFIER )+
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(282,64);
-            set461=(Token)input.LT(1);
+            dbg.location(278,64);
+            set458=(Token)input.LT(1);
 
-            set461=(Token)input.LT(1);
+            set458=(Token)input.LT(1);
 
             if ( input.LA(1)==ACTION_TOK||input.LA(1)==ENVIRONMENT_TOK||input.LA(1)==RESOURCE_TOK||input.LA(1)==SUBJECT_TOK ) {
                 input.consume();
                 if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(
-                (Object)adaptor.create(set461)
+                (Object)adaptor.create(set458)
                 , root_0);
                 state.errorRecovery=false;
                 state.failed=false;
@@ -7290,8 +7307,8 @@ public TreeAdaptor getTreeAdaptor() {
                 throw mse;
             }
 
-            dbg.location(282,66);
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:282:66: ( '.' LOWERCASEIDENTIFIER )+
+            dbg.location(278,66);
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:278:66: ( '.' LOWERCASEIDENTIFIER )+
             int cnt24=0;
             try { dbg.enterSubRule(24);
 
@@ -7319,23 +7336,23 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    dbg.enterAlt(1);
 
-            	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:282:67: '.' LOWERCASEIDENTIFIER
+            	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:278:67: '.' LOWERCASEIDENTIFIER
             	    {
-            	    dbg.location(282,67);
-            	    char_literal462=(Token)match(input,84,FOLLOW_84_in_attributeExpr2734); if (state.failed) return retval;
+            	    dbg.location(278,67);
+            	    char_literal459=(Token)match(input,84,FOLLOW_84_in_attributeExpr2806); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    char_literal462_tree = 
-            	    (Object)adaptor.create(char_literal462)
+            	    char_literal459_tree = 
+            	    (Object)adaptor.create(char_literal459)
             	    ;
-            	    adaptor.addChild(root_0, char_literal462_tree);
+            	    adaptor.addChild(root_0, char_literal459_tree);
             	    }
-            	    dbg.location(282,71);
-            	    LOWERCASEIDENTIFIER463=(Token)match(input,LOWERCASEIDENTIFIER,FOLLOW_LOWERCASEIDENTIFIER_in_attributeExpr2736); if (state.failed) return retval;
+            	    dbg.location(278,71);
+            	    LOWERCASEIDENTIFIER460=(Token)match(input,LOWERCASEIDENTIFIER,FOLLOW_LOWERCASEIDENTIFIER_in_attributeExpr2808); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    LOWERCASEIDENTIFIER463_tree = 
-            	    (Object)adaptor.create(LOWERCASEIDENTIFIER463)
+            	    LOWERCASEIDENTIFIER460_tree = 
+            	    (Object)adaptor.create(LOWERCASEIDENTIFIER460)
             	    ;
-            	    adaptor.addChild(root_0, LOWERCASEIDENTIFIER463_tree);
+            	    adaptor.addChild(root_0, LOWERCASEIDENTIFIER460_tree);
             	    }
 
             	    }
@@ -7376,7 +7393,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(283, 1);
+        dbg.location(279, 1);
 
         }
         finally {
@@ -7391,13 +7408,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class anyUriExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "anyUriExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:285:1: anyUriExpr : ( ANYURI_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !| stringExpr '.' URI_TOK ^ LPAREN ! RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:281:1: anyUriExpr returns [SomeType o] : ( ANYURI_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !| stringExpr '.' URI_TOK ^ LPAREN ! RPAREN !);
     public final GrammarParser.anyUriExpr_return anyUriExpr() throws RecognitionException {
         GrammarParser.anyUriExpr_return retval = new GrammarParser.anyUriExpr_return();
         retval.start = input.LT(1);
@@ -7405,43 +7423,43 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ANYURI_TOK464=null;
-        Token LPAREN465=null;
-        Token RPAREN467=null;
-        Token char_literal469=null;
-        Token ONEANDONLY_TOK470=null;
-        Token LPAREN471=null;
-        Token RPAREN472=null;
-        Token char_literal474=null;
-        Token URI_TOK475=null;
-        Token LPAREN476=null;
-        Token RPAREN477=null;
-        GrammarParser.stringExpr_return stringExpr466 =null;
+        Token ANYURI_TOK461=null;
+        Token LPAREN462=null;
+        Token RPAREN464=null;
+        Token char_literal466=null;
+        Token ONEANDONLY_TOK467=null;
+        Token LPAREN468=null;
+        Token RPAREN469=null;
+        Token char_literal471=null;
+        Token URI_TOK472=null;
+        Token LPAREN473=null;
+        Token RPAREN474=null;
+        GrammarParser.stringExpr_return stringExpr463 =null;
 
-        GrammarParser.anyUriBag_return anyUriBag468 =null;
+        GrammarParser.anyUriBag_return anyUriBag465 =null;
 
-        GrammarParser.stringExpr_return stringExpr473 =null;
+        GrammarParser.stringExpr_return stringExpr470 =null;
 
 
-        Object ANYURI_TOK464_tree=null;
-        Object LPAREN465_tree=null;
-        Object RPAREN467_tree=null;
-        Object char_literal469_tree=null;
-        Object ONEANDONLY_TOK470_tree=null;
-        Object LPAREN471_tree=null;
-        Object RPAREN472_tree=null;
-        Object char_literal474_tree=null;
-        Object URI_TOK475_tree=null;
-        Object LPAREN476_tree=null;
-        Object RPAREN477_tree=null;
+        Object ANYURI_TOK461_tree=null;
+        Object LPAREN462_tree=null;
+        Object RPAREN464_tree=null;
+        Object char_literal466_tree=null;
+        Object ONEANDONLY_TOK467_tree=null;
+        Object LPAREN468_tree=null;
+        Object RPAREN469_tree=null;
+        Object char_literal471_tree=null;
+        Object URI_TOK472_tree=null;
+        Object LPAREN473_tree=null;
+        Object RPAREN474_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "anyUriExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(285, 0);
+        dbg.location(281, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:286:2: ( ANYURI_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !| stringExpr '.' URI_TOK ^ LPAREN ! RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:282:2: ( ANYURI_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !| stringExpr '.' URI_TOK ^ LPAREN ! RPAREN !)
             int alt25=3;
             try { dbg.enterDecision(25, decisionCanBacktrack[25]);
 
@@ -7484,106 +7502,106 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:286:4: ANYURI_TOK ^ LPAREN ! stringExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:282:4: ANYURI_TOK ^ LPAREN ! stringExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(286,14);
-                    ANYURI_TOK464=(Token)match(input,ANYURI_TOK,FOLLOW_ANYURI_TOK_in_anyUriExpr2750); if (state.failed) return retval;
+                    dbg.location(282,14);
+                    ANYURI_TOK461=(Token)match(input,ANYURI_TOK,FOLLOW_ANYURI_TOK_in_anyUriExpr2826); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ANYURI_TOK464_tree = 
-                    (Object)adaptor.create(ANYURI_TOK464)
+                    ANYURI_TOK461_tree = 
+                    (Object)adaptor.create(ANYURI_TOK461)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ANYURI_TOK464_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ANYURI_TOK461_tree, root_0);
                     }
-                    dbg.location(286,22);
-                    LPAREN465=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_anyUriExpr2753); if (state.failed) return retval;
-                    dbg.location(286,24);
-                    pushFollow(FOLLOW_stringExpr_in_anyUriExpr2756);
-                    stringExpr466=stringExpr();
+                    dbg.location(282,22);
+                    LPAREN462=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_anyUriExpr2829); if (state.failed) return retval;
+                    dbg.location(282,24);
+                    pushFollow(FOLLOW_stringExpr_in_anyUriExpr2832);
+                    stringExpr463=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr466.getTree());
-                    dbg.location(286,41);
-                    RPAREN467=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_anyUriExpr2758); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr463.getTree());
+                    dbg.location(282,41);
+                    RPAREN464=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_anyUriExpr2834); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:287:4: anyUriBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:283:4: anyUriBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(287,4);
-                    pushFollow(FOLLOW_anyUriBag_in_anyUriExpr2764);
-                    anyUriBag468=anyUriBag();
+                    dbg.location(283,4);
+                    pushFollow(FOLLOW_anyUriBag_in_anyUriExpr2840);
+                    anyUriBag465=anyUriBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriBag468.getTree());
-                    dbg.location(287,14);
-                    char_literal469=(Token)match(input,84,FOLLOW_84_in_anyUriExpr2766); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriBag465.getTree());
+                    dbg.location(283,14);
+                    char_literal466=(Token)match(input,84,FOLLOW_84_in_anyUriExpr2842); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal469_tree = 
-                    (Object)adaptor.create(char_literal469)
+                    char_literal466_tree = 
+                    (Object)adaptor.create(char_literal466)
                     ;
-                    adaptor.addChild(root_0, char_literal469_tree);
+                    adaptor.addChild(root_0, char_literal466_tree);
                     }
-                    dbg.location(287,32);
-                    ONEANDONLY_TOK470=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_anyUriExpr2768); if (state.failed) return retval;
+                    dbg.location(283,32);
+                    ONEANDONLY_TOK467=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_anyUriExpr2844); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ONEANDONLY_TOK470_tree = 
-                    (Object)adaptor.create(ONEANDONLY_TOK470)
+                    ONEANDONLY_TOK467_tree = 
+                    (Object)adaptor.create(ONEANDONLY_TOK467)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK470_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK467_tree, root_0);
                     }
-                    dbg.location(287,40);
-                    LPAREN471=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_anyUriExpr2771); if (state.failed) return retval;
-                    dbg.location(287,48);
-                    RPAREN472=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_anyUriExpr2774); if (state.failed) return retval;
+                    dbg.location(283,40);
+                    LPAREN468=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_anyUriExpr2847); if (state.failed) return retval;
+                    dbg.location(283,48);
+                    RPAREN469=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_anyUriExpr2850); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:288:4: stringExpr '.' URI_TOK ^ LPAREN ! RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:284:4: stringExpr '.' URI_TOK ^ LPAREN ! RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(288,4);
-                    pushFollow(FOLLOW_stringExpr_in_anyUriExpr2780);
-                    stringExpr473=stringExpr();
+                    dbg.location(284,4);
+                    pushFollow(FOLLOW_stringExpr_in_anyUriExpr2856);
+                    stringExpr470=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr473.getTree());
-                    dbg.location(288,15);
-                    char_literal474=(Token)match(input,84,FOLLOW_84_in_anyUriExpr2782); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr470.getTree());
+                    dbg.location(284,15);
+                    char_literal471=(Token)match(input,84,FOLLOW_84_in_anyUriExpr2858); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal474_tree = 
-                    (Object)adaptor.create(char_literal474)
+                    char_literal471_tree = 
+                    (Object)adaptor.create(char_literal471)
                     ;
-                    adaptor.addChild(root_0, char_literal474_tree);
+                    adaptor.addChild(root_0, char_literal471_tree);
                     }
-                    dbg.location(288,26);
-                    URI_TOK475=(Token)match(input,URI_TOK,FOLLOW_URI_TOK_in_anyUriExpr2784); if (state.failed) return retval;
+                    dbg.location(284,26);
+                    URI_TOK472=(Token)match(input,URI_TOK,FOLLOW_URI_TOK_in_anyUriExpr2860); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    URI_TOK475_tree = 
-                    (Object)adaptor.create(URI_TOK475)
+                    URI_TOK472_tree = 
+                    (Object)adaptor.create(URI_TOK472)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(URI_TOK475_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(URI_TOK472_tree, root_0);
                     }
-                    dbg.location(288,34);
-                    LPAREN476=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_anyUriExpr2787); if (state.failed) return retval;
-                    dbg.location(288,42);
-                    RPAREN477=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_anyUriExpr2790); if (state.failed) return retval;
+                    dbg.location(284,34);
+                    LPAREN473=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_anyUriExpr2863); if (state.failed) return retval;
+                    dbg.location(284,42);
+                    RPAREN474=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_anyUriExpr2866); if (state.failed) return retval;
 
                     }
                     break;
@@ -7608,7 +7626,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(291, 1);
+        dbg.location(287, 1);
 
         }
         finally {
@@ -7623,13 +7641,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class anyUriBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "anyUriBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:293:1: anyUriBag : ANYURI_TOK ^ STRING_CONSTANT_LIST ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:289:1: anyUriBag returns [SomeType o] : ANYURI_TOK ^ STRING_CONSTANT_LIST ;
     public final GrammarParser.anyUriBag_return anyUriBag() throws RecognitionException {
         GrammarParser.anyUriBag_return retval = new GrammarParser.anyUriBag_return();
         retval.start = input.LT(1);
@@ -7637,41 +7656,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ANYURI_TOK478=null;
-        Token STRING_CONSTANT_LIST479=null;
+        Token ANYURI_TOK475=null;
+        Token STRING_CONSTANT_LIST476=null;
 
-        Object ANYURI_TOK478_tree=null;
-        Object STRING_CONSTANT_LIST479_tree=null;
+        Object ANYURI_TOK475_tree=null;
+        Object STRING_CONSTANT_LIST476_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "anyUriBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(293, 0);
+        dbg.location(289, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:294:2: ( ANYURI_TOK ^ STRING_CONSTANT_LIST )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:290:2: ( ANYURI_TOK ^ STRING_CONSTANT_LIST )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:294:4: ANYURI_TOK ^ STRING_CONSTANT_LIST
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:290:4: ANYURI_TOK ^ STRING_CONSTANT_LIST
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(294,14);
-            ANYURI_TOK478=(Token)match(input,ANYURI_TOK,FOLLOW_ANYURI_TOK_in_anyUriBag2804); if (state.failed) return retval;
+            dbg.location(290,14);
+            ANYURI_TOK475=(Token)match(input,ANYURI_TOK,FOLLOW_ANYURI_TOK_in_anyUriBag2884); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            ANYURI_TOK478_tree = 
-            (Object)adaptor.create(ANYURI_TOK478)
+            ANYURI_TOK475_tree = 
+            (Object)adaptor.create(ANYURI_TOK475)
             ;
-            root_0 = (Object)adaptor.becomeRoot(ANYURI_TOK478_tree, root_0);
+            root_0 = (Object)adaptor.becomeRoot(ANYURI_TOK475_tree, root_0);
             }
-            dbg.location(294,16);
-            STRING_CONSTANT_LIST479=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_anyUriBag2807); if (state.failed) return retval;
+            dbg.location(290,16);
+            STRING_CONSTANT_LIST476=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_anyUriBag2887); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STRING_CONSTANT_LIST479_tree = 
-            (Object)adaptor.create(STRING_CONSTANT_LIST479)
+            STRING_CONSTANT_LIST476_tree = 
+            (Object)adaptor.create(STRING_CONSTANT_LIST476)
             ;
-            adaptor.addChild(root_0, STRING_CONSTANT_LIST479_tree);
+            adaptor.addChild(root_0, STRING_CONSTANT_LIST476_tree);
             }
 
             }
@@ -7695,7 +7714,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(296, 1);
+        dbg.location(292, 1);
 
         }
         finally {
@@ -7710,13 +7729,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class dateExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "dateExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:298:1: dateExpr : ( DATE_TOK ^ LPAREN ! stringExpr RPAREN !| dateBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:294:1: dateExpr returns [SomeType o] : ( DATE_TOK ^ LPAREN ! stringExpr RPAREN !| dateBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !);
     public final GrammarParser.dateExpr_return dateExpr() throws RecognitionException {
         GrammarParser.dateExpr_return retval = new GrammarParser.dateExpr_return();
         retval.start = input.LT(1);
@@ -7724,33 +7744,33 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token DATE_TOK480=null;
-        Token LPAREN481=null;
-        Token RPAREN483=null;
-        Token char_literal485=null;
-        Token ONEANDONLY_TOK486=null;
-        Token LPAREN487=null;
-        Token RPAREN488=null;
-        GrammarParser.stringExpr_return stringExpr482 =null;
+        Token DATE_TOK477=null;
+        Token LPAREN478=null;
+        Token RPAREN480=null;
+        Token char_literal482=null;
+        Token ONEANDONLY_TOK483=null;
+        Token LPAREN484=null;
+        Token RPAREN485=null;
+        GrammarParser.stringExpr_return stringExpr479 =null;
 
-        GrammarParser.dateBag_return dateBag484 =null;
+        GrammarParser.dateBag_return dateBag481 =null;
 
 
-        Object DATE_TOK480_tree=null;
-        Object LPAREN481_tree=null;
-        Object RPAREN483_tree=null;
-        Object char_literal485_tree=null;
-        Object ONEANDONLY_TOK486_tree=null;
-        Object LPAREN487_tree=null;
-        Object RPAREN488_tree=null;
+        Object DATE_TOK477_tree=null;
+        Object LPAREN478_tree=null;
+        Object RPAREN480_tree=null;
+        Object char_literal482_tree=null;
+        Object ONEANDONLY_TOK483_tree=null;
+        Object LPAREN484_tree=null;
+        Object RPAREN485_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "dateExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(298, 0);
+        dbg.location(294, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:299:2: ( DATE_TOK ^ LPAREN ! stringExpr RPAREN !| dateBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:295:2: ( DATE_TOK ^ LPAREN ! stringExpr RPAREN !| dateBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
             int alt26=2;
             try { dbg.enterDecision(26, decisionCanBacktrack[26]);
 
@@ -7790,68 +7810,68 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:299:4: DATE_TOK ^ LPAREN ! stringExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:295:4: DATE_TOK ^ LPAREN ! stringExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(299,12);
-                    DATE_TOK480=(Token)match(input,DATE_TOK,FOLLOW_DATE_TOK_in_dateExpr2819); if (state.failed) return retval;
+                    dbg.location(295,12);
+                    DATE_TOK477=(Token)match(input,DATE_TOK,FOLLOW_DATE_TOK_in_dateExpr2903); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    DATE_TOK480_tree = 
-                    (Object)adaptor.create(DATE_TOK480)
+                    DATE_TOK477_tree = 
+                    (Object)adaptor.create(DATE_TOK477)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(DATE_TOK480_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(DATE_TOK477_tree, root_0);
                     }
-                    dbg.location(299,20);
-                    LPAREN481=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_dateExpr2822); if (state.failed) return retval;
-                    dbg.location(299,22);
-                    pushFollow(FOLLOW_stringExpr_in_dateExpr2825);
-                    stringExpr482=stringExpr();
+                    dbg.location(295,20);
+                    LPAREN478=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_dateExpr2906); if (state.failed) return retval;
+                    dbg.location(295,22);
+                    pushFollow(FOLLOW_stringExpr_in_dateExpr2909);
+                    stringExpr479=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr482.getTree());
-                    dbg.location(299,39);
-                    RPAREN483=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_dateExpr2827); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr479.getTree());
+                    dbg.location(295,39);
+                    RPAREN480=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_dateExpr2911); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:300:4: dateBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:296:4: dateBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(300,4);
-                    pushFollow(FOLLOW_dateBag_in_dateExpr2833);
-                    dateBag484=dateBag();
+                    dbg.location(296,4);
+                    pushFollow(FOLLOW_dateBag_in_dateExpr2917);
+                    dateBag481=dateBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateBag484.getTree());
-                    dbg.location(300,12);
-                    char_literal485=(Token)match(input,84,FOLLOW_84_in_dateExpr2835); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateBag481.getTree());
+                    dbg.location(296,12);
+                    char_literal482=(Token)match(input,84,FOLLOW_84_in_dateExpr2919); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal485_tree = 
-                    (Object)adaptor.create(char_literal485)
+                    char_literal482_tree = 
+                    (Object)adaptor.create(char_literal482)
                     ;
-                    adaptor.addChild(root_0, char_literal485_tree);
+                    adaptor.addChild(root_0, char_literal482_tree);
                     }
-                    dbg.location(300,30);
-                    ONEANDONLY_TOK486=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_dateExpr2837); if (state.failed) return retval;
+                    dbg.location(296,30);
+                    ONEANDONLY_TOK483=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_dateExpr2921); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ONEANDONLY_TOK486_tree = 
-                    (Object)adaptor.create(ONEANDONLY_TOK486)
+                    ONEANDONLY_TOK483_tree = 
+                    (Object)adaptor.create(ONEANDONLY_TOK483)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK486_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK483_tree, root_0);
                     }
-                    dbg.location(300,38);
-                    LPAREN487=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_dateExpr2840); if (state.failed) return retval;
-                    dbg.location(300,46);
-                    RPAREN488=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_dateExpr2843); if (state.failed) return retval;
+                    dbg.location(296,38);
+                    LPAREN484=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_dateExpr2924); if (state.failed) return retval;
+                    dbg.location(296,46);
+                    RPAREN485=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_dateExpr2927); if (state.failed) return retval;
 
                     }
                     break;
@@ -7876,7 +7896,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(301, 1);
+        dbg.location(297, 1);
 
         }
         finally {
@@ -7891,13 +7911,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class dateBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "dateBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:302:1: dateBag : DATE_TOK ^ STRING_CONSTANT_LIST ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:298:1: dateBag returns [SomeType o] : DATE_TOK ^ STRING_CONSTANT_LIST ;
     public final GrammarParser.dateBag_return dateBag() throws RecognitionException {
         GrammarParser.dateBag_return retval = new GrammarParser.dateBag_return();
         retval.start = input.LT(1);
@@ -7905,41 +7926,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token DATE_TOK489=null;
-        Token STRING_CONSTANT_LIST490=null;
+        Token DATE_TOK486=null;
+        Token STRING_CONSTANT_LIST487=null;
 
-        Object DATE_TOK489_tree=null;
-        Object STRING_CONSTANT_LIST490_tree=null;
+        Object DATE_TOK486_tree=null;
+        Object STRING_CONSTANT_LIST487_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "dateBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(302, 0);
+        dbg.location(298, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:303:2: ( DATE_TOK ^ STRING_CONSTANT_LIST )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:299:2: ( DATE_TOK ^ STRING_CONSTANT_LIST )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:303:4: DATE_TOK ^ STRING_CONSTANT_LIST
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:299:4: DATE_TOK ^ STRING_CONSTANT_LIST
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(303,12);
-            DATE_TOK489=(Token)match(input,DATE_TOK,FOLLOW_DATE_TOK_in_dateBag2854); if (state.failed) return retval;
+            dbg.location(299,12);
+            DATE_TOK486=(Token)match(input,DATE_TOK,FOLLOW_DATE_TOK_in_dateBag2942); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            DATE_TOK489_tree = 
-            (Object)adaptor.create(DATE_TOK489)
+            DATE_TOK486_tree = 
+            (Object)adaptor.create(DATE_TOK486)
             ;
-            root_0 = (Object)adaptor.becomeRoot(DATE_TOK489_tree, root_0);
+            root_0 = (Object)adaptor.becomeRoot(DATE_TOK486_tree, root_0);
             }
-            dbg.location(303,14);
-            STRING_CONSTANT_LIST490=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_dateBag2857); if (state.failed) return retval;
+            dbg.location(299,14);
+            STRING_CONSTANT_LIST487=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_dateBag2945); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STRING_CONSTANT_LIST490_tree = 
-            (Object)adaptor.create(STRING_CONSTANT_LIST490)
+            STRING_CONSTANT_LIST487_tree = 
+            (Object)adaptor.create(STRING_CONSTANT_LIST487)
             ;
-            adaptor.addChild(root_0, STRING_CONSTANT_LIST490_tree);
+            adaptor.addChild(root_0, STRING_CONSTANT_LIST487_tree);
             }
 
             }
@@ -7963,7 +7984,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(306, 1);
+        dbg.location(302, 1);
 
         }
         finally {
@@ -7978,13 +7999,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class timeExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "timeExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:308:1: timeExpr : ( TIME_TOK ^ LPAREN ! stringExpr RPAREN !| timeBag '.' ONEANDONLY_TOK LPAREN ! RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:304:1: timeExpr returns [SomeType o] : ( TIME_TOK ^ LPAREN ! stringExpr RPAREN !| timeBag '.' ONEANDONLY_TOK LPAREN ! RPAREN !);
     public final GrammarParser.timeExpr_return timeExpr() throws RecognitionException {
         GrammarParser.timeExpr_return retval = new GrammarParser.timeExpr_return();
         retval.start = input.LT(1);
@@ -7992,33 +8014,33 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token TIME_TOK491=null;
-        Token LPAREN492=null;
-        Token RPAREN494=null;
-        Token char_literal496=null;
-        Token ONEANDONLY_TOK497=null;
-        Token LPAREN498=null;
-        Token RPAREN499=null;
-        GrammarParser.stringExpr_return stringExpr493 =null;
+        Token TIME_TOK488=null;
+        Token LPAREN489=null;
+        Token RPAREN491=null;
+        Token char_literal493=null;
+        Token ONEANDONLY_TOK494=null;
+        Token LPAREN495=null;
+        Token RPAREN496=null;
+        GrammarParser.stringExpr_return stringExpr490 =null;
 
-        GrammarParser.timeBag_return timeBag495 =null;
+        GrammarParser.timeBag_return timeBag492 =null;
 
 
-        Object TIME_TOK491_tree=null;
-        Object LPAREN492_tree=null;
-        Object RPAREN494_tree=null;
-        Object char_literal496_tree=null;
-        Object ONEANDONLY_TOK497_tree=null;
-        Object LPAREN498_tree=null;
-        Object RPAREN499_tree=null;
+        Object TIME_TOK488_tree=null;
+        Object LPAREN489_tree=null;
+        Object RPAREN491_tree=null;
+        Object char_literal493_tree=null;
+        Object ONEANDONLY_TOK494_tree=null;
+        Object LPAREN495_tree=null;
+        Object RPAREN496_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "timeExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(308, 0);
+        dbg.location(304, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:309:2: ( TIME_TOK ^ LPAREN ! stringExpr RPAREN !| timeBag '.' ONEANDONLY_TOK LPAREN ! RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:305:2: ( TIME_TOK ^ LPAREN ! stringExpr RPAREN !| timeBag '.' ONEANDONLY_TOK LPAREN ! RPAREN !)
             int alt27=2;
             try { dbg.enterDecision(27, decisionCanBacktrack[27]);
 
@@ -8058,68 +8080,68 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:309:4: TIME_TOK ^ LPAREN ! stringExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:305:4: TIME_TOK ^ LPAREN ! stringExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(309,12);
-                    TIME_TOK491=(Token)match(input,TIME_TOK,FOLLOW_TIME_TOK_in_timeExpr2870); if (state.failed) return retval;
+                    dbg.location(305,12);
+                    TIME_TOK488=(Token)match(input,TIME_TOK,FOLLOW_TIME_TOK_in_timeExpr2962); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    TIME_TOK491_tree = 
-                    (Object)adaptor.create(TIME_TOK491)
+                    TIME_TOK488_tree = 
+                    (Object)adaptor.create(TIME_TOK488)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(TIME_TOK491_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(TIME_TOK488_tree, root_0);
                     }
-                    dbg.location(309,20);
-                    LPAREN492=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_timeExpr2873); if (state.failed) return retval;
-                    dbg.location(309,22);
-                    pushFollow(FOLLOW_stringExpr_in_timeExpr2876);
-                    stringExpr493=stringExpr();
+                    dbg.location(305,20);
+                    LPAREN489=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_timeExpr2965); if (state.failed) return retval;
+                    dbg.location(305,22);
+                    pushFollow(FOLLOW_stringExpr_in_timeExpr2968);
+                    stringExpr490=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr493.getTree());
-                    dbg.location(309,39);
-                    RPAREN494=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_timeExpr2878); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr490.getTree());
+                    dbg.location(305,39);
+                    RPAREN491=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_timeExpr2970); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:310:4: timeBag '.' ONEANDONLY_TOK LPAREN ! RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:306:4: timeBag '.' ONEANDONLY_TOK LPAREN ! RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(310,4);
-                    pushFollow(FOLLOW_timeBag_in_timeExpr2884);
-                    timeBag495=timeBag();
+                    dbg.location(306,4);
+                    pushFollow(FOLLOW_timeBag_in_timeExpr2976);
+                    timeBag492=timeBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeBag495.getTree());
-                    dbg.location(310,12);
-                    char_literal496=(Token)match(input,84,FOLLOW_84_in_timeExpr2886); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeBag492.getTree());
+                    dbg.location(306,12);
+                    char_literal493=(Token)match(input,84,FOLLOW_84_in_timeExpr2978); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal496_tree = 
-                    (Object)adaptor.create(char_literal496)
+                    char_literal493_tree = 
+                    (Object)adaptor.create(char_literal493)
                     ;
-                    adaptor.addChild(root_0, char_literal496_tree);
+                    adaptor.addChild(root_0, char_literal493_tree);
                     }
-                    dbg.location(310,16);
-                    ONEANDONLY_TOK497=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_timeExpr2888); if (state.failed) return retval;
+                    dbg.location(306,16);
+                    ONEANDONLY_TOK494=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_timeExpr2980); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ONEANDONLY_TOK497_tree = 
-                    (Object)adaptor.create(ONEANDONLY_TOK497)
+                    ONEANDONLY_TOK494_tree = 
+                    (Object)adaptor.create(ONEANDONLY_TOK494)
                     ;
-                    adaptor.addChild(root_0, ONEANDONLY_TOK497_tree);
+                    adaptor.addChild(root_0, ONEANDONLY_TOK494_tree);
                     }
-                    dbg.location(310,37);
-                    LPAREN498=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_timeExpr2890); if (state.failed) return retval;
-                    dbg.location(310,45);
-                    RPAREN499=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_timeExpr2893); if (state.failed) return retval;
+                    dbg.location(306,37);
+                    LPAREN495=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_timeExpr2982); if (state.failed) return retval;
+                    dbg.location(306,45);
+                    RPAREN496=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_timeExpr2985); if (state.failed) return retval;
 
                     }
                     break;
@@ -8144,7 +8166,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(311, 1);
+        dbg.location(307, 1);
 
         }
         finally {
@@ -8159,13 +8181,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class timeBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "timeBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:312:1: timeBag : TIME_TOK ^ STRING_CONSTANT_LIST ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:308:1: timeBag returns [SomeType o] : TIME_TOK ^ STRING_CONSTANT_LIST ;
     public final GrammarParser.timeBag_return timeBag() throws RecognitionException {
         GrammarParser.timeBag_return retval = new GrammarParser.timeBag_return();
         retval.start = input.LT(1);
@@ -8173,41 +8196,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token TIME_TOK500=null;
-        Token STRING_CONSTANT_LIST501=null;
+        Token TIME_TOK497=null;
+        Token STRING_CONSTANT_LIST498=null;
 
-        Object TIME_TOK500_tree=null;
-        Object STRING_CONSTANT_LIST501_tree=null;
+        Object TIME_TOK497_tree=null;
+        Object STRING_CONSTANT_LIST498_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "timeBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(312, 0);
+        dbg.location(308, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:313:2: ( TIME_TOK ^ STRING_CONSTANT_LIST )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:309:2: ( TIME_TOK ^ STRING_CONSTANT_LIST )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:313:4: TIME_TOK ^ STRING_CONSTANT_LIST
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:309:4: TIME_TOK ^ STRING_CONSTANT_LIST
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(313,12);
-            TIME_TOK500=(Token)match(input,TIME_TOK,FOLLOW_TIME_TOK_in_timeBag2904); if (state.failed) return retval;
+            dbg.location(309,12);
+            TIME_TOK497=(Token)match(input,TIME_TOK,FOLLOW_TIME_TOK_in_timeBag3000); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            TIME_TOK500_tree = 
-            (Object)adaptor.create(TIME_TOK500)
+            TIME_TOK497_tree = 
+            (Object)adaptor.create(TIME_TOK497)
             ;
-            root_0 = (Object)adaptor.becomeRoot(TIME_TOK500_tree, root_0);
+            root_0 = (Object)adaptor.becomeRoot(TIME_TOK497_tree, root_0);
             }
-            dbg.location(313,14);
-            STRING_CONSTANT_LIST501=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_timeBag2907); if (state.failed) return retval;
+            dbg.location(309,14);
+            STRING_CONSTANT_LIST498=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_timeBag3003); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STRING_CONSTANT_LIST501_tree = 
-            (Object)adaptor.create(STRING_CONSTANT_LIST501)
+            STRING_CONSTANT_LIST498_tree = 
+            (Object)adaptor.create(STRING_CONSTANT_LIST498)
             ;
-            adaptor.addChild(root_0, STRING_CONSTANT_LIST501_tree);
+            adaptor.addChild(root_0, STRING_CONSTANT_LIST498_tree);
             }
 
             }
@@ -8231,7 +8254,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(316, 1);
+        dbg.location(312, 1);
 
         }
         finally {
@@ -8246,13 +8269,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class dateTimeExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "dateTimeExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:318:1: dateTimeExpr : ( DATETIME_TOK ^ LPAREN ! stringExpr RPAREN !| dateTimeBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:314:1: dateTimeExpr returns [SomeType o] : ( DATETIME_TOK ^ LPAREN ! stringExpr RPAREN !| dateTimeBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !);
     public final GrammarParser.dateTimeExpr_return dateTimeExpr() throws RecognitionException {
         GrammarParser.dateTimeExpr_return retval = new GrammarParser.dateTimeExpr_return();
         retval.start = input.LT(1);
@@ -8260,33 +8284,33 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token DATETIME_TOK502=null;
-        Token LPAREN503=null;
-        Token RPAREN505=null;
-        Token char_literal507=null;
-        Token ONEANDONLY_TOK508=null;
-        Token LPAREN509=null;
-        Token RPAREN510=null;
-        GrammarParser.stringExpr_return stringExpr504 =null;
+        Token DATETIME_TOK499=null;
+        Token LPAREN500=null;
+        Token RPAREN502=null;
+        Token char_literal504=null;
+        Token ONEANDONLY_TOK505=null;
+        Token LPAREN506=null;
+        Token RPAREN507=null;
+        GrammarParser.stringExpr_return stringExpr501 =null;
 
-        GrammarParser.dateTimeBag_return dateTimeBag506 =null;
+        GrammarParser.dateTimeBag_return dateTimeBag503 =null;
 
 
-        Object DATETIME_TOK502_tree=null;
-        Object LPAREN503_tree=null;
-        Object RPAREN505_tree=null;
-        Object char_literal507_tree=null;
-        Object ONEANDONLY_TOK508_tree=null;
-        Object LPAREN509_tree=null;
-        Object RPAREN510_tree=null;
+        Object DATETIME_TOK499_tree=null;
+        Object LPAREN500_tree=null;
+        Object RPAREN502_tree=null;
+        Object char_literal504_tree=null;
+        Object ONEANDONLY_TOK505_tree=null;
+        Object LPAREN506_tree=null;
+        Object RPAREN507_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "dateTimeExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(318, 0);
+        dbg.location(314, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:319:2: ( DATETIME_TOK ^ LPAREN ! stringExpr RPAREN !| dateTimeBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:315:2: ( DATETIME_TOK ^ LPAREN ! stringExpr RPAREN !| dateTimeBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
             int alt28=2;
             try { dbg.enterDecision(28, decisionCanBacktrack[28]);
 
@@ -8326,68 +8350,68 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:319:4: DATETIME_TOK ^ LPAREN ! stringExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:315:4: DATETIME_TOK ^ LPAREN ! stringExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(319,16);
-                    DATETIME_TOK502=(Token)match(input,DATETIME_TOK,FOLLOW_DATETIME_TOK_in_dateTimeExpr2920); if (state.failed) return retval;
+                    dbg.location(315,16);
+                    DATETIME_TOK499=(Token)match(input,DATETIME_TOK,FOLLOW_DATETIME_TOK_in_dateTimeExpr3020); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    DATETIME_TOK502_tree = 
-                    (Object)adaptor.create(DATETIME_TOK502)
+                    DATETIME_TOK499_tree = 
+                    (Object)adaptor.create(DATETIME_TOK499)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(DATETIME_TOK502_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(DATETIME_TOK499_tree, root_0);
                     }
-                    dbg.location(319,24);
-                    LPAREN503=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_dateTimeExpr2923); if (state.failed) return retval;
-                    dbg.location(319,26);
-                    pushFollow(FOLLOW_stringExpr_in_dateTimeExpr2926);
-                    stringExpr504=stringExpr();
+                    dbg.location(315,24);
+                    LPAREN500=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_dateTimeExpr3023); if (state.failed) return retval;
+                    dbg.location(315,26);
+                    pushFollow(FOLLOW_stringExpr_in_dateTimeExpr3026);
+                    stringExpr501=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr504.getTree());
-                    dbg.location(319,43);
-                    RPAREN505=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_dateTimeExpr2928); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr501.getTree());
+                    dbg.location(315,43);
+                    RPAREN502=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_dateTimeExpr3028); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:320:4: dateTimeBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:316:4: dateTimeBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(320,4);
-                    pushFollow(FOLLOW_dateTimeBag_in_dateTimeExpr2934);
-                    dateTimeBag506=dateTimeBag();
+                    dbg.location(316,4);
+                    pushFollow(FOLLOW_dateTimeBag_in_dateTimeExpr3034);
+                    dateTimeBag503=dateTimeBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeBag506.getTree());
-                    dbg.location(320,16);
-                    char_literal507=(Token)match(input,84,FOLLOW_84_in_dateTimeExpr2936); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeBag503.getTree());
+                    dbg.location(316,16);
+                    char_literal504=(Token)match(input,84,FOLLOW_84_in_dateTimeExpr3036); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal507_tree = 
-                    (Object)adaptor.create(char_literal507)
+                    char_literal504_tree = 
+                    (Object)adaptor.create(char_literal504)
                     ;
-                    adaptor.addChild(root_0, char_literal507_tree);
+                    adaptor.addChild(root_0, char_literal504_tree);
                     }
-                    dbg.location(320,34);
-                    ONEANDONLY_TOK508=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_dateTimeExpr2938); if (state.failed) return retval;
+                    dbg.location(316,34);
+                    ONEANDONLY_TOK505=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_dateTimeExpr3038); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ONEANDONLY_TOK508_tree = 
-                    (Object)adaptor.create(ONEANDONLY_TOK508)
+                    ONEANDONLY_TOK505_tree = 
+                    (Object)adaptor.create(ONEANDONLY_TOK505)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK508_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK505_tree, root_0);
                     }
-                    dbg.location(320,42);
-                    LPAREN509=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_dateTimeExpr2941); if (state.failed) return retval;
-                    dbg.location(320,50);
-                    RPAREN510=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_dateTimeExpr2944); if (state.failed) return retval;
+                    dbg.location(316,42);
+                    LPAREN506=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_dateTimeExpr3041); if (state.failed) return retval;
+                    dbg.location(316,50);
+                    RPAREN507=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_dateTimeExpr3044); if (state.failed) return retval;
 
                     }
                     break;
@@ -8412,7 +8436,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(321, 1);
+        dbg.location(317, 1);
 
         }
         finally {
@@ -8427,13 +8451,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class dateTimeBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "dateTimeBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:322:1: dateTimeBag : DATETIME_TOK ^ STRING_CONSTANT_LIST ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:318:1: dateTimeBag returns [SomeType o] : DATETIME_TOK ^ STRING_CONSTANT_LIST ;
     public final GrammarParser.dateTimeBag_return dateTimeBag() throws RecognitionException {
         GrammarParser.dateTimeBag_return retval = new GrammarParser.dateTimeBag_return();
         retval.start = input.LT(1);
@@ -8441,41 +8466,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token DATETIME_TOK511=null;
-        Token STRING_CONSTANT_LIST512=null;
+        Token DATETIME_TOK508=null;
+        Token STRING_CONSTANT_LIST509=null;
 
-        Object DATETIME_TOK511_tree=null;
-        Object STRING_CONSTANT_LIST512_tree=null;
+        Object DATETIME_TOK508_tree=null;
+        Object STRING_CONSTANT_LIST509_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "dateTimeBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(322, 0);
+        dbg.location(318, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:323:2: ( DATETIME_TOK ^ STRING_CONSTANT_LIST )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:319:2: ( DATETIME_TOK ^ STRING_CONSTANT_LIST )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:323:4: DATETIME_TOK ^ STRING_CONSTANT_LIST
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:319:4: DATETIME_TOK ^ STRING_CONSTANT_LIST
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(323,16);
-            DATETIME_TOK511=(Token)match(input,DATETIME_TOK,FOLLOW_DATETIME_TOK_in_dateTimeBag2955); if (state.failed) return retval;
+            dbg.location(319,16);
+            DATETIME_TOK508=(Token)match(input,DATETIME_TOK,FOLLOW_DATETIME_TOK_in_dateTimeBag3059); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            DATETIME_TOK511_tree = 
-            (Object)adaptor.create(DATETIME_TOK511)
+            DATETIME_TOK508_tree = 
+            (Object)adaptor.create(DATETIME_TOK508)
             ;
-            root_0 = (Object)adaptor.becomeRoot(DATETIME_TOK511_tree, root_0);
+            root_0 = (Object)adaptor.becomeRoot(DATETIME_TOK508_tree, root_0);
             }
-            dbg.location(323,18);
-            STRING_CONSTANT_LIST512=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_dateTimeBag2958); if (state.failed) return retval;
+            dbg.location(319,18);
+            STRING_CONSTANT_LIST509=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_dateTimeBag3062); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STRING_CONSTANT_LIST512_tree = 
-            (Object)adaptor.create(STRING_CONSTANT_LIST512)
+            STRING_CONSTANT_LIST509_tree = 
+            (Object)adaptor.create(STRING_CONSTANT_LIST509)
             ;
-            adaptor.addChild(root_0, STRING_CONSTANT_LIST512_tree);
+            adaptor.addChild(root_0, STRING_CONSTANT_LIST509_tree);
             }
 
             }
@@ -8499,7 +8524,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(326, 1);
+        dbg.location(322, 1);
 
         }
         finally {
@@ -8514,13 +8539,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class base64BinaryExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "base64BinaryExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:328:1: base64BinaryExpr : ( BASE64BINARY_TOK ^ LPAREN ! stringExpr RPAREN !| base64BinaryBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:324:1: base64BinaryExpr returns [SomeType o] : ( BASE64BINARY_TOK ^ LPAREN ! stringExpr RPAREN !| base64BinaryBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !);
     public final GrammarParser.base64BinaryExpr_return base64BinaryExpr() throws RecognitionException {
         GrammarParser.base64BinaryExpr_return retval = new GrammarParser.base64BinaryExpr_return();
         retval.start = input.LT(1);
@@ -8528,33 +8554,33 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token BASE64BINARY_TOK513=null;
-        Token LPAREN514=null;
-        Token RPAREN516=null;
-        Token char_literal518=null;
-        Token ONEANDONLY_TOK519=null;
-        Token LPAREN520=null;
-        Token RPAREN521=null;
-        GrammarParser.stringExpr_return stringExpr515 =null;
+        Token BASE64BINARY_TOK510=null;
+        Token LPAREN511=null;
+        Token RPAREN513=null;
+        Token char_literal515=null;
+        Token ONEANDONLY_TOK516=null;
+        Token LPAREN517=null;
+        Token RPAREN518=null;
+        GrammarParser.stringExpr_return stringExpr512 =null;
 
-        GrammarParser.base64BinaryBag_return base64BinaryBag517 =null;
+        GrammarParser.base64BinaryBag_return base64BinaryBag514 =null;
 
 
-        Object BASE64BINARY_TOK513_tree=null;
-        Object LPAREN514_tree=null;
-        Object RPAREN516_tree=null;
-        Object char_literal518_tree=null;
-        Object ONEANDONLY_TOK519_tree=null;
-        Object LPAREN520_tree=null;
-        Object RPAREN521_tree=null;
+        Object BASE64BINARY_TOK510_tree=null;
+        Object LPAREN511_tree=null;
+        Object RPAREN513_tree=null;
+        Object char_literal515_tree=null;
+        Object ONEANDONLY_TOK516_tree=null;
+        Object LPAREN517_tree=null;
+        Object RPAREN518_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "base64BinaryExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(328, 0);
+        dbg.location(324, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:329:2: ( BASE64BINARY_TOK ^ LPAREN ! stringExpr RPAREN !| base64BinaryBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:325:2: ( BASE64BINARY_TOK ^ LPAREN ! stringExpr RPAREN !| base64BinaryBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
             int alt29=2;
             try { dbg.enterDecision(29, decisionCanBacktrack[29]);
 
@@ -8594,68 +8620,68 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:329:4: BASE64BINARY_TOK ^ LPAREN ! stringExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:325:4: BASE64BINARY_TOK ^ LPAREN ! stringExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(329,20);
-                    BASE64BINARY_TOK513=(Token)match(input,BASE64BINARY_TOK,FOLLOW_BASE64BINARY_TOK_in_base64BinaryExpr2971); if (state.failed) return retval;
+                    dbg.location(325,20);
+                    BASE64BINARY_TOK510=(Token)match(input,BASE64BINARY_TOK,FOLLOW_BASE64BINARY_TOK_in_base64BinaryExpr3079); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    BASE64BINARY_TOK513_tree = 
-                    (Object)adaptor.create(BASE64BINARY_TOK513)
+                    BASE64BINARY_TOK510_tree = 
+                    (Object)adaptor.create(BASE64BINARY_TOK510)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(BASE64BINARY_TOK513_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(BASE64BINARY_TOK510_tree, root_0);
                     }
-                    dbg.location(329,28);
-                    LPAREN514=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_base64BinaryExpr2974); if (state.failed) return retval;
-                    dbg.location(329,30);
-                    pushFollow(FOLLOW_stringExpr_in_base64BinaryExpr2977);
-                    stringExpr515=stringExpr();
+                    dbg.location(325,28);
+                    LPAREN511=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_base64BinaryExpr3082); if (state.failed) return retval;
+                    dbg.location(325,30);
+                    pushFollow(FOLLOW_stringExpr_in_base64BinaryExpr3085);
+                    stringExpr512=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr515.getTree());
-                    dbg.location(329,47);
-                    RPAREN516=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_base64BinaryExpr2979); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr512.getTree());
+                    dbg.location(325,47);
+                    RPAREN513=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_base64BinaryExpr3087); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:330:4: base64BinaryBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:326:4: base64BinaryBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(330,4);
-                    pushFollow(FOLLOW_base64BinaryBag_in_base64BinaryExpr2985);
-                    base64BinaryBag517=base64BinaryBag();
+                    dbg.location(326,4);
+                    pushFollow(FOLLOW_base64BinaryBag_in_base64BinaryExpr3093);
+                    base64BinaryBag514=base64BinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag517.getTree());
-                    dbg.location(330,20);
-                    char_literal518=(Token)match(input,84,FOLLOW_84_in_base64BinaryExpr2987); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag514.getTree());
+                    dbg.location(326,20);
+                    char_literal515=(Token)match(input,84,FOLLOW_84_in_base64BinaryExpr3095); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal518_tree = 
-                    (Object)adaptor.create(char_literal518)
+                    char_literal515_tree = 
+                    (Object)adaptor.create(char_literal515)
                     ;
-                    adaptor.addChild(root_0, char_literal518_tree);
+                    adaptor.addChild(root_0, char_literal515_tree);
                     }
-                    dbg.location(330,38);
-                    ONEANDONLY_TOK519=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_base64BinaryExpr2989); if (state.failed) return retval;
+                    dbg.location(326,38);
+                    ONEANDONLY_TOK516=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_base64BinaryExpr3097); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ONEANDONLY_TOK519_tree = 
-                    (Object)adaptor.create(ONEANDONLY_TOK519)
+                    ONEANDONLY_TOK516_tree = 
+                    (Object)adaptor.create(ONEANDONLY_TOK516)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK519_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK516_tree, root_0);
                     }
-                    dbg.location(330,46);
-                    LPAREN520=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_base64BinaryExpr2992); if (state.failed) return retval;
-                    dbg.location(330,54);
-                    RPAREN521=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_base64BinaryExpr2995); if (state.failed) return retval;
+                    dbg.location(326,46);
+                    LPAREN517=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_base64BinaryExpr3100); if (state.failed) return retval;
+                    dbg.location(326,54);
+                    RPAREN518=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_base64BinaryExpr3103); if (state.failed) return retval;
 
                     }
                     break;
@@ -8680,7 +8706,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(331, 1);
+        dbg.location(327, 1);
 
         }
         finally {
@@ -8695,13 +8721,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class base64BinaryBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "base64BinaryBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:332:1: base64BinaryBag : BASE64BINARY_TOK ^ STRING_CONSTANT_LIST ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:328:1: base64BinaryBag returns [SomeType o] : BASE64BINARY_TOK ^ STRING_CONSTANT_LIST ;
     public final GrammarParser.base64BinaryBag_return base64BinaryBag() throws RecognitionException {
         GrammarParser.base64BinaryBag_return retval = new GrammarParser.base64BinaryBag_return();
         retval.start = input.LT(1);
@@ -8709,41 +8736,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token BASE64BINARY_TOK522=null;
-        Token STRING_CONSTANT_LIST523=null;
+        Token BASE64BINARY_TOK519=null;
+        Token STRING_CONSTANT_LIST520=null;
 
-        Object BASE64BINARY_TOK522_tree=null;
-        Object STRING_CONSTANT_LIST523_tree=null;
+        Object BASE64BINARY_TOK519_tree=null;
+        Object STRING_CONSTANT_LIST520_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "base64BinaryBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(332, 0);
+        dbg.location(328, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:333:2: ( BASE64BINARY_TOK ^ STRING_CONSTANT_LIST )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:329:2: ( BASE64BINARY_TOK ^ STRING_CONSTANT_LIST )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:333:4: BASE64BINARY_TOK ^ STRING_CONSTANT_LIST
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:329:4: BASE64BINARY_TOK ^ STRING_CONSTANT_LIST
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(333,20);
-            BASE64BINARY_TOK522=(Token)match(input,BASE64BINARY_TOK,FOLLOW_BASE64BINARY_TOK_in_base64BinaryBag3006); if (state.failed) return retval;
+            dbg.location(329,20);
+            BASE64BINARY_TOK519=(Token)match(input,BASE64BINARY_TOK,FOLLOW_BASE64BINARY_TOK_in_base64BinaryBag3118); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            BASE64BINARY_TOK522_tree = 
-            (Object)adaptor.create(BASE64BINARY_TOK522)
+            BASE64BINARY_TOK519_tree = 
+            (Object)adaptor.create(BASE64BINARY_TOK519)
             ;
-            root_0 = (Object)adaptor.becomeRoot(BASE64BINARY_TOK522_tree, root_0);
+            root_0 = (Object)adaptor.becomeRoot(BASE64BINARY_TOK519_tree, root_0);
             }
-            dbg.location(333,22);
-            STRING_CONSTANT_LIST523=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_base64BinaryBag3009); if (state.failed) return retval;
+            dbg.location(329,22);
+            STRING_CONSTANT_LIST520=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_base64BinaryBag3121); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STRING_CONSTANT_LIST523_tree = 
-            (Object)adaptor.create(STRING_CONSTANT_LIST523)
+            STRING_CONSTANT_LIST520_tree = 
+            (Object)adaptor.create(STRING_CONSTANT_LIST520)
             ;
-            adaptor.addChild(root_0, STRING_CONSTANT_LIST523_tree);
+            adaptor.addChild(root_0, STRING_CONSTANT_LIST520_tree);
             }
 
             }
@@ -8767,7 +8794,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(337, 1);
+        dbg.location(333, 1);
 
         }
         finally {
@@ -8782,13 +8809,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class dayTimeDurationExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "dayTimeDurationExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:339:1: dayTimeDurationExpr : ( DAYTIMEDURATION_TOK ^ LPAREN ! stringExpr RPAREN !| dayTimeDurationBag ^ '.' ONEANDONLY_TOK LPAREN ! RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:335:1: dayTimeDurationExpr returns [SomeType o] : ( DAYTIMEDURATION_TOK ^ LPAREN ! stringExpr RPAREN !| dayTimeDurationBag ^ '.' ONEANDONLY_TOK LPAREN ! RPAREN !);
     public final GrammarParser.dayTimeDurationExpr_return dayTimeDurationExpr() throws RecognitionException {
         GrammarParser.dayTimeDurationExpr_return retval = new GrammarParser.dayTimeDurationExpr_return();
         retval.start = input.LT(1);
@@ -8796,33 +8824,33 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token DAYTIMEDURATION_TOK524=null;
-        Token LPAREN525=null;
-        Token RPAREN527=null;
-        Token char_literal529=null;
-        Token ONEANDONLY_TOK530=null;
-        Token LPAREN531=null;
-        Token RPAREN532=null;
-        GrammarParser.stringExpr_return stringExpr526 =null;
+        Token DAYTIMEDURATION_TOK521=null;
+        Token LPAREN522=null;
+        Token RPAREN524=null;
+        Token char_literal526=null;
+        Token ONEANDONLY_TOK527=null;
+        Token LPAREN528=null;
+        Token RPAREN529=null;
+        GrammarParser.stringExpr_return stringExpr523 =null;
 
-        GrammarParser.dayTimeDurationBag_return dayTimeDurationBag528 =null;
+        GrammarParser.dayTimeDurationBag_return dayTimeDurationBag525 =null;
 
 
-        Object DAYTIMEDURATION_TOK524_tree=null;
-        Object LPAREN525_tree=null;
-        Object RPAREN527_tree=null;
-        Object char_literal529_tree=null;
-        Object ONEANDONLY_TOK530_tree=null;
-        Object LPAREN531_tree=null;
-        Object RPAREN532_tree=null;
+        Object DAYTIMEDURATION_TOK521_tree=null;
+        Object LPAREN522_tree=null;
+        Object RPAREN524_tree=null;
+        Object char_literal526_tree=null;
+        Object ONEANDONLY_TOK527_tree=null;
+        Object LPAREN528_tree=null;
+        Object RPAREN529_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "dayTimeDurationExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(339, 0);
+        dbg.location(335, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:340:2: ( DAYTIMEDURATION_TOK ^ LPAREN ! stringExpr RPAREN !| dayTimeDurationBag ^ '.' ONEANDONLY_TOK LPAREN ! RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:336:2: ( DAYTIMEDURATION_TOK ^ LPAREN ! stringExpr RPAREN !| dayTimeDurationBag ^ '.' ONEANDONLY_TOK LPAREN ! RPAREN !)
             int alt30=2;
             try { dbg.enterDecision(30, decisionCanBacktrack[30]);
 
@@ -8862,68 +8890,68 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:340:4: DAYTIMEDURATION_TOK ^ LPAREN ! stringExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:336:4: DAYTIMEDURATION_TOK ^ LPAREN ! stringExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(340,23);
-                    DAYTIMEDURATION_TOK524=(Token)match(input,DAYTIMEDURATION_TOK,FOLLOW_DAYTIMEDURATION_TOK_in_dayTimeDurationExpr3023); if (state.failed) return retval;
+                    dbg.location(336,23);
+                    DAYTIMEDURATION_TOK521=(Token)match(input,DAYTIMEDURATION_TOK,FOLLOW_DAYTIMEDURATION_TOK_in_dayTimeDurationExpr3139); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    DAYTIMEDURATION_TOK524_tree = 
-                    (Object)adaptor.create(DAYTIMEDURATION_TOK524)
+                    DAYTIMEDURATION_TOK521_tree = 
+                    (Object)adaptor.create(DAYTIMEDURATION_TOK521)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(DAYTIMEDURATION_TOK524_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(DAYTIMEDURATION_TOK521_tree, root_0);
                     }
-                    dbg.location(340,31);
-                    LPAREN525=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_dayTimeDurationExpr3026); if (state.failed) return retval;
-                    dbg.location(340,33);
-                    pushFollow(FOLLOW_stringExpr_in_dayTimeDurationExpr3029);
-                    stringExpr526=stringExpr();
+                    dbg.location(336,31);
+                    LPAREN522=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_dayTimeDurationExpr3142); if (state.failed) return retval;
+                    dbg.location(336,33);
+                    pushFollow(FOLLOW_stringExpr_in_dayTimeDurationExpr3145);
+                    stringExpr523=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr526.getTree());
-                    dbg.location(340,50);
-                    RPAREN527=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_dayTimeDurationExpr3031); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr523.getTree());
+                    dbg.location(336,50);
+                    RPAREN524=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_dayTimeDurationExpr3147); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:341:4: dayTimeDurationBag ^ '.' ONEANDONLY_TOK LPAREN ! RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:337:4: dayTimeDurationBag ^ '.' ONEANDONLY_TOK LPAREN ! RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(341,22);
-                    pushFollow(FOLLOW_dayTimeDurationBag_in_dayTimeDurationExpr3037);
-                    dayTimeDurationBag528=dayTimeDurationBag();
+                    dbg.location(337,22);
+                    pushFollow(FOLLOW_dayTimeDurationBag_in_dayTimeDurationExpr3153);
+                    dayTimeDurationBag525=dayTimeDurationBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(dayTimeDurationBag528.getTree(), root_0);
-                    dbg.location(341,24);
-                    char_literal529=(Token)match(input,84,FOLLOW_84_in_dayTimeDurationExpr3040); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(dayTimeDurationBag525.getTree(), root_0);
+                    dbg.location(337,24);
+                    char_literal526=(Token)match(input,84,FOLLOW_84_in_dayTimeDurationExpr3156); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal529_tree = 
-                    (Object)adaptor.create(char_literal529)
+                    char_literal526_tree = 
+                    (Object)adaptor.create(char_literal526)
                     ;
-                    adaptor.addChild(root_0, char_literal529_tree);
+                    adaptor.addChild(root_0, char_literal526_tree);
                     }
-                    dbg.location(341,28);
-                    ONEANDONLY_TOK530=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_dayTimeDurationExpr3042); if (state.failed) return retval;
+                    dbg.location(337,28);
+                    ONEANDONLY_TOK527=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_dayTimeDurationExpr3158); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ONEANDONLY_TOK530_tree = 
-                    (Object)adaptor.create(ONEANDONLY_TOK530)
+                    ONEANDONLY_TOK527_tree = 
+                    (Object)adaptor.create(ONEANDONLY_TOK527)
                     ;
-                    adaptor.addChild(root_0, ONEANDONLY_TOK530_tree);
+                    adaptor.addChild(root_0, ONEANDONLY_TOK527_tree);
                     }
-                    dbg.location(341,49);
-                    LPAREN531=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_dayTimeDurationExpr3044); if (state.failed) return retval;
-                    dbg.location(341,57);
-                    RPAREN532=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_dayTimeDurationExpr3047); if (state.failed) return retval;
+                    dbg.location(337,49);
+                    LPAREN528=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_dayTimeDurationExpr3160); if (state.failed) return retval;
+                    dbg.location(337,57);
+                    RPAREN529=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_dayTimeDurationExpr3163); if (state.failed) return retval;
 
                     }
                     break;
@@ -8948,7 +8976,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(342, 1);
+        dbg.location(338, 1);
 
         }
         finally {
@@ -8963,13 +8991,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class dayTimeDurationBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "dayTimeDurationBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:343:1: dayTimeDurationBag : DAYTIMEDURATION_TOK ^ STRING_CONSTANT_LIST ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:339:1: dayTimeDurationBag returns [SomeType o] : DAYTIMEDURATION_TOK ^ STRING_CONSTANT_LIST ;
     public final GrammarParser.dayTimeDurationBag_return dayTimeDurationBag() throws RecognitionException {
         GrammarParser.dayTimeDurationBag_return retval = new GrammarParser.dayTimeDurationBag_return();
         retval.start = input.LT(1);
@@ -8977,41 +9006,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token DAYTIMEDURATION_TOK533=null;
-        Token STRING_CONSTANT_LIST534=null;
+        Token DAYTIMEDURATION_TOK530=null;
+        Token STRING_CONSTANT_LIST531=null;
 
-        Object DAYTIMEDURATION_TOK533_tree=null;
-        Object STRING_CONSTANT_LIST534_tree=null;
+        Object DAYTIMEDURATION_TOK530_tree=null;
+        Object STRING_CONSTANT_LIST531_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "dayTimeDurationBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(343, 0);
+        dbg.location(339, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:344:2: ( DAYTIMEDURATION_TOK ^ STRING_CONSTANT_LIST )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:340:2: ( DAYTIMEDURATION_TOK ^ STRING_CONSTANT_LIST )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:344:4: DAYTIMEDURATION_TOK ^ STRING_CONSTANT_LIST
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:340:4: DAYTIMEDURATION_TOK ^ STRING_CONSTANT_LIST
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(344,23);
-            DAYTIMEDURATION_TOK533=(Token)match(input,DAYTIMEDURATION_TOK,FOLLOW_DAYTIMEDURATION_TOK_in_dayTimeDurationBag3058); if (state.failed) return retval;
+            dbg.location(340,23);
+            DAYTIMEDURATION_TOK530=(Token)match(input,DAYTIMEDURATION_TOK,FOLLOW_DAYTIMEDURATION_TOK_in_dayTimeDurationBag3178); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            DAYTIMEDURATION_TOK533_tree = 
-            (Object)adaptor.create(DAYTIMEDURATION_TOK533)
+            DAYTIMEDURATION_TOK530_tree = 
+            (Object)adaptor.create(DAYTIMEDURATION_TOK530)
             ;
-            root_0 = (Object)adaptor.becomeRoot(DAYTIMEDURATION_TOK533_tree, root_0);
+            root_0 = (Object)adaptor.becomeRoot(DAYTIMEDURATION_TOK530_tree, root_0);
             }
-            dbg.location(344,25);
-            STRING_CONSTANT_LIST534=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_dayTimeDurationBag3061); if (state.failed) return retval;
+            dbg.location(340,25);
+            STRING_CONSTANT_LIST531=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_dayTimeDurationBag3181); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STRING_CONSTANT_LIST534_tree = 
-            (Object)adaptor.create(STRING_CONSTANT_LIST534)
+            STRING_CONSTANT_LIST531_tree = 
+            (Object)adaptor.create(STRING_CONSTANT_LIST531)
             ;
-            adaptor.addChild(root_0, STRING_CONSTANT_LIST534_tree);
+            adaptor.addChild(root_0, STRING_CONSTANT_LIST531_tree);
             }
 
             }
@@ -9035,7 +9064,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(347, 1);
+        dbg.location(343, 1);
 
         }
         finally {
@@ -9050,13 +9079,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class yearMonthDurationExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "yearMonthDurationExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:349:1: yearMonthDurationExpr : ( YEARMONTHDURATION_TOK ^ LPAREN ! stringExpr RPAREN !| yearMonthDurationBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:345:1: yearMonthDurationExpr returns [SomeType o] : ( YEARMONTHDURATION_TOK ^ LPAREN ! stringExpr RPAREN !| yearMonthDurationBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !);
     public final GrammarParser.yearMonthDurationExpr_return yearMonthDurationExpr() throws RecognitionException {
         GrammarParser.yearMonthDurationExpr_return retval = new GrammarParser.yearMonthDurationExpr_return();
         retval.start = input.LT(1);
@@ -9064,33 +9094,33 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token YEARMONTHDURATION_TOK535=null;
-        Token LPAREN536=null;
-        Token RPAREN538=null;
-        Token char_literal540=null;
-        Token ONEANDONLY_TOK541=null;
-        Token LPAREN542=null;
-        Token RPAREN543=null;
-        GrammarParser.stringExpr_return stringExpr537 =null;
+        Token YEARMONTHDURATION_TOK532=null;
+        Token LPAREN533=null;
+        Token RPAREN535=null;
+        Token char_literal537=null;
+        Token ONEANDONLY_TOK538=null;
+        Token LPAREN539=null;
+        Token RPAREN540=null;
+        GrammarParser.stringExpr_return stringExpr534 =null;
 
-        GrammarParser.yearMonthDurationBag_return yearMonthDurationBag539 =null;
+        GrammarParser.yearMonthDurationBag_return yearMonthDurationBag536 =null;
 
 
-        Object YEARMONTHDURATION_TOK535_tree=null;
-        Object LPAREN536_tree=null;
-        Object RPAREN538_tree=null;
-        Object char_literal540_tree=null;
-        Object ONEANDONLY_TOK541_tree=null;
-        Object LPAREN542_tree=null;
-        Object RPAREN543_tree=null;
+        Object YEARMONTHDURATION_TOK532_tree=null;
+        Object LPAREN533_tree=null;
+        Object RPAREN535_tree=null;
+        Object char_literal537_tree=null;
+        Object ONEANDONLY_TOK538_tree=null;
+        Object LPAREN539_tree=null;
+        Object RPAREN540_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "yearMonthDurationExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(349, 0);
+        dbg.location(345, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:350:2: ( YEARMONTHDURATION_TOK ^ LPAREN ! stringExpr RPAREN !| yearMonthDurationBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:346:2: ( YEARMONTHDURATION_TOK ^ LPAREN ! stringExpr RPAREN !| yearMonthDurationBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
             int alt31=2;
             try { dbg.enterDecision(31, decisionCanBacktrack[31]);
 
@@ -9130,68 +9160,68 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:350:4: YEARMONTHDURATION_TOK ^ LPAREN ! stringExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:346:4: YEARMONTHDURATION_TOK ^ LPAREN ! stringExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(350,25);
-                    YEARMONTHDURATION_TOK535=(Token)match(input,YEARMONTHDURATION_TOK,FOLLOW_YEARMONTHDURATION_TOK_in_yearMonthDurationExpr3074); if (state.failed) return retval;
+                    dbg.location(346,25);
+                    YEARMONTHDURATION_TOK532=(Token)match(input,YEARMONTHDURATION_TOK,FOLLOW_YEARMONTHDURATION_TOK_in_yearMonthDurationExpr3198); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    YEARMONTHDURATION_TOK535_tree = 
-                    (Object)adaptor.create(YEARMONTHDURATION_TOK535)
+                    YEARMONTHDURATION_TOK532_tree = 
+                    (Object)adaptor.create(YEARMONTHDURATION_TOK532)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(YEARMONTHDURATION_TOK535_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(YEARMONTHDURATION_TOK532_tree, root_0);
                     }
-                    dbg.location(350,33);
-                    LPAREN536=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_yearMonthDurationExpr3077); if (state.failed) return retval;
-                    dbg.location(350,35);
-                    pushFollow(FOLLOW_stringExpr_in_yearMonthDurationExpr3080);
-                    stringExpr537=stringExpr();
+                    dbg.location(346,33);
+                    LPAREN533=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_yearMonthDurationExpr3201); if (state.failed) return retval;
+                    dbg.location(346,35);
+                    pushFollow(FOLLOW_stringExpr_in_yearMonthDurationExpr3204);
+                    stringExpr534=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr537.getTree());
-                    dbg.location(350,52);
-                    RPAREN538=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_yearMonthDurationExpr3082); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr534.getTree());
+                    dbg.location(346,52);
+                    RPAREN535=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_yearMonthDurationExpr3206); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:351:4: yearMonthDurationBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:347:4: yearMonthDurationBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(351,4);
-                    pushFollow(FOLLOW_yearMonthDurationBag_in_yearMonthDurationExpr3088);
-                    yearMonthDurationBag539=yearMonthDurationBag();
+                    dbg.location(347,4);
+                    pushFollow(FOLLOW_yearMonthDurationBag_in_yearMonthDurationExpr3212);
+                    yearMonthDurationBag536=yearMonthDurationBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationBag539.getTree());
-                    dbg.location(351,25);
-                    char_literal540=(Token)match(input,84,FOLLOW_84_in_yearMonthDurationExpr3090); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationBag536.getTree());
+                    dbg.location(347,25);
+                    char_literal537=(Token)match(input,84,FOLLOW_84_in_yearMonthDurationExpr3214); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal540_tree = 
-                    (Object)adaptor.create(char_literal540)
+                    char_literal537_tree = 
+                    (Object)adaptor.create(char_literal537)
                     ;
-                    adaptor.addChild(root_0, char_literal540_tree);
+                    adaptor.addChild(root_0, char_literal537_tree);
                     }
-                    dbg.location(351,43);
-                    ONEANDONLY_TOK541=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_yearMonthDurationExpr3092); if (state.failed) return retval;
+                    dbg.location(347,43);
+                    ONEANDONLY_TOK538=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_yearMonthDurationExpr3216); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ONEANDONLY_TOK541_tree = 
-                    (Object)adaptor.create(ONEANDONLY_TOK541)
+                    ONEANDONLY_TOK538_tree = 
+                    (Object)adaptor.create(ONEANDONLY_TOK538)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK541_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK538_tree, root_0);
                     }
-                    dbg.location(351,51);
-                    LPAREN542=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_yearMonthDurationExpr3095); if (state.failed) return retval;
-                    dbg.location(351,59);
-                    RPAREN543=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_yearMonthDurationExpr3098); if (state.failed) return retval;
+                    dbg.location(347,51);
+                    LPAREN539=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_yearMonthDurationExpr3219); if (state.failed) return retval;
+                    dbg.location(347,59);
+                    RPAREN540=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_yearMonthDurationExpr3222); if (state.failed) return retval;
 
                     }
                     break;
@@ -9216,7 +9246,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(352, 1);
+        dbg.location(348, 1);
 
         }
         finally {
@@ -9231,13 +9261,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class yearMonthDurationBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "yearMonthDurationBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:353:1: yearMonthDurationBag : YEARMONTHDURATION_TOK ^ STRING_CONSTANT_LIST ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:349:1: yearMonthDurationBag returns [SomeType o] : YEARMONTHDURATION_TOK ^ STRING_CONSTANT_LIST ;
     public final GrammarParser.yearMonthDurationBag_return yearMonthDurationBag() throws RecognitionException {
         GrammarParser.yearMonthDurationBag_return retval = new GrammarParser.yearMonthDurationBag_return();
         retval.start = input.LT(1);
@@ -9245,41 +9276,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token YEARMONTHDURATION_TOK544=null;
-        Token STRING_CONSTANT_LIST545=null;
+        Token YEARMONTHDURATION_TOK541=null;
+        Token STRING_CONSTANT_LIST542=null;
 
-        Object YEARMONTHDURATION_TOK544_tree=null;
-        Object STRING_CONSTANT_LIST545_tree=null;
+        Object YEARMONTHDURATION_TOK541_tree=null;
+        Object STRING_CONSTANT_LIST542_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "yearMonthDurationBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(353, 0);
+        dbg.location(349, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:354:2: ( YEARMONTHDURATION_TOK ^ STRING_CONSTANT_LIST )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:350:2: ( YEARMONTHDURATION_TOK ^ STRING_CONSTANT_LIST )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:354:4: YEARMONTHDURATION_TOK ^ STRING_CONSTANT_LIST
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:350:4: YEARMONTHDURATION_TOK ^ STRING_CONSTANT_LIST
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(354,25);
-            YEARMONTHDURATION_TOK544=(Token)match(input,YEARMONTHDURATION_TOK,FOLLOW_YEARMONTHDURATION_TOK_in_yearMonthDurationBag3109); if (state.failed) return retval;
+            dbg.location(350,25);
+            YEARMONTHDURATION_TOK541=(Token)match(input,YEARMONTHDURATION_TOK,FOLLOW_YEARMONTHDURATION_TOK_in_yearMonthDurationBag3237); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            YEARMONTHDURATION_TOK544_tree = 
-            (Object)adaptor.create(YEARMONTHDURATION_TOK544)
+            YEARMONTHDURATION_TOK541_tree = 
+            (Object)adaptor.create(YEARMONTHDURATION_TOK541)
             ;
-            root_0 = (Object)adaptor.becomeRoot(YEARMONTHDURATION_TOK544_tree, root_0);
+            root_0 = (Object)adaptor.becomeRoot(YEARMONTHDURATION_TOK541_tree, root_0);
             }
-            dbg.location(354,27);
-            STRING_CONSTANT_LIST545=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_yearMonthDurationBag3112); if (state.failed) return retval;
+            dbg.location(350,27);
+            STRING_CONSTANT_LIST542=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_yearMonthDurationBag3240); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STRING_CONSTANT_LIST545_tree = 
-            (Object)adaptor.create(STRING_CONSTANT_LIST545)
+            STRING_CONSTANT_LIST542_tree = 
+            (Object)adaptor.create(STRING_CONSTANT_LIST542)
             ;
-            adaptor.addChild(root_0, STRING_CONSTANT_LIST545_tree);
+            adaptor.addChild(root_0, STRING_CONSTANT_LIST542_tree);
             }
 
             }
@@ -9303,7 +9334,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(357, 1);
+        dbg.location(353, 1);
 
         }
         finally {
@@ -9318,13 +9349,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class x500NameExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "x500NameExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:359:1: x500NameExpr : ( X500NAME_TOK ^ LPAREN ! stringExpr RPAREN !| x500NameBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:355:1: x500NameExpr returns [SomeType o] : ( X500NAME_TOK ^ LPAREN ! stringExpr RPAREN !| x500NameBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !);
     public final GrammarParser.x500NameExpr_return x500NameExpr() throws RecognitionException {
         GrammarParser.x500NameExpr_return retval = new GrammarParser.x500NameExpr_return();
         retval.start = input.LT(1);
@@ -9332,33 +9364,33 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token X500NAME_TOK546=null;
-        Token LPAREN547=null;
-        Token RPAREN549=null;
-        Token char_literal551=null;
-        Token ONEANDONLY_TOK552=null;
-        Token LPAREN553=null;
-        Token RPAREN554=null;
-        GrammarParser.stringExpr_return stringExpr548 =null;
+        Token X500NAME_TOK543=null;
+        Token LPAREN544=null;
+        Token RPAREN546=null;
+        Token char_literal548=null;
+        Token ONEANDONLY_TOK549=null;
+        Token LPAREN550=null;
+        Token RPAREN551=null;
+        GrammarParser.stringExpr_return stringExpr545 =null;
 
-        GrammarParser.x500NameBag_return x500NameBag550 =null;
+        GrammarParser.x500NameBag_return x500NameBag547 =null;
 
 
-        Object X500NAME_TOK546_tree=null;
-        Object LPAREN547_tree=null;
-        Object RPAREN549_tree=null;
-        Object char_literal551_tree=null;
-        Object ONEANDONLY_TOK552_tree=null;
-        Object LPAREN553_tree=null;
-        Object RPAREN554_tree=null;
+        Object X500NAME_TOK543_tree=null;
+        Object LPAREN544_tree=null;
+        Object RPAREN546_tree=null;
+        Object char_literal548_tree=null;
+        Object ONEANDONLY_TOK549_tree=null;
+        Object LPAREN550_tree=null;
+        Object RPAREN551_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "x500NameExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(359, 0);
+        dbg.location(355, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:360:2: ( X500NAME_TOK ^ LPAREN ! stringExpr RPAREN !| x500NameBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:356:2: ( X500NAME_TOK ^ LPAREN ! stringExpr RPAREN !| x500NameBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
             int alt32=2;
             try { dbg.enterDecision(32, decisionCanBacktrack[32]);
 
@@ -9398,68 +9430,68 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:360:4: X500NAME_TOK ^ LPAREN ! stringExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:356:4: X500NAME_TOK ^ LPAREN ! stringExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(360,16);
-                    X500NAME_TOK546=(Token)match(input,X500NAME_TOK,FOLLOW_X500NAME_TOK_in_x500NameExpr3125); if (state.failed) return retval;
+                    dbg.location(356,16);
+                    X500NAME_TOK543=(Token)match(input,X500NAME_TOK,FOLLOW_X500NAME_TOK_in_x500NameExpr3257); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    X500NAME_TOK546_tree = 
-                    (Object)adaptor.create(X500NAME_TOK546)
+                    X500NAME_TOK543_tree = 
+                    (Object)adaptor.create(X500NAME_TOK543)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(X500NAME_TOK546_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(X500NAME_TOK543_tree, root_0);
                     }
-                    dbg.location(360,24);
-                    LPAREN547=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_x500NameExpr3128); if (state.failed) return retval;
-                    dbg.location(360,26);
-                    pushFollow(FOLLOW_stringExpr_in_x500NameExpr3131);
-                    stringExpr548=stringExpr();
+                    dbg.location(356,24);
+                    LPAREN544=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_x500NameExpr3260); if (state.failed) return retval;
+                    dbg.location(356,26);
+                    pushFollow(FOLLOW_stringExpr_in_x500NameExpr3263);
+                    stringExpr545=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr548.getTree());
-                    dbg.location(360,43);
-                    RPAREN549=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_x500NameExpr3133); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr545.getTree());
+                    dbg.location(356,43);
+                    RPAREN546=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_x500NameExpr3265); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:361:4: x500NameBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:357:4: x500NameBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(361,4);
-                    pushFollow(FOLLOW_x500NameBag_in_x500NameExpr3139);
-                    x500NameBag550=x500NameBag();
+                    dbg.location(357,4);
+                    pushFollow(FOLLOW_x500NameBag_in_x500NameExpr3271);
+                    x500NameBag547=x500NameBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameBag550.getTree());
-                    dbg.location(361,17);
-                    char_literal551=(Token)match(input,84,FOLLOW_84_in_x500NameExpr3142); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameBag547.getTree());
+                    dbg.location(357,17);
+                    char_literal548=(Token)match(input,84,FOLLOW_84_in_x500NameExpr3274); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal551_tree = 
-                    (Object)adaptor.create(char_literal551)
+                    char_literal548_tree = 
+                    (Object)adaptor.create(char_literal548)
                     ;
-                    adaptor.addChild(root_0, char_literal551_tree);
+                    adaptor.addChild(root_0, char_literal548_tree);
                     }
-                    dbg.location(361,35);
-                    ONEANDONLY_TOK552=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_x500NameExpr3144); if (state.failed) return retval;
+                    dbg.location(357,35);
+                    ONEANDONLY_TOK549=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_x500NameExpr3276); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ONEANDONLY_TOK552_tree = 
-                    (Object)adaptor.create(ONEANDONLY_TOK552)
+                    ONEANDONLY_TOK549_tree = 
+                    (Object)adaptor.create(ONEANDONLY_TOK549)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK552_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK549_tree, root_0);
                     }
-                    dbg.location(361,43);
-                    LPAREN553=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_x500NameExpr3147); if (state.failed) return retval;
-                    dbg.location(361,51);
-                    RPAREN554=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_x500NameExpr3150); if (state.failed) return retval;
+                    dbg.location(357,43);
+                    LPAREN550=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_x500NameExpr3279); if (state.failed) return retval;
+                    dbg.location(357,51);
+                    RPAREN551=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_x500NameExpr3282); if (state.failed) return retval;
 
                     }
                     break;
@@ -9484,7 +9516,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(363, 1);
+        dbg.location(359, 1);
 
         }
         finally {
@@ -9499,13 +9531,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class x500NameBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "x500NameBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:364:1: x500NameBag : X500NAME_TOK ^ STRING_CONSTANT_LIST ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:360:1: x500NameBag returns [SomeType o] : X500NAME_TOK ^ STRING_CONSTANT_LIST ;
     public final GrammarParser.x500NameBag_return x500NameBag() throws RecognitionException {
         GrammarParser.x500NameBag_return retval = new GrammarParser.x500NameBag_return();
         retval.start = input.LT(1);
@@ -9513,41 +9546,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token X500NAME_TOK555=null;
-        Token STRING_CONSTANT_LIST556=null;
+        Token X500NAME_TOK552=null;
+        Token STRING_CONSTANT_LIST553=null;
 
-        Object X500NAME_TOK555_tree=null;
-        Object STRING_CONSTANT_LIST556_tree=null;
+        Object X500NAME_TOK552_tree=null;
+        Object STRING_CONSTANT_LIST553_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "x500NameBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(364, 0);
+        dbg.location(360, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:365:2: ( X500NAME_TOK ^ STRING_CONSTANT_LIST )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:361:2: ( X500NAME_TOK ^ STRING_CONSTANT_LIST )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:365:4: X500NAME_TOK ^ STRING_CONSTANT_LIST
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:361:4: X500NAME_TOK ^ STRING_CONSTANT_LIST
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(365,16);
-            X500NAME_TOK555=(Token)match(input,X500NAME_TOK,FOLLOW_X500NAME_TOK_in_x500NameBag3162); if (state.failed) return retval;
+            dbg.location(361,16);
+            X500NAME_TOK552=(Token)match(input,X500NAME_TOK,FOLLOW_X500NAME_TOK_in_x500NameBag3298); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            X500NAME_TOK555_tree = 
-            (Object)adaptor.create(X500NAME_TOK555)
+            X500NAME_TOK552_tree = 
+            (Object)adaptor.create(X500NAME_TOK552)
             ;
-            root_0 = (Object)adaptor.becomeRoot(X500NAME_TOK555_tree, root_0);
+            root_0 = (Object)adaptor.becomeRoot(X500NAME_TOK552_tree, root_0);
             }
-            dbg.location(365,18);
-            STRING_CONSTANT_LIST556=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_x500NameBag3165); if (state.failed) return retval;
+            dbg.location(361,18);
+            STRING_CONSTANT_LIST553=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_x500NameBag3301); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STRING_CONSTANT_LIST556_tree = 
-            (Object)adaptor.create(STRING_CONSTANT_LIST556)
+            STRING_CONSTANT_LIST553_tree = 
+            (Object)adaptor.create(STRING_CONSTANT_LIST553)
             ;
-            adaptor.addChild(root_0, STRING_CONSTANT_LIST556_tree);
+            adaptor.addChild(root_0, STRING_CONSTANT_LIST553_tree);
             }
 
             }
@@ -9571,7 +9604,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(368, 1);
+        dbg.location(364, 1);
 
         }
         finally {
@@ -9586,13 +9619,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class rfc822NameExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "rfc822NameExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:370:1: rfc822NameExpr : ( RFC822NAME_TOK ^ LPAREN ! stringExpr RPAREN !| rfc822NameBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:366:1: rfc822NameExpr returns [SomeType o] : ( RFC822NAME_TOK ^ LPAREN ! stringExpr RPAREN !| rfc822NameBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !);
     public final GrammarParser.rfc822NameExpr_return rfc822NameExpr() throws RecognitionException {
         GrammarParser.rfc822NameExpr_return retval = new GrammarParser.rfc822NameExpr_return();
         retval.start = input.LT(1);
@@ -9600,33 +9634,33 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token RFC822NAME_TOK557=null;
-        Token LPAREN558=null;
-        Token RPAREN560=null;
-        Token char_literal562=null;
-        Token ONEANDONLY_TOK563=null;
-        Token LPAREN564=null;
-        Token RPAREN565=null;
-        GrammarParser.stringExpr_return stringExpr559 =null;
+        Token RFC822NAME_TOK554=null;
+        Token LPAREN555=null;
+        Token RPAREN557=null;
+        Token char_literal559=null;
+        Token ONEANDONLY_TOK560=null;
+        Token LPAREN561=null;
+        Token RPAREN562=null;
+        GrammarParser.stringExpr_return stringExpr556 =null;
 
-        GrammarParser.rfc822NameBag_return rfc822NameBag561 =null;
+        GrammarParser.rfc822NameBag_return rfc822NameBag558 =null;
 
 
-        Object RFC822NAME_TOK557_tree=null;
-        Object LPAREN558_tree=null;
-        Object RPAREN560_tree=null;
-        Object char_literal562_tree=null;
-        Object ONEANDONLY_TOK563_tree=null;
-        Object LPAREN564_tree=null;
-        Object RPAREN565_tree=null;
+        Object RFC822NAME_TOK554_tree=null;
+        Object LPAREN555_tree=null;
+        Object RPAREN557_tree=null;
+        Object char_literal559_tree=null;
+        Object ONEANDONLY_TOK560_tree=null;
+        Object LPAREN561_tree=null;
+        Object RPAREN562_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "rfc822NameExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(370, 0);
+        dbg.location(366, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:371:2: ( RFC822NAME_TOK ^ LPAREN ! stringExpr RPAREN !| rfc822NameBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:367:2: ( RFC822NAME_TOK ^ LPAREN ! stringExpr RPAREN !| rfc822NameBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
             int alt33=2;
             try { dbg.enterDecision(33, decisionCanBacktrack[33]);
 
@@ -9666,68 +9700,68 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:371:4: RFC822NAME_TOK ^ LPAREN ! stringExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:367:4: RFC822NAME_TOK ^ LPAREN ! stringExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(371,18);
-                    RFC822NAME_TOK557=(Token)match(input,RFC822NAME_TOK,FOLLOW_RFC822NAME_TOK_in_rfc822NameExpr3178); if (state.failed) return retval;
+                    dbg.location(367,18);
+                    RFC822NAME_TOK554=(Token)match(input,RFC822NAME_TOK,FOLLOW_RFC822NAME_TOK_in_rfc822NameExpr3318); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    RFC822NAME_TOK557_tree = 
-                    (Object)adaptor.create(RFC822NAME_TOK557)
+                    RFC822NAME_TOK554_tree = 
+                    (Object)adaptor.create(RFC822NAME_TOK554)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(RFC822NAME_TOK557_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(RFC822NAME_TOK554_tree, root_0);
                     }
-                    dbg.location(371,26);
-                    LPAREN558=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_rfc822NameExpr3181); if (state.failed) return retval;
-                    dbg.location(371,28);
-                    pushFollow(FOLLOW_stringExpr_in_rfc822NameExpr3184);
-                    stringExpr559=stringExpr();
+                    dbg.location(367,26);
+                    LPAREN555=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_rfc822NameExpr3321); if (state.failed) return retval;
+                    dbg.location(367,28);
+                    pushFollow(FOLLOW_stringExpr_in_rfc822NameExpr3324);
+                    stringExpr556=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr559.getTree());
-                    dbg.location(371,45);
-                    RPAREN560=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_rfc822NameExpr3186); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr556.getTree());
+                    dbg.location(367,45);
+                    RPAREN557=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_rfc822NameExpr3326); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:372:4: rfc822NameBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:368:4: rfc822NameBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(372,4);
-                    pushFollow(FOLLOW_rfc822NameBag_in_rfc822NameExpr3192);
-                    rfc822NameBag561=rfc822NameBag();
+                    dbg.location(368,4);
+                    pushFollow(FOLLOW_rfc822NameBag_in_rfc822NameExpr3332);
+                    rfc822NameBag558=rfc822NameBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameBag561.getTree());
-                    dbg.location(372,18);
-                    char_literal562=(Token)match(input,84,FOLLOW_84_in_rfc822NameExpr3194); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameBag558.getTree());
+                    dbg.location(368,18);
+                    char_literal559=(Token)match(input,84,FOLLOW_84_in_rfc822NameExpr3334); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal562_tree = 
-                    (Object)adaptor.create(char_literal562)
+                    char_literal559_tree = 
+                    (Object)adaptor.create(char_literal559)
                     ;
-                    adaptor.addChild(root_0, char_literal562_tree);
+                    adaptor.addChild(root_0, char_literal559_tree);
                     }
-                    dbg.location(372,36);
-                    ONEANDONLY_TOK563=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_rfc822NameExpr3196); if (state.failed) return retval;
+                    dbg.location(368,36);
+                    ONEANDONLY_TOK560=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_rfc822NameExpr3336); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ONEANDONLY_TOK563_tree = 
-                    (Object)adaptor.create(ONEANDONLY_TOK563)
+                    ONEANDONLY_TOK560_tree = 
+                    (Object)adaptor.create(ONEANDONLY_TOK560)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK563_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK560_tree, root_0);
                     }
-                    dbg.location(372,44);
-                    LPAREN564=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_rfc822NameExpr3199); if (state.failed) return retval;
-                    dbg.location(372,52);
-                    RPAREN565=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_rfc822NameExpr3202); if (state.failed) return retval;
+                    dbg.location(368,44);
+                    LPAREN561=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_rfc822NameExpr3339); if (state.failed) return retval;
+                    dbg.location(368,52);
+                    RPAREN562=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_rfc822NameExpr3342); if (state.failed) return retval;
 
                     }
                     break;
@@ -9752,7 +9786,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(374, 1);
+        dbg.location(370, 1);
 
         }
         finally {
@@ -9767,13 +9801,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class rfc822NameBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "rfc822NameBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:375:1: rfc822NameBag : RFC822NAME_TOK ^ STRING_CONSTANT_LIST ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:371:1: rfc822NameBag returns [SomeType o] : RFC822NAME_TOK ^ STRING_CONSTANT_LIST ;
     public final GrammarParser.rfc822NameBag_return rfc822NameBag() throws RecognitionException {
         GrammarParser.rfc822NameBag_return retval = new GrammarParser.rfc822NameBag_return();
         retval.start = input.LT(1);
@@ -9781,41 +9816,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token RFC822NAME_TOK566=null;
-        Token STRING_CONSTANT_LIST567=null;
+        Token RFC822NAME_TOK563=null;
+        Token STRING_CONSTANT_LIST564=null;
 
-        Object RFC822NAME_TOK566_tree=null;
-        Object STRING_CONSTANT_LIST567_tree=null;
+        Object RFC822NAME_TOK563_tree=null;
+        Object STRING_CONSTANT_LIST564_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "rfc822NameBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(375, 0);
+        dbg.location(371, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:376:2: ( RFC822NAME_TOK ^ STRING_CONSTANT_LIST )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:372:2: ( RFC822NAME_TOK ^ STRING_CONSTANT_LIST )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:376:4: RFC822NAME_TOK ^ STRING_CONSTANT_LIST
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:372:4: RFC822NAME_TOK ^ STRING_CONSTANT_LIST
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(376,18);
-            RFC822NAME_TOK566=(Token)match(input,RFC822NAME_TOK,FOLLOW_RFC822NAME_TOK_in_rfc822NameBag3214); if (state.failed) return retval;
+            dbg.location(372,18);
+            RFC822NAME_TOK563=(Token)match(input,RFC822NAME_TOK,FOLLOW_RFC822NAME_TOK_in_rfc822NameBag3358); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            RFC822NAME_TOK566_tree = 
-            (Object)adaptor.create(RFC822NAME_TOK566)
+            RFC822NAME_TOK563_tree = 
+            (Object)adaptor.create(RFC822NAME_TOK563)
             ;
-            root_0 = (Object)adaptor.becomeRoot(RFC822NAME_TOK566_tree, root_0);
+            root_0 = (Object)adaptor.becomeRoot(RFC822NAME_TOK563_tree, root_0);
             }
-            dbg.location(376,20);
-            STRING_CONSTANT_LIST567=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_rfc822NameBag3217); if (state.failed) return retval;
+            dbg.location(372,20);
+            STRING_CONSTANT_LIST564=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_rfc822NameBag3361); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STRING_CONSTANT_LIST567_tree = 
-            (Object)adaptor.create(STRING_CONSTANT_LIST567)
+            STRING_CONSTANT_LIST564_tree = 
+            (Object)adaptor.create(STRING_CONSTANT_LIST564)
             ;
-            adaptor.addChild(root_0, STRING_CONSTANT_LIST567_tree);
+            adaptor.addChild(root_0, STRING_CONSTANT_LIST564_tree);
             }
 
             }
@@ -9839,7 +9874,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(379, 1);
+        dbg.location(375, 1);
 
         }
         finally {
@@ -9854,13 +9889,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class hexBinaryExpr_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "hexBinaryExpr"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:381:1: hexBinaryExpr : ( HEXBINARY_TOK ^ LPAREN ! stringExpr RPAREN !| hexBinaryBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !);
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:377:1: hexBinaryExpr returns [SomeType o] : ( HEXBINARY_TOK ^ LPAREN ! stringExpr RPAREN !| hexBinaryBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !);
     public final GrammarParser.hexBinaryExpr_return hexBinaryExpr() throws RecognitionException {
         GrammarParser.hexBinaryExpr_return retval = new GrammarParser.hexBinaryExpr_return();
         retval.start = input.LT(1);
@@ -9868,33 +9904,33 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token HEXBINARY_TOK568=null;
-        Token LPAREN569=null;
-        Token RPAREN571=null;
-        Token char_literal573=null;
-        Token ONEANDONLY_TOK574=null;
-        Token LPAREN575=null;
-        Token RPAREN576=null;
-        GrammarParser.stringExpr_return stringExpr570 =null;
+        Token HEXBINARY_TOK565=null;
+        Token LPAREN566=null;
+        Token RPAREN568=null;
+        Token char_literal570=null;
+        Token ONEANDONLY_TOK571=null;
+        Token LPAREN572=null;
+        Token RPAREN573=null;
+        GrammarParser.stringExpr_return stringExpr567 =null;
 
-        GrammarParser.hexBinaryBag_return hexBinaryBag572 =null;
+        GrammarParser.hexBinaryBag_return hexBinaryBag569 =null;
 
 
-        Object HEXBINARY_TOK568_tree=null;
-        Object LPAREN569_tree=null;
-        Object RPAREN571_tree=null;
-        Object char_literal573_tree=null;
-        Object ONEANDONLY_TOK574_tree=null;
-        Object LPAREN575_tree=null;
-        Object RPAREN576_tree=null;
+        Object HEXBINARY_TOK565_tree=null;
+        Object LPAREN566_tree=null;
+        Object RPAREN568_tree=null;
+        Object char_literal570_tree=null;
+        Object ONEANDONLY_TOK571_tree=null;
+        Object LPAREN572_tree=null;
+        Object RPAREN573_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "hexBinaryExpr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(381, 0);
+        dbg.location(377, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:382:2: ( HEXBINARY_TOK ^ LPAREN ! stringExpr RPAREN !| hexBinaryBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:378:2: ( HEXBINARY_TOK ^ LPAREN ! stringExpr RPAREN !| hexBinaryBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !)
             int alt34=2;
             try { dbg.enterDecision(34, decisionCanBacktrack[34]);
 
@@ -9934,68 +9970,68 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:382:4: HEXBINARY_TOK ^ LPAREN ! stringExpr RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:378:4: HEXBINARY_TOK ^ LPAREN ! stringExpr RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(382,17);
-                    HEXBINARY_TOK568=(Token)match(input,HEXBINARY_TOK,FOLLOW_HEXBINARY_TOK_in_hexBinaryExpr3230); if (state.failed) return retval;
+                    dbg.location(378,17);
+                    HEXBINARY_TOK565=(Token)match(input,HEXBINARY_TOK,FOLLOW_HEXBINARY_TOK_in_hexBinaryExpr3378); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    HEXBINARY_TOK568_tree = 
-                    (Object)adaptor.create(HEXBINARY_TOK568)
+                    HEXBINARY_TOK565_tree = 
+                    (Object)adaptor.create(HEXBINARY_TOK565)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(HEXBINARY_TOK568_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(HEXBINARY_TOK565_tree, root_0);
                     }
-                    dbg.location(382,25);
-                    LPAREN569=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_hexBinaryExpr3233); if (state.failed) return retval;
-                    dbg.location(382,27);
-                    pushFollow(FOLLOW_stringExpr_in_hexBinaryExpr3236);
-                    stringExpr570=stringExpr();
+                    dbg.location(378,25);
+                    LPAREN566=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_hexBinaryExpr3381); if (state.failed) return retval;
+                    dbg.location(378,27);
+                    pushFollow(FOLLOW_stringExpr_in_hexBinaryExpr3384);
+                    stringExpr567=stringExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr570.getTree());
-                    dbg.location(382,44);
-                    RPAREN571=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_hexBinaryExpr3238); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringExpr567.getTree());
+                    dbg.location(378,44);
+                    RPAREN568=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_hexBinaryExpr3386); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:383:4: hexBinaryBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:379:4: hexBinaryBag '.' ONEANDONLY_TOK ^ LPAREN ! RPAREN !
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(383,4);
-                    pushFollow(FOLLOW_hexBinaryBag_in_hexBinaryExpr3244);
-                    hexBinaryBag572=hexBinaryBag();
+                    dbg.location(379,4);
+                    pushFollow(FOLLOW_hexBinaryBag_in_hexBinaryExpr3392);
+                    hexBinaryBag569=hexBinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryBag572.getTree());
-                    dbg.location(383,17);
-                    char_literal573=(Token)match(input,84,FOLLOW_84_in_hexBinaryExpr3246); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryBag569.getTree());
+                    dbg.location(379,17);
+                    char_literal570=(Token)match(input,84,FOLLOW_84_in_hexBinaryExpr3394); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal573_tree = 
-                    (Object)adaptor.create(char_literal573)
+                    char_literal570_tree = 
+                    (Object)adaptor.create(char_literal570)
                     ;
-                    adaptor.addChild(root_0, char_literal573_tree);
+                    adaptor.addChild(root_0, char_literal570_tree);
                     }
-                    dbg.location(383,35);
-                    ONEANDONLY_TOK574=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_hexBinaryExpr3248); if (state.failed) return retval;
+                    dbg.location(379,35);
+                    ONEANDONLY_TOK571=(Token)match(input,ONEANDONLY_TOK,FOLLOW_ONEANDONLY_TOK_in_hexBinaryExpr3396); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ONEANDONLY_TOK574_tree = 
-                    (Object)adaptor.create(ONEANDONLY_TOK574)
+                    ONEANDONLY_TOK571_tree = 
+                    (Object)adaptor.create(ONEANDONLY_TOK571)
                     ;
-                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK574_tree, root_0);
+                    root_0 = (Object)adaptor.becomeRoot(ONEANDONLY_TOK571_tree, root_0);
                     }
-                    dbg.location(383,43);
-                    LPAREN575=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_hexBinaryExpr3251); if (state.failed) return retval;
-                    dbg.location(383,51);
-                    RPAREN576=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_hexBinaryExpr3254); if (state.failed) return retval;
+                    dbg.location(379,43);
+                    LPAREN572=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_hexBinaryExpr3399); if (state.failed) return retval;
+                    dbg.location(379,51);
+                    RPAREN573=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_hexBinaryExpr3402); if (state.failed) return retval;
 
                     }
                     break;
@@ -10020,7 +10056,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(384, 1);
+        dbg.location(380, 1);
 
         }
         finally {
@@ -10035,13 +10071,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class hexBinaryBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "hexBinaryBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:385:1: hexBinaryBag : HEXBINARY_TOK ^ STRING_CONSTANT_LIST ;
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:381:1: hexBinaryBag returns [SomeType o] : HEXBINARY_TOK ^ STRING_CONSTANT_LIST ;
     public final GrammarParser.hexBinaryBag_return hexBinaryBag() throws RecognitionException {
         GrammarParser.hexBinaryBag_return retval = new GrammarParser.hexBinaryBag_return();
         retval.start = input.LT(1);
@@ -10049,41 +10086,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token HEXBINARY_TOK577=null;
-        Token STRING_CONSTANT_LIST578=null;
+        Token HEXBINARY_TOK574=null;
+        Token STRING_CONSTANT_LIST575=null;
 
-        Object HEXBINARY_TOK577_tree=null;
-        Object STRING_CONSTANT_LIST578_tree=null;
+        Object HEXBINARY_TOK574_tree=null;
+        Object STRING_CONSTANT_LIST575_tree=null;
 
         try { dbg.enterRule(getGrammarFileName(), "hexBinaryBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(385, 0);
+        dbg.location(381, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:386:2: ( HEXBINARY_TOK ^ STRING_CONSTANT_LIST )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:382:2: ( HEXBINARY_TOK ^ STRING_CONSTANT_LIST )
             dbg.enterAlt(1);
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:386:4: HEXBINARY_TOK ^ STRING_CONSTANT_LIST
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:382:4: HEXBINARY_TOK ^ STRING_CONSTANT_LIST
             {
             root_0 = (Object)adaptor.nil();
 
 
-            dbg.location(386,17);
-            HEXBINARY_TOK577=(Token)match(input,HEXBINARY_TOK,FOLLOW_HEXBINARY_TOK_in_hexBinaryBag3265); if (state.failed) return retval;
+            dbg.location(382,17);
+            HEXBINARY_TOK574=(Token)match(input,HEXBINARY_TOK,FOLLOW_HEXBINARY_TOK_in_hexBinaryBag3417); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            HEXBINARY_TOK577_tree = 
-            (Object)adaptor.create(HEXBINARY_TOK577)
+            HEXBINARY_TOK574_tree = 
+            (Object)adaptor.create(HEXBINARY_TOK574)
             ;
-            root_0 = (Object)adaptor.becomeRoot(HEXBINARY_TOK577_tree, root_0);
+            root_0 = (Object)adaptor.becomeRoot(HEXBINARY_TOK574_tree, root_0);
             }
-            dbg.location(386,19);
-            STRING_CONSTANT_LIST578=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_hexBinaryBag3268); if (state.failed) return retval;
+            dbg.location(382,19);
+            STRING_CONSTANT_LIST575=(Token)match(input,STRING_CONSTANT_LIST,FOLLOW_STRING_CONSTANT_LIST_in_hexBinaryBag3420); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            STRING_CONSTANT_LIST578_tree = 
-            (Object)adaptor.create(STRING_CONSTANT_LIST578)
+            STRING_CONSTANT_LIST575_tree = 
+            (Object)adaptor.create(STRING_CONSTANT_LIST575)
             ;
-            adaptor.addChild(root_0, STRING_CONSTANT_LIST578_tree);
+            adaptor.addChild(root_0, STRING_CONSTANT_LIST575_tree);
             }
 
             }
@@ -10107,7 +10144,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(389, 1);
+        dbg.location(385, 1);
 
         }
         finally {
@@ -10122,13 +10159,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class anyBag_return extends ParserRuleReturnScope {
+        public SomeType o;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "anyBag"
-    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:391:1: anyBag : ( booleanBag | integerBag | doubleBag | stringBag | anyUriBag | dateBag | timeBag | dateTimeBag | base64BinaryBag | dayTimeDurationBag | yearMonthDurationBag | x500NameBag | rfc822NameBag | hexBinaryBag );
+    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:387:1: anyBag returns [SomeType o] : ( booleanBag | integerBag | doubleBag | stringBag | anyUriBag | dateBag | timeBag | dateTimeBag | base64BinaryBag | dayTimeDurationBag | yearMonthDurationBag | x500NameBag | rfc822NameBag | hexBinaryBag );
     public final GrammarParser.anyBag_return anyBag() throws RecognitionException {
         GrammarParser.anyBag_return retval = new GrammarParser.anyBag_return();
         retval.start = input.LT(1);
@@ -10136,43 +10174,43 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        GrammarParser.booleanBag_return booleanBag579 =null;
+        GrammarParser.booleanBag_return booleanBag576 =null;
 
-        GrammarParser.integerBag_return integerBag580 =null;
+        GrammarParser.integerBag_return integerBag577 =null;
 
-        GrammarParser.doubleBag_return doubleBag581 =null;
+        GrammarParser.doubleBag_return doubleBag578 =null;
 
-        GrammarParser.stringBag_return stringBag582 =null;
+        GrammarParser.stringBag_return stringBag579 =null;
 
-        GrammarParser.anyUriBag_return anyUriBag583 =null;
+        GrammarParser.anyUriBag_return anyUriBag580 =null;
 
-        GrammarParser.dateBag_return dateBag584 =null;
+        GrammarParser.dateBag_return dateBag581 =null;
 
-        GrammarParser.timeBag_return timeBag585 =null;
+        GrammarParser.timeBag_return timeBag582 =null;
 
-        GrammarParser.dateTimeBag_return dateTimeBag586 =null;
+        GrammarParser.dateTimeBag_return dateTimeBag583 =null;
 
-        GrammarParser.base64BinaryBag_return base64BinaryBag587 =null;
+        GrammarParser.base64BinaryBag_return base64BinaryBag584 =null;
 
-        GrammarParser.dayTimeDurationBag_return dayTimeDurationBag588 =null;
+        GrammarParser.dayTimeDurationBag_return dayTimeDurationBag585 =null;
 
-        GrammarParser.yearMonthDurationBag_return yearMonthDurationBag589 =null;
+        GrammarParser.yearMonthDurationBag_return yearMonthDurationBag586 =null;
 
-        GrammarParser.x500NameBag_return x500NameBag590 =null;
+        GrammarParser.x500NameBag_return x500NameBag587 =null;
 
-        GrammarParser.rfc822NameBag_return rfc822NameBag591 =null;
+        GrammarParser.rfc822NameBag_return rfc822NameBag588 =null;
 
-        GrammarParser.hexBinaryBag_return hexBinaryBag592 =null;
+        GrammarParser.hexBinaryBag_return hexBinaryBag589 =null;
 
 
 
         try { dbg.enterRule(getGrammarFileName(), "anyBag");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(391, 0);
+        dbg.location(387, 0);
 
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:392:2: ( booleanBag | integerBag | doubleBag | stringBag | anyUriBag | dateBag | timeBag | dateTimeBag | base64BinaryBag | dayTimeDurationBag | yearMonthDurationBag | x500NameBag | rfc822NameBag | hexBinaryBag )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:388:2: ( booleanBag | integerBag | doubleBag | stringBag | anyUriBag | dateBag | timeBag | dateTimeBag | base64BinaryBag | dayTimeDurationBag | yearMonthDurationBag | x500NameBag | rfc822NameBag | hexBinaryBag )
             int alt35=14;
             try { dbg.enterDecision(35, decisionCanBacktrack[35]);
 
@@ -10268,252 +10306,252 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:392:4: booleanBag
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:388:4: booleanBag
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(392,4);
-                    pushFollow(FOLLOW_booleanBag_in_anyBag3281);
-                    booleanBag579=booleanBag();
+                    dbg.location(388,4);
+                    pushFollow(FOLLOW_booleanBag_in_anyBag3437);
+                    booleanBag576=booleanBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanBag579.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, booleanBag576.getTree());
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:392:17: integerBag
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:388:17: integerBag
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(392,17);
-                    pushFollow(FOLLOW_integerBag_in_anyBag3285);
-                    integerBag580=integerBag();
+                    dbg.location(388,17);
+                    pushFollow(FOLLOW_integerBag_in_anyBag3441);
+                    integerBag577=integerBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerBag580.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, integerBag577.getTree());
 
                     }
                     break;
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:392:30: doubleBag
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:388:30: doubleBag
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(392,30);
-                    pushFollow(FOLLOW_doubleBag_in_anyBag3289);
-                    doubleBag581=doubleBag();
+                    dbg.location(388,30);
+                    pushFollow(FOLLOW_doubleBag_in_anyBag3445);
+                    doubleBag578=doubleBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleBag581.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, doubleBag578.getTree());
 
                     }
                     break;
                 case 4 :
                     dbg.enterAlt(4);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:392:42: stringBag
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:388:42: stringBag
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(392,42);
-                    pushFollow(FOLLOW_stringBag_in_anyBag3293);
-                    stringBag582=stringBag();
+                    dbg.location(388,42);
+                    pushFollow(FOLLOW_stringBag_in_anyBag3449);
+                    stringBag579=stringBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringBag582.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, stringBag579.getTree());
 
                     }
                     break;
                 case 5 :
                     dbg.enterAlt(5);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:392:54: anyUriBag
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:388:54: anyUriBag
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(392,54);
-                    pushFollow(FOLLOW_anyUriBag_in_anyBag3297);
-                    anyUriBag583=anyUriBag();
+                    dbg.location(388,54);
+                    pushFollow(FOLLOW_anyUriBag_in_anyBag3453);
+                    anyUriBag580=anyUriBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriBag583.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anyUriBag580.getTree());
 
                     }
                     break;
                 case 6 :
                     dbg.enterAlt(6);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:392:66: dateBag
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:388:66: dateBag
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(392,66);
-                    pushFollow(FOLLOW_dateBag_in_anyBag3301);
-                    dateBag584=dateBag();
+                    dbg.location(388,66);
+                    pushFollow(FOLLOW_dateBag_in_anyBag3457);
+                    dateBag581=dateBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateBag584.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateBag581.getTree());
 
                     }
                     break;
                 case 7 :
                     dbg.enterAlt(7);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:393:4: timeBag
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:389:4: timeBag
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(393,4);
-                    pushFollow(FOLLOW_timeBag_in_anyBag3306);
-                    timeBag585=timeBag();
+                    dbg.location(389,4);
+                    pushFollow(FOLLOW_timeBag_in_anyBag3462);
+                    timeBag582=timeBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeBag585.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, timeBag582.getTree());
 
                     }
                     break;
                 case 8 :
                     dbg.enterAlt(8);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:393:14: dateTimeBag
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:389:14: dateTimeBag
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(393,14);
-                    pushFollow(FOLLOW_dateTimeBag_in_anyBag3310);
-                    dateTimeBag586=dateTimeBag();
+                    dbg.location(389,14);
+                    pushFollow(FOLLOW_dateTimeBag_in_anyBag3466);
+                    dateTimeBag583=dateTimeBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeBag586.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dateTimeBag583.getTree());
 
                     }
                     break;
                 case 9 :
                     dbg.enterAlt(9);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:393:28: base64BinaryBag
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:389:28: base64BinaryBag
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(393,28);
-                    pushFollow(FOLLOW_base64BinaryBag_in_anyBag3314);
-                    base64BinaryBag587=base64BinaryBag();
+                    dbg.location(389,28);
+                    pushFollow(FOLLOW_base64BinaryBag_in_anyBag3470);
+                    base64BinaryBag584=base64BinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag587.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, base64BinaryBag584.getTree());
 
                     }
                     break;
                 case 10 :
                     dbg.enterAlt(10);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:393:46: dayTimeDurationBag
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:389:46: dayTimeDurationBag
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(393,46);
-                    pushFollow(FOLLOW_dayTimeDurationBag_in_anyBag3318);
-                    dayTimeDurationBag588=dayTimeDurationBag();
+                    dbg.location(389,46);
+                    pushFollow(FOLLOW_dayTimeDurationBag_in_anyBag3474);
+                    dayTimeDurationBag585=dayTimeDurationBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationBag588.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, dayTimeDurationBag585.getTree());
 
                     }
                     break;
                 case 11 :
                     dbg.enterAlt(11);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:394:4: yearMonthDurationBag
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:390:4: yearMonthDurationBag
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(394,4);
-                    pushFollow(FOLLOW_yearMonthDurationBag_in_anyBag3323);
-                    yearMonthDurationBag589=yearMonthDurationBag();
+                    dbg.location(390,4);
+                    pushFollow(FOLLOW_yearMonthDurationBag_in_anyBag3479);
+                    yearMonthDurationBag586=yearMonthDurationBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationBag589.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, yearMonthDurationBag586.getTree());
 
                     }
                     break;
                 case 12 :
                     dbg.enterAlt(12);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:394:28: x500NameBag
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:390:28: x500NameBag
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(394,28);
-                    pushFollow(FOLLOW_x500NameBag_in_anyBag3328);
-                    x500NameBag590=x500NameBag();
+                    dbg.location(390,28);
+                    pushFollow(FOLLOW_x500NameBag_in_anyBag3484);
+                    x500NameBag587=x500NameBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameBag590.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, x500NameBag587.getTree());
 
                     }
                     break;
                 case 13 :
                     dbg.enterAlt(13);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:395:4: rfc822NameBag
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:391:4: rfc822NameBag
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(395,4);
-                    pushFollow(FOLLOW_rfc822NameBag_in_anyBag3333);
-                    rfc822NameBag591=rfc822NameBag();
+                    dbg.location(391,4);
+                    pushFollow(FOLLOW_rfc822NameBag_in_anyBag3489);
+                    rfc822NameBag588=rfc822NameBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameBag591.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, rfc822NameBag588.getTree());
 
                     }
                     break;
                 case 14 :
                     dbg.enterAlt(14);
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:395:20: hexBinaryBag
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:391:20: hexBinaryBag
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    dbg.location(395,20);
-                    pushFollow(FOLLOW_hexBinaryBag_in_anyBag3337);
-                    hexBinaryBag592=hexBinaryBag();
+                    dbg.location(391,20);
+                    pushFollow(FOLLOW_hexBinaryBag_in_anyBag3493);
+                    hexBinaryBag589=hexBinaryBag();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryBag592.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, hexBinaryBag589.getTree());
 
                     }
                     break;
@@ -10538,7 +10576,7 @@ public TreeAdaptor getTreeAdaptor() {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(396, 1);
+        dbg.location(392, 1);
 
         }
         finally {
@@ -10553,13 +10591,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred1_Grammar
     public final void synpred1_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:177:5: ( base64BinaryExpr )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:173:5: ( base64BinaryExpr )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:177:6: base64BinaryExpr
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:173:6: base64BinaryExpr
         {
-        dbg.location(177,6);
-        pushFollow(FOLLOW_base64BinaryExpr_in_synpred1_Grammar1017);
+        dbg.location(173,6);
+        pushFollow(FOLLOW_base64BinaryExpr_in_synpred1_Grammar1045);
         base64BinaryExpr();
 
         state._fsp--;
@@ -10572,13 +10610,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred2_Grammar
     public final void synpred2_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:193:5: ( base64BinaryExpr )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:189:5: ( base64BinaryExpr )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:193:6: base64BinaryExpr
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:189:6: base64BinaryExpr
         {
-        dbg.location(193,6);
-        pushFollow(FOLLOW_base64BinaryExpr_in_synpred2_Grammar1276);
+        dbg.location(189,6);
+        pushFollow(FOLLOW_base64BinaryExpr_in_synpred2_Grammar1308);
         base64BinaryExpr();
 
         state._fsp--;
@@ -10591,13 +10629,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred3_Grammar
     public final void synpred3_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:227:4: ( booleanBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:223:4: ( booleanBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:227:5: booleanBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:223:5: booleanBag
         {
-        dbg.location(227,5);
-        pushFollow(FOLLOW_booleanBag_in_synpred3_Grammar1897);
+        dbg.location(223,5);
+        pushFollow(FOLLOW_booleanBag_in_synpred3_Grammar1941);
         booleanBag();
 
         state._fsp--;
@@ -10610,13 +10648,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred4_Grammar
     public final void synpred4_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:228:4: ( integerBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:224:4: ( integerBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:228:5: integerBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:224:5: integerBag
         {
-        dbg.location(228,5);
-        pushFollow(FOLLOW_integerBag_in_synpred4_Grammar1933);
+        dbg.location(224,5);
+        pushFollow(FOLLOW_integerBag_in_synpred4_Grammar1977);
         integerBag();
 
         state._fsp--;
@@ -10629,13 +10667,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred5_Grammar
     public final void synpred5_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:229:4: ( doubleBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:225:4: ( doubleBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:229:5: doubleBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:225:5: doubleBag
         {
-        dbg.location(229,5);
-        pushFollow(FOLLOW_doubleBag_in_synpred5_Grammar1971);
+        dbg.location(225,5);
+        pushFollow(FOLLOW_doubleBag_in_synpred5_Grammar2015);
         doubleBag();
 
         state._fsp--;
@@ -10648,13 +10686,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred6_Grammar
     public final void synpred6_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:230:4: ( stringBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:226:4: ( stringBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:230:5: stringBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:226:5: stringBag
         {
-        dbg.location(230,5);
-        pushFollow(FOLLOW_stringBag_in_synpred6_Grammar2009);
+        dbg.location(226,5);
+        pushFollow(FOLLOW_stringBag_in_synpred6_Grammar2053);
         stringBag();
 
         state._fsp--;
@@ -10667,13 +10705,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred7_Grammar
     public final void synpred7_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:231:4: ( dateBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:227:4: ( dateBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:231:5: dateBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:227:5: dateBag
         {
-        dbg.location(231,5);
-        pushFollow(FOLLOW_dateBag_in_synpred7_Grammar2048);
+        dbg.location(227,5);
+        pushFollow(FOLLOW_dateBag_in_synpred7_Grammar2092);
         dateBag();
 
         state._fsp--;
@@ -10686,13 +10724,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred8_Grammar
     public final void synpred8_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:232:4: ( timeBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:228:4: ( timeBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:232:5: timeBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:228:5: timeBag
         {
-        dbg.location(232,5);
-        pushFollow(FOLLOW_timeBag_in_synpred8_Grammar2087);
+        dbg.location(228,5);
+        pushFollow(FOLLOW_timeBag_in_synpred8_Grammar2131);
         timeBag();
 
         state._fsp--;
@@ -10705,13 +10743,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred9_Grammar
     public final void synpred9_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:233:4: ( dateTimeBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:229:4: ( dateTimeBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:233:5: dateTimeBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:229:5: dateTimeBag
         {
-        dbg.location(233,5);
-        pushFollow(FOLLOW_dateTimeBag_in_synpred9_Grammar2126);
+        dbg.location(229,5);
+        pushFollow(FOLLOW_dateTimeBag_in_synpred9_Grammar2170);
         dateTimeBag();
 
         state._fsp--;
@@ -10724,13 +10762,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred10_Grammar
     public final void synpred10_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:234:4: ( base64BinaryBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:230:4: ( base64BinaryBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:234:5: base64BinaryBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:230:5: base64BinaryBag
         {
-        dbg.location(234,5);
-        pushFollow(FOLLOW_base64BinaryBag_in_synpred10_Grammar2165);
+        dbg.location(230,5);
+        pushFollow(FOLLOW_base64BinaryBag_in_synpred10_Grammar2209);
         base64BinaryBag();
 
         state._fsp--;
@@ -10743,13 +10781,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred11_Grammar
     public final void synpred11_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:235:4: ( dayTimeDurationBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:231:4: ( dayTimeDurationBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:235:5: dayTimeDurationBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:231:5: dayTimeDurationBag
         {
-        dbg.location(235,5);
-        pushFollow(FOLLOW_dayTimeDurationBag_in_synpred11_Grammar2203);
+        dbg.location(231,5);
+        pushFollow(FOLLOW_dayTimeDurationBag_in_synpred11_Grammar2247);
         dayTimeDurationBag();
 
         state._fsp--;
@@ -10762,13 +10800,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred12_Grammar
     public final void synpred12_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:236:4: ( yearMonthDurationBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:232:4: ( yearMonthDurationBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:236:5: yearMonthDurationBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:232:5: yearMonthDurationBag
         {
-        dbg.location(236,5);
-        pushFollow(FOLLOW_yearMonthDurationBag_in_synpred12_Grammar2241);
+        dbg.location(232,5);
+        pushFollow(FOLLOW_yearMonthDurationBag_in_synpred12_Grammar2285);
         yearMonthDurationBag();
 
         state._fsp--;
@@ -10781,13 +10819,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred13_Grammar
     public final void synpred13_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:237:4: ( anyUriBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:233:4: ( anyUriBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:237:5: anyUriBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:233:5: anyUriBag
         {
-        dbg.location(237,5);
-        pushFollow(FOLLOW_anyUriBag_in_synpred13_Grammar2280);
+        dbg.location(233,5);
+        pushFollow(FOLLOW_anyUriBag_in_synpred13_Grammar2324);
         anyUriBag();
 
         state._fsp--;
@@ -10800,13 +10838,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred14_Grammar
     public final void synpred14_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:238:4: ( x500NameBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:234:4: ( x500NameBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:238:5: x500NameBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:234:5: x500NameBag
         {
-        dbg.location(238,5);
-        pushFollow(FOLLOW_x500NameBag_in_synpred14_Grammar2319);
+        dbg.location(234,5);
+        pushFollow(FOLLOW_x500NameBag_in_synpred14_Grammar2363);
         x500NameBag();
 
         state._fsp--;
@@ -10819,13 +10857,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred15_Grammar
     public final void synpred15_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:239:4: ( rfc822NameBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:235:4: ( rfc822NameBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:239:5: rfc822NameBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:235:5: rfc822NameBag
         {
-        dbg.location(239,5);
-        pushFollow(FOLLOW_rfc822NameBag_in_synpred15_Grammar2358);
+        dbg.location(235,5);
+        pushFollow(FOLLOW_rfc822NameBag_in_synpred15_Grammar2402);
         rfc822NameBag();
 
         state._fsp--;
@@ -10838,13 +10876,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred16_Grammar
     public final void synpred16_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:240:4: ( hexBinaryBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:236:4: ( hexBinaryBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:240:5: hexBinaryBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:236:5: hexBinaryBag
         {
-        dbg.location(240,5);
-        pushFollow(FOLLOW_hexBinaryBag_in_synpred16_Grammar2396);
+        dbg.location(236,5);
+        pushFollow(FOLLOW_hexBinaryBag_in_synpred16_Grammar2440);
         hexBinaryBag();
 
         state._fsp--;
@@ -10857,13 +10895,13 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred17_Grammar
     public final void synpred17_Grammar_fragment() throws RecognitionException {
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:241:4: ( base64BinaryBag )
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:237:4: ( base64BinaryBag )
         dbg.enterAlt(1);
 
-        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:241:5: base64BinaryBag
+        // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:237:5: base64BinaryBag
         {
-        dbg.location(241,5);
-        pushFollow(FOLLOW_base64BinaryBag_in_synpred17_Grammar2435);
+        dbg.location(237,5);
+        pushFollow(FOLLOW_base64BinaryBag_in_synpred17_Grammar2479);
         base64BinaryBag();
 
         state._fsp--;
@@ -11514,7 +11552,7 @@ public TreeAdaptor getTreeAdaptor() {
             this.transition = DFA8_transition;
         }
         public String getDescription() {
-            return "138:1: booleanExpr : ( TRUE_TOK ^| FALSE_TOK ^| BOOLEAN_TOK ^ LPAREN ! attributeExpr RPAREN !| ( NOF_TOK ^| NOT_TOK ^) LPAREN ! booleanExpr RPAREN !| LPAREN ! conditionalOrExpr RPAREN !| equalityExpr | isInOp | containsOp | stringExpr '.' ( NODEEQUAL_TOK ^| NODEMATCH_TOK ^) LPAREN ! stringExpr RPAREN !);";
+            return "134:1: booleanExpr returns [SomeType o] : ( TRUE_TOK ^| FALSE_TOK ^| BOOLEAN_TOK ^ LPAREN ! attributeExpr RPAREN !| ( NOF_TOK ^| NOT_TOK ^) LPAREN ! booleanExpr RPAREN !| LPAREN ! conditionalOrExpr RPAREN !| equalityExpr | isInOp | containsOp | stringExpr '.' ( NODEEQUAL_TOK ^| NODEMATCH_TOK ^) LPAREN ! stringExpr RPAREN !);";
         }
         public void error(NoViableAltException nvae) {
             dbg.recognitionException(nvae);
@@ -11635,7 +11673,7 @@ public TreeAdaptor getTreeAdaptor() {
             this.transition = DFA11_transition;
         }
         public String getDescription() {
-            return "164:1: isInOp : ( doubleExpr '.' ISIN_TOK ^ LPAREN ! doubleBag RPAREN !| stringExpr '.' ISIN_TOK ^ LPAREN ! stringBag RPAREN !| anyUriExpr '.' ISIN_TOK ^ LPAREN ! anyUriBag RPAREN !| dateExpr '.' ISIN_TOK ^ LPAREN ! dateBag RPAREN !| timeExpr '.' ISIN_TOK ^ LPAREN ! timeBag RPAREN !| dateTimeExpr '.' ISIN_TOK ^ LPAREN ! dateTimeBag RPAREN !| base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !| dayTimeDurationExpr '.' ISIN_TOK ^ LPAREN ! dayTimeDurationBag RPAREN !| yearMonthDurationExpr '.' ISIN_TOK ^ LPAREN ! yearMonthDurationBag RPAREN !| x500NameExpr '.' ISIN_TOK ^ LPAREN ! x500NameBag RPAREN !| rfc822NameExpr '.' ISIN_TOK ^ LPAREN ! rfc822NameBag RPAREN !| hexBinaryExpr '.' ISIN_TOK ^ LPAREN ! hexBinaryBag RPAREN !| ( base64BinaryExpr )=> base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !);";
+            return "160:1: isInOp returns [SomeType o] : ( doubleExpr '.' ISIN_TOK ^ LPAREN ! doubleBag RPAREN !| stringExpr '.' ISIN_TOK ^ LPAREN ! stringBag RPAREN !| anyUriExpr '.' ISIN_TOK ^ LPAREN ! anyUriBag RPAREN !| dateExpr '.' ISIN_TOK ^ LPAREN ! dateBag RPAREN !| timeExpr '.' ISIN_TOK ^ LPAREN ! timeBag RPAREN !| dateTimeExpr '.' ISIN_TOK ^ LPAREN ! dateTimeBag RPAREN !| base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !| dayTimeDurationExpr '.' ISIN_TOK ^ LPAREN ! dayTimeDurationBag RPAREN !| yearMonthDurationExpr '.' ISIN_TOK ^ LPAREN ! yearMonthDurationBag RPAREN !| x500NameExpr '.' ISIN_TOK ^ LPAREN ! x500NameBag RPAREN !| rfc822NameExpr '.' ISIN_TOK ^ LPAREN ! rfc822NameBag RPAREN !| hexBinaryExpr '.' ISIN_TOK ^ LPAREN ! hexBinaryBag RPAREN !| ( base64BinaryExpr )=> base64BinaryExpr '.' ISIN_TOK ^ LPAREN ! base64BinaryBag RPAREN !);";
         }
         public void error(NoViableAltException nvae) {
             dbg.recognitionException(nvae);
@@ -11768,7 +11806,7 @@ public TreeAdaptor getTreeAdaptor() {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "180:1: containsOp : ( doubleBag '.' CONTAINS_TOK ^ LPAREN ! doubleExpr RPAREN !| stringBag '.' CONTAINS_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriBag '.' CONTAINS_TOK ^ LPAREN ! anyUriExpr RPAREN !| dateBag '.' CONTAINS_TOK ^ LPAREN ! dateExpr RPAREN !| timeBag '.' CONTAINS_TOK ^ LPAREN ! timeExpr RPAREN !| dateTimeBag '.' CONTAINS_TOK ^ LPAREN ! dateTimeExpr RPAREN !| base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !| dayTimeDurationBag '.' CONTAINS_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !| yearMonthDurationBag '.' CONTAINS_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !| x500NameBag '.' CONTAINS_TOK ^ LPAREN ! x500NameExpr RPAREN !| rfc822NameBag '.' CONTAINS_TOK ^ LPAREN ! rfc822NameExpr RPAREN !| hexBinaryBag '.' CONTAINS_TOK ^ LPAREN ! hexBinaryExpr RPAREN !| ( base64BinaryExpr )=> base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !);";
+            return "176:1: containsOp returns [SomeType o] : ( doubleBag '.' CONTAINS_TOK ^ LPAREN ! doubleExpr RPAREN !| stringBag '.' CONTAINS_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriBag '.' CONTAINS_TOK ^ LPAREN ! anyUriExpr RPAREN !| dateBag '.' CONTAINS_TOK ^ LPAREN ! dateExpr RPAREN !| timeBag '.' CONTAINS_TOK ^ LPAREN ! timeExpr RPAREN !| dateTimeBag '.' CONTAINS_TOK ^ LPAREN ! dateTimeExpr RPAREN !| base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !| dayTimeDurationBag '.' CONTAINS_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !| yearMonthDurationBag '.' CONTAINS_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !| x500NameBag '.' CONTAINS_TOK ^ LPAREN ! x500NameExpr RPAREN !| rfc822NameBag '.' CONTAINS_TOK ^ LPAREN ! rfc822NameExpr RPAREN !| hexBinaryBag '.' CONTAINS_TOK ^ LPAREN ! hexBinaryExpr RPAREN !| ( base64BinaryExpr )=> base64BinaryBag '.' CONTAINS_TOK ^ LPAREN ! base64BinaryExpr RPAREN !);";
         }
         public void error(NoViableAltException nvae) {
             dbg.recognitionException(nvae);
@@ -11934,7 +11972,7 @@ public TreeAdaptor getTreeAdaptor() {
             this.transition = DFA13_transition;
         }
         public String getDescription() {
-            return "196:1: equalityExpr : ( integerExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ integerExpr | doubleExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ doubleExpr | stringExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ stringExpr | anyUriExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ anyUriExpr | dateExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateExpr | timeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ timeExpr | dateTimeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateTimeExpr | yearMonthDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ yearMonthDurationExpr | x500NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ x500NameExpr | rfc822NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ rfc822NameExpr | dayTimeDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dayTimeDurationExpr | base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ base64BinaryExpr );";
+            return "192:1: equalityExpr returns [SomeType o] : ( integerExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ integerExpr | doubleExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ doubleExpr | stringExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ stringExpr | anyUriExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ anyUriExpr | dateExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateExpr | timeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ timeExpr | dateTimeExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dateTimeExpr | yearMonthDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ yearMonthDurationExpr | x500NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ x500NameExpr | rfc822NameExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ rfc822NameExpr | dayTimeDurationExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ dayTimeDurationExpr | base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' ) ^ base64BinaryExpr );";
         }
         public void error(NoViableAltException nvae) {
             dbg.recognitionException(nvae);
@@ -12053,7 +12091,7 @@ public TreeAdaptor getTreeAdaptor() {
             this.transition = DFA14_transition;
         }
         public String getDescription() {
-            return "211:1: regexOp : ( integerExpr '.' REGEXMATCH_TOK ^ LPAREN ! integerExpr RPAREN !| doubleExpr '.' REGEXMATCH_TOK ^ LPAREN ! doubleExpr RPAREN !| stringExpr '.' REGEXMATCH_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriExpr '.' REGEXMATCH_TOK ^ LPAREN ! anyUriExpr RPAREN !| dateExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateExpr RPAREN !| timeExpr '.' REGEXMATCH_TOK ^ LPAREN ! timeExpr RPAREN !| dateTimeExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateTimeExpr RPAREN !| dayTimeDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !| yearMonthDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !| x500NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! x500NameExpr RPAREN !| rfc822NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! rfc822NameExpr RPAREN !| base64BinaryExpr '.' REGEXMATCH_TOK ^ LPAREN ! base64BinaryExpr RPAREN !);";
+            return "207:1: regexOp returns [SomeType o] : ( integerExpr '.' REGEXMATCH_TOK ^ LPAREN ! integerExpr RPAREN !| doubleExpr '.' REGEXMATCH_TOK ^ LPAREN ! doubleExpr RPAREN !| stringExpr '.' REGEXMATCH_TOK ^ LPAREN ! stringExpr RPAREN !| anyUriExpr '.' REGEXMATCH_TOK ^ LPAREN ! anyUriExpr RPAREN !| dateExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateExpr RPAREN !| timeExpr '.' REGEXMATCH_TOK ^ LPAREN ! timeExpr RPAREN !| dateTimeExpr '.' REGEXMATCH_TOK ^ LPAREN ! dateTimeExpr RPAREN !| dayTimeDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! dayTimeDurationExpr RPAREN !| yearMonthDurationExpr '.' REGEXMATCH_TOK ^ LPAREN ! yearMonthDurationExpr RPAREN !| x500NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! x500NameExpr RPAREN !| rfc822NameExpr '.' REGEXMATCH_TOK ^ LPAREN ! rfc822NameExpr RPAREN !| base64BinaryExpr '.' REGEXMATCH_TOK ^ LPAREN ! base64BinaryExpr RPAREN !);";
         }
         public void error(NoViableAltException nvae) {
             dbg.recognitionException(nvae);
@@ -12117,7 +12155,7 @@ public TreeAdaptor getTreeAdaptor() {
             this.transition = DFA16_transition;
         }
         public String getDescription() {
-            return "244:1: integerExpr : ( INTEGER_CONSTANT ^| stringExpr '.' ( INTEGER_TOK | NODECOUNT_TOK ) ^ LPAREN ! RPAREN !| anyBag '.' SIZE_TOK ^ LPAREN ! RPAREN !);";
+            return "240:1: integerExpr returns [SomeType o] : ( INTEGER_CONSTANT ^| stringExpr '.' ( INTEGER_TOK | NODECOUNT_TOK ) ^ LPAREN ! RPAREN !| anyBag '.' SIZE_TOK ^ LPAREN ! RPAREN !);";
         }
         public void error(NoViableAltException nvae) {
             dbg.recognitionException(nvae);
@@ -12129,610 +12167,610 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_policySet_in_xacmlFile469 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_xacmlFile472 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_POLICY_TOK_in_policy487 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ANYCASEIDENTIFIER_in_policy489 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_LOWERCASEIDENTIFIER_in_policy491 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_90_in_policy493 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
-    public static final BitSet FOLLOW_target_in_policy495 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
-    public static final BitSet FOLLOW_92_in_policy497 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_POLICYSET_TOK_in_policySet514 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ANYCASEIDENTIFIER_in_policySet517 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_LOWERCASEIDENTIFIER_in_policySet519 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_90_in_policySet521 = new BitSet(new long[]{0x0200000000000000L,0x0000000000000200L});
-    public static final BitSet FOLLOW_target_in_policySet524 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_policy_in_policySet527 = new BitSet(new long[]{0x0200000000000000L,0x0000000010000000L});
-    public static final BitSet FOLLOW_92_in_policySet530 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_TARGET_TOK_in_target549 = new BitSet(new long[]{0x0000000000000200L,0x0000000004000000L});
-    public static final BitSet FOLLOW_ANYCASEIDENTIFIER_in_target552 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_90_in_target555 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_APPLICABLE_TOK_in_target558 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_IF_TOK_in_target560 = new BitSet(new long[]{0x601208CA71C72020L,0x0000000000030CD0L});
-    public static final BitSet FOLLOW_booleanExpr_in_target562 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
-    public static final BitSet FOLLOW_92_in_target564 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_TOK_in_rule580 = new BitSet(new long[]{0x0000000000000200L,0x0000000004000000L});
-    public static final BitSet FOLLOW_ANYCASEIDENTIFIER_in_rule583 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_90_in_rule586 = new BitSet(new long[]{0x0080000004000000L});
-    public static final BitSet FOLLOW_set_in_rule589 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_IF_TOK_in_rule597 = new BitSet(new long[]{0x601208CA71C72020L,0x0000000000030CD0L});
-    public static final BitSet FOLLOW_booleanExpr_in_rule599 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
-    public static final BitSet FOLLOW_92_in_rule601 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_TRUE_TOK_in_booleanExpr616 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FALSE_TOK_in_booleanExpr622 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BOOLEAN_TOK_in_booleanExpr628 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_booleanExpr631 = new BitSet(new long[]{0x2000000040000020L,0x0000000000000080L});
-    public static final BitSet FOLLOW_attributeExpr_in_booleanExpr634 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_booleanExpr636 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NOF_TOK_in_booleanExpr644 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_NOT_TOK_in_booleanExpr649 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_booleanExpr653 = new BitSet(new long[]{0x601208CA71C72020L,0x0000000000030CD0L});
-    public static final BitSet FOLLOW_booleanExpr_in_booleanExpr656 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_booleanExpr658 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_booleanExpr664 = new BitSet(new long[]{0x601208CA71C72020L,0x0000000000030CD0L});
-    public static final BitSet FOLLOW_conditionalOrExpr_in_booleanExpr667 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_booleanExpr669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_equalityExpr_in_booleanExpr675 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_isInOp_in_booleanExpr680 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_containsOp_in_booleanExpr684 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringExpr_in_booleanExpr689 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_booleanExpr691 = new BitSet(new long[]{0x0001800000000000L});
-    public static final BitSet FOLLOW_NODEEQUAL_TOK_in_booleanExpr695 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_NODEMATCH_TOK_in_booleanExpr700 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_booleanExpr705 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_booleanExpr708 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_booleanExpr710 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BOOLEAN_TOK_in_booleanBag723 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_booleanBag725 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_conditionalAndExpr_in_conditionalOrExpr741 = new BitSet(new long[]{0x0000000000000002L,0x0000000008000000L});
-    public static final BitSet FOLLOW_91_in_conditionalOrExpr744 = new BitSet(new long[]{0x601208CA71C72020L,0x0000000000030CD0L});
-    public static final BitSet FOLLOW_conditionalAndExpr_in_conditionalOrExpr746 = new BitSet(new long[]{0x0000000000000002L,0x0000000008000000L});
-    public static final BitSet FOLLOW_booleanExpr_in_conditionalAndExpr766 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_conditionalAndExpr769 = new BitSet(new long[]{0x601208CA71C72020L,0x0000000000030CD0L});
-    public static final BitSet FOLLOW_booleanExpr_in_conditionalAndExpr771 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040000L});
-    public static final BitSet FOLLOW_doubleExpr_in_isInOp788 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_isInOp790 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp792 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_isInOp795 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_doubleBag_in_isInOp798 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_isInOp800 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringExpr_in_isInOp807 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_isInOp809 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp811 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_isInOp814 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000C0L});
-    public static final BitSet FOLLOW_stringBag_in_isInOp817 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_isInOp819 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_anyUriExpr_in_isInOp826 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_isInOp828 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp830 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_isInOp833 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_anyUriBag_in_isInOp836 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_isInOp838 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateExpr_in_isInOp845 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_isInOp847 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp849 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_isInOp852 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_dateBag_in_isInOp855 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_isInOp857 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_timeExpr_in_isInOp864 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_isInOp866 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp868 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_isInOp871 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_timeBag_in_isInOp874 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_isInOp876 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateTimeExpr_in_isInOp883 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_isInOp885 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp887 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_isInOp890 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_dateTimeBag_in_isInOp893 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_isInOp895 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base64BinaryExpr_in_isInOp902 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_isInOp904 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp906 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_isInOp909 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_base64BinaryBag_in_isInOp912 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_isInOp914 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dayTimeDurationExpr_in_isInOp921 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_isInOp923 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp925 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_isInOp928 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_dayTimeDurationBag_in_isInOp931 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_isInOp933 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_yearMonthDurationExpr_in_isInOp940 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_isInOp942 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp944 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_isInOp947 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_yearMonthDurationBag_in_isInOp950 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_isInOp952 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_x500NameExpr_in_isInOp959 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_isInOp961 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp963 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_isInOp966 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_x500NameBag_in_isInOp969 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_isInOp971 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rfc822NameExpr_in_isInOp978 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_isInOp980 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp982 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_isInOp985 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_rfc822NameBag_in_isInOp988 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_isInOp990 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_hexBinaryExpr_in_isInOp997 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_isInOp999 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp1001 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_isInOp1004 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_hexBinaryBag_in_isInOp1007 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_isInOp1009 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base64BinaryExpr_in_isInOp1022 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_isInOp1024 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp1026 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_isInOp1029 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_base64BinaryBag_in_isInOp1032 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_isInOp1034 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_doubleBag_in_containsOp1047 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_containsOp1049 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1051 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_containsOp1054 = new BitSet(new long[]{0x0000000030000000L});
-    public static final BitSet FOLLOW_doubleExpr_in_containsOp1057 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_containsOp1059 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringBag_in_containsOp1066 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_containsOp1068 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1070 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_containsOp1073 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_containsOp1076 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_containsOp1078 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_anyUriBag_in_containsOp1085 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_containsOp1087 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1089 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_containsOp1092 = new BitSet(new long[]{0x2000000040002020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_anyUriExpr_in_containsOp1095 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_containsOp1097 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateBag_in_containsOp1104 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_containsOp1106 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1108 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_containsOp1111 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_dateExpr_in_containsOp1114 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_containsOp1116 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_timeBag_in_containsOp1123 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_containsOp1125 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1127 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_containsOp1130 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_timeExpr_in_containsOp1133 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_containsOp1135 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateTimeBag_in_containsOp1142 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_containsOp1144 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1146 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_containsOp1149 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_dateTimeExpr_in_containsOp1152 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_containsOp1154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base64BinaryBag_in_containsOp1161 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_containsOp1163 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1165 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_containsOp1168 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_base64BinaryExpr_in_containsOp1171 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_containsOp1173 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dayTimeDurationBag_in_containsOp1180 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_containsOp1182 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1184 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_containsOp1187 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_dayTimeDurationExpr_in_containsOp1190 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_containsOp1192 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_yearMonthDurationBag_in_containsOp1199 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_containsOp1201 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1203 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_containsOp1206 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_yearMonthDurationExpr_in_containsOp1209 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_containsOp1211 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_x500NameBag_in_containsOp1218 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_containsOp1220 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1222 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_containsOp1225 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_x500NameExpr_in_containsOp1228 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_containsOp1230 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rfc822NameBag_in_containsOp1237 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_containsOp1239 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1241 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_containsOp1244 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_rfc822NameExpr_in_containsOp1247 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_containsOp1249 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_hexBinaryBag_in_containsOp1256 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_containsOp1258 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1260 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_containsOp1263 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_hexBinaryExpr_in_containsOp1266 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_containsOp1268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base64BinaryBag_in_containsOp1281 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_containsOp1283 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1285 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_containsOp1288 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_base64BinaryExpr_in_containsOp1291 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_containsOp1293 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerExpr_in_equalityExpr1305 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
-    public static final BitSet FOLLOW_set_in_equalityExpr1307 = new BitSet(new long[]{0x600000C861C72020L,0x00000000000304D0L});
-    public static final BitSet FOLLOW_integerExpr_in_equalityExpr1330 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_doubleExpr_in_equalityExpr1335 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
-    public static final BitSet FOLLOW_set_in_equalityExpr1337 = new BitSet(new long[]{0x0000000030000000L});
-    public static final BitSet FOLLOW_doubleExpr_in_equalityExpr1360 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringExpr_in_equalityExpr1365 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
-    public static final BitSet FOLLOW_set_in_equalityExpr1367 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_equalityExpr1390 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_anyUriExpr_in_equalityExpr1395 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
-    public static final BitSet FOLLOW_set_in_equalityExpr1397 = new BitSet(new long[]{0x2000000040002020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_anyUriExpr_in_equalityExpr1420 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateExpr_in_equalityExpr1425 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
-    public static final BitSet FOLLOW_set_in_equalityExpr1427 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_dateExpr_in_equalityExpr1450 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_timeExpr_in_equalityExpr1455 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
-    public static final BitSet FOLLOW_set_in_equalityExpr1457 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_timeExpr_in_equalityExpr1480 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateTimeExpr_in_equalityExpr1485 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
-    public static final BitSet FOLLOW_set_in_equalityExpr1487 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_dateTimeExpr_in_equalityExpr1510 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_yearMonthDurationExpr_in_equalityExpr1515 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
-    public static final BitSet FOLLOW_set_in_equalityExpr1517 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_yearMonthDurationExpr_in_equalityExpr1540 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_x500NameExpr_in_equalityExpr1545 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
-    public static final BitSet FOLLOW_set_in_equalityExpr1547 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_x500NameExpr_in_equalityExpr1570 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rfc822NameExpr_in_equalityExpr1575 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
-    public static final BitSet FOLLOW_set_in_equalityExpr1577 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_rfc822NameExpr_in_equalityExpr1601 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dayTimeDurationExpr_in_equalityExpr1606 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
-    public static final BitSet FOLLOW_set_in_equalityExpr1608 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_dayTimeDurationExpr_in_equalityExpr1631 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base64BinaryExpr_in_equalityExpr1636 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
-    public static final BitSet FOLLOW_set_in_equalityExpr1638 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_base64BinaryExpr_in_equalityExpr1661 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerExpr_in_regexOp1673 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_regexOp1676 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1678 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_regexOp1681 = new BitSet(new long[]{0x600000C861C72020L,0x00000000000304D0L});
-    public static final BitSet FOLLOW_integerExpr_in_regexOp1684 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_regexOp1686 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_doubleExpr_in_regexOp1692 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_regexOp1694 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1696 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_regexOp1699 = new BitSet(new long[]{0x0000000030000000L});
-    public static final BitSet FOLLOW_doubleExpr_in_regexOp1702 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_regexOp1704 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringExpr_in_regexOp1710 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_regexOp1712 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1714 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_regexOp1717 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_regexOp1720 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_regexOp1722 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_anyUriExpr_in_regexOp1728 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_regexOp1730 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1732 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_regexOp1735 = new BitSet(new long[]{0x2000000040002020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_anyUriExpr_in_regexOp1738 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_regexOp1740 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateExpr_in_regexOp1746 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_regexOp1748 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1750 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_regexOp1753 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_dateExpr_in_regexOp1756 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_regexOp1758 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_timeExpr_in_regexOp1764 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_regexOp1766 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1768 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_regexOp1771 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_timeExpr_in_regexOp1774 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_regexOp1776 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateTimeExpr_in_regexOp1782 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_regexOp1784 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1786 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_regexOp1789 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_dateTimeExpr_in_regexOp1792 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_regexOp1794 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dayTimeDurationExpr_in_regexOp1800 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_regexOp1802 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1804 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_regexOp1807 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_dayTimeDurationExpr_in_regexOp1810 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_regexOp1812 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_yearMonthDurationExpr_in_regexOp1818 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_regexOp1820 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1822 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_regexOp1825 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_yearMonthDurationExpr_in_regexOp1828 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_regexOp1830 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_x500NameExpr_in_regexOp1836 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_regexOp1838 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1840 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_regexOp1843 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_x500NameExpr_in_regexOp1846 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_regexOp1848 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rfc822NameExpr_in_regexOp1854 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_regexOp1856 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1858 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_regexOp1861 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_rfc822NameExpr_in_regexOp1864 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_regexOp1866 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base64BinaryExpr_in_regexOp1872 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_regexOp1874 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1876 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_regexOp1879 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_base64BinaryExpr_in_regexOp1882 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_regexOp1884 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_booleanBag_in_bagOp1902 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp1904 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp1906 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp1921 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_booleanBag_in_bagOp1924 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp1926 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerBag_in_bagOp1938 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp1940 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp1942 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp1958 = new BitSet(new long[]{0x0000008000010000L});
-    public static final BitSet FOLLOW_integerBag_in_bagOp1962 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp1964 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_doubleBag_in_bagOp1976 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp1978 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp1980 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp1996 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_doubleBag_in_bagOp2000 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp2002 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringBag_in_bagOp2015 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp2017 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp2019 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp2035 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000C0L});
-    public static final BitSet FOLLOW_stringBag_in_bagOp2039 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp2041 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateBag_in_bagOp2054 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp2056 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp2058 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp2074 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_dateBag_in_bagOp2078 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp2080 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_timeBag_in_bagOp2093 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp2095 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp2097 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp2113 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_timeBag_in_bagOp2117 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp2119 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateTimeBag_in_bagOp2132 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp2134 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp2136 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp2152 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_dateTimeBag_in_bagOp2156 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp2158 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base64BinaryBag_in_bagOp2171 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp2173 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp2175 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp2190 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_base64BinaryBag_in_bagOp2194 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp2196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dayTimeDurationBag_in_bagOp2209 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp2211 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp2213 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp2228 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_dayTimeDurationBag_in_bagOp2232 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp2234 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_yearMonthDurationBag_in_bagOp2247 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp2249 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp2251 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp2267 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_yearMonthDurationBag_in_bagOp2271 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp2273 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_anyUriBag_in_bagOp2286 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp2288 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp2290 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp2306 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_anyUriBag_in_bagOp2310 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp2312 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_x500NameBag_in_bagOp2325 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp2327 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp2329 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp2345 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_x500NameBag_in_bagOp2349 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp2351 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rfc822NameBag_in_bagOp2364 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp2366 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp2368 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp2383 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_rfc822NameBag_in_bagOp2387 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp2389 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_hexBinaryBag_in_bagOp2402 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp2404 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp2406 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp2422 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_hexBinaryBag_in_bagOp2426 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp2428 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base64BinaryBag_in_bagOp2440 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_bagOp2442 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
-    public static final BitSet FOLLOW_set_in_bagOp2444 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_bagOp2460 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_base64BinaryBag_in_bagOp2464 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_bagOp2466 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INTEGER_CONSTANT_in_integerExpr2478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringExpr_in_integerExpr2484 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_integerExpr2486 = new BitSet(new long[]{0x0000408000000000L});
-    public static final BitSet FOLLOW_set_in_integerExpr2488 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_integerExpr2499 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_integerExpr2503 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_anyBag_in_integerExpr2509 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_integerExpr2511 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_SIZE_TOK_in_integerExpr2513 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_integerExpr2516 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_integerExpr2519 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INTEGER_TOK_in_integerBag2534 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_integerBag2536 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
-    public static final BitSet FOLLOW_BAG_TOK_in_integerBag2540 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_integerBag2543 = new BitSet(new long[]{0x600000C861C72020L,0x00000000000304D0L});
-    public static final BitSet FOLLOW_integerExpr_in_integerBag2546 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
-    public static final BitSet FOLLOW_83_in_integerBag2550 = new BitSet(new long[]{0x600000C861C72020L,0x00000000000304D0L});
-    public static final BitSet FOLLOW_integerExpr_in_integerBag2553 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080001L});
-    public static final BitSet FOLLOW_RPAREN_in_integerBag2557 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_integerBag2562 = new BitSet(new long[]{0x0000010000000000L,0x0000000000002000L});
-    public static final BitSet FOLLOW_set_in_integerBag2564 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_integerBag2575 = new BitSet(new long[]{0x0000008000010000L});
-    public static final BitSet FOLLOW_integerBag_in_integerBag2578 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_integerBag2580 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
-    public static final BitSet FOLLOW_DOUBLE_CONSTANT_in_doubleExpr2594 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOUBLE_TOK_in_doubleExpr2600 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_doubleExpr2603 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_doubleExpr2606 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_doubleExpr2608 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOUBLE_TOK_in_doubleBag2621 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_doubleBag2624 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_in_stringExpr2638 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
-    public static final BitSet FOLLOW_stringBag_in_stringExpr2645 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_stringExpr2647 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_stringExpr2649 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_stringExpr2652 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_stringExpr2655 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_stringExpr2662 = new BitSet(new long[]{0x100C000000000000L});
-    public static final BitSet FOLLOW_set_in_stringExpr2664 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_stringExpr2677 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_stringExpr2680 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
-    public static final BitSet FOLLOW_STRING_TOK_in_stringBag2694 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_stringBag2697 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_attributeExpr_in_stringBag2702 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_attributeExpr2715 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_attributeExpr2734 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_LOWERCASEIDENTIFIER_in_attributeExpr2736 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
-    public static final BitSet FOLLOW_ANYURI_TOK_in_anyUriExpr2750 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_anyUriExpr2753 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_anyUriExpr2756 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_anyUriExpr2758 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_anyUriBag_in_anyUriExpr2764 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_anyUriExpr2766 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_anyUriExpr2768 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_anyUriExpr2771 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_anyUriExpr2774 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringExpr_in_anyUriExpr2780 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_anyUriExpr2782 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_URI_TOK_in_anyUriExpr2784 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_anyUriExpr2787 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_anyUriExpr2790 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ANYURI_TOK_in_anyUriBag2804 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_anyUriBag2807 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DATE_TOK_in_dateExpr2819 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_dateExpr2822 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_dateExpr2825 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_dateExpr2827 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateBag_in_dateExpr2833 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_dateExpr2835 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_dateExpr2837 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_dateExpr2840 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_dateExpr2843 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DATE_TOK_in_dateBag2854 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_dateBag2857 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_TIME_TOK_in_timeExpr2870 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_timeExpr2873 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_timeExpr2876 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_timeExpr2878 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_timeBag_in_timeExpr2884 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_timeExpr2886 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_timeExpr2888 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_timeExpr2890 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_timeExpr2893 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_TIME_TOK_in_timeBag2904 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_timeBag2907 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DATETIME_TOK_in_dateTimeExpr2920 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_dateTimeExpr2923 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_dateTimeExpr2926 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_dateTimeExpr2928 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateTimeBag_in_dateTimeExpr2934 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_dateTimeExpr2936 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_dateTimeExpr2938 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_dateTimeExpr2941 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_dateTimeExpr2944 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DATETIME_TOK_in_dateTimeBag2955 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_dateTimeBag2958 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BASE64BINARY_TOK_in_base64BinaryExpr2971 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_base64BinaryExpr2974 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_base64BinaryExpr2977 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_base64BinaryExpr2979 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base64BinaryBag_in_base64BinaryExpr2985 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_base64BinaryExpr2987 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_base64BinaryExpr2989 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_base64BinaryExpr2992 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_base64BinaryExpr2995 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BASE64BINARY_TOK_in_base64BinaryBag3006 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_base64BinaryBag3009 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DAYTIMEDURATION_TOK_in_dayTimeDurationExpr3023 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_dayTimeDurationExpr3026 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_dayTimeDurationExpr3029 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_dayTimeDurationExpr3031 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dayTimeDurationBag_in_dayTimeDurationExpr3037 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_dayTimeDurationExpr3040 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_dayTimeDurationExpr3042 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_dayTimeDurationExpr3044 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_dayTimeDurationExpr3047 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DAYTIMEDURATION_TOK_in_dayTimeDurationBag3058 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_dayTimeDurationBag3061 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_YEARMONTHDURATION_TOK_in_yearMonthDurationExpr3074 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_yearMonthDurationExpr3077 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_yearMonthDurationExpr3080 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_yearMonthDurationExpr3082 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_yearMonthDurationBag_in_yearMonthDurationExpr3088 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_yearMonthDurationExpr3090 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_yearMonthDurationExpr3092 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_yearMonthDurationExpr3095 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_yearMonthDurationExpr3098 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_YEARMONTHDURATION_TOK_in_yearMonthDurationBag3109 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_yearMonthDurationBag3112 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_X500NAME_TOK_in_x500NameExpr3125 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_x500NameExpr3128 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_x500NameExpr3131 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_x500NameExpr3133 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_x500NameBag_in_x500NameExpr3139 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_x500NameExpr3142 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_x500NameExpr3144 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_x500NameExpr3147 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_x500NameExpr3150 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_X500NAME_TOK_in_x500NameBag3162 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_x500NameBag3165 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RFC822NAME_TOK_in_rfc822NameExpr3178 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_rfc822NameExpr3181 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_rfc822NameExpr3184 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_rfc822NameExpr3186 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rfc822NameBag_in_rfc822NameExpr3192 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_rfc822NameExpr3194 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_rfc822NameExpr3196 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_rfc822NameExpr3199 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_rfc822NameExpr3202 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RFC822NAME_TOK_in_rfc822NameBag3214 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_rfc822NameBag3217 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXBINARY_TOK_in_hexBinaryExpr3230 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_hexBinaryExpr3233 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
-    public static final BitSet FOLLOW_stringExpr_in_hexBinaryExpr3236 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_hexBinaryExpr3238 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_hexBinaryBag_in_hexBinaryExpr3244 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_hexBinaryExpr3246 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_hexBinaryExpr3248 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LPAREN_in_hexBinaryExpr3251 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RPAREN_in_hexBinaryExpr3254 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXBINARY_TOK_in_hexBinaryBag3265 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_hexBinaryBag3268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_booleanBag_in_anyBag3281 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerBag_in_anyBag3285 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_doubleBag_in_anyBag3289 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringBag_in_anyBag3293 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_anyUriBag_in_anyBag3297 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateBag_in_anyBag3301 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_timeBag_in_anyBag3306 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateTimeBag_in_anyBag3310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base64BinaryBag_in_anyBag3314 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dayTimeDurationBag_in_anyBag3318 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_yearMonthDurationBag_in_anyBag3323 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_x500NameBag_in_anyBag3328 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rfc822NameBag_in_anyBag3333 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_hexBinaryBag_in_anyBag3337 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base64BinaryExpr_in_synpred1_Grammar1017 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base64BinaryExpr_in_synpred2_Grammar1276 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_booleanBag_in_synpred3_Grammar1897 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerBag_in_synpred4_Grammar1933 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_doubleBag_in_synpred5_Grammar1971 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringBag_in_synpred6_Grammar2009 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateBag_in_synpred7_Grammar2048 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_timeBag_in_synpred8_Grammar2087 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateTimeBag_in_synpred9_Grammar2126 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base64BinaryBag_in_synpred10_Grammar2165 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dayTimeDurationBag_in_synpred11_Grammar2203 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_yearMonthDurationBag_in_synpred12_Grammar2241 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_anyUriBag_in_synpred13_Grammar2280 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_x500NameBag_in_synpred14_Grammar2319 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rfc822NameBag_in_synpred15_Grammar2358 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_hexBinaryBag_in_synpred16_Grammar2396 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base64BinaryBag_in_synpred17_Grammar2435 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ANYCASEIDENTIFIER_in_policy491 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_LOWERCASEIDENTIFIER_in_policy495 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_90_in_policy497 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_target_in_policy501 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
+    public static final BitSet FOLLOW_92_in_policy503 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_POLICYSET_TOK_in_policySet520 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ANYCASEIDENTIFIER_in_policySet523 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_LOWERCASEIDENTIFIER_in_policySet525 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_90_in_policySet527 = new BitSet(new long[]{0x0200000000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_target_in_policySet530 = new BitSet(new long[]{0x0200000000000000L});
+    public static final BitSet FOLLOW_policy_in_policySet533 = new BitSet(new long[]{0x0200000000000000L,0x0000000010000000L});
+    public static final BitSet FOLLOW_92_in_policySet536 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_TARGET_TOK_in_target555 = new BitSet(new long[]{0x0000000000000200L,0x0000000004000000L});
+    public static final BitSet FOLLOW_ANYCASEIDENTIFIER_in_target558 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_90_in_target561 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_APPLICABLE_TOK_in_target564 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_IF_TOK_in_target566 = new BitSet(new long[]{0x601208CA71C72020L,0x0000000000030CD0L});
+    public static final BitSet FOLLOW_booleanExpr_in_target568 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
+    public static final BitSet FOLLOW_92_in_target570 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_TOK_in_rule588 = new BitSet(new long[]{0x0000000000000200L,0x0000000004000000L});
+    public static final BitSet FOLLOW_ANYCASEIDENTIFIER_in_rule591 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_90_in_rule594 = new BitSet(new long[]{0x0080000004000000L});
+    public static final BitSet FOLLOW_set_in_rule597 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_IF_TOK_in_rule605 = new BitSet(new long[]{0x601208CA71C72020L,0x0000000000030CD0L});
+    public static final BitSet FOLLOW_booleanExpr_in_rule607 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
+    public static final BitSet FOLLOW_92_in_rule609 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_TRUE_TOK_in_booleanExpr628 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FALSE_TOK_in_booleanExpr634 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BOOLEAN_TOK_in_booleanExpr640 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_booleanExpr643 = new BitSet(new long[]{0x2000000040000020L,0x0000000000000080L});
+    public static final BitSet FOLLOW_attributeExpr_in_booleanExpr646 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_booleanExpr648 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NOF_TOK_in_booleanExpr656 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_NOT_TOK_in_booleanExpr661 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_booleanExpr665 = new BitSet(new long[]{0x601208CA71C72020L,0x0000000000030CD0L});
+    public static final BitSet FOLLOW_booleanExpr_in_booleanExpr668 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_booleanExpr670 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_booleanExpr676 = new BitSet(new long[]{0x601208CA71C72020L,0x0000000000030CD0L});
+    public static final BitSet FOLLOW_conditionalOrExpr_in_booleanExpr679 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_booleanExpr681 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_equalityExpr_in_booleanExpr687 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_isInOp_in_booleanExpr692 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_containsOp_in_booleanExpr696 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringExpr_in_booleanExpr701 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_booleanExpr703 = new BitSet(new long[]{0x0001800000000000L});
+    public static final BitSet FOLLOW_NODEEQUAL_TOK_in_booleanExpr707 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_NODEMATCH_TOK_in_booleanExpr712 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_booleanExpr717 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_booleanExpr720 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_booleanExpr722 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BOOLEAN_TOK_in_booleanBag739 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_booleanBag741 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_conditionalAndExpr_in_conditionalOrExpr761 = new BitSet(new long[]{0x0000000000000002L,0x0000000008000000L});
+    public static final BitSet FOLLOW_91_in_conditionalOrExpr764 = new BitSet(new long[]{0x601208CA71C72020L,0x0000000000030CD0L});
+    public static final BitSet FOLLOW_conditionalAndExpr_in_conditionalOrExpr766 = new BitSet(new long[]{0x0000000000000002L,0x0000000008000000L});
+    public static final BitSet FOLLOW_booleanExpr_in_conditionalAndExpr790 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_conditionalAndExpr793 = new BitSet(new long[]{0x601208CA71C72020L,0x0000000000030CD0L});
+    public static final BitSet FOLLOW_booleanExpr_in_conditionalAndExpr795 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040000L});
+    public static final BitSet FOLLOW_doubleExpr_in_isInOp816 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_isInOp818 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp820 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_isInOp823 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_doubleBag_in_isInOp826 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_isInOp828 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringExpr_in_isInOp835 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_isInOp837 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp839 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_isInOp842 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000C0L});
+    public static final BitSet FOLLOW_stringBag_in_isInOp845 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_isInOp847 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_anyUriExpr_in_isInOp854 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_isInOp856 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp858 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_isInOp861 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_anyUriBag_in_isInOp864 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_isInOp866 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateExpr_in_isInOp873 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_isInOp875 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp877 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_isInOp880 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_dateBag_in_isInOp883 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_isInOp885 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_timeExpr_in_isInOp892 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_isInOp894 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp896 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_isInOp899 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_timeBag_in_isInOp902 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_isInOp904 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateTimeExpr_in_isInOp911 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_isInOp913 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp915 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_isInOp918 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_dateTimeBag_in_isInOp921 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_isInOp923 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base64BinaryExpr_in_isInOp930 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_isInOp932 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp934 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_isInOp937 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_base64BinaryBag_in_isInOp940 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_isInOp942 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dayTimeDurationExpr_in_isInOp949 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_isInOp951 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp953 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_isInOp956 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_dayTimeDurationBag_in_isInOp959 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_isInOp961 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_yearMonthDurationExpr_in_isInOp968 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_isInOp970 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp972 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_isInOp975 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_yearMonthDurationBag_in_isInOp978 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_isInOp980 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_x500NameExpr_in_isInOp987 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_isInOp989 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp991 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_isInOp994 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_x500NameBag_in_isInOp997 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_isInOp999 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rfc822NameExpr_in_isInOp1006 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_isInOp1008 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp1010 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_isInOp1013 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_rfc822NameBag_in_isInOp1016 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_isInOp1018 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_hexBinaryExpr_in_isInOp1025 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_isInOp1027 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp1029 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_isInOp1032 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_hexBinaryBag_in_isInOp1035 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_isInOp1037 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base64BinaryExpr_in_isInOp1050 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_isInOp1052 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_ISIN_TOK_in_isInOp1054 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_isInOp1057 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_base64BinaryBag_in_isInOp1060 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_isInOp1062 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_doubleBag_in_containsOp1079 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_containsOp1081 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1083 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_containsOp1086 = new BitSet(new long[]{0x0000000030000000L});
+    public static final BitSet FOLLOW_doubleExpr_in_containsOp1089 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_containsOp1091 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringBag_in_containsOp1098 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_containsOp1100 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1102 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_containsOp1105 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_containsOp1108 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_containsOp1110 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_anyUriBag_in_containsOp1117 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_containsOp1119 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1121 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_containsOp1124 = new BitSet(new long[]{0x2000000040002020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_anyUriExpr_in_containsOp1127 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_containsOp1129 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateBag_in_containsOp1136 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_containsOp1138 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1140 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_containsOp1143 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_dateExpr_in_containsOp1146 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_containsOp1148 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_timeBag_in_containsOp1155 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_containsOp1157 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1159 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_containsOp1162 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_timeExpr_in_containsOp1165 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_containsOp1167 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateTimeBag_in_containsOp1174 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_containsOp1176 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1178 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_containsOp1181 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_dateTimeExpr_in_containsOp1184 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_containsOp1186 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base64BinaryBag_in_containsOp1193 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_containsOp1195 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1197 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_containsOp1200 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_base64BinaryExpr_in_containsOp1203 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_containsOp1205 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dayTimeDurationBag_in_containsOp1212 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_containsOp1214 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1216 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_containsOp1219 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_dayTimeDurationExpr_in_containsOp1222 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_containsOp1224 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_yearMonthDurationBag_in_containsOp1231 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_containsOp1233 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1235 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_containsOp1238 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_yearMonthDurationExpr_in_containsOp1241 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_containsOp1243 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_x500NameBag_in_containsOp1250 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_containsOp1252 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1254 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_containsOp1257 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_x500NameExpr_in_containsOp1260 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_containsOp1262 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rfc822NameBag_in_containsOp1269 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_containsOp1271 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1273 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_containsOp1276 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_rfc822NameExpr_in_containsOp1279 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_containsOp1281 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_hexBinaryBag_in_containsOp1288 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_containsOp1290 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1292 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_containsOp1295 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_hexBinaryExpr_in_containsOp1298 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_containsOp1300 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base64BinaryBag_in_containsOp1313 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_containsOp1315 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_CONTAINS_TOK_in_containsOp1317 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_containsOp1320 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_base64BinaryExpr_in_containsOp1323 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_containsOp1325 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerExpr_in_equalityExpr1341 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
+    public static final BitSet FOLLOW_set_in_equalityExpr1343 = new BitSet(new long[]{0x600000C861C72020L,0x00000000000304D0L});
+    public static final BitSet FOLLOW_integerExpr_in_equalityExpr1366 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_doubleExpr_in_equalityExpr1371 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
+    public static final BitSet FOLLOW_set_in_equalityExpr1373 = new BitSet(new long[]{0x0000000030000000L});
+    public static final BitSet FOLLOW_doubleExpr_in_equalityExpr1396 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringExpr_in_equalityExpr1401 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
+    public static final BitSet FOLLOW_set_in_equalityExpr1403 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_equalityExpr1426 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_anyUriExpr_in_equalityExpr1431 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
+    public static final BitSet FOLLOW_set_in_equalityExpr1433 = new BitSet(new long[]{0x2000000040002020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_anyUriExpr_in_equalityExpr1456 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateExpr_in_equalityExpr1461 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
+    public static final BitSet FOLLOW_set_in_equalityExpr1463 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_dateExpr_in_equalityExpr1486 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_timeExpr_in_equalityExpr1491 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
+    public static final BitSet FOLLOW_set_in_equalityExpr1493 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_timeExpr_in_equalityExpr1516 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateTimeExpr_in_equalityExpr1521 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
+    public static final BitSet FOLLOW_set_in_equalityExpr1523 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_dateTimeExpr_in_equalityExpr1546 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_yearMonthDurationExpr_in_equalityExpr1551 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
+    public static final BitSet FOLLOW_set_in_equalityExpr1553 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_yearMonthDurationExpr_in_equalityExpr1576 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_x500NameExpr_in_equalityExpr1581 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
+    public static final BitSet FOLLOW_set_in_equalityExpr1583 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_x500NameExpr_in_equalityExpr1606 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rfc822NameExpr_in_equalityExpr1611 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
+    public static final BitSet FOLLOW_set_in_equalityExpr1613 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_rfc822NameExpr_in_equalityExpr1637 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dayTimeDurationExpr_in_equalityExpr1642 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
+    public static final BitSet FOLLOW_set_in_equalityExpr1644 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_dayTimeDurationExpr_in_equalityExpr1667 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base64BinaryExpr_in_equalityExpr1672 = new BitSet(new long[]{0x0000000000000000L,0x0000000003E00000L});
+    public static final BitSet FOLLOW_set_in_equalityExpr1674 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_base64BinaryExpr_in_equalityExpr1697 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerExpr_in_regexOp1713 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_regexOp1716 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1718 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_regexOp1721 = new BitSet(new long[]{0x600000C861C72020L,0x00000000000304D0L});
+    public static final BitSet FOLLOW_integerExpr_in_regexOp1724 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_regexOp1726 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_doubleExpr_in_regexOp1732 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_regexOp1734 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1736 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_regexOp1739 = new BitSet(new long[]{0x0000000030000000L});
+    public static final BitSet FOLLOW_doubleExpr_in_regexOp1742 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_regexOp1744 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringExpr_in_regexOp1750 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_regexOp1752 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1754 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_regexOp1757 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_regexOp1760 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_regexOp1762 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_anyUriExpr_in_regexOp1768 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_regexOp1770 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1772 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_regexOp1775 = new BitSet(new long[]{0x2000000040002020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_anyUriExpr_in_regexOp1778 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_regexOp1780 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateExpr_in_regexOp1786 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_regexOp1788 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1790 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_regexOp1793 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_dateExpr_in_regexOp1796 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_regexOp1798 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_timeExpr_in_regexOp1804 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_regexOp1806 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1808 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_regexOp1811 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_timeExpr_in_regexOp1814 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_regexOp1816 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateTimeExpr_in_regexOp1822 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_regexOp1824 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1826 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_regexOp1829 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_dateTimeExpr_in_regexOp1832 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_regexOp1834 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dayTimeDurationExpr_in_regexOp1840 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_regexOp1842 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1844 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_regexOp1847 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_dayTimeDurationExpr_in_regexOp1850 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_regexOp1852 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_yearMonthDurationExpr_in_regexOp1858 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_regexOp1860 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1862 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_regexOp1865 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_yearMonthDurationExpr_in_regexOp1868 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_regexOp1870 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_x500NameExpr_in_regexOp1876 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_regexOp1878 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1880 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_regexOp1883 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_x500NameExpr_in_regexOp1886 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_regexOp1888 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rfc822NameExpr_in_regexOp1894 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_regexOp1896 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1898 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_regexOp1901 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_rfc822NameExpr_in_regexOp1904 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_regexOp1906 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base64BinaryExpr_in_regexOp1912 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_regexOp1914 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_REGEXMATCH_TOK_in_regexOp1916 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_regexOp1919 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_base64BinaryExpr_in_regexOp1922 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_regexOp1924 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_booleanBag_in_bagOp1946 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp1948 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp1950 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp1965 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_booleanBag_in_bagOp1968 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp1970 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerBag_in_bagOp1982 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp1984 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp1986 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp2002 = new BitSet(new long[]{0x0000008000010000L});
+    public static final BitSet FOLLOW_integerBag_in_bagOp2006 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp2008 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_doubleBag_in_bagOp2020 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp2022 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp2024 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp2040 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_doubleBag_in_bagOp2044 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp2046 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringBag_in_bagOp2059 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp2061 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp2063 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp2079 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000C0L});
+    public static final BitSet FOLLOW_stringBag_in_bagOp2083 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp2085 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateBag_in_bagOp2098 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp2100 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp2102 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp2118 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_dateBag_in_bagOp2122 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp2124 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_timeBag_in_bagOp2137 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp2139 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp2141 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp2157 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_timeBag_in_bagOp2161 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp2163 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateTimeBag_in_bagOp2176 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp2178 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp2180 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp2196 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_dateTimeBag_in_bagOp2200 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp2202 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base64BinaryBag_in_bagOp2215 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp2217 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp2219 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp2234 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_base64BinaryBag_in_bagOp2238 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp2240 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dayTimeDurationBag_in_bagOp2253 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp2255 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp2257 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp2272 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_dayTimeDurationBag_in_bagOp2276 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp2278 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_yearMonthDurationBag_in_bagOp2291 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp2293 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp2295 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp2311 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_yearMonthDurationBag_in_bagOp2315 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp2317 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_anyUriBag_in_bagOp2330 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp2332 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp2334 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp2350 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_anyUriBag_in_bagOp2354 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp2356 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_x500NameBag_in_bagOp2369 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp2371 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp2373 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp2389 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_x500NameBag_in_bagOp2393 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp2395 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rfc822NameBag_in_bagOp2408 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp2410 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp2412 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp2427 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_rfc822NameBag_in_bagOp2431 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp2433 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_hexBinaryBag_in_bagOp2446 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp2448 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp2450 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp2466 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_hexBinaryBag_in_bagOp2470 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp2472 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base64BinaryBag_in_bagOp2484 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_bagOp2486 = new BitSet(new long[]{0x0000000000008000L,0x0000000000000104L});
+    public static final BitSet FOLLOW_set_in_bagOp2488 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_bagOp2504 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_base64BinaryBag_in_bagOp2508 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_bagOp2510 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INTEGER_CONSTANT_in_integerExpr2526 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringExpr_in_integerExpr2532 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_integerExpr2534 = new BitSet(new long[]{0x0000408000000000L});
+    public static final BitSet FOLLOW_set_in_integerExpr2536 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_integerExpr2547 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_integerExpr2551 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_anyBag_in_integerExpr2557 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_integerExpr2559 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_SIZE_TOK_in_integerExpr2561 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_integerExpr2564 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_integerExpr2567 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INTEGER_TOK_in_integerBag2586 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_integerBag2588 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
+    public static final BitSet FOLLOW_BAG_TOK_in_integerBag2592 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_integerBag2595 = new BitSet(new long[]{0x600000C861C72020L,0x00000000000304D0L});
+    public static final BitSet FOLLOW_integerExpr_in_integerBag2598 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_83_in_integerBag2602 = new BitSet(new long[]{0x600000C861C72020L,0x00000000000304D0L});
+    public static final BitSet FOLLOW_integerExpr_in_integerBag2605 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080001L});
+    public static final BitSet FOLLOW_RPAREN_in_integerBag2609 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_integerBag2614 = new BitSet(new long[]{0x0000010000000000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_set_in_integerBag2616 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_integerBag2627 = new BitSet(new long[]{0x0000008000010000L});
+    public static final BitSet FOLLOW_integerBag_in_integerBag2630 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_integerBag2632 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
+    public static final BitSet FOLLOW_DOUBLE_CONSTANT_in_doubleExpr2650 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOUBLE_TOK_in_doubleExpr2656 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_doubleExpr2659 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_doubleExpr2662 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_doubleExpr2664 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOUBLE_TOK_in_doubleBag2681 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_doubleBag2684 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_in_stringExpr2702 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
+    public static final BitSet FOLLOW_stringBag_in_stringExpr2709 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_stringExpr2711 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_stringExpr2713 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_stringExpr2716 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_stringExpr2719 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_stringExpr2726 = new BitSet(new long[]{0x100C000000000000L});
+    public static final BitSet FOLLOW_set_in_stringExpr2728 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_stringExpr2741 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_stringExpr2744 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
+    public static final BitSet FOLLOW_STRING_TOK_in_stringBag2762 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_stringBag2765 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_attributeExpr_in_stringBag2770 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_attributeExpr2787 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_attributeExpr2806 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_LOWERCASEIDENTIFIER_in_attributeExpr2808 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
+    public static final BitSet FOLLOW_ANYURI_TOK_in_anyUriExpr2826 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_anyUriExpr2829 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_anyUriExpr2832 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_anyUriExpr2834 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_anyUriBag_in_anyUriExpr2840 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_anyUriExpr2842 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_anyUriExpr2844 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_anyUriExpr2847 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_anyUriExpr2850 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringExpr_in_anyUriExpr2856 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_anyUriExpr2858 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
+    public static final BitSet FOLLOW_URI_TOK_in_anyUriExpr2860 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_anyUriExpr2863 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_anyUriExpr2866 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ANYURI_TOK_in_anyUriBag2884 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_anyUriBag2887 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DATE_TOK_in_dateExpr2903 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_dateExpr2906 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_dateExpr2909 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_dateExpr2911 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateBag_in_dateExpr2917 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_dateExpr2919 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_dateExpr2921 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_dateExpr2924 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_dateExpr2927 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DATE_TOK_in_dateBag2942 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_dateBag2945 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_TIME_TOK_in_timeExpr2962 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_timeExpr2965 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_timeExpr2968 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_timeExpr2970 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_timeBag_in_timeExpr2976 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_timeExpr2978 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_timeExpr2980 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_timeExpr2982 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_timeExpr2985 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_TIME_TOK_in_timeBag3000 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_timeBag3003 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DATETIME_TOK_in_dateTimeExpr3020 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_dateTimeExpr3023 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_dateTimeExpr3026 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_dateTimeExpr3028 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateTimeBag_in_dateTimeExpr3034 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_dateTimeExpr3036 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_dateTimeExpr3038 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_dateTimeExpr3041 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_dateTimeExpr3044 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DATETIME_TOK_in_dateTimeBag3059 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_dateTimeBag3062 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BASE64BINARY_TOK_in_base64BinaryExpr3079 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_base64BinaryExpr3082 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_base64BinaryExpr3085 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_base64BinaryExpr3087 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base64BinaryBag_in_base64BinaryExpr3093 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_base64BinaryExpr3095 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_base64BinaryExpr3097 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_base64BinaryExpr3100 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_base64BinaryExpr3103 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BASE64BINARY_TOK_in_base64BinaryBag3118 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_base64BinaryBag3121 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DAYTIMEDURATION_TOK_in_dayTimeDurationExpr3139 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_dayTimeDurationExpr3142 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_dayTimeDurationExpr3145 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_dayTimeDurationExpr3147 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dayTimeDurationBag_in_dayTimeDurationExpr3153 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_dayTimeDurationExpr3156 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_dayTimeDurationExpr3158 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_dayTimeDurationExpr3160 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_dayTimeDurationExpr3163 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DAYTIMEDURATION_TOK_in_dayTimeDurationBag3178 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_dayTimeDurationBag3181 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_YEARMONTHDURATION_TOK_in_yearMonthDurationExpr3198 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_yearMonthDurationExpr3201 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_yearMonthDurationExpr3204 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_yearMonthDurationExpr3206 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_yearMonthDurationBag_in_yearMonthDurationExpr3212 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_yearMonthDurationExpr3214 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_yearMonthDurationExpr3216 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_yearMonthDurationExpr3219 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_yearMonthDurationExpr3222 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_YEARMONTHDURATION_TOK_in_yearMonthDurationBag3237 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_yearMonthDurationBag3240 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_X500NAME_TOK_in_x500NameExpr3257 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_x500NameExpr3260 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_x500NameExpr3263 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_x500NameExpr3265 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_x500NameBag_in_x500NameExpr3271 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_x500NameExpr3274 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_x500NameExpr3276 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_x500NameExpr3279 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_x500NameExpr3282 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_X500NAME_TOK_in_x500NameBag3298 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_x500NameBag3301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RFC822NAME_TOK_in_rfc822NameExpr3318 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_rfc822NameExpr3321 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_rfc822NameExpr3324 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_rfc822NameExpr3326 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rfc822NameBag_in_rfc822NameExpr3332 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_rfc822NameExpr3334 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_rfc822NameExpr3336 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_rfc822NameExpr3339 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_rfc822NameExpr3342 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RFC822NAME_TOK_in_rfc822NameBag3358 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_rfc822NameBag3361 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXBINARY_TOK_in_hexBinaryExpr3378 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_hexBinaryExpr3381 = new BitSet(new long[]{0x2000000040000020L,0x00000000000000D0L});
+    public static final BitSet FOLLOW_stringExpr_in_hexBinaryExpr3384 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_hexBinaryExpr3386 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_hexBinaryBag_in_hexBinaryExpr3392 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_hexBinaryExpr3394 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_ONEANDONLY_TOK_in_hexBinaryExpr3396 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_hexBinaryExpr3399 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RPAREN_in_hexBinaryExpr3402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXBINARY_TOK_in_hexBinaryBag3417 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_STRING_CONSTANT_LIST_in_hexBinaryBag3420 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_booleanBag_in_anyBag3437 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerBag_in_anyBag3441 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_doubleBag_in_anyBag3445 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringBag_in_anyBag3449 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_anyUriBag_in_anyBag3453 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateBag_in_anyBag3457 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_timeBag_in_anyBag3462 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateTimeBag_in_anyBag3466 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base64BinaryBag_in_anyBag3470 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dayTimeDurationBag_in_anyBag3474 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_yearMonthDurationBag_in_anyBag3479 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_x500NameBag_in_anyBag3484 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rfc822NameBag_in_anyBag3489 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_hexBinaryBag_in_anyBag3493 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base64BinaryExpr_in_synpred1_Grammar1045 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base64BinaryExpr_in_synpred2_Grammar1308 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_booleanBag_in_synpred3_Grammar1941 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerBag_in_synpred4_Grammar1977 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_doubleBag_in_synpred5_Grammar2015 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringBag_in_synpred6_Grammar2053 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateBag_in_synpred7_Grammar2092 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_timeBag_in_synpred8_Grammar2131 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateTimeBag_in_synpred9_Grammar2170 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base64BinaryBag_in_synpred10_Grammar2209 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dayTimeDurationBag_in_synpred11_Grammar2247 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_yearMonthDurationBag_in_synpred12_Grammar2285 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_anyUriBag_in_synpred13_Grammar2324 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_x500NameBag_in_synpred14_Grammar2363 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rfc822NameBag_in_synpred15_Grammar2402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_hexBinaryBag_in_synpred16_Grammar2440 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base64BinaryBag_in_synpred17_Grammar2479 = new BitSet(new long[]{0x0000000000000002L});
 
 }

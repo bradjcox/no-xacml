@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g 2012-07-01 14:35:20
+// $ANTLR 3.4 /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g 2012-07-01 16:54:21
 
 	package noxacml;
 
@@ -1853,7 +1853,7 @@ public class GrammarLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:399:2: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:395:2: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -1883,13 +1883,13 @@ public class GrammarLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:399:4: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:395:4: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
                     {
                     match("//"); 
 
 
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:399:9: (~ ( '\\n' | '\\r' ) )*
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:395:9: (~ ( '\\n' | '\\r' ) )*
                     loop1:
                     do {
                         int alt1=2;
@@ -1923,7 +1923,7 @@ public class GrammarLexer extends Lexer {
                     } while (true);
 
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:399:23: ( '\\r' )?
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:395:23: ( '\\r' )?
                     int alt2=2;
                     int LA2_0 = input.LA(1);
 
@@ -1932,7 +1932,7 @@ public class GrammarLexer extends Lexer {
                     }
                     switch (alt2) {
                         case 1 :
-                            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:399:23: '\\r'
+                            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:395:23: '\\r'
                             {
                             match('\r'); 
 
@@ -1949,13 +1949,13 @@ public class GrammarLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:400:4: '/*' ( options {greedy=false; } : . )* '*/'
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:396:4: '/*' ( options {greedy=false; } : . )* '*/'
                     {
                     match("/*"); 
 
 
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:400:9: ( options {greedy=false; } : . )*
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:396:9: ( options {greedy=false; } : . )*
                     loop3:
                     do {
                         int alt3=2;
@@ -1980,7 +1980,7 @@ public class GrammarLexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:400:37: .
+                    	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:396:37: .
                     	    {
                     	    matchAny(); 
 
@@ -2017,7 +2017,7 @@ public class GrammarLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:404:2: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ | COMMENT )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:400:2: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ | COMMENT )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -2036,9 +2036,9 @@ public class GrammarLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:404:4: ( ' ' | '\\t' | '\\r' | '\\n' )+
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:400:4: ( ' ' | '\\t' | '\\r' | '\\n' )+
                     {
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:404:4: ( ' ' | '\\t' | '\\r' | '\\n' )+
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:400:4: ( ' ' | '\\t' | '\\r' | '\\n' )+
                     int cnt5=0;
                     loop5:
                     do {
@@ -2082,7 +2082,7 @@ public class GrammarLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:405:4: COMMENT
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:401:4: COMMENT
                     {
                     mCOMMENT(); 
 
@@ -2105,12 +2105,12 @@ public class GrammarLexer extends Lexer {
         try {
             int _type = STRING_CONSTANT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:410:2: ( '\"' ( options {greedy=false; } : . )* '\"' )
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:410:4: '\"' ( options {greedy=false; } : . )* '\"'
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:406:2: ( '\"' ( options {greedy=false; } : . )* '\"' )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:406:4: '\"' ( options {greedy=false; } : . )* '\"'
             {
             match('\"'); 
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:410:8: ( options {greedy=false; } : . )*
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:406:8: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -2126,7 +2126,7 @@ public class GrammarLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:410:36: .
+            	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:406:36: .
             	    {
             	    matchAny(); 
 
@@ -2157,10 +2157,10 @@ public class GrammarLexer extends Lexer {
         try {
             int _type = INTEGER_CONSTANT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:414:2: ( ( '0' .. '9' )+ )
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:414:4: ( '0' .. '9' )+
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:410:2: ( ( '0' .. '9' )+ )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:410:4: ( '0' .. '9' )+
             {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:414:4: ( '0' .. '9' )+
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:410:4: ( '0' .. '9' )+
             int cnt8=0;
             loop8:
             do {
@@ -2215,10 +2215,10 @@ public class GrammarLexer extends Lexer {
         try {
             int _type = DOUBLE_CONSTANT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:419:2: ( ( INTEGER_CONSTANT )? ( '.' ( '0' .. '9' )* )? EXPONENT )
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:419:4: ( INTEGER_CONSTANT )? ( '.' ( '0' .. '9' )* )? EXPONENT
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:415:2: ( ( INTEGER_CONSTANT )? ( '.' ( '0' .. '9' )* )? EXPONENT )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:415:4: ( INTEGER_CONSTANT )? ( '.' ( '0' .. '9' )* )? EXPONENT
             {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:419:4: ( INTEGER_CONSTANT )?
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:415:4: ( INTEGER_CONSTANT )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2227,7 +2227,7 @@ public class GrammarLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:419:4: INTEGER_CONSTANT
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:415:4: INTEGER_CONSTANT
                     {
                     mINTEGER_CONSTANT(); 
 
@@ -2238,7 +2238,7 @@ public class GrammarLexer extends Lexer {
             }
 
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:419:22: ( '.' ( '0' .. '9' )* )?
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:415:22: ( '.' ( '0' .. '9' )* )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -2247,11 +2247,11 @@ public class GrammarLexer extends Lexer {
             }
             switch (alt11) {
                 case 1 :
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:419:23: '.' ( '0' .. '9' )*
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:415:23: '.' ( '0' .. '9' )*
                     {
                     match('.'); 
 
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:419:27: ( '0' .. '9' )*
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:415:27: ( '0' .. '9' )*
                     loop10:
                     do {
                         int alt10=2;
@@ -2310,8 +2310,8 @@ public class GrammarLexer extends Lexer {
         try {
             int _type = LOWERCASEIDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:423:2: ( ( 'a' .. 'z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:423:4: ( 'a' .. 'z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:419:2: ( ( 'a' .. 'z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:419:4: ( 'a' .. 'z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -2323,7 +2323,7 @@ public class GrammarLexer extends Lexer {
             }
 
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:423:19: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:419:19: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop12:
             do {
                 int alt12=2;
@@ -2373,10 +2373,10 @@ public class GrammarLexer extends Lexer {
         try {
             int _type = ANYCASEIDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:427:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ )
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:427:4: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:423:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:423:4: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+
             {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:427:4: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:423:4: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+
             int cnt13=0;
             loop13:
             do {
@@ -2431,8 +2431,8 @@ public class GrammarLexer extends Lexer {
         try {
             int _type = STRING_CONSTANT_LIST;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:431:2: ( LPAREN ! STRING_CONSTANT ( ',' ! STRING_CONSTANT )* RPAREN !)
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:431:4: LPAREN ! STRING_CONSTANT ( ',' ! STRING_CONSTANT )* RPAREN !
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:427:2: ( LPAREN ! STRING_CONSTANT ( ',' ! STRING_CONSTANT )* RPAREN !)
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:427:4: LPAREN ! STRING_CONSTANT ( ',' ! STRING_CONSTANT )* RPAREN !
             {
             mLPAREN(); 
 
@@ -2440,7 +2440,7 @@ public class GrammarLexer extends Lexer {
             mSTRING_CONSTANT(); 
 
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:431:28: ( ',' ! STRING_CONSTANT )*
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:427:28: ( ',' ! STRING_CONSTANT )*
             loop14:
             do {
                 int alt14=2;
@@ -2453,7 +2453,7 @@ public class GrammarLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:431:30: ',' ! STRING_CONSTANT
+            	    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:427:30: ',' ! STRING_CONSTANT
             	    {
             	    match(','); 
 
@@ -2486,8 +2486,8 @@ public class GrammarLexer extends Lexer {
     // $ANTLR start "EXPONENT"
     public final void mEXPONENT() throws RecognitionException {
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:435:2: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:435:4: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:431:2: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:431:4: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -2499,7 +2499,7 @@ public class GrammarLexer extends Lexer {
             }
 
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:435:14: ( '+' | '-' )?
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:431:14: ( '+' | '-' )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2526,7 +2526,7 @@ public class GrammarLexer extends Lexer {
             }
 
 
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:435:25: ( '0' .. '9' )+
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:431:25: ( '0' .. '9' )+
             int cnt16=0;
             loop16:
             do {
@@ -2578,7 +2578,7 @@ public class GrammarLexer extends Lexer {
     // $ANTLR start "HEX_DIGIT"
     public final void mHEX_DIGIT() throws RecognitionException {
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:439:2: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:435:2: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
             // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -2604,7 +2604,7 @@ public class GrammarLexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:443:3: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:439:3: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
             int alt17=3;
             int LA17_0 = input.LA(1);
 
@@ -2657,7 +2657,7 @@ public class GrammarLexer extends Lexer {
             }
             switch (alt17) {
                 case 1 :
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:443:6: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:439:6: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
 
@@ -2674,7 +2674,7 @@ public class GrammarLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:444:6: UNICODE_ESC
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:440:6: UNICODE_ESC
                     {
                     mUNICODE_ESC(); 
 
@@ -2682,7 +2682,7 @@ public class GrammarLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:445:6: OCTAL_ESC
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:441:6: OCTAL_ESC
                     {
                     mOCTAL_ESC(); 
 
@@ -2702,7 +2702,7 @@ public class GrammarLexer extends Lexer {
     // $ANTLR start "OCTAL_ESC"
     public final void mOCTAL_ESC() throws RecognitionException {
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:449:3: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:445:3: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt18=3;
             int LA18_0 = input.LA(1);
 
@@ -2753,7 +2753,7 @@ public class GrammarLexer extends Lexer {
             }
             switch (alt18) {
                 case 1 :
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:449:6: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:445:6: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -2790,7 +2790,7 @@ public class GrammarLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:450:6: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:446:6: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -2817,7 +2817,7 @@ public class GrammarLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:451:6: '\\\\' ( '0' .. '7' )
+                    // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:447:6: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -2846,8 +2846,8 @@ public class GrammarLexer extends Lexer {
     // $ANTLR start "UNICODE_ESC"
     public final void mUNICODE_ESC() throws RecognitionException {
         try {
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:455:3: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:455:6: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:451:3: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+            // /Users/Brad/Dropbox/NoXacml/src/main/antlr3/noxacml/Grammar.g:451:6: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
             {
             match('\\'); 
 
