@@ -5,9 +5,9 @@ options
 //  backtrack=true;
 //  memoize = true;
 //	k = 5;
-//  ASTLabelType=CommonTree;
-  output=AST;
-  language=Java;
+	ASTLabelType=CommonTree;
+	output=AST;
+	language=Java;
 }
 tokens
 {
@@ -87,6 +87,7 @@ tokens
 	import org.opensaml.xacml.policy.*;
 	import org.opensaml.xacml.ctx.*;
 	import noxacml.util.*;
+	import noxacml.xacml2.*;
 }
 @lexer::header
 {
@@ -94,111 +95,68 @@ tokens
 }
 @members
 {
-  final SAMLBuilder builder = new SAMLBuilder();
+  final PolicyBuilder builder = new PolicyBuilder();
 }
 
-xacmlFile returns [ Object o]
-	: (policy | policySet) EOF {}
+xacmlFile
+	: (policy | policySet) EOF!
 	;
 
-policy returns [ PolicyType o]
-	: POLICY_TOK pid=ANYCASEIDENTIFIER combAlgId=LOWERCASEIDENTIFIER '{' t=target '}'
-	{
-		PolicyType o = builder.create(PolicyType.class, PolicyType.DEFAULT_ELEMENT_NAME);
-//		o.setDescription("");
-		o.setPolicyId($pid.text);
-		o.setObligations(null);
-		o.setPolicyDefaults(null);
-		o.setRuleCombiningAlgoId($combAlgId.text);
-		o.setTarget($t.o);
-//		o.setRule(r);
-		o.setVersion("");
-	}
+policy
+	: POLICY_TOK^ ANYCASEIDENTIFIER LOWERCASEIDENTIFIER '{'! target? rule* '}'!
 	;
-policySet returns [ PolicySetType o ]
-	: POLICYSET_TOK pid=ANYCASEIDENTIFIER combAlgId=LOWERCASEIDENTIFIER '{' t=target p+=policy+ '}'
-	{
-		DescriptionType desc = builder.create(DescriptionType.class, DescriptionType.DEFAULT_ELEMENT_NAME);
-
-		DefaultsType def = builder.create(DefaultsType.class, DefaultsType.POLICY_DEFAULTS_ELEMENT_NAME);
-
-        ObligationsType obl = builder.create(ObligationsType.class, ObligationsType.DEFAULT_ELEMENT_QNAME);
-
-		PolicySetType o = builder.create(PolicySetType.class, PolicySetType.DEFAULT_ELEMENT_NAME);
-		o.setDescription(desc);
-		o.setPolicySetDefaults(def);
-//		o.setRuleCombiningAlgoId($combAlgId.text);
-		o.setTarget($t.o);
-		o.getPolicies().addAll(p);
-//		o.getPolicySetIdReferences().addAll(null);
-//		o.getPolicyIdReferences().addAll(null);
-//		o.getCombinerParameters().addAll(null);
-//		o.getPolicyCombinerParameters().addAll(null);
-//		o.getPolicySetCombinerParameters().add(null);
-		o.setObligations(obl);
-		o.setPolicySetId($pid.text);
-		o.setVersion("");
-		o.setPolicyCombiningAlgoId($combAlgId.text);
-	}
+policySet
+	: POLICYSET_TOK^ ANYCASEIDENTIFIER LOWERCASEIDENTIFIER '{'! target? policy* '}'!
 	;
 
-target returns [ TargetType o]
-	: TARGET_TOK ANYCASEIDENTIFIER? '{' subjects* resources* actions* environments* '}'
-	{
-		TargetType o = builder.create(TargetType.class, TargetType.DEFAULT_ELEMENT_NAME);
-		o.setSubjects(null);
-		o.setActions(null);
-		o.setResources(null);
-		o.setEnvironments(null);
-	}
+target
+	: TARGET_TOK^ ANYCASEIDENTIFIER? '{'! subjects* resources* actions* environments* '}'!
 	;
-subjects returns [ SubjectsType o]
-	: SUBJECT_TOK '{' '}'
+subjects
+	: SUBJECT_TOK^ '{'! (PERMIT_TOK | DENY_TOK) IF_TOK booleanExpr '}'!
 	;
-resources returns [ ResourcesType o]
-	: RESOURCE_TOK '{' '}'
+resources
+	: RESOURCE_TOK^ '{'! (PERMIT_TOK | DENY_TOK) IF_TOK booleanExpr '}'!
 	;
-actions returns [ ActionsType o]
-	: ACTION_TOK '{' '}'
+actions
+	: ACTION_TOK^ '{'! (PERMIT_TOK | DENY_TOK) IF_TOK booleanExpr '}'!
 	;
-environments returns [ EnvironmentsType o]
-	: ENVIRONMENT_TOK '{' '}'
+environments
+	: ENVIRONMENT_TOK^ '{'! (PERMIT_TOK | DENY_TOK) IF_TOK booleanExpr '}'!
 	;
 
-rule returns [ RuleType o]
-	: RULE_TOK ANYCASEIDENTIFIER? '{' (PERMIT_TOK | DENY_TOK) IF_TOK booleanExpr '}'
-	{
-		RuleType o = builder.create(RuleType.class, RuleType.DEFAULT_ELEMENT_NAME);
-	}
+rule
+	: RULE_TOK^ ANYCASEIDENTIFIER? '{'! target? (PERMIT_TOK | DENY_TOK) IF_TOK booleanExpr '}'!
 	;
 
-booleanExpr returns [RuleType o]
-	: TRUE_TOK {}
-	| FALSE_TOK {}
-	| BOOLEAN_TOK LPAREN attributeExpr RPAREN {}
-	| ( NOF_TOK | NOT_TOK) LPAREN booleanExpr RPAREN {}
-	| LPAREN conditionalOrExpr RPAREN {}
-	| equalityExpr {}
-	| isInOp | containsOp {}
-	| stringExpr '.' ( NODEEQUAL_TOK | NODEMATCH_TOK ) LPAREN stringExpr RPAREN {}
-//	| bagOp {}
-//	| regexOp {}
+booleanExpr
+	: TRUE_TOK
+	| FALSE_TOK
+	| BOOLEAN_TOK LPAREN! attributeExpr RPAREN!
+	| ( NOF_TOK | NOT_TOK) LPAREN! booleanExpr RPAREN!
+	| LPAREN! conditionalOrExpr RPAREN!
+	| equalityExpr
+	| isInOp
+	| containsOp
+	| stringExpr '.' ( NODEEQUAL_TOK | NODEMATCH_TOK ) LPAREN! stringExpr RPAREN!
+//	| bagOp
+//	| regexOp
 	;
-booleanBag returns [RuleType o]
-	: BOOLEAN_TOK STRING_CONSTANT_LIST {}
+booleanBag
+	: BOOLEAN_TOK^ STRING_CONSTANT_LIST
 //	| BAG_TOK LPAREN booleanExpr ( ',' booleanExpr)+ RPAREN
 //	| ( INTERSECTION_TOK | UNION_TOK ) LPAREN booleanBag',' booleanBag	RPAREN
 	;
 
-conditionalOrExpr returns [RuleType o]
-    : conditionalAndExpr ('||' conditionalAndExpr )* {}
+conditionalOrExpr
+    : conditionalAndExpr ('||'^ conditionalAndExpr )*
     ;
 
-conditionalAndExpr returns [RuleType o]
-    : booleanExpr ('&&' booleanExpr)* {}
+conditionalAndExpr
+    : booleanExpr ('&&'^ booleanExpr)*
     ;
 
-isInOp returns [RuleType o]
+isInOp
 	:  doubleExpr '.' ISIN_TOK LPAREN doubleBag RPAREN
 	|  stringExpr '.' ISIN_TOK LPAREN stringBag RPAREN
 	|  anyUriExpr '.' ISIN_TOK LPAREN anyUriBag RPAREN
@@ -214,7 +172,7 @@ isInOp returns [RuleType o]
 	|  (base64BinaryExpr) => base64BinaryExpr '.' ISIN_TOK LPAREN base64BinaryBag RPAREN
 	;
 
-containsOp returns [RuleType o]
+containsOp
 	:  doubleBag '.' CONTAINS_TOK LPAREN doubleExpr RPAREN
 	|  stringBag '.' CONTAINS_TOK LPAREN stringExpr RPAREN
 	|  anyUriBag '.' CONTAINS_TOK LPAREN anyUriExpr RPAREN
@@ -230,7 +188,7 @@ containsOp returns [RuleType o]
 	|  (base64BinaryExpr) => base64BinaryBag '.' CONTAINS_TOK LPAREN base64BinaryExpr RPAREN
 	;
 
-equalityExpr returns [RuleType o]
+equalityExpr
 	: integerExpr ( '==' | '>=' | '>' | '<' | '<=' ) integerExpr
 	| doubleExpr ( '==' | '>=' | '>' | '<' | '<=' ) doubleExpr
 	| stringExpr ( '==' | '>=' | '>' | '<' | '<=' ) stringExpr
@@ -245,7 +203,7 @@ equalityExpr returns [RuleType o]
 	| base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' ) base64BinaryExpr
   ;
 
-regexOp returns [RuleType o]
+regexOp
 	: integerExpr  '.' REGEXMATCH_TOK LPAREN integerExpr RPAREN
 	| doubleExpr '.' REGEXMATCH_TOK LPAREN doubleExpr RPAREN
 	| stringExpr '.' REGEXMATCH_TOK LPAREN stringExpr RPAREN
@@ -260,7 +218,7 @@ regexOp returns [RuleType o]
 	| base64BinaryExpr '.' REGEXMATCH_TOK LPAREN base64BinaryExpr RPAREN
 	;
 
-bagOp returns [RuleType o]
+bagOp
 	: (booleanBag) => booleanBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) LPAREN booleanBag RPAREN
 	| (integerBag) => integerBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) LPAREN  integerBag RPAREN
 	| (doubleBag) => doubleBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) LPAREN  doubleBag RPAREN
@@ -278,7 +236,7 @@ bagOp returns [RuleType o]
 	| (base64BinaryBag) => base64BinaryBag '.' ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) LPAREN  base64BinaryBag RPAREN
 	;
 
-integerExpr returns [RuleType o]
+integerExpr
 	: INTEGER_CONSTANT
 	| stringExpr '.' ( INTEGER_TOK | NODECOUNT_TOK ) LPAREN  RPAREN
 	| anyBag '.' SIZE_TOK LPAREN RPAREN
@@ -286,40 +244,40 @@ integerExpr returns [RuleType o]
 // 	| LPAREN integerExpr ( '+' | '-' | '*' | '/' | '%' ) integerExpr RPAREN
 //	| ABS_TOK LPAREN integerExpr RPAREN
 	;
-integerBag returns [RuleType o]
+integerBag
 	: (INTEGER_TOK STRING_CONSTANT_LIST | BAG_TOK LPAREN integerExpr ( ',' integerExpr)+ RPAREN) ('.' ( INTERSECTION_TOK | UNION_TOK ) LPAREN integerBag	RPAREN)*
 	;
 
-doubleExpr returns [RuleType o]
+doubleExpr
 	: DOUBLE_CONSTANT
 	| DOUBLE_TOK LPAREN stringExpr RPAREN
 //	| LPAREN doubleExpr ( '+' | '-' | '*' | '/' | '%' ) doubleExpr RPAREN
 //	| ( ABS_TOK | RND_TOK | FLR_TOK ) LPAREN doubleExpr	RPAREN
 	;
-doubleBag returns [RuleType o]
+doubleBag
 	: DOUBLE_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK LPAREN doubleExpr ( ',' doubleExpr)+ RPAREN
 //	| ( INTERSECTION_TOK | UNION_TOK ) LPAREN dayTimeDurationBag ',' dayTimeDurationBag	RPAREN
 	;
 
-stringExpr returns [RuleType o]
+stringExpr
 	: (STRING_CONSTANT
 		| stringBag '.' ONEANDONLY_TOK LPAREN RPAREN)
 		('.' ( REQUIRED_TOK | NORMALIZESPACE_TOK | NORMALIZETOLOWERCASE_TOK) LPAREN RPAREN)*
 	;
 //	| CONCATENATE_TOK LPAREN stringExpr ',' stringExpr RPAREN
-stringBag returns [RuleType o]
+stringBag
 	: STRING_TOK STRING_CONSTANT_LIST
 	| attributeExpr
 //	| (stringBag) => ( INTERSECTION_TOK | UNION_TOK ) LPAREN stringBag ',' stringBag	RPAREN
 	;
 
 
-attributeExpr returns [RuleType o]
+attributeExpr
 	: ( SUBJECT_TOK	| RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK) ('.' LOWERCASEIDENTIFIER )+
 	;
 
-anyUriExpr returns [RuleType o]
+anyUriExpr
 	: ANYURI_TOK LPAREN stringExpr RPAREN
 	| anyUriBag '.' ONEANDONLY_TOK LPAREN RPAREN
 	| stringExpr '.' URI_TOK LPAREN RPAREN
@@ -327,105 +285,105 @@ anyUriExpr returns [RuleType o]
 //	| CONCATENATE_TOK LPAREN anyUriExpr ',' anyUriExpr RPAREN
 	;
 
-anyUriBag returns [RuleType o]
+anyUriBag
 	: ANYURI_TOK STRING_CONSTANT_LIST
 //	| (anyUriBag) => ( INTERSECTION_TOK | UNION_TOK ) LPAREN anyUriBag ',' anyUriBag	RPAREN
 	;
 
-dateExpr returns [RuleType o]
+dateExpr
 	: DATE_TOK LPAREN stringExpr RPAREN
 	| dateBag '.' ONEANDONLY_TOK LPAREN RPAREN
 	;
-dateBag returns [RuleType o]
+dateBag
 	: DATE_TOK STRING_CONSTANT_LIST
 //	| (BAG_TOK)=> BAG_TOK LPAREN dateExpr ( ',' dateExpr)+ RPAREN
 //	| ( INTERSECTION_TOK | UNION_TOK ) LPAREN dateBag	',' dateBag	RPAREN
 	;
 
-timeExpr returns [RuleType o]
+timeExpr
 	: TIME_TOK LPAREN stringExpr RPAREN
 	| timeBag '.' ONEANDONLY_TOK LPAREN RPAREN
 	;
-timeBag returns [RuleType o]
+timeBag
 	: TIME_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK LPAREN timeExpr ( ',' timeExpr )+ RPAREN
 //	| ( INTERSECTION_TOK | UNION_TOK ) LPAREN timeBag ',' timeBag	RPAREN
 	;
 
-dateTimeExpr returns [RuleType o]
+dateTimeExpr
 	: DATETIME_TOK LPAREN stringExpr RPAREN
 	| dateTimeBag '.' ONEANDONLY_TOK LPAREN RPAREN
 	;
-dateTimeBag returns [RuleType o]
+dateTimeBag
 	: DATETIME_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK LPAREN dateTimeExpr ( ',' dateTimeExpr)+ RPAREN
 //	| ( INTERSECTION_TOK | UNION_TOK ) LPAREN dateTimeBag ',' dateTimeBag	RPAREN
 	;
 
-base64BinaryExpr returns [RuleType o]
+base64BinaryExpr
 	: BASE64BINARY_TOK LPAREN stringExpr RPAREN
 	| base64BinaryBag '.' ONEANDONLY_TOK LPAREN RPAREN
 	;
-base64BinaryBag returns [RuleType o]
+base64BinaryBag
 	: BASE64BINARY_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK LPAREN base64BinaryExpr ( ',' base64BinaryExpr )+ RPAREN
 //	| INTERSECTION_TOK LPAREN base64BinaryBag ',' base64BinaryBag RPAREN
 //	| UNION_TOK LPAREN base64BinaryBag ',' base64BinaryBag RPAREN
 	;
 
-dayTimeDurationExpr returns [RuleType o]
+dayTimeDurationExpr
 	: DAYTIMEDURATION_TOK LPAREN stringExpr RPAREN
 	| dayTimeDurationBag '.' ONEANDONLY_TOK LPAREN RPAREN
 	;
-dayTimeDurationBag returns [RuleType o]
+dayTimeDurationBag
 	: DAYTIMEDURATION_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK LPAREN dayTimeDurationExpr ( ',' dayTimeDurationExpr)+ RPAREN
 //	| ( INTERSECTION_TOK | UNION_TOK ) LPAREN dayTimeDurationBag ',' dayTimeDurationBag	RPAREN
 	;
 
-yearMonthDurationExpr returns [RuleType o]
+yearMonthDurationExpr
 	: YEARMONTHDURATION_TOK LPAREN stringExpr RPAREN
 	| yearMonthDurationBag '.' ONEANDONLY_TOK LPAREN RPAREN
 	;
-yearMonthDurationBag returns [RuleType o]
+yearMonthDurationBag
 	: YEARMONTHDURATION_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK LPAREN yearMonthDurationExpr ( ',' yearMonthDurationExpr)+ RPAREN
 //	| ( INTERSECTION_TOK | UNION_TOK ) LPAREN yearMonthDurationBag	 ',' yearMonthDurationBag		RPAREN
 	;
 
-x500NameExpr returns [RuleType o]
+x500NameExpr
 	: X500NAME_TOK LPAREN stringExpr RPAREN
 	| x500NameBag  '.' ONEANDONLY_TOK LPAREN RPAREN
 //	| ((x500NameExpr) => x500NameExpr '.' MATCH_TOK LPAREN x500NameExpr RPAREN)
 	;
-x500NameBag returns [RuleType o]
+x500NameBag
 	: X500NAME_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK LPAREN x500NameExpr ( ',' x500NameExpr )+ RPAREN
 //	| ( INTERSECTION_TOK | UNION_TOK ) LPAREN x500NameBag ',' x500NameBag	RPAREN
 	;
 
-rfc822NameExpr returns [RuleType o]
+rfc822NameExpr
 	: RFC822NAME_TOK LPAREN stringExpr RPAREN
 	| rfc822NameBag '.' ONEANDONLY_TOK LPAREN RPAREN
 //	| ((rfc822NameExpr) => rfc822NameExpr '.' MATCH_TOK LPAREN rfc822NameExpr RPAREN)
 	;
-rfc822NameBag returns [RuleType o]
+rfc822NameBag
 	: RFC822NAME_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK LPAREN rfc822NameExpr ( ',' rfc822NameExpr)+ RPAREN
 //	| ( INTERSECTION_TOK | UNION_TOK ) LPAREN rfc822NameBag ',' rfc822NameBag	RPAREN
 	;
 
-hexBinaryExpr returns [RuleType o]
+hexBinaryExpr
 	: HEXBINARY_TOK LPAREN stringExpr RPAREN
 	| hexBinaryBag '.' ONEANDONLY_TOK LPAREN RPAREN
 	;
-hexBinaryBag returns [RuleType o]
+hexBinaryBag
 	: HEXBINARY_TOK STRING_CONSTANT_LIST
 //	| BAG_TOK LPAREN hexBinaryExpr (',' hexBinaryExpr)+ RPAREN
 //	| ( INTERSECTION_TOK | UNION_TOK ) LPAREN hexBinaryBag ',' hexBinaryBag	RPAREN
 	;
 
-anyBag returns [RuleType o]
+anyBag
 	: booleanBag | integerBag | doubleBag | stringBag | anyUriBag | dateBag
 	| timeBag | dateTimeBag | base64BinaryBag | dayTimeDurationBag
 	| yearMonthDurationBag  | x500NameBag

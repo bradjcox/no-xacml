@@ -24,6 +24,7 @@ public class NoXacmlTest
 {
 	final static Logger log = LoggerFactory.getLogger(NoXacmlTest.class);
 	final static StringBuilder buf = new StringBuilder();
+	final PolicyBuilder builder = new PolicyBuilder();
 
 	@Test
 	public void IIA010()
@@ -89,7 +90,7 @@ public class NoXacmlTest
 		return;
 	}
 
-	private PolicyType runPolicy(String path)
+	private Object runPolicy(String path)
 	{
 		path = "src/test/resources/" + path;
 		log.info(path);
@@ -106,23 +107,28 @@ public class NoXacmlTest
 			parser = new GrammarParser(tokens);
 			xacmlFileRet = (GrammarParser.xacmlFile_return) parser.xacmlFile();
 			ast = (Tree) xacmlFileRet.getTree();
-			policyType = PolicyBuilder.newXacmlFile(ast);
+			Object object = builder.newXacmlFile(ast);
 
 //			final NoXacmlTreeParser treeParser = new NoXacmlTreeParser(new CommonTreeNodeStream(ast));
 //			final Formula queryFormula = treeParser.formula();
-			return policyType;
+			return object;
 		}
 		catch (IOException e)
 		{
 			log.error("Fault:{}", path, e);
-			assertTrue(false);
 			throw new Fault(e);
 		}
 		catch (RecognitionException e)
 		{
 			log.error("Fault:{}", path, e);
 			log.error(parser.getErrorMessage(e, parser.getTokenNames()));
-			assertTrue(false);
+			throw new Fault(e);
+		}
+		catch (Throwable e)
+		{
+			e.printStackTrace();
+			log.error("Throwable:{}", path, e);
+//			log.error(parser.getErrorMessage(e, parser.getTokenNames()));
 			throw new Fault(e);
 		}
 	}

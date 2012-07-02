@@ -678,8 +678,10 @@ data-type, then the corresponding entity is omitted from the target.  An XACML P
 the matches defined by the target are satisfied by the subjects, resource, action and
 environment attributes in the request context.  Target definitions are discrete, in order that
 applicable rules may be efficiently identified by the PDP.
+
 The <Target> element may be absent from a <Rule>.  In this case, the target of the <Rule> is
 the same as that of the parent <Policy> element.
+
 Certain subject name-forms, resource name-forms and certain types of resource are internally
 structured.  For instance, the X.500 directory name-form and RFC 822 name-form are structured
 subject name-forms, whereas an account number commonly has no discernible structure.  UNIX
@@ -742,6 +744,7 @@ inner component; in the second case, the <Target> element of the outer component
 applicable only to decision requests that match the <Target> elements of every inner
 component.  Note that computing the intersection of a set of <Target> elements is likely only
 practical if the target data-model is relatively simple.
+
 In cases where the <Target> of a <Policy> is declared by the policy writer, any component
 <Rule> elements in the <Policy> that have the same <Target> element as the <Policy>
 element may omit the <Target> element.  Such <Rule> elements inherit the <Target> of the

@@ -3,6 +3,7 @@ package noxacml.util;
 import javax.xml.namespace.QName;
 
 import org.opensaml.Configuration;
+import org.opensaml.DefaultBootstrap;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.XMLObjectBuilder;
 import org.opensaml.xml.XMLObjectBuilderFactory;
@@ -14,6 +15,14 @@ public class SAMLBuilder
 
 	public SAMLBuilder()
 	{
+		try
+		{
+			DefaultBootstrap.bootstrap();
+		}
+		catch (Exception e)
+		{
+			throw new Fault(e);
+		}
 		this.builderFactory = Configuration.getBuilderFactory();
 	}
 
@@ -22,6 +31,7 @@ public class SAMLBuilder
 	{
 		XMLObjectBuilder builder = ((XMLObjectBuilder)builderFactory.getBuilder(qname));
 		XMLObject object = builder.buildObject (qname);
+		;
 	  return (T)object;
 	}
 }
