@@ -38,18 +38,18 @@
 								<goal>antlr</goal>
 							</goals>
 							<conversionTimeout>10000</conversionTimeout>
-							<debug>true</debug>
+							<messageFormat>antlr</messageFormat>
+							<sourceDirectory>src/main/antlr3</sourceDirectory>
+							<outputDirectory>target/generated-sources/antlr3</outputDirectory>
+							<libDirectory>src/main/antlr3/imports</libDirectory>
+							<printGrammar>false</printGrammar>
+							<profile>false</profile>
+							<report>false</report>
+							<trace>false</trace>
+							<verbose>false</verbose>
+							<debug>false</debug>
 							<dfa>false</dfa>
 							<nfa>false</nfa>
-							<libDirectory>src/main/antlr3/imports</libDirectory>
-							<messageFormat>antlr</messageFormat>
-							<outputDirectory>target/generated-sources/antlr3</outputDirectory>
-							<printGrammar>false</printGrammar>
-							<profile>true</profile>
-							<report>true</report>
-							<sourceDirectory>src/main/antlr3</sourceDirectory>
-							<trace>true</trace>
-							<verbose>true</verbose>
 						</configuration>
 					</execution>
 				</executions>
@@ -61,7 +61,7 @@
 				<version>2.12</version>
 				<configuration>
 					<testFailureIgnore>true</testFailureIgnore>
-					<skipTests>false</skipTests>
+					<skipTests>true</skipTests>
 				</configuration>
 			</plugin>
 
