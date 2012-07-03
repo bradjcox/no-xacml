@@ -165,17 +165,16 @@ public class PolicyBuilder
 	{
 		String tok = tree.getText();
 		Tree ruleName = tree.getChild(0);
-		Tree target = tree.getChild(1);
-		Tree effect = tree.getChild(2);
-		Tree ifTok = tree.getChild(3);
-		Tree conditions = tree.getChild(4);
+		Tree effect = tree.getChild(1);
+		Tree ifTok = tree.getChild(2);
+		Tree conditions = tree.getChild(3);
 
 		RuleType o = builder.create(RuleType.class, RuleType.DEFAULT_ELEMENT_NAME);
 		o.setCondition(newConditionType(conditions));
 		o.setDescription(newDescriptionType(null));
 		o.setEffect(newEffectType(effect));
 		o.setRuleId(ruleName.getText());
-		o.setTarget(newTargetType(target));
+//		o.setTarget(newTargetType(target));
 		return o;
 	}
 
@@ -192,6 +191,13 @@ public class PolicyBuilder
 	private ExpressionType newExpressionType(Tree tree)
 	{
 		ExpressionType o = builder.create(ExpressionType.class, ExpressionType.DEFAULT_ELEMENT_NAME_XACML20);
+//		ApplyType
+//		AttributeDesignatorType
+//		AttributeSelectorType
+//		AttributeValueType
+//		ConditionType
+//		FunctionType
+//		VariableReferenceType
 		return o;
 	}
 

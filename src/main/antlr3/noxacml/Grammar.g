@@ -132,15 +132,27 @@ rule
 booleanExpr
 	: TRUE_TOK
 	| FALSE_TOK
-	| BOOLEAN_TOK LPAREN! attributeExpr RPAREN!
-	| ( NOF_TOK | NOT_TOK) LPAREN! booleanExpr RPAREN!
-	| LPAREN! conditionalOrExpr RPAREN!
+	| booleanCreate
+	| booleanNof
+	| booleanWrap
+	| booleanNode
 	| equalityExpr
 	| isInOp
 	| containsOp
-	| stringExpr '.' ( NODEEQUAL_TOK | NODEMATCH_TOK ) LPAREN! stringExpr RPAREN!
 //	| bagOp
 //	| regexOp
+	;
+booleanCreate
+	: BOOLEAN_TOK LPAREN ATTRIBUTE_NAME RPAREN -> ^(BOOLEAN_TOK ATTRIBUTE_NAME)
+	;
+booleanNof
+	: ( NOF_TOK | NOT_TOK) LPAREN booleanExpr RPAREN
+	;
+booleanWrap
+	: LPAREN! conditionalOrExpr RPAREN! -> ^('COND' conditionalOrExpr)
+	;
+booleanNode
+	: stringExpr '.' ( NODEEQUAL_TOK | NODEMATCH_TOK )^ LPAREN! stringExpr RPAREN!
 	;
 booleanBag
 	: BOOLEAN_TOK^ STRING_CONSTANT_LIST
@@ -268,14 +280,10 @@ stringExpr
 //	| CONCATENATE_TOK LPAREN stringExpr ',' stringExpr RPAREN
 stringBag
 	: STRING_TOK STRING_CONSTANT_LIST
-	| attributeExpr
+	| ATTRIBUTE_NAME
 //	| (stringBag) => ( INTERSECTION_TOK | UNION_TOK ) LPAREN stringBag ',' stringBag	RPAREN
 	;
 
-
-attributeExpr
-	: ( SUBJECT_TOK	| RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK) ('.' LOWERCASEIDENTIFIER )+
-	;
 
 anyUriExpr
 	: ANYURI_TOK LPAREN stringExpr RPAREN
@@ -398,6 +406,10 @@ COMMENT
 WHITESPACE
 	: (' '|'\t'|'\r'|'\n')+ {$channel=HIDDEN;}
 	| COMMENT
+	;
+
+ATTRIBUTE_NAME
+	: ( SUBJECT_TOK	| RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK) '.' LOWERCASEIDENTIFIER
 	;
 
 STRING_CONSTANT
