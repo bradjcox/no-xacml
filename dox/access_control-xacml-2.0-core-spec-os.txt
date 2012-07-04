@@ -1611,11 +1611,13 @@ AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
 [a477]	  </Obligation>
 [a478]	 </Obligations>
 [a479]	</Policy>
+
 [a366] - [a372] The <Policy> element includes standard namespace declarations as well as policy
 specific parameters, such as PolicyId and RuleCombiningAlgId.
 [a371] Policy identifier.  This parameter allows the policy to be referenced by a policy set.
 [a372] The Rule combining algorithm identifies the algorithm for combining the outcomes of rule
 evaluation.
+
 [a373] - [a376] Free-form description of the policy.
 [a379] - [a394] Policy target.  The policy target defines a set of applicable decision requests.  The
 structure of the <Target> element in the <Policy> is identical to the structure of the <Target>

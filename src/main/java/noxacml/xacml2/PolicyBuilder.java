@@ -8,6 +8,8 @@ import noxacml.util.SAMLBuilder;
 import org.antlr.runtime.tree.Tree;
 import org.opensaml.xacml.XACMLObject;
 import org.opensaml.xacml.policy.ActionsType;
+import org.opensaml.xacml.policy.AttributeDesignatorType;
+import org.opensaml.xacml.policy.AttributeSelectorType;
 import org.opensaml.xacml.policy.ConditionType;
 import org.opensaml.xacml.policy.DefaultsType;
 import org.opensaml.xacml.policy.DescriptionType;
@@ -21,6 +23,7 @@ import org.opensaml.xacml.policy.ResourcesType;
 import org.opensaml.xacml.policy.RuleType;
 import org.opensaml.xacml.policy.SubjectsType;
 import org.opensaml.xacml.policy.TargetType;
+import org.opensaml.xml.XMLObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,7 +62,7 @@ public class PolicyBuilder
 		Tree policyId = tree.getChild(0);
 		Tree combAlgId = tree.getChild(1);
 		Tree target = tree.getChild(2);
-		Tree rule = tree.getChild(3);
+		Tree condition = tree.getChild(3);
 
 		PolicyType o = builder.create(PolicyType.class, PolicyType.DEFAULT_ELEMENT_NAME);
 		o.setDescription(newDescriptionType(null));
@@ -84,7 +87,7 @@ public class PolicyBuilder
 		}
 		else
 		{
-			r.add(newRuleType(rule));
+			r.add(newRuleType(condition));
 //			for (int i = 0; i < rules.getChildCount(); i++)
 //			{
 //				Tree c = rules.getChild(i);
@@ -165,9 +168,10 @@ public class PolicyBuilder
 	{
 		String tok = tree.getText();
 		Tree ruleName = tree.getChild(0);
-		Tree effect = tree.getChild(1);
-		Tree ifTok = tree.getChild(2);
-		Tree conditions = tree.getChild(3);
+		Tree ifTok = tree.getChild(1);
+
+		Tree effect = ifTok.getChild(0);
+		Tree conditions = ifTok.getChild(1);
 
 		RuleType o = builder.create(RuleType.class, RuleType.DEFAULT_ELEMENT_NAME);
 		o.setCondition(newConditionType(conditions));
@@ -190,7 +194,24 @@ public class PolicyBuilder
 
 	private ExpressionType newExpressionType(Tree tree)
 	{
-		ExpressionType o = builder.create(ExpressionType.class, ExpressionType.DEFAULT_ELEMENT_NAME_XACML20);
+		String tok = tree.getText();
+		Tree left = tree.getChild(0);
+		Tree right = tree.getChild(1);
+
+		if (".".equals(tok))
+		{
+			AttributeDesignatorType o = builder.create(AttributeDesignatorType.class, AttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
+//			AttributeSelectorType o = builder.create(AttributeSelectorType.class, AttributeSelectorType.DEFAULT_ELEMENT_NAME_XACML20);
+			o.setAttribtueId(tok);
+			o.setDataType("string");
+			o.setIssuer("");
+			o.setMustBePresent(false);
+			List<XMLObject> l = o.getOrderedChildren();
+			return o;
+		}
+		else
+			throw new Fault("Not supported: "+tok);
+//		ExpressionType o = builder.create(ExpressionType.class, ExpressionType.DEFAULT_ELEMENT_NAME_XACML20);
 //		ApplyType
 //		AttributeDesignatorType
 //		AttributeSelectorType
@@ -198,7 +219,7 @@ public class PolicyBuilder
 //		ConditionType
 //		FunctionType
 //		VariableReferenceType
-		return o;
+//		return o;
 	}
 
 	private DescriptionType newDescriptionType(Tree tree)
