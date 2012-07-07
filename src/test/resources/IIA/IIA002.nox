@@ -3,13 +3,13 @@ policy IIA002 denyOverrides
 {
 //	A subject with a role attribute of "Physician" can read or
 //  write Bart Simpson's medical record.
-	rule IIA1
+	rule IIA1 permit
 	{
-		permit if
-		(
-			subject.role.oneAndOnly() == "Physician" &&
-			resource.id.oneAndOnly().uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
-			( action.id.oneAndOnly() == "read" || action.id.oneAndOnly() == "write" )
-		)
+		target
+		{
+			subject.role.matches( "Physician" ) &&
+			resource.id.matches( "http://medico.com/record/patient/BartSimpson" ) &&
+			( action.id.matches( "read" ) || action.id.matches( "write" ) )
+		}
 	}
 }

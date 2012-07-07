@@ -2,12 +2,12 @@ grammar Grammar;
 
 options
 {
-//  backtrack=true;
-//  memoize = true;
+// backtrack=true;
+// memoize = true;
 //	k = 5;
-	ASTLabelType=CommonTree;
 	output=AST;
 	language=Java;
+	ASTLabelType=CommonTree;
 }
 tokens
 {
@@ -15,6 +15,7 @@ tokens
 	RESOURCE_TOK='resource';
 	ACTION_TOK='action';
 	ENVIRONMENT_TOK='environment';
+	MATCHES_TOK='matches';
 	ABS_TOK='abs';
 	ACTION_TOK='action';
 	ALLOF_TOK='allOf';
@@ -47,7 +48,7 @@ tokens
 	ISIN_TOK= 'isIn';
 	LPAREN='(';
 	MAP_TOK='map';
-	MATCH_TOK='match';
+	MATCHES_TOK='matches';
 	NODECOUNT_TOK='nodeCount';
 	NODEEQUAL_TOK='nodeEqual';
 	NODEMATCH_TOK='nodeMatch';
@@ -84,8 +85,6 @@ tokens
 @header
 {
 	package noxacml;
-	import org.opensaml.xacml.policy.*;
-	import org.opensaml.xacml.ctx.*;
 	import noxacml.util.*;
 	import noxacml.xacml2.*;
 }
@@ -95,7 +94,7 @@ tokens
 }
 @members
 {
-  final PolicyBuilder builder = new PolicyBuilder();
+ final PolicyBuilder builder = new PolicyBuilder();
 }
 
 xacmlFile
@@ -111,27 +110,28 @@ policySet
 	;
 
 target
-	: TARGET_TOK^ ANYCASEIDENTIFIER? '{'! subjects* resources* actions* environments* '}'!
+	: TARGET_TOK^ '{'! matchOrExpr '}'!
 	;
-subjects
-	: SUBJECT_TOK^ '{'! condition '}'!
+
+matchOrExpr
+  : matchAndExpr ('||'^ matchAndExpr )*
+  ;
+
+matchAndExpr
+  : matchExpr ('&&'^ matchExpr)*
+  ;
+
+matchExpr
+	: attributeSelector^ '.'! MATCHES_TOK '('! stringExpr ')'!
+	| '('! matchOrExpr ')'!
 	;
-resources
-	: RESOURCE_TOK^ '{'! condition '}'!
-	;
-actions
-	: ACTION_TOK^ '{'! condition '}'!
-	;
-environments
-	: ENVIRONMENT_TOK^ '{'! condition '}'!
+
+attributeSelector
+	: ( SUBJECT_TOK	| RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK)^ '.'! LOWERCASEIDENTIFIER
 	;
 
 rule
-	: RULE_TOK^ ANYCASEIDENTIFIER? '{'! target? condition? '}'!
-	;
-
-condition
-	: (PERMIT_TOK | DENY_TOK) IF_TOK^ booleanExpr
+	: RULE_TOK^ ANYCASEIDENTIFIER (PERMIT_TOK | DENY_TOK) '{'! target? conditionalOrExpr? '}'!
 	;
 
 booleanExpr
@@ -148,13 +148,13 @@ booleanExpr
 //	| regexOp
 	;
 booleanCreate
-	: BOOLEAN_TOK^ LPAREN! ATTRIBUTE_NAME RPAREN!
+	: BOOLEAN_TOK^ LPAREN! attributeSelector RPAREN!
 	;
 booleanNof
 	: ( NOF_TOK | NOT_TOK)^ LPAREN! booleanExpr RPAREN!
 	;
 booleanWrap
-	: LPAREN! conditionalOrExpr RPAREN! -> ^('COND' conditionalOrExpr)
+	: LPAREN! conditionalOrExpr RPAREN!
 	;
 booleanNode
 	: stringExpr '.'! ( NODEEQUAL_TOK | NODEMATCH_TOK )^ LPAREN! stringExpr RPAREN!
@@ -166,43 +166,43 @@ booleanBag
 	;
 
 conditionalOrExpr
-    : conditionalAndExpr ('||'^ conditionalAndExpr )*
-    ;
+  : conditionalAndExpr ('||'^ conditionalAndExpr )*
+  ;
 
 conditionalAndExpr
-    : booleanExpr ('&&'^ booleanExpr)*
-    ;
+  : booleanExpr ('&&'^ booleanExpr)*
+  ;
 
 isInOp
-	:  doubleExpr '.'! ISIN_TOK LPAREN! doubleBag RPAREN!
-	|  stringExpr '.'! ISIN_TOK LPAREN! stringBag RPAREN!
-	|  anyUriExpr '.'! ISIN_TOK LPAREN! anyUriBag RPAREN!
-	|  dateExpr '.'! ISIN_TOK LPAREN! dateBag RPAREN!
-	|  timeExpr '.'! ISIN_TOK LPAREN! timeBag RPAREN!
-	|  dateTimeExpr '.'! ISIN_TOK LPAREN! dateTimeBag RPAREN!
-	|  base64BinaryExpr '.'! ISIN_TOK LPAREN! base64BinaryBag RPAREN!
-	|  dayTimeDurationExpr '.'! ISIN_TOK LPAREN! dayTimeDurationBag RPAREN!
-	|  yearMonthDurationExpr '.'! ISIN_TOK LPAREN! yearMonthDurationBag RPAREN!
-	|  x500NameExpr '.'! ISIN_TOK LPAREN! x500NameBag RPAREN!
-	|  rfc822NameExpr '.'! ISIN_TOK LPAREN! rfc822NameBag RPAREN!
-	|  hexBinaryExpr '.'! ISIN_TOK LPAREN! hexBinaryBag RPAREN!
-	|  (base64BinaryExpr) => base64BinaryExpr '.'! ISIN_TOK LPAREN! base64BinaryBag RPAREN!
+	: doubleExpr '.'! ISIN_TOK^ LPAREN! doubleBag RPAREN!
+	| stringExpr '.'! ISIN_TOK^ LPAREN! stringBag RPAREN!
+	| anyUriExpr '.'! ISIN_TOK^ LPAREN! anyUriBag RPAREN!
+	| dateExpr '.'! ISIN_TOK^ LPAREN! dateBag RPAREN!
+	| timeExpr '.'! ISIN_TOK^ LPAREN! timeBag RPAREN!
+	| dateTimeExpr '.'! ISIN_TOK^ LPAREN! dateTimeBag RPAREN!
+	| base64BinaryExpr '.'! ISIN_TOK^ LPAREN! base64BinaryBag RPAREN!
+	| dayTimeDurationExpr '.'! ISIN_TOK^ LPAREN! dayTimeDurationBag RPAREN!
+	| yearMonthDurationExpr '.'! ISIN_TOK^ LPAREN! yearMonthDurationBag RPAREN!
+	| x500NameExpr '.'! ISIN_TOK^ LPAREN! x500NameBag RPAREN!
+	| rfc822NameExpr '.'! ISIN_TOK^ LPAREN! rfc822NameBag RPAREN!
+	| hexBinaryExpr '.'! ISIN_TOK^ LPAREN! hexBinaryBag RPAREN!
+	| (base64BinaryExpr) => base64BinaryExpr '.'! ISIN_TOK^ LPAREN! base64BinaryBag RPAREN!
 	;
 
 containsOp
-	:  doubleBag '.'! CONTAINS_TOK LPAREN! doubleExpr RPAREN!
-	|  stringBag '.'! CONTAINS_TOK LPAREN! stringExpr RPAREN!
-	|  anyUriBag '.'! CONTAINS_TOK LPAREN! anyUriExpr RPAREN!
-	|  dateBag '.'! CONTAINS_TOK LPAREN! dateExpr RPAREN!
-	|  timeBag '.'! CONTAINS_TOK LPAREN! timeExpr RPAREN!
-	|  dateTimeBag '.'! CONTAINS_TOK LPAREN! dateTimeExpr RPAREN!
-	|  base64BinaryBag '.'! CONTAINS_TOK LPAREN! base64BinaryExpr RPAREN!
-	|  dayTimeDurationBag '.'! CONTAINS_TOK LPAREN! dayTimeDurationExpr RPAREN!
-	|  yearMonthDurationBag '.'! CONTAINS_TOK LPAREN! yearMonthDurationExpr RPAREN!
-	|  x500NameBag '.'! CONTAINS_TOK LPAREN! x500NameExpr RPAREN!
-	|  rfc822NameBag '.'! CONTAINS_TOK LPAREN! rfc822NameExpr RPAREN!
-	|  hexBinaryBag '.'! CONTAINS_TOK LPAREN! hexBinaryExpr RPAREN!
-	|  (base64BinaryExpr) => base64BinaryBag '.'! CONTAINS_TOK LPAREN! base64BinaryExpr RPAREN!
+	: doubleBag '.'! CONTAINS_TOK^ LPAREN! doubleExpr RPAREN!
+	| stringBag '.'! CONTAINS_TOK^ LPAREN! stringExpr RPAREN!
+	| anyUriBag '.'! CONTAINS_TOK^ LPAREN! anyUriExpr RPAREN!
+	| dateBag '.'! CONTAINS_TOK^ LPAREN! dateExpr RPAREN!
+	| timeBag '.'! CONTAINS_TOK^ LPAREN! timeExpr RPAREN!
+	| dateTimeBag '.'! CONTAINS_TOK^ LPAREN! dateTimeExpr RPAREN!
+	| base64BinaryBag '.'! CONTAINS_TOK^ LPAREN! base64BinaryExpr RPAREN!
+	| dayTimeDurationBag '.'! CONTAINS_TOK^ LPAREN! dayTimeDurationExpr RPAREN!
+	| yearMonthDurationBag '.'! CONTAINS_TOK^ LPAREN! yearMonthDurationExpr RPAREN!
+	| x500NameBag '.'! CONTAINS_TOK^ LPAREN! x500NameExpr RPAREN!
+	| rfc822NameBag '.'! CONTAINS_TOK^ LPAREN! rfc822NameExpr RPAREN!
+	| hexBinaryBag '.'! CONTAINS_TOK^ LPAREN! hexBinaryExpr RPAREN!
+	| (base64BinaryExpr) => base64BinaryBag '.'! CONTAINS_TOK^ LPAREN! base64BinaryExpr RPAREN!
 	;
 
 equalityExpr
@@ -215,77 +215,77 @@ equalityExpr
 	| dateTimeExpr ( '==' | '>=' | '>' | '<' | '<=' )^ dateTimeExpr
 	| yearMonthDurationExpr ( '==' | '>=' | '>' | '<' | '<=' )^ yearMonthDurationExpr
 	| x500NameExpr ( '==' | '>=' | '>' | '<' | '<=' )^ x500NameExpr
-	| rfc822NameExpr ( '=='	|  '>=' | '>' | '<' | '<=' )^ rfc822NameExpr
+	| rfc822NameExpr ( '=='	| '>=' | '>' | '<' | '<=' )^ rfc822NameExpr
 	| dayTimeDurationExpr ( '==' | '>=' | '>' | '<' | '<=' )^ dayTimeDurationExpr
 	| base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' )^ base64BinaryExpr
-  ;
+ ;
 
 regexOp
-	: integerExpr  '.'!  REGEXMATCH_TOK LPAREN! integerExpr RPAREN!
-	| doubleExpr '.'!  REGEXMATCH_TOK LPAREN! doubleExpr RPAREN!
-	| stringExpr '.'!  REGEXMATCH_TOK LPAREN! stringExpr RPAREN!
-	| anyUriExpr '.'!  REGEXMATCH_TOK LPAREN! anyUriExpr RPAREN!
-	| dateExpr '.'!  REGEXMATCH_TOK LPAREN! dateExpr RPAREN!
-	| timeExpr '.'! REGEXMATCH_TOK LPAREN! timeExpr RPAREN!
-	| dateTimeExpr '.'! REGEXMATCH_TOK LPAREN! dateTimeExpr RPAREN!
-	| dayTimeDurationExpr '.'! REGEXMATCH_TOK LPAREN! dayTimeDurationExpr RPAREN!
-	| yearMonthDurationExpr '.'! REGEXMATCH_TOK LPAREN! yearMonthDurationExpr RPAREN!
-	| x500NameExpr '.'! REGEXMATCH_TOK LPAREN! x500NameExpr RPAREN!
-	| rfc822NameExpr '.'! REGEXMATCH_TOK LPAREN! rfc822NameExpr RPAREN!
-	| base64BinaryExpr '.'! REGEXMATCH_TOK LPAREN! base64BinaryExpr RPAREN!
+	: integerExpr '.'! REGEXMATCH_TOK^ LPAREN! integerExpr RPAREN!
+	| doubleExpr '.'! REGEXMATCH_TOK^ LPAREN! doubleExpr RPAREN!
+	| stringExpr '.'! REGEXMATCH_TOK^ LPAREN! stringExpr RPAREN!
+	| anyUriExpr '.'! REGEXMATCH_TOK^ LPAREN! anyUriExpr RPAREN!
+	| dateExpr '.'! REGEXMATCH_TOK^ LPAREN! dateExpr RPAREN!
+	| timeExpr '.'! REGEXMATCH_TOK^ LPAREN! timeExpr RPAREN!
+	| dateTimeExpr '.'! REGEXMATCH_TOK^ LPAREN! dateTimeExpr RPAREN!
+	| dayTimeDurationExpr '.'! REGEXMATCH_TOK^ LPAREN! dayTimeDurationExpr RPAREN!
+	| yearMonthDurationExpr '.'! REGEXMATCH_TOK^ LPAREN! yearMonthDurationExpr RPAREN!
+	| x500NameExpr '.'! REGEXMATCH_TOK^ LPAREN! x500NameExpr RPAREN!
+	| rfc822NameExpr '.'! REGEXMATCH_TOK^ LPAREN! rfc822NameExpr RPAREN!
+	| base64BinaryExpr '.'! REGEXMATCH_TOK^ LPAREN! base64BinaryExpr RPAREN!
 	;
 
 bagOp
-	: (booleanBag) => booleanBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) LPAREN! booleanBag RPAREN!
-	| (integerBag) => integerBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) LPAREN!  integerBag RPAREN!
-	| (doubleBag) => doubleBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) LPAREN!  doubleBag RPAREN!
-	| (stringBag ) => stringBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) LPAREN!  stringBag RPAREN!
-	| (dateBag ) => dateBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) LPAREN!  dateBag RPAREN!
-	| (timeBag ) => timeBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) LPAREN!  timeBag RPAREN!
-	| (dateTimeBag ) => dateTimeBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) LPAREN!  dateTimeBag RPAREN!
-	| (base64BinaryBag ) => base64BinaryBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) LPAREN!  base64BinaryBag RPAREN!
-	| (dayTimeDurationBag ) => dayTimeDurationBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) LPAREN!  dayTimeDurationBag RPAREN!
-	| (yearMonthDurationBag ) => yearMonthDurationBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) LPAREN!  yearMonthDurationBag RPAREN!
-	| (anyUriBag ) => anyUriBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) LPAREN!  anyUriBag RPAREN!
-	| (x500NameBag ) => x500NameBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) LPAREN!  x500NameBag RPAREN!
-	| (rfc822NameBag ) => rfc822NameBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK ) LPAREN!  rfc822NameBag RPAREN!
-	| (hexBinaryBag ) => hexBinaryBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) LPAREN!  hexBinaryBag RPAREN!
-	| (base64BinaryBag) => base64BinaryBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK  ) LPAREN!  base64BinaryBag RPAREN!
+	: (booleanBag) => booleanBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! booleanBag RPAREN!
+	| (integerBag) => integerBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! integerBag RPAREN!
+	| (doubleBag) => doubleBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! doubleBag RPAREN!
+	| (stringBag ) => stringBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! stringBag RPAREN!
+	| (dateBag ) => dateBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! dateBag RPAREN!
+	| (timeBag ) => timeBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! timeBag RPAREN!
+	| (dateTimeBag ) => dateTimeBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! dateTimeBag RPAREN!
+	| (base64BinaryBag ) => base64BinaryBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! base64BinaryBag RPAREN!
+	| (dayTimeDurationBag ) => dayTimeDurationBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! dayTimeDurationBag RPAREN!
+	| (yearMonthDurationBag ) => yearMonthDurationBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! yearMonthDurationBag RPAREN!
+	| (anyUriBag ) => anyUriBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! anyUriBag RPAREN!
+	| (x500NameBag ) => x500NameBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! x500NameBag RPAREN!
+	| (rfc822NameBag ) => rfc822NameBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! rfc822NameBag RPAREN!
+	| (hexBinaryBag ) => hexBinaryBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! hexBinaryBag RPAREN!
+	| (base64BinaryBag) => base64BinaryBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! base64BinaryBag RPAREN!
 	;
 
 integerExpr
 	: INTEGER_CONSTANT
-	| stringExpr '.'!  ( INTEGER_TOK | NODECOUNT_TOK ) LPAREN!  RPAREN!
-	| anyBag '.'!  SIZE_TOK LPAREN! RPAREN!
+	| stringExpr '.'! ( INTEGER_TOK | NODECOUNT_TOK )^ LPAREN! RPAREN!
+	| anyBag '.'! SIZE_TOK LPAREN! RPAREN!
 //	| integerExpr '.'! ABS_TOK LPAREN! RPAREN!
 // 	| LPAREN! integerExpr ( '+' | '-' | '*' | '/' | '%' ) integerExpr RPAREN!
 //	| ABS_TOK LPAREN! integerExpr RPAREN!
 	;
 integerBag
-	: (INTEGER_TOK STRING_CONSTANT_LIST | BAG_TOK LPAREN! integerExpr ( ','! integerExpr)+ RPAREN!) ('.'! ( INTERSECTION_TOK | UNION_TOK ) LPAREN! integerBag	RPAREN!)*
+	: (INTEGER_TOK^ STRING_CONSTANT_LIST | BAG_TOK^ LPAREN! integerExpr ( ','! integerExpr)+ RPAREN!) ('.'! ( INTERSECTION_TOK | UNION_TOK )^ LPAREN! integerBag	RPAREN!)*
 	;
 
 doubleExpr
-	: DOUBLE_CONSTANT
-	| DOUBLE_TOK LPAREN! stringExpr RPAREN!
+	: DOUBLE_CONSTANT^
+	| DOUBLE_TOK^ LPAREN! stringExpr RPAREN!
 //	| LPAREN! doubleExpr ( '+' | '-' | '*' | '/' | '%' ) doubleExpr RPAREN!
 //	| ( ABS_TOK | RND_TOK | FLR_TOK ) LPAREN! doubleExpr	RPAREN!
 	;
 doubleBag
-	: DOUBLE_TOK STRING_CONSTANT_LIST
+	: DOUBLE_TOK^ STRING_CONSTANT_LIST
 //	| BAG_TOK LPAREN! doubleExpr ( ','! doubleExpr)+ RPAREN!
 //	| ( INTERSECTION_TOK | UNION_TOK ) LPAREN! dayTimeDurationBag ','! dayTimeDurationBag	RPAREN!
 	;
 
 stringExpr
 	: (STRING_CONSTANT^
-		| stringBag '.'^  ONEANDONLY_TOK LPAREN! RPAREN!)
+		| stringBag '.'! ONEANDONLY_TOK^ LPAREN! RPAREN!)
 		('.'! ( REQUIRED_TOK | NORMALIZESPACE_TOK | NORMALIZETOLOWERCASE_TOK)^ LPAREN! RPAREN!)*
 	;
 //	| CONCATENATE_TOK LPAREN! stringExpr ','! stringExpr RPAREN!
 stringBag
 	: STRING_TOK^ STRING_CONSTANT_LIST
-	| ATTRIBUTE_NAME^
+	| attributeSelector^
 //	| (stringBag) => ( INTERSECTION_TOK | UNION_TOK ) LPAREN! stringBag ','! stringBag	RPAREN!
 	;
 
@@ -366,7 +366,7 @@ yearMonthDurationBag
 
 x500NameExpr
 	: X500NAME_TOK^ LPAREN! stringExpr RPAREN!
-	| x500NameBag  '.'! ONEANDONLY_TOK^ LPAREN! RPAREN!
+	| x500NameBag '.'! ONEANDONLY_TOK^ LPAREN! RPAREN!
 //	| ((x500NameExpr) => x500NameExpr '.'! MATCH_TOK LPAREN! x500NameExpr RPAREN!)
 	;
 x500NameBag
@@ -399,7 +399,7 @@ hexBinaryBag
 anyBag
 	: booleanBag | integerBag | doubleBag | stringBag | anyUriBag | dateBag
 	| timeBag | dateTimeBag | base64BinaryBag | dayTimeDurationBag
-	| yearMonthDurationBag  | x500NameBag
+	| yearMonthDurationBag | x500NameBag
 	| rfc822NameBag | hexBinaryBag
 	;
 
@@ -411,10 +411,6 @@ COMMENT
 WHITESPACE
 	: (' '|'\t'|'\r'|'\n')+ {$channel=HIDDEN;}
 	| COMMENT
-	;
-
-ATTRIBUTE_NAME
-	: ( SUBJECT_TOK	| RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK) '.'! LOWERCASEIDENTIFIER
 	;
 
 STRING_CONSTANT

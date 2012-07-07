@@ -27,30 +27,23 @@ public class NoXacmlTest
 	final PolicyBuilder builder = new PolicyBuilder();
 
 	@Test
-	public void IIA010()
+	public void IIA001()
 	{
-		Object p = runPolicy("IIA/IIA010.nox");
+		runPolicy("IIA/IIA001.nox");
 		return;
 	}
 
 	@Test
-	public void IIA009()
+	public void IIA002()
 	{
-		runPolicy("IIA/IIA009.nox");
+		runPolicy("IIA/IIA002.nox");
 		return;
 	}
 
 	@Test
-	public void IIA006()
+	public void IIA003()
 	{
-		runPolicy("IIA/IIA006.nox");
-		return;
-	}
-
-	@Test
-	public void IIA005()
-	{
-		runPolicy("IIA/IIA005.nox");
+		runPolicy("IIA/IIA003.nox");
 		return;
 	}
 
@@ -70,23 +63,30 @@ public class NoXacmlTest
 	}
 
 	@Test
-	public void IIA003()
+	public void IIA005()
 	{
-		runPolicy("IIA/IIA003.nox");
+		runPolicy("IIA/IIA005.nox");
 		return;
 	}
 
 	@Test
-	public void IIA002()
+	public void IIA006()
 	{
-		runPolicy("IIA/IIA002.nox");
+		runPolicy("IIA/IIA006.nox");
 		return;
 	}
 
 	@Test
-	public void IIA001()
+	public void IIA009()
 	{
-		runPolicy("IIA/IIA001.nox");
+		runPolicy("IIA/IIA009.nox");
+		return;
+	}
+
+	@Test
+	public void IIA010()
+	{
+		Object p = runPolicy("IIA/IIA010.nox");
 		return;
 	}
 

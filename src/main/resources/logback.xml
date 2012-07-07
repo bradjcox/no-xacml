@@ -11,7 +11,7 @@
 	<logger name="osint" level="DEBUG"/>
 	<logger name="noxacml" level="DEBUG"/>
 
-	<root level="WARN">
+	<root level="INFO">
 		<appender-ref ref="console"/>
 	</root>
 

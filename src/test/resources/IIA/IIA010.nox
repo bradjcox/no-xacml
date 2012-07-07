@@ -2,8 +2,14 @@
 policy IIA010 denyOverrides
 {
 	// Anyone who is 45 integer years old may perform any action on any resource.
-	rule IIA010
+	rule IIA010 permit
 	{
+		target
+		{
+			subject.age.oneAndOnly().integer() >= 45 &&
+			resource.id.oneAndOnly().uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
+			( action.id.oneAndOnly() == "read" || action.id.oneAndOnly() == "write" )
+		}
 		permit if
 		(
 //			subject.role.contains( "Physician" ) &&

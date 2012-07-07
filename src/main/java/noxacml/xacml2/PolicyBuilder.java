@@ -21,6 +21,7 @@ import org.opensaml.xacml.policy.PolicySetType;
 import org.opensaml.xacml.policy.PolicyType;
 import org.opensaml.xacml.policy.ResourcesType;
 import org.opensaml.xacml.policy.RuleType;
+import org.opensaml.xacml.policy.SubjectAttributeDesignatorType;
 import org.opensaml.xacml.policy.SubjectsType;
 import org.opensaml.xacml.policy.TargetType;
 import org.opensaml.xml.XMLObject;
@@ -112,31 +113,36 @@ public class PolicyBuilder
 		o.setTarget(newTargetType(target));
 		o.setPolicyCombiningAlgoId(combAlgId.getText());
 		o.setVersion("");
-//		for (XACMLObject pt: policyList.getChildren())
-//			l.add((PolicyType)pt);
-////		o.getPolicySetIdReferences().addAll(null);
-////		o.getPolicyIdReferences().addAll(null);
-////		o.getCombinerParameters().addAll(null);
-////		o.getPolicyCombinerParameters().addAll(null);
-////		o.getPolicySetCombinerParameters().add(null);
-//		o.setObligations(obl);
-//		o.setPolicySetId($pid.text);
 		return o;
 	}
 
 	private TargetType newTargetType(Tree tree)
 	{
-		Tree subjects = tree.getChild(0);
-		Tree resources = tree.getChild(1);
-		Tree actions = tree.getChild(2);
-		Tree environments = tree.getChild(3);
+		String tok = tree.getText();
+		Tree conditionals = tree.getChild(0);
 
 		TargetType o = builder.create(TargetType.class, TargetType.DEFAULT_ELEMENT_NAME);
-		o.setSubjects(newSubjectsType(subjects));
-		o.setResources(newResourcesType(resources));
-		o.setActions(newActionType(actions));
-		o.setEnvironments(newEnvironmentType(environments));
+		for (int i = 0; i < conditionals.getChildCount(); i++)
+		{
+			Tree c = conditionals.getChild(i);
+			XACMLObject co = newTargetMemberType(c);
+			String cTok = c.getText();
+			for (int j = 0; j < c.getChildCount(); j++)
+			{
+				Tree d = c.getChild(i);
+				String dTok = d.getText();
+//				o.getSubjects().add(newSubjectsType(d));
+			}
+		}
+//		o.setSubjects(newSubjectsType(subjects));
+//		o.setResources(newResourcesType(resources));
+//		o.setActions(newActionType(actions));
+//		o.setEnvironments(newEnvironmentType(environments));
 		return o;
+	}
+	private XACMLObject newTargetMemberType(Tree tree)
+	{
+		return null;
 	}
 
 	private SubjectsType newSubjectsType(Tree tree)
@@ -168,17 +174,26 @@ public class PolicyBuilder
 	{
 		String tok = tree.getText();
 		Tree ruleName = tree.getChild(0);
-		Tree ifTok = tree.getChild(1);
-
-		Tree effect = ifTok.getChild(0);
-		Tree conditions = ifTok.getChild(1);
+		Tree effect = tree.getChild(1);
+		Tree first = tree.getChild(2);
+		Tree second = tree.getChild(3);
 
 		RuleType o = builder.create(RuleType.class, RuleType.DEFAULT_ELEMENT_NAME);
-		o.setCondition(newConditionType(conditions));
 		o.setDescription(newDescriptionType(null));
 		o.setEffect(newEffectType(effect));
 		o.setRuleId(ruleName.getText());
-//		o.setTarget(newTargetType(target));
+		if ("target".equals(first.getText()))
+		{
+			o.setTarget(newTargetType(first));
+		}
+		else if ("rule".equals(first.getText()))
+		{
+			o.setCondition(newConditionType(first));
+		}
+		else
+		{
+			o.setCondition(newConditionType(second));
+		}
 		return o;
 	}
 
@@ -200,7 +215,29 @@ public class PolicyBuilder
 
 		if (".".equals(tok))
 		{
+			int dotNdx = left.getText().indexOf(".");
+			String kind = left.getText().substring(0, dotNdx);
 			AttributeDesignatorType o = builder.create(AttributeDesignatorType.class, AttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
+			if ("subject".equals(kind))
+			{
+				o = builder.create(SubjectAttributeDesignatorType.class, SubjectAttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
+			}
+			else if ("resource".equals(kind) || "action".equals(kind) || "environment".equals(kind))
+			{
+				o = builder.create(AttributeDesignatorType.class, AttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
+			}
+//			else if ("action".equals(kind))
+//			{
+//				o = builder.create(SubjectAttributeDesignatorType.class, SubjectAttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
+//
+//			}
+//			else if ("environment".equals(kind))
+//			{
+//				o = builder.create(SubjectAttributeDesignatorType.class, SubjectAttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
+//
+//			}
+			else throw new Fault("Unrecognized kind:"+kind);
+//			AttributeDesignatorType o = builder.create(AttributeDesignatorType.class, AttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
 //			AttributeSelectorType o = builder.create(AttributeSelectorType.class, AttributeSelectorType.DEFAULT_ELEMENT_NAME_XACML20);
 			o.setAttribtueId(tok);
 			o.setDataType("string");

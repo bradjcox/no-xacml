@@ -2,14 +2,15 @@
 policy IIA006 denyOverrides
 {
 // Julius Hibbert can read or write Bart Simpson's medical record.
-	rule IIA1
+	rule IIA1 permit
 	{
-		permit if
-		(
-			subject.id.oneAndOnly() == "Julius Hibbert" &&
-			subject.someAttribute.oneAndOnly() == "riddle me this" &&
-			resource.id.oneAndOnly().uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
-			( action.id.oneAndOnly() == "read" || action.id.oneAndOnly() == "write" )
-		)
+		target
+		{
+			subject.id.matches( "Julius Hibbert" ) &&
+			subject.someAttribute.matches( "riddle me this" ) &&
+			resource.id.matches( "http://medico.com/record/patient/BartSimpson" ) &&
+			( action.id.matches( "read" ) || action.id.matches( "write" ) )
+		}
+
 	}
 }
