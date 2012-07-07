@@ -6,14 +6,14 @@ policy IIA010 denyOverrides
 	{
 		target
 		{
-			subject.age.oneAndOnly().integer() >= 45 &&
-			resource.id.oneAndOnly().uri() == "http://medico.com/record/patient/BartSimpson".uri() &&
-			( action.id.oneAndOnly() == "read" || action.id.oneAndOnly() == "write" )
+			subject.id.matches("Julius Hibbert") &&
+			resource.id.matches("http://medico.com/record/patient/BartSimpson") &&
+			( action.id.matches("read") || action.id.matches("write") )
 		}
-		permit if
-		(
-//			subject.role.contains( "Physician" ) &&
+		condition
+		{
+			subject.role.contains("Physician") &&
 			subject.age.oneAndOnly().integer() >= 45
-		)
+		}
 	}
 }

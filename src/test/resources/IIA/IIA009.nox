@@ -11,9 +11,9 @@ policy IIA009 denyOverrides
 			resource.id.matches( "http://medico.com/record/patient/BartSimpson" ) &&
 			( action.id.matches( "read" ) || action.id.matches( "write" ) )
 		}
-		rule
+		condition
 		{
-			"riddle me this".isIn(subject.category.accessSubject.oneAndOnly())
+			subject.category.accessSubject.contains( "riddle me this" )
 		}
 	}
 }

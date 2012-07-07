@@ -30,6 +30,7 @@ tokens
 	BASE64BINARY_TOK= 'base64Binary';
 	BOOLEAN_TOK= 'boolean';
 	CONCATENATE_TOK='concatenate';
+	CONDITION_TOK='condition';
 	CONTAINS_TOK='contains';
 	DATE_TOK= 'date';
 	DATETIME_TOK= 'dateTime';
@@ -127,11 +128,11 @@ matchExpr
 	;
 
 attributeSelector
-	: ( SUBJECT_TOK	| RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK)^ '.'! LOWERCASEIDENTIFIER
+	: ( SUBJECT_TOK	| RESOURCE_TOK | ACTION_TOK | ENVIRONMENT_TOK)^ ('.'! LOWERCASEIDENTIFIER)+
 	;
 
 rule
-	: RULE_TOK^ ANYCASEIDENTIFIER (PERMIT_TOK | DENY_TOK) '{'! target? conditionalOrExpr? '}'!
+	: RULE_TOK^ ANYCASEIDENTIFIER (PERMIT_TOK | DENY_TOK) '{'! target? condition? '}'!
 	;
 
 booleanExpr
@@ -163,6 +164,10 @@ booleanBag
 	: BOOLEAN_TOK^ STRING_CONSTANT_LIST
 //	| BAG_TOK LPAREN! booleanExpr ( ','! booleanExpr)+ RPAREN!
 //	| ( INTERSECTION_TOK | UNION_TOK ) LPAREN! booleanBag','! booleanBag	RPAREN!
+	;
+
+condition
+	: CONDITION_TOK '{'! conditionalOrExpr '}'!
 	;
 
 conditionalOrExpr

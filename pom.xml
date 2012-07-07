@@ -45,7 +45,7 @@
 							<printGrammar>false</printGrammar>
 							<profile>false</profile>
 							<report>false</report>
-							<trace>true</trace>
+							<trace>false</trace>
 							<verbose>true</verbose>
 							<debug>false</debug>
 							<dfa>false</dfa>
