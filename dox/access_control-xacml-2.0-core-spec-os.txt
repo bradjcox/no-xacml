@@ -1282,8 +1282,10 @@ combining algorithm.
 evaluate.   In this example, the <Subjects> and <Environments> elements are omitted.
 [a231] - [a249] The <Resources> element contains a disjunctive sequence of <Resource>
 elements.  In this example, there is just one.
+
 [a232] - [a248] The <Resource> element encloses the conjunctive sequence of
 ResourceMatch elements.  In this example, there are two.
+
 [a233] - [a240] The first <ResourceMatch> element compares its first and second child elements
 according to the matching function.  A match is positive if the value of the first argument matches
 any of the values selected by the second argument. This match compares the target namespace of
@@ -1299,8 +1301,10 @@ element and the first XPath expression is the literal value Ò/md:recordÓ.  The
 function evaluates to ÒTrueÓ if the requested XML element is below the Ò/md:recordÓ element.
 [a250] - [a262] The <Actions> element contains a disjunctive sequence of <Action> elements.
 In this case, there is just one <Action> element.
+
 [a251] - [a261] The <Action> element contains a conjunctive sequence of <ActionMatch>
 elements.  In this case, there is just one <ActionMatch> element.
+
 [a252] - [a260] The <ActionMatch> element compares its first and second child elements
 according to the matching function.  The match is positive if the value of the first argument matches
 any of the values selected by the second argument.  In this case, the value of the action-id
@@ -1966,11 +1970,13 @@ The <Target> element identifies the set of decision requests that the parent ele
 to evaluate.  The <Target> element SHALL appear as a child of a <PolicySet> and <Policy>
 element and MAY appear as a child of a <Rule> element.  It contains definitions for subjects,
 resources, actions and environments.
+
 The <Target> element SHALL contain a conjunctive sequence of <Subjects>, <Resources>
 <Actions> and <Environments> elements.  For the parent of the <Target> element to be
 applicable to the decision request, there MUST be at least one positive match between each
 section of the <Target> element and the corresponding section of the <xacml-
 context:Request> element.
+
 <xs:element name="Target" type="xacml:TargetType"/>
 <xs:complexType name="TargetType">
 	<xs:sequence>
@@ -2006,9 +2012,12 @@ The <Subjects> element is of SubjectsType complex type.
 The <Subjects> element contains the following elements:
 <Subject> [One to Many, Required]
 See Section 5.7.
+
 5.7.	Element <Subject>
+
 The <Subject> element SHALL contain a conjunctive sequence of <SubjectMatch>
 elements.
+
 <xs:element name="Subject" type="xacml:SubjectType"/>
 <xs:complexType name="SubjectType">
 	<xs:sequence>
@@ -2061,9 +2070,12 @@ The <Resources> element is of ResourcesType complex type.
 The <Resources> element contains the following elements:
 <Resource> [One to Many, Required]
 See Section 5.10.
+
 5.10.	Element <Resource>
+
 The <Resource> element SHALL contain a conjunctive sequence of <ResourceMatch>
 elements.
+
 <xs:element name="Resource" type="xacml:ResourceType"/>
 <xs:complexType name="ResourceType">
 	<xs:sequence>
@@ -2073,12 +2085,16 @@ elements.
 The <Resource> element is of ResourceType complex type.
 The <Resource> element contains the following elements:
 <ResourceMatch> [One to Many]
+
 A conjunctive sequence of individual matches of the resource attributes in the request
 context and the embedded attribute values.  See Section 5.11.
+
 5.11.	Element <ResourceMatch>
+
 The <ResourceMatch> element SHALL identify a set of resource-related entities by matching
 attribute values in the <xacml-context:Resource> element of the request context with the
 embedded attribute value.
+
 <xs:element name="ResourceMatch" type="xacml:ResourceMatchType"/>
 <xs:complexType name="ResourceMatchType">
 	<xs:sequence>
@@ -2090,6 +2106,7 @@ embedded attribute value.
 	</xs:sequence>
 	<xs:attribute name="MatchId" type="xs:anyURI" use="required"/>
 </xs:complexType>
+
 The <ResourceMatch> element is of ResourceMatchType complex type.
 The <ResourceMatch> element contains the following attributes and elements:
 MatchId [Required]
@@ -2116,8 +2133,11 @@ The <Actions> element is of ActionsType complex type.
 The <Actions> element contains the following elements:
 <Action> [One to Many, Required]
 See Section 5.13.
+
 5.13.	Element <Action>
+
 The <Action> element SHALL contain a conjunctive sequence of <ActionMatch> elements.
+
 <xs:element name="Action" type="xacml:ActionType"/>
 <xs:complexType name="ActionType">
 	<xs:sequence>

@@ -4,24 +4,34 @@ import java.util.List;
 
 import noxacml.util.Fault;
 import noxacml.util.SAMLBuilder;
+import noxacml.util.XACMLObjectUtil;
 
 import org.antlr.runtime.tree.Tree;
 import org.opensaml.xacml.XACMLObject;
+import org.opensaml.xacml.policy.ActionMatchType;
+import org.opensaml.xacml.policy.ActionType;
 import org.opensaml.xacml.policy.ActionsType;
 import org.opensaml.xacml.policy.AttributeDesignatorType;
 import org.opensaml.xacml.policy.AttributeSelectorType;
+import org.opensaml.xacml.policy.AttributeValueType;
 import org.opensaml.xacml.policy.ConditionType;
 import org.opensaml.xacml.policy.DefaultsType;
 import org.opensaml.xacml.policy.DescriptionType;
 import org.opensaml.xacml.policy.EffectType;
+import org.opensaml.xacml.policy.EnvironmentMatchType;
+import org.opensaml.xacml.policy.EnvironmentType;
 import org.opensaml.xacml.policy.EnvironmentsType;
 import org.opensaml.xacml.policy.ExpressionType;
 import org.opensaml.xacml.policy.ObligationsType;
 import org.opensaml.xacml.policy.PolicySetType;
 import org.opensaml.xacml.policy.PolicyType;
+import org.opensaml.xacml.policy.ResourceMatchType;
+import org.opensaml.xacml.policy.ResourceType;
 import org.opensaml.xacml.policy.ResourcesType;
 import org.opensaml.xacml.policy.RuleType;
 import org.opensaml.xacml.policy.SubjectAttributeDesignatorType;
+import org.opensaml.xacml.policy.SubjectMatchType;
+import org.opensaml.xacml.policy.SubjectType;
 import org.opensaml.xacml.policy.SubjectsType;
 import org.opensaml.xacml.policy.TargetType;
 import org.opensaml.xml.XMLObject;
@@ -48,22 +58,18 @@ public class PolicyBuilder
 	// : (policy | policySet) EOF!
 	public XACMLObject newXacmlFile(Tree t)
 	{
-//		Tree policyOrSet = t.getChild(0);
-		if ("policy".equals(t.getText()))
-			return newPolicyType(t);
-		else if ("policyset".equals(t.getText()))
-			return newPolicySetType(t);
-		else
-			throw new Fault("Expecting policy|policyset");
+		// Tree policyOrSet = t.getChild(0);
+		if ("policy".equals(t.getText())) return newPolicyType(t);
+		else if ("policyset".equals(t.getText())) return newPolicySetType(t);
+		else throw new Fault("Expecting policy|policyset");
 	}
 
-	private PolicyType newPolicyType(Tree tree)
+	PolicyType newPolicyType(Tree tree)
 	{
 		String tok = tree.getText();
 		Tree policyId = tree.getChild(0);
 		Tree combAlgId = tree.getChild(1);
 		Tree target = tree.getChild(2);
-		Tree condition = tree.getChild(3);
 
 		PolicyType o = builder.create(PolicyType.class, PolicyType.DEFAULT_ELEMENT_NAME);
 		o.setDescription(newDescriptionType(null));
@@ -71,6 +77,7 @@ public class PolicyBuilder
 		o.setObligations(null);
 		o.setPolicyDefaults(null);
 		o.setRuleCombiningAlgoId(combAlgId.getText());
+		o.setVersion("SomeVersion");
 
 		List<RuleType> r = o.getRules();
 		if ("target".equals(target.getText()))
@@ -80,26 +87,15 @@ public class PolicyBuilder
 		else if ("rule".equals(target.getText()))
 		{
 			r.add(newRuleType(target));
-//			for (int i = 0; i < target.getChildCount(); i++)
-//			{
-//				Tree c = target.getChild(i);
-//				r.add(newRuleType(c));
-//			}
 		}
 		else
 		{
-			r.add(newRuleType(condition));
-//			for (int i = 0; i < rules.getChildCount(); i++)
-//			{
-//				Tree c = rules.getChild(i);
-//				r.add(newRuleType(c));
-//			}
+			throw new Fault("Expecting target|rule");
 		}
-		o.setVersion("");
 		return o;
 	}
 
-	private PolicySetType newPolicySetType(Tree tree)
+	PolicySetType newPolicySetType(Tree tree)
 	{
 		Tree policyId = tree.getChild(0);
 		Tree combAlgId = tree.getChild(1);
@@ -116,61 +112,210 @@ public class PolicyBuilder
 		return o;
 	}
 
-	private TargetType newTargetType(Tree tree)
+	TargetType newTargetType(Tree tree)
 	{
 		String tok = tree.getText();
 		Tree conditionals = tree.getChild(0);
 
 		TargetType o = builder.create(TargetType.class, TargetType.DEFAULT_ELEMENT_NAME);
+		// SubjectsType subjects = o.getSubjects();
+		// ResourcesType resources = o.getResources();
+		// ActionsType actions = o.getActions();
+		// EnvironmentsType environments = o.getEnvironments();
 		for (int i = 0; i < conditionals.getChildCount(); i++)
 		{
 			Tree c = conditionals.getChild(i);
-			XACMLObject co = newTargetMemberType(c);
-			String cTok = c.getText();
-			for (int j = 0; j < c.getChildCount(); j++)
-			{
-				Tree d = c.getChild(i);
-				String dTok = d.getText();
-//				o.getSubjects().add(newSubjectsType(d));
-			}
+			addMembersTypeToTarget(c, o);
 		}
-//		o.setSubjects(newSubjectsType(subjects));
-//		o.setResources(newResourcesType(resources));
-//		o.setActions(newActionType(actions));
-//		o.setEnvironments(newEnvironmentType(environments));
-		return o;
-	}
-	private XACMLObject newTargetMemberType(Tree tree)
-	{
-		return null;
-	}
-
-	private SubjectsType newSubjectsType(Tree tree)
-	{
-		SubjectsType o = builder.create(SubjectsType.class, SubjectsType.DEFAULT_ELEMENT_NAME);
 		return o;
 	}
 
-	private EnvironmentsType newEnvironmentType(Object object)
+	void addMembersTypeToTarget(Tree tree, TargetType t)
 	{
-		EnvironmentsType o = builder.create(EnvironmentsType.class, EnvironmentsType.DEFAULT_ELEMENT_NAME);
+		String tok = tree.getText();
+		Tree left = tree.getChild(0);
+		Tree right = tree.getChild(1);
+		if ("&&".equals(tok))
+		{
+			addMembersTypeToTarget(left, t);
+			addMembersTypeToTarget(right, t);
+		}
+		if ("||".equals(tok))
+		{
+			addMembersTypeToTarget(left, t);
+			addMembersTypeToTarget(right, t);
+		}
+		else if ("matches".equals(tok))
+		{
+			addMemberTypeToTarget(left, t);
+		}
+		else
+		{
+			throw new Fault("Expecting && or || or matches");
+		}
+		log.debug(XACMLObjectUtil.toString(t));
+		return;
+	}
+
+	XACMLObject addMemberTypeToTarget(Tree tree, TargetType target)
+	{
+		String tok = tree.getText();
+		Tree left = tree.getChild(0);
+		Tree right = tree.getChild(1);
+
+		if ("subject".equals(tok))
+		{
+			SubjectsType st = target.getSubjects();
+			if (st == null)
+			{
+				st = builder.create(SubjectsType.class, SubjectsType.DEFAULT_ELEMENT_NAME);
+				target.setSubjects(st);
+			}
+
+			SubjectType o1 = builder.create(SubjectType.class, SubjectType.DEFAULT_ELEMENT_NAME);
+			List<SubjectMatchType> rm = o1.getSubjectMatches();
+			rm.add(newSubjectMatchType(left));
+
+			st.getSubjects().add(o1);
+			return st;
+		}
+		else if ("resource".equals(tok))
+		{
+			ResourcesType st = target.getResources();
+			if (st == null)
+			{
+				st = builder.create(ResourcesType.class, ResourcesType.DEFAULT_ELEMENT_NAME);
+				target.setResources(st);
+			}
+
+			ResourceType o1 = builder.create(ResourceType.class, ResourceType.DEFAULT_ELEMENT_NAME);
+			List<ResourceMatchType> rm = o1.getResourceMatches();
+			rm.add(newResourceMatchType(left));
+
+			List<ResourceType> sts = st.getResources();
+			sts.add(o1);
+			return st;
+		}
+		else if ("action".equals(tok))
+		{
+			ActionsType st = target.getActions();
+			if (st == null)
+			{
+				st = builder.create(ActionsType.class, ActionsType.DEFAULT_ELEMENT_NAME);
+				target.setActions(st);
+			}
+
+			ActionType o1 = builder.create(ActionType.class, ActionType.DEFAULT_ELEMENT_NAME);
+			List<ActionMatchType> rm = o1.getActionMatches();
+			rm.add(newActionMatchType(left));
+
+			List<ActionType> sts = st.getActions();
+			sts.add(o1);
+			return st;
+		}
+		else if ("environment".equals(tok))
+		{
+			EnvironmentsType st = target.getEnvironments();
+			if (st == null)
+			{
+				st = builder.create(EnvironmentsType.class, EnvironmentsType.DEFAULT_ELEMENT_NAME);
+				target.setEnvironments(st);
+			}
+
+			EnvironmentType o1 = builder.create(EnvironmentType.class, EnvironmentType.DEFAULT_ELEMENT_NAME);
+			List<EnvironmentMatchType> rm = o1.getEnvrionmentMatches();
+			rm.add(newEnvironmentMatchType(left));
+
+			List<EnvironmentType> sts = st.getEnvrionments();
+			sts.add(o1);
+			return st;
+		}
+		else throw new Fault("Expecting subject|resource|action|environment in:" + right.toStringTree());
+	}
+
+	SubjectMatchType newSubjectMatchType(Tree t)
+	{
+		String tok = t.getText();
+		Tree left = t.getChild(0);
+		String name = t.getParent().getText() + "." + tok;
+
+		SubjectMatchType o = builder.create(SubjectMatchType.class, SubjectMatchType.DEFAULT_ELEMENT_NAME);
+		// o.getResourceAttributeDesignator();
+		// o.getAttributeSelector();
+		o.setAttributeSelector(newAttributeSelectorType(t));
+		o.setAttributeValue(newAttributeValueType(t));
+		o.setMatchId(name);
+		log.debug(XACMLObjectUtil.toString(o));
 		return o;
 	}
 
-	private ResourcesType newResourcesType(Tree tree)
+	ResourceMatchType newResourceMatchType(Tree t)
 	{
-		ResourcesType o = builder.create(ResourcesType.class, ResourcesType.DEFAULT_ELEMENT_NAME);
+		String tok = t.getText();
+		Tree left = t.getChild(0);
+
+		ResourceMatchType o = builder.create(ResourceMatchType.class, ResourceMatchType.DEFAULT_ELEMENT_NAME);
+		// o.getResourceAttributeDesignator();
+		// o.getAttributeSelector();
+		o.setAttributeSelector(newAttributeSelectorType(t));
+		o.setAttributeValue(newAttributeValueType(t));
+		o.setMatchId("");
+		log.debug(XACMLObjectUtil.toString(o));
 		return o;
 	}
 
-	private ActionsType newActionType(Tree tree)
+	ActionMatchType newActionMatchType(Tree t)
 	{
-		ActionsType o = builder.create(ActionsType.class, ActionsType.DEFAULT_ELEMENT_NAME);
+		String tok = t.getText();
+		Tree left = t.getChild(0);
+
+		ActionMatchType o = builder.create(ActionMatchType.class, ActionMatchType.DEFAULT_ELEMENT_NAME);
+		// o.getActionAttributeDesignator();
+		// o.getAttributeSelector();
+		o.setAttributeSelector(newAttributeSelectorType(t));
+		o.setAttributeValue(newAttributeValueType(t));
+		o.setMatchId("");
+		log.debug(XACMLObjectUtil.toString(o));
 		return o;
 	}
 
-	//	: RULE_TOK ANYCASEIDENTIFIER? '{' (PERMIT_TOK | DENY_TOK) IF_TOK conditions '}'
-	private RuleType newRuleType(Tree tree)
+	EnvironmentMatchType newEnvironmentMatchType(Tree t)
+	{
+		String tok = t.getText();
+		Tree left = t.getChild(0);
+
+		EnvironmentMatchType o = builder.create(EnvironmentMatchType.class, EnvironmentMatchType.DEFAULT_ELEMENT_QNAME);
+		// o.getEnvironmentAttributeDesignator();
+		// o.getAttributeSelector();
+		o.setAttributeSelector(newAttributeSelectorType(t));
+		o.setAttributeValue(newAttributeValueType(t));
+		o.setMatchId("");
+		log.debug(XACMLObjectUtil.toString(o));
+		return o;
+	}
+
+	AttributeSelectorType newAttributeSelectorType(Tree tree)
+	{
+		String path = tree.getParent().getText() + "." + tree.getText();
+		AttributeSelectorType o = builder.create(AttributeSelectorType.class, AttributeSelectorType.DEFAULT_ELEMENT_NAME);
+		o.setMustBePresent(false);
+		o.setDataType("xs:string");
+		o.setRequestContextPath(path);
+		log.debug(XACMLObjectUtil.toString(o));
+		return o;
+	}
+
+	AttributeValueType newAttributeValueType(Tree tree)
+	{
+		String path = tree.getParent().getText() + "." + tree.getText();
+		AttributeValueType o = builder.create(AttributeValueType.class, AttributeValueType.DEFAULT_ELEMENT_NAME);
+		o.setValue(tree.getText());
+		o.setDataType("xs:string");
+		log.debug(XACMLObjectUtil.toString(o));
+		return o;
+	}
+
+	RuleType newRuleType(Tree tree)
 	{
 		String tok = tree.getText();
 		Tree ruleName = tree.getChild(0);
@@ -197,7 +342,7 @@ public class PolicyBuilder
 		return o;
 	}
 
-	private ConditionType newConditionType(Tree tree)
+	ConditionType newConditionType(Tree tree)
 	{
 		String tok = tree.getText();
 		Tree expr = tree.getChild(0);
@@ -207,7 +352,7 @@ public class PolicyBuilder
 		return o;
 	}
 
-	private ExpressionType newExpressionType(Tree tree)
+	ExpressionType newExpressionType(Tree tree)
 	{
 		String tok = tree.getText();
 		Tree left = tree.getChild(0);
@@ -226,19 +371,24 @@ public class PolicyBuilder
 			{
 				o = builder.create(AttributeDesignatorType.class, AttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
 			}
-//			else if ("action".equals(kind))
-//			{
-//				o = builder.create(SubjectAttributeDesignatorType.class, SubjectAttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
-//
-//			}
-//			else if ("environment".equals(kind))
-//			{
-//				o = builder.create(SubjectAttributeDesignatorType.class, SubjectAttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
-//
-//			}
-			else throw new Fault("Unrecognized kind:"+kind);
-//			AttributeDesignatorType o = builder.create(AttributeDesignatorType.class, AttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
-//			AttributeSelectorType o = builder.create(AttributeSelectorType.class, AttributeSelectorType.DEFAULT_ELEMENT_NAME_XACML20);
+			// else if ("action".equals(kind))
+			// {
+			// o = builder.create(SubjectAttributeDesignatorType.class,
+			// SubjectAttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
+			//
+			// }
+			// else if ("environment".equals(kind))
+			// {
+			// o = builder.create(SubjectAttributeDesignatorType.class,
+			// SubjectAttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
+			//
+			// }
+			else throw new Fault("Unrecognized kind:" + kind);
+			// AttributeDesignatorType o =
+			// builder.create(AttributeDesignatorType.class,
+			// AttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
+			// AttributeSelectorType o = builder.create(AttributeSelectorType.class,
+			// AttributeSelectorType.DEFAULT_ELEMENT_NAME_XACML20);
 			o.setAttribtueId(tok);
 			o.setDataType("string");
 			o.setIssuer("");
@@ -246,46 +396,43 @@ public class PolicyBuilder
 			List<XMLObject> l = o.getOrderedChildren();
 			return o;
 		}
-		else
-			throw new Fault("Not supported: "+tok);
-//		ExpressionType o = builder.create(ExpressionType.class, ExpressionType.DEFAULT_ELEMENT_NAME_XACML20);
-//		ApplyType
-//		AttributeDesignatorType
-//		AttributeSelectorType
-//		AttributeValueType
-//		ConditionType
-//		FunctionType
-//		VariableReferenceType
-//		return o;
+		else throw new Fault("Not supported: " + tok);
+		// ExpressionType o = builder.create(ExpressionType.class,
+		// ExpressionType.DEFAULT_ELEMENT_NAME_XACML20);
+		// ApplyType
+		// AttributeDesignatorType
+		// AttributeSelectorType
+		// AttributeValueType
+		// ConditionType
+		// FunctionType
+		// VariableReferenceType
+		// return o;
 	}
 
-	private DescriptionType newDescriptionType(Tree tree)
+	DescriptionType newDescriptionType(Tree tree)
 	{
 		DescriptionType o = builder.create(DescriptionType.class, DescriptionType.DEFAULT_ELEMENT_NAME);
 		o.setValue("");
 		return o;
 	}
 
-	private EffectType newEffectType(Tree tree)
+	EffectType newEffectType(Tree tree)
 	{
 		String tok = tree.getText();
-		if (EffectType.Permit.name().toLowerCase().equals(tok))
-			return EffectType.Permit;
-		else if (EffectType.Deny.name().toLowerCase().equals(tok))
-			return EffectType.Deny;
-		else
-			throw new Fault("Expecting permit|deny: "+tree);
+		if (EffectType.Permit.name().toLowerCase().equals(tok)) return EffectType.Permit;
+		else if (EffectType.Deny.name().toLowerCase().equals(tok)) return EffectType.Deny;
+		else throw new Fault("Expecting permit|deny: " + tree);
 	}
 
-	private DefaultsType newDefaultsType(Tree tree)
+	DefaultsType newDefaultsType(Tree tree)
 	{
 		DefaultsType o = builder.create(DefaultsType.class, DefaultsType.POLICY_DEFAULTS_ELEMENT_NAME);
 		return o;
 	}
-	private ObligationsType newObligationsType(Tree tree)
+
+	ObligationsType newObligationsType(Tree tree)
 	{
 		ObligationsType o = builder.create(ObligationsType.class, ObligationsType.DEFAULT_ELEMENT_QNAME);
 		return o;
 	}
-
 }

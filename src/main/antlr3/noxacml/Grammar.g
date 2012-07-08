@@ -123,7 +123,7 @@ matchAndExpr
   ;
 
 matchExpr
-	: attributeSelector^ '.'! MATCHES_TOK '('! stringExpr ')'!
+	: attributeSelector '.'! MATCHES_TOK^ '('! stringExpr ')'!
 	| '('! matchOrExpr ')'!
 	;
 

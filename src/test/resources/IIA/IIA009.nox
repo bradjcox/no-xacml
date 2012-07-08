@@ -2,7 +2,7 @@
 policy IIA009 denyOverrides
 {
 	// Julius Hibbert can read or write Bart Simpson's medical record.
-	rule IIA9 permit
+	rule IIA009 permit
 	{
 		target
 		{

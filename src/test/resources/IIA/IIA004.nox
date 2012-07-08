@@ -6,7 +6,7 @@ policy IIA004 denyOverrides
 		// Julius Hibbert can read or write Bart Simpson's medical
 		// record: syntax for the SubjectAttributeDesignator omits
 		// the required AttributeId xml attribute, however.
-	rule IIA1 permit
+	rule IIA004 permit
 	{
 		target
 		{

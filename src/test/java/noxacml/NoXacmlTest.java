@@ -2,11 +2,22 @@ package noxacml;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.List;
 
 import noxacml.util.Fault;
+import noxacml.util.XACMLObjectUtil;
 
+import org.opensaml.saml2.core.Subject;
+import org.opensaml.saml2.core.impl.SubjectBuilder;
+import org.opensaml.xacml.XACMLObject;
 import org.opensaml.xacml.policy.*;
 import org.opensaml.xacml.ctx.*;
+import org.opensaml.xml.Configuration;
+import org.opensaml.xml.XMLObjectBuilderFactory;
+import org.opensaml.xml.io.Marshaller;
+import org.opensaml.xml.io.MarshallerFactory;
+import org.opensaml.xml.util.XMLHelper;
+import org.opensaml.xml.validation.Validator;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -18,6 +29,8 @@ import org.antlr.runtime.tree.TreeAdaptor;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
+
 import noxacml.xacml2.PolicyBuilder;
 
 public class NoXacmlTest
@@ -107,10 +120,9 @@ public class NoXacmlTest
 			parser = new GrammarParser(tokens);
 			xacmlFileRet = (GrammarParser.xacmlFile_return) parser.xacmlFile();
 			ast = (Tree) xacmlFileRet.getTree();
-			Object object = builder.newXacmlFile(ast);
-
-//			final NoXacmlTreeParser treeParser = new NoXacmlTreeParser(new CommonTreeNodeStream(ast));
-//			final Formula queryFormula = treeParser.formula();
+			XACMLObject object = builder.newXacmlFile(ast);
+			String s = XACMLObjectUtil.toString(object);
+			log.debug("{}={}", path, s);
 			return object;
 		}
 		catch (IOException e)

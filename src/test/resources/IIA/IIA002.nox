@@ -3,7 +3,7 @@ policy IIA002 denyOverrides
 {
 //	A subject with a role attribute of "Physician" can read or
 //  write Bart Simpson's medical record.
-	rule IIA1 permit
+	rule IIA002 permit
 	{
 		target
 		{
