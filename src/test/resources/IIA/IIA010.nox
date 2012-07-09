@@ -6,13 +6,13 @@ policy IIA010 denyOverrides
 	{
 		target
 		{
-			subject.id.matches("Julius Hibbert") &&
-			resource.id.matches("http://medico.com/record/patient/BartSimpson") &&
-			( action.id.matches("read") || action.id.matches("write") )
+			subject.id.matches( "Julius Hibbert" ) &&
+			resource.id.matches( "http://medico.com/record/patient/BartSimpson" ) &&
+			( action.id.matches( "read" ) || action.id.matches( "write" ) )
 		}
 		condition
 		{
-			subject.role.contains("Physician") &&
+			subject.role.contains( "Physician" ) &&
 			subject.age.oneAndOnly().integer() >= 45
 		}
 	}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><xacml:Policy xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os" PolicyId="IIA002" RuleCombiningAlgId="denyOverrides" Version="SomeVersion">
+   <xacml:Description/>
+   <xacml:Rule Effect="Permit" RuleId="IIA002">
+      <xacml:Description/>
+      <xacml:Target xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os">
+         <xacml:Subjects xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os">
+            <xacml:Subject>
+               <xacml:SubjectMatch MatchId="subject.role" xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os">
+                  <xacml:AttributeValue DataType="xs:string" xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os">role</xacml:AttributeValue>
+                  <xacml:AttributeSelector DataType="xs:string" MustBePresent="false" RequestContextPath="subject.role" xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os"/>
+               </xacml:SubjectMatch>
+            </xacml:Subject>
+         </xacml:Subjects>
+         <xacml:Actions>
+            <xacml:Action xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os">
+               <xacml:ActionMatch xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os">
+                  <xacml:AttributeValue DataType="xs:string" xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os">id</xacml:AttributeValue>
+                  <xacml:AttributeSelector DataType="xs:string" MustBePresent="false" RequestContextPath="action.id" xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os"/>
+               </xacml:ActionMatch>
+            </xacml:Action>
+            <xacml:Action>
+               <xacml:ActionMatch xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os">
+                  <xacml:AttributeValue DataType="xs:string" xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os">id</xacml:AttributeValue>
+                  <xacml:AttributeSelector DataType="xs:string" MustBePresent="false" RequestContextPath="action.id" xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os"/>
+               </xacml:ActionMatch>
+            </xacml:Action>
+         </xacml:Actions>
+         <xacml:Resources xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os">
+            <xacml:Resource>
+               <xacml:ResourceMatch xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os">
+                  <xacml:AttributeValue DataType="xs:string" xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os">id</xacml:AttributeValue>
+                  <xacml:AttributeSelector DataType="xs:string" MustBePresent="false" RequestContextPath="resource.id" xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os"/>
+               </xacml:ResourceMatch>
+            </xacml:Resource>
+         </xacml:Resources>
+      </xacml:Target>
+   </xacml:Rule>
+</xacml:Policy>

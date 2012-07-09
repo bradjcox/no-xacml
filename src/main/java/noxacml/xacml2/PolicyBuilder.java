@@ -140,7 +140,7 @@ public class PolicyBuilder
 			addMembersTypeToTarget(left, t);
 			addMembersTypeToTarget(right, t);
 		}
-		if ("||".equals(tok))
+		else if ("||".equals(tok))
 		{
 			addMembersTypeToTarget(left, t);
 			addMembersTypeToTarget(right, t);
@@ -148,6 +148,7 @@ public class PolicyBuilder
 		else if ("matches".equals(tok))
 		{
 			addMemberTypeToTarget(left, t);
+//			addMemberTypeToTarget(right, t);
 		}
 		else
 		{
@@ -192,8 +193,7 @@ public class PolicyBuilder
 			List<ResourceMatchType> rm = o1.getResourceMatches();
 			rm.add(newResourceMatchType(left));
 
-			List<ResourceType> sts = st.getResources();
-			sts.add(o1);
+			st.getResources().add(o1);
 			return st;
 		}
 		else if ("action".equals(tok))
@@ -209,8 +209,7 @@ public class PolicyBuilder
 			List<ActionMatchType> rm = o1.getActionMatches();
 			rm.add(newActionMatchType(left));
 
-			List<ActionType> sts = st.getActions();
-			sts.add(o1);
+			st.getActions().add(o1);
 			return st;
 		}
 		else if ("environment".equals(tok))
@@ -226,8 +225,7 @@ public class PolicyBuilder
 			List<EnvironmentMatchType> rm = o1.getEnvrionmentMatches();
 			rm.add(newEnvironmentMatchType(left));
 
-			List<EnvironmentType> sts = st.getEnvrionments();
-			sts.add(o1);
+			st.getEnvrionments().add(o1);
 			return st;
 		}
 		else throw new Fault("Expecting subject|resource|action|environment in:" + right.toStringTree());
@@ -243,8 +241,7 @@ public class PolicyBuilder
 		// o.getResourceAttributeDesignator();
 		// o.getAttributeSelector();
 		o.setAttributeSelector(newAttributeSelectorType(t));
-		o.setAttributeValue(newAttributeValueType(t));
-		o.setMatchId(name);
+		o.setMatchId("urn:oasis:names:tc:xacml:1.0:function:string-equal");
 		log.debug(XACMLObjectUtil.toString(o));
 		return o;
 	}
@@ -259,7 +256,7 @@ public class PolicyBuilder
 		// o.getAttributeSelector();
 		o.setAttributeSelector(newAttributeSelectorType(t));
 		o.setAttributeValue(newAttributeValueType(t));
-		o.setMatchId("");
+		o.setMatchId("urn:oasis:names:tc:xacml:1.0:function:string-equal");
 		log.debug(XACMLObjectUtil.toString(o));
 		return o;
 	}
@@ -274,7 +271,7 @@ public class PolicyBuilder
 		// o.getAttributeSelector();
 		o.setAttributeSelector(newAttributeSelectorType(t));
 		o.setAttributeValue(newAttributeValueType(t));
-		o.setMatchId("");
+		o.setMatchId("urn:oasis:names:tc:xacml:1.0:function:string-equal");
 		log.debug(XACMLObjectUtil.toString(o));
 		return o;
 	}
@@ -289,7 +286,7 @@ public class PolicyBuilder
 		// o.getAttributeSelector();
 		o.setAttributeSelector(newAttributeSelectorType(t));
 		o.setAttributeValue(newAttributeValueType(t));
-		o.setMatchId("");
+		o.setMatchId("urn:oasis:names:tc:xacml:1.0:function:string-equal");
 		log.debug(XACMLObjectUtil.toString(o));
 		return o;
 	}
