@@ -11,6 +11,7 @@ import org.opensaml.xacml.XACMLObject;
 import org.opensaml.xacml.policy.ActionMatchType;
 import org.opensaml.xacml.policy.ActionType;
 import org.opensaml.xacml.policy.ActionsType;
+import org.opensaml.xacml.policy.ApplyType;
 import org.opensaml.xacml.policy.AttributeDesignatorType;
 import org.opensaml.xacml.policy.AttributeSelectorType;
 import org.opensaml.xacml.policy.AttributeValueType;
@@ -148,11 +149,11 @@ public class PolicyBuilder
 		else if ("matches".equals(tok))
 		{
 			addMemberTypeToTarget(left, t);
-//			addMemberTypeToTarget(right, t);
+			// addMemberTypeToTarget(right, t);
 		}
 		else
 		{
-			throw new Fault("Expecting && or || or matches");
+			throw new Fault("Expecting && or || or matches, got: " + tok);
 		}
 		log.debug(XACMLObjectUtil.toString(t));
 		return;
@@ -324,17 +325,32 @@ public class PolicyBuilder
 		o.setDescription(newDescriptionType(null));
 		o.setEffect(newEffectType(effect));
 		o.setRuleId(ruleName.getText());
-		if ("target".equals(first.getText()))
+		if (first != null)
 		{
-			o.setTarget(newTargetType(first));
+			if ("target".equals(first.getText()))
+			{
+				o.setTarget(newTargetType(first));
+			}
+			else if ("condition".equals(first.getText()))
+			{
+				o.setCondition(newConditionType(first));
+			}
+			else
+			{
+				throw new Fault("Expecting target");
+			}
 		}
-		else if ("rule".equals(first.getText()))
+		/* Don't join */
+		if (second != null)
 		{
-			o.setCondition(newConditionType(first));
-		}
-		else
-		{
-			o.setCondition(newConditionType(second));
+			if ("condition".equals(second.getText()))
+			{
+				o.setCondition(newConditionType(second));
+			}
+			else
+			{
+				throw new Fault("Expecting condition");
+			}
 		}
 		return o;
 	}
@@ -355,45 +371,50 @@ public class PolicyBuilder
 		Tree left = tree.getChild(0);
 		Tree right = tree.getChild(1);
 
-		if (".".equals(tok))
+		// ExpressionType ox = builder.create(ExpressionType.class,
+		// ExpressionType.DEFAULT_ELEMENT_NAME_XACML20);
+		ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME_XACML20);
+		List<ExpressionType> el = o.getExpressions();
+		o.setFunctionId("someFunctionId");
+		if ("contains".equals(tok))
 		{
-			int dotNdx = left.getText().indexOf(".");
-			String kind = left.getText().substring(0, dotNdx);
-			AttributeDesignatorType o = builder.create(AttributeDesignatorType.class, AttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
-			if ("subject".equals(kind))
-			{
-				o = builder.create(SubjectAttributeDesignatorType.class, SubjectAttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
-			}
-			else if ("resource".equals(kind) || "action".equals(kind) || "environment".equals(kind))
-			{
-				o = builder.create(AttributeDesignatorType.class, AttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
-			}
-			// else if ("action".equals(kind))
-			// {
-			// o = builder.create(SubjectAttributeDesignatorType.class,
-			// SubjectAttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
-			//
-			// }
-			// else if ("environment".equals(kind))
-			// {
-			// o = builder.create(SubjectAttributeDesignatorType.class,
-			// SubjectAttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
-			//
-			// }
-			else throw new Fault("Unrecognized kind:" + kind);
-			// AttributeDesignatorType o =
-			// builder.create(AttributeDesignatorType.class,
-			// AttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
-			// AttributeSelectorType o = builder.create(AttributeSelectorType.class,
-			// AttributeSelectorType.DEFAULT_ELEMENT_NAME_XACML20);
-			o.setAttribtueId(tok);
-			o.setDataType("string");
-			o.setIssuer("");
-			o.setMustBePresent(false);
-			List<XMLObject> l = o.getOrderedChildren();
-			return o;
+
 		}
-		else throw new Fault("Not supported: " + tok);
+		else throw new Fault("Unrecognized token:" + tok);
+		// if ("subject".equals(tok))
+		// {
+		// o = builder.create(SubjectAttributeDesignatorType.class,
+		// SubjectAttributeDesignatorType.DEFAULT_ELEMENT_QNAME);
+		// }
+		// else if ("resource".equals(tok) || "action".equals(tok) ||
+		// "environment".equals(tok))
+		// {
+		// o = builder.create(AttributeDesignatorType.class,
+		// AttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
+		// }
+		// else if ("action".equals(kind))
+		// {
+		// o = builder.create(ActionAttributeDesignatorType.class,
+		// ActionAttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
+		// }
+		// else if ("environment".equals(kind))
+		// {
+		// o = builder.create(EnvironmentAttributeDesignatorType.class,
+		// EnvironmentAttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
+		// }
+		// AttributeDesignatorType o =
+		// builder.create(AttributeDesignatorType.class,
+		// AttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
+		// AttributeSelectorType o = builder.create(AttributeSelectorType.class,
+		// AttributeSelectorType.DEFAULT_ELEMENT_NAME_XACML20);
+		// o.setAttribtueId(tok);
+		// o.setDataType("string");
+		// o.setIssuer("");
+		// o.setMustBePresent(false);
+		// List<XMLObject> l = o.getOrderedChildren();
+		return o;
+		// }
+		// else throw new Fault("Not supported: " + tok);
 		// ExpressionType o = builder.create(ExpressionType.class,
 		// ExpressionType.DEFAULT_ELEMENT_NAME_XACML20);
 		// ApplyType

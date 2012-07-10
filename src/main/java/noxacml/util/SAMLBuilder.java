@@ -30,8 +30,11 @@ public class SAMLBuilder
 	public <T> T create (Class<T> cls, QName qname)
 	{
 		XMLObjectBuilder builder = ((XMLObjectBuilder)builderFactory.getBuilder(qname));
+		if (builder == null)
+		{
+			throw new Fault("Null builder for qname: "+qname);
+		}
 		XMLObject object = builder.buildObject (qname);
-		;
 	  return (T)object;
 	}
 }

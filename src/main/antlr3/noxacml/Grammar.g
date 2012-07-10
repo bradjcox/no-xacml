@@ -167,7 +167,7 @@ booleanBag
 	;
 
 condition
-	: CONDITION_TOK '{'! conditionalOrExpr '}'!
+	: CONDITION_TOK^ '{'! conditionalOrExpr '}'!
 	;
 
 conditionalOrExpr
