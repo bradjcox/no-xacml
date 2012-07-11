@@ -5,6 +5,8 @@ import java.util.List;
 import noxacml.util.Fault;
 import noxacml.util.SAMLBuilder;
 import noxacml.util.XACMLObjectUtil;
+import noxacml.xacml2.Xacml2Types.Function;
+import noxacml.xacml2.Xacml2Types.Type;
 
 import org.antlr.runtime.tree.Tree;
 import org.opensaml.xacml.XACMLObject;
@@ -12,7 +14,6 @@ import org.opensaml.xacml.policy.ActionMatchType;
 import org.opensaml.xacml.policy.ActionType;
 import org.opensaml.xacml.policy.ActionsType;
 import org.opensaml.xacml.policy.ApplyType;
-import org.opensaml.xacml.policy.AttributeDesignatorType;
 import org.opensaml.xacml.policy.AttributeSelectorType;
 import org.opensaml.xacml.policy.AttributeValueType;
 import org.opensaml.xacml.policy.ConditionType;
@@ -30,12 +31,10 @@ import org.opensaml.xacml.policy.ResourceMatchType;
 import org.opensaml.xacml.policy.ResourceType;
 import org.opensaml.xacml.policy.ResourcesType;
 import org.opensaml.xacml.policy.RuleType;
-import org.opensaml.xacml.policy.SubjectAttributeDesignatorType;
 import org.opensaml.xacml.policy.SubjectMatchType;
 import org.opensaml.xacml.policy.SubjectType;
 import org.opensaml.xacml.policy.SubjectsType;
 import org.opensaml.xacml.policy.TargetType;
-import org.opensaml.xml.XMLObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,6 +49,7 @@ public class PolicyBuilder
 {
 	final Logger log = LoggerFactory.getLogger(PolicyBuilder.class);
 	final SAMLBuilder builder;
+	final Xacml2Types types = new Xacml2Types();
 
 	public PolicyBuilder()
 	{
@@ -370,6 +370,10 @@ public class PolicyBuilder
 		String tok = tree.getText();
 		Tree left = tree.getChild(0);
 		Tree right = tree.getChild(1);
+
+		Function function = types.getFunction("isIn", Type.String);
+		Type type = types.getType(tok);
+
 
 		// ExpressionType ox = builder.create(ExpressionType.class,
 		// ExpressionType.DEFAULT_ELEMENT_NAME_XACML20);
