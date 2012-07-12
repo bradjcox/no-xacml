@@ -155,7 +155,7 @@ public class PolicyBuilder
 		{
 			throw new Fault("Expecting && or || or matches, got: " + tok);
 		}
-		log.debug(XACMLObjectUtil.toString(t));
+//		log.debug(XACMLObjectUtil.toString(t));
 		return;
 	}
 
@@ -243,7 +243,7 @@ public class PolicyBuilder
 		// o.getAttributeSelector();
 		o.setAttributeSelector(newAttributeSelectorType(t));
 		o.setMatchId("urn:oasis:names:tc:xacml:1.0:function:string-equal");
-		log.debug(XACMLObjectUtil.toString(o));
+//		log.debug(XACMLObjectUtil.toString(o));
 		return o;
 	}
 
@@ -258,7 +258,7 @@ public class PolicyBuilder
 		o.setAttributeSelector(newAttributeSelectorType(t));
 		o.setAttributeValue(newAttributeValueType(t));
 		o.setMatchId("urn:oasis:names:tc:xacml:1.0:function:string-equal");
-		log.debug(XACMLObjectUtil.toString(o));
+//		log.debug(XACMLObjectUtil.toString(o));
 		return o;
 	}
 
@@ -273,7 +273,7 @@ public class PolicyBuilder
 		o.setAttributeSelector(newAttributeSelectorType(t));
 		o.setAttributeValue(newAttributeValueType(t));
 		o.setMatchId("urn:oasis:names:tc:xacml:1.0:function:string-equal");
-		log.debug(XACMLObjectUtil.toString(o));
+//		log.debug(XACMLObjectUtil.toString(o));
 		return o;
 	}
 
@@ -288,7 +288,7 @@ public class PolicyBuilder
 		o.setAttributeSelector(newAttributeSelectorType(t));
 		o.setAttributeValue(newAttributeValueType(t));
 		o.setMatchId("urn:oasis:names:tc:xacml:1.0:function:string-equal");
-		log.debug(XACMLObjectUtil.toString(o));
+//		log.debug(XACMLObjectUtil.toString(o));
 		return o;
 	}
 
@@ -297,9 +297,9 @@ public class PolicyBuilder
 		String path = tree.getParent().getText() + "." + tree.getText();
 		AttributeSelectorType o = builder.create(AttributeSelectorType.class, AttributeSelectorType.DEFAULT_ELEMENT_NAME);
 		o.setMustBePresent(false);
-		o.setDataType("xs:string");
+		o.setDataType(Type.String.uri);
 		o.setRequestContextPath(path);
-		log.debug(XACMLObjectUtil.toString(o));
+//		log.debug(XACMLObjectUtil.toString(o));
 		return o;
 	}
 
@@ -309,7 +309,7 @@ public class PolicyBuilder
 		AttributeValueType o = builder.create(AttributeValueType.class, AttributeValueType.DEFAULT_ELEMENT_NAME);
 		o.setValue(tree.getText());
 		o.setDataType("xs:string");
-		log.debug(XACMLObjectUtil.toString(o));
+//		log.debug(XACMLObjectUtil.toString(o));
 		return o;
 	}
 
@@ -361,8 +361,59 @@ public class PolicyBuilder
 		Tree expr = tree.getChild(0);
 
 		ConditionType o = builder.create(ConditionType.class, ConditionType.DEFAULT_ELEMENT_NAME);
-		o.setExpression(newExpressionType(expr));
+		o.setExpression(newBooleanOrExpr(expr));
 		return o;
+	}
+	ExpressionType newBooleanOrExpr(Tree tree)
+	{
+		String tok = tree.getText();
+		if ("||".equals(tok))
+		{
+			ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME);
+			Function function = types.getFunction(tok, Type.Boolean);
+			o.setFunctionId(function.oasisFunctionURI);
+
+			Tree left = tree.getChild(0);
+			Tree right = tree.getChild(1);
+			List<ExpressionType> e = o.getExpressions();
+			e.add(newExpressionType(left));
+			e.add(newExpressionType(right));
+			return o;
+		}
+		else return newBooleanAndExpr(tree);
+	}
+	ExpressionType newBooleanAndExpr(Tree tree)
+	{
+		String tok = tree.getText();
+		if ("&&".equals(tok))
+		{
+			ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME);
+			Function function = types.getFunction(tok, Type.Boolean);
+			o.setFunctionId(function.oasisFunctionURI);
+
+			Tree left = tree.getChild(0);
+			Tree right = tree.getChild(1);
+			List<ExpressionType> e = o.getExpressions();
+			e.add(newExpressionType(left));
+			e.add(newExpressionType(right));
+			return o;
+		}
+		else return newBooleanExpr(tree);
+	}
+
+	ExpressionType newBooleanExpr(Tree tree)
+	{
+		String tok = tree.getText();
+		if ("&&".equals(tok))
+		{
+			Tree left = tree.getChild(0);
+			Tree right = tree.getChild(1);
+			ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME);
+			Function function = types.getFunction(tok, Type.Boolean);
+			o.setFunctionId(function.oasisFunctionURI);
+			return o;
+		}
+		else return newBooleanExpr(tree);
 	}
 
 	ExpressionType newExpressionType(Tree tree)
@@ -371,64 +422,22 @@ public class PolicyBuilder
 		Tree left = tree.getChild(0);
 		Tree right = tree.getChild(1);
 
-		Function function = types.getFunction("isIn", Type.String);
-		Type type = types.getType(tok);
-
-
-		// ExpressionType ox = builder.create(ExpressionType.class,
-		// ExpressionType.DEFAULT_ELEMENT_NAME_XACML20);
-		ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME_XACML20);
-		List<ExpressionType> el = o.getExpressions();
-		o.setFunctionId("someFunctionId");
-		if ("contains".equals(tok))
+		if (tok.startsWith("\""))
 		{
-
+			AttributeValueType o = newAttributeValueType(tree);
+			return o;
 		}
-		else throw new Fault("Unrecognized token:" + tok);
-		// if ("subject".equals(tok))
-		// {
-		// o = builder.create(SubjectAttributeDesignatorType.class,
-		// SubjectAttributeDesignatorType.DEFAULT_ELEMENT_QNAME);
-		// }
-		// else if ("resource".equals(tok) || "action".equals(tok) ||
-		// "environment".equals(tok))
-		// {
-		// o = builder.create(AttributeDesignatorType.class,
-		// AttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
-		// }
-		// else if ("action".equals(kind))
-		// {
-		// o = builder.create(ActionAttributeDesignatorType.class,
-		// ActionAttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
-		// }
-		// else if ("environment".equals(kind))
-		// {
-		// o = builder.create(EnvironmentAttributeDesignatorType.class,
-		// EnvironmentAttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
-		// }
-		// AttributeDesignatorType o =
-		// builder.create(AttributeDesignatorType.class,
-		// AttributeDesignatorType.DEFAULT_ELEMENT_NAME_XACML20);
-		// AttributeSelectorType o = builder.create(AttributeSelectorType.class,
-		// AttributeSelectorType.DEFAULT_ELEMENT_NAME_XACML20);
-		// o.setAttribtueId(tok);
-		// o.setDataType("string");
-		// o.setIssuer("");
-		// o.setMustBePresent(false);
-		// List<XMLObject> l = o.getOrderedChildren();
+		else if ("subject".equals(tok) || "resource".equals(tok) || "action".equals(tok) || "environment".equals(tok))
+		{
+			return newAttributeSelectorType(left);
+		}
+		ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME);
+		Function function = types.getFunction(tok, Type.String);
+		o.setFunctionId(function.oasisFunctionURI);
+		List<ExpressionType> exprList = o.getExpressions();
+		exprList.add(newExpressionType(left));
+		exprList.add(newExpressionType(right));
 		return o;
-		// }
-		// else throw new Fault("Not supported: " + tok);
-		// ExpressionType o = builder.create(ExpressionType.class,
-		// ExpressionType.DEFAULT_ELEMENT_NAME_XACML20);
-		// ApplyType
-		// AttributeDesignatorType
-		// AttributeSelectorType
-		// AttributeValueType
-		// ConditionType
-		// FunctionType
-		// VariableReferenceType
-		// return o;
 	}
 
 	DescriptionType newDescriptionType(Tree tree)

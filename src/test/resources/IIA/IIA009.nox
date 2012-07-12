@@ -13,7 +13,7 @@ policy IIA009 denyOverrides
 		}
 		condition
 		{
-			subject.category.accessSubject.contains( "riddle me this" )
+			"riddle me this".isIn(subject.category.accessSubject)
 		}
 	}
 }

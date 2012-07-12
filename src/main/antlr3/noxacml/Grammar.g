@@ -135,6 +135,18 @@ rule
 	: RULE_TOK^ ANYCASEIDENTIFIER (PERMIT_TOK | DENY_TOK) '{'! target? condition? '}'!
 	;
 
+condition
+	: CONDITION_TOK^ '{'! booleanOrExpr '}'!
+	;
+
+booleanOrExpr
+  : booleanAndExpr ('||'^ booleanAndExpr )*
+  ;
+
+booleanAndExpr
+  : booleanExpr ('&&'^ booleanExpr)*
+  ;
+
 booleanExpr
 	: TRUE_TOK
 	| FALSE_TOK
@@ -165,18 +177,6 @@ booleanBag
 //	| BAG_TOK LPAREN! booleanExpr ( ','! booleanExpr)+ RPAREN!
 //	| ( INTERSECTION_TOK | UNION_TOK ) LPAREN! booleanBag','! booleanBag	RPAREN!
 	;
-
-condition
-	: CONDITION_TOK^ '{'! conditionalOrExpr '}'!
-	;
-
-conditionalOrExpr
-  : conditionalAndExpr ('||'^ conditionalAndExpr )*
-  ;
-
-conditionalAndExpr
-  : booleanExpr ('&&'^ booleanExpr)*
-  ;
 
 isInOp
 	: doubleExpr '.'! ISIN_TOK^ LPAREN! doubleBag RPAREN!

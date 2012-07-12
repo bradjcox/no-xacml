@@ -8,12 +8,12 @@ policy IIA010 denyOverrides
 		{
 			subject.id.matches( "Julius Hibbert" ) &&
 			resource.id.matches( "http://medico.com/record/patient/BartSimpson" ) &&
-			resource.id == "http://medico.com/record/patient/BartSimpson" &&
+//			resource.id == "http://medico.com/record/patient/BartSimpson" &&
 			( action.id.matches( "read" ) || action.id.matches( "write" ) )
 		}
 		condition
 		{
-			subject.role.contains( "Physician" ) &&
+			"Physician".isIn(subject.role) &&
 			subject.age.oneAndOnly().integer() >= 45
 		}
 	}
