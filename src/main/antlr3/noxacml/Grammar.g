@@ -88,6 +88,7 @@ tokens
 	package noxacml;
 	import noxacml.util.*;
 	import noxacml.xacml2.*;
+	import noxacml.xacml2.Xacml2Types.Type;
 }
 @lexer::header
 {
@@ -135,127 +136,126 @@ rule
 	: RULE_TOK^ ANYCASEIDENTIFIER (PERMIT_TOK | DENY_TOK) '{'! target? condition? '}'!
 	;
 
-condition
-	: CONDITION_TOK^ '{'! booleanOrExpr '}'!
+condition returns [ Type type ]
+	: CONDITION_TOK^ '{'! booleanOrExpr '}'! { $type = Type.Boolean; }
 	;
 
-booleanOrExpr
+booleanOrExpr returns [ Type type ]
   : booleanAndExpr ('||'^ booleanAndExpr )*
   ;
 
-booleanAndExpr
-  : booleanExpr ('&&'^ booleanExpr)*
+booleanAndExpr returns [ Type type ]
+  : booleanExpr ('&&'^ booleanExpr)* { $type = Type.Boolean; }
   ;
 
-booleanExpr
-	: TRUE_TOK
-	| FALSE_TOK
-	| booleanCreate
-	| booleanNof
-	| booleanWrap
-	| booleanNode
-	| equalityExpr
-	| isInOp
-	| containsOp
+booleanExpr returns [ Type type ]
+	: TRUE_TOK { $type = Type.Boolean; }
+	| FALSE_TOK { $type = Type.Boolean; }
+	| booleanCreate { $type = Type.Boolean; }
+	| booleanNof { $type = Type.Boolean; }
+	| booleanWrap { $type = Type.Boolean; }
+	| booleanNode { $type = Type.Boolean; }
+	| equalityExpr { $type = Type.Boolean; }
+	| isInOp { $type = Type.Boolean; }
+	| containsOp { $type = Type.Boolean; }
 //	| bagOp
 //	| regexOp
 	;
-booleanCreate
-	: BOOLEAN_TOK^ LPAREN! attributeSelector RPAREN!
+booleanCreate returns [ Type type ]
+	: BOOLEAN_TOK^ LPAREN! attributeSelector RPAREN! { $type = Type.Boolean; }
 	;
-booleanNof
-	: ( NOF_TOK | NOT_TOK)^ LPAREN! booleanExpr RPAREN!
+booleanNof returns [ Type type ]
+	: ( NOF_TOK | NOT_TOK)^ LPAREN! booleanExpr RPAREN! { $type = Type.Boolean; }
 	;
-booleanWrap
-	: LPAREN! conditionalOrExpr RPAREN!
+booleanWrap returns [ Type type ]
+	: LPAREN! booleanOrExpr RPAREN! { $type = Type.Boolean; }
 	;
-booleanNode
-	: stringExpr '.'! ( NODEEQUAL_TOK | NODEMATCH_TOK )^ LPAREN! stringExpr RPAREN!
+booleanNode returns [ Type type ]
+	: stringExpr '.'! ( NODEEQUAL_TOK | NODEMATCH_TOK )^ LPAREN! stringExpr RPAREN! { $type = Type.Boolean; }
 	;
-booleanBag
-	: BOOLEAN_TOK^ STRING_CONSTANT_LIST
+booleanBag returns [ Type type ]
+	: BOOLEAN_TOK^ STRING_CONSTANT_LIST { $type = Type.Boolean; }
 //	| BAG_TOK LPAREN! booleanExpr ( ','! booleanExpr)+ RPAREN!
 //	| ( INTERSECTION_TOK | UNION_TOK ) LPAREN! booleanBag','! booleanBag	RPAREN!
 	;
 
-isInOp
-	: doubleExpr '.'! ISIN_TOK^ LPAREN! doubleBag RPAREN!
-	| stringExpr '.'! ISIN_TOK^ LPAREN! stringBag RPAREN!
-	| anyUriExpr '.'! ISIN_TOK^ LPAREN! anyUriBag RPAREN!
-	| dateExpr '.'! ISIN_TOK^ LPAREN! dateBag RPAREN!
-	| timeExpr '.'! ISIN_TOK^ LPAREN! timeBag RPAREN!
-	| dateTimeExpr '.'! ISIN_TOK^ LPAREN! dateTimeBag RPAREN!
-	| base64BinaryExpr '.'! ISIN_TOK^ LPAREN! base64BinaryBag RPAREN!
-	| dayTimeDurationExpr '.'! ISIN_TOK^ LPAREN! dayTimeDurationBag RPAREN!
-	| yearMonthDurationExpr '.'! ISIN_TOK^ LPAREN! yearMonthDurationBag RPAREN!
-	| x500NameExpr '.'! ISIN_TOK^ LPAREN! x500NameBag RPAREN!
-	| rfc822NameExpr '.'! ISIN_TOK^ LPAREN! rfc822NameBag RPAREN!
-	| hexBinaryExpr '.'! ISIN_TOK^ LPAREN! hexBinaryBag RPAREN!
-	| (base64BinaryExpr) => base64BinaryExpr '.'! ISIN_TOK^ LPAREN! base64BinaryBag RPAREN!
+isInOp returns [ Type type ]
+	: doubleExpr '.'! ISIN_TOK^ LPAREN! doubleBag RPAREN! { $type = Type.DoubleBag; }
+	| stringExpr '.'! ISIN_TOK^ LPAREN! stringBag RPAREN! { $type = Type.StringBag; }
+	| anyUriExpr '.'! ISIN_TOK^ LPAREN! anyUriBag RPAREN! { $type = Type.AnyUriBag; }
+	| dateExpr '.'! ISIN_TOK^ LPAREN! dateBag RPAREN! { $type = Type.DateBag; }
+	| timeExpr '.'! ISIN_TOK^ LPAREN! timeBag RPAREN! { $type = Type.TimeBag; }
+	| dateTimeExpr '.'! ISIN_TOK^ LPAREN! dateTimeBag RPAREN! { $type = Type.DateTimeBag; }
+	| base64BinaryExpr '.'! ISIN_TOK^ LPAREN! base64BinaryBag RPAREN! { $type = Type.Base64BinaryBag; }
+	| dayTimeDurationExpr '.'! ISIN_TOK^ LPAREN! dayTimeDurationBag RPAREN! { $type = Type.DayTimeDurationBag; }
+	| yearMonthDurationExpr '.'! ISIN_TOK^ LPAREN! yearMonthDurationBag RPAREN! { $type = Type.YearMonthDurationBag; }
+	| x500NameExpr '.'! ISIN_TOK^ LPAREN! x500NameBag RPAREN! { $type = Type.X500NameBag; }
+	| rfc822NameExpr '.'! ISIN_TOK^ LPAREN! rfc822NameBag RPAREN! { $type = Type.Rfc822NameBag; }
+	| hexBinaryExpr '.'! ISIN_TOK^ LPAREN! hexBinaryBag RPAREN! { $type = Type.HexBinaryBag; }
+	| (base64BinaryExpr) => base64BinaryExpr '.'! ISIN_TOK^ LPAREN! base64BinaryBag RPAREN! { $type = Type.Base64BinaryBag; }
 	;
 
-containsOp
-	: doubleBag '.'! CONTAINS_TOK^ LPAREN! doubleExpr RPAREN!
-	| stringBag '.'! CONTAINS_TOK^ LPAREN! stringExpr RPAREN!
-	| anyUriBag '.'! CONTAINS_TOK^ LPAREN! anyUriExpr RPAREN!
-	| dateBag '.'! CONTAINS_TOK^ LPAREN! dateExpr RPAREN!
-	| timeBag '.'! CONTAINS_TOK^ LPAREN! timeExpr RPAREN!
-	| dateTimeBag '.'! CONTAINS_TOK^ LPAREN! dateTimeExpr RPAREN!
-	| base64BinaryBag '.'! CONTAINS_TOK^ LPAREN! base64BinaryExpr RPAREN!
-	| dayTimeDurationBag '.'! CONTAINS_TOK^ LPAREN! dayTimeDurationExpr RPAREN!
-	| yearMonthDurationBag '.'! CONTAINS_TOK^ LPAREN! yearMonthDurationExpr RPAREN!
-	| x500NameBag '.'! CONTAINS_TOK^ LPAREN! x500NameExpr RPAREN!
-	| rfc822NameBag '.'! CONTAINS_TOK^ LPAREN! rfc822NameExpr RPAREN!
-	| hexBinaryBag '.'! CONTAINS_TOK^ LPAREN! hexBinaryExpr RPAREN!
-	| (base64BinaryExpr) => base64BinaryBag '.'! CONTAINS_TOK^ LPAREN! base64BinaryExpr RPAREN!
+containsOp returns [ Type type ]
+	: doubleBag '.'! CONTAINS_TOK^ LPAREN! doubleExpr RPAREN! { $type = Type.Double; }
+	| stringBag '.'! CONTAINS_TOK^ LPAREN! stringExpr RPAREN!{ $type = Type.String; }
+	| anyUriBag '.'! CONTAINS_TOK^ LPAREN! anyUriExpr RPAREN!{ $type = Type.AnyUri; }
+	| dateBag '.'! CONTAINS_TOK^ LPAREN! dateExpr RPAREN!{ $type = Type.Date; }
+	| timeBag '.'! CONTAINS_TOK^ LPAREN! timeExpr RPAREN!{ $type = Type.Time; }
+	| dateTimeBag '.'! CONTAINS_TOK^ LPAREN! dateTimeExpr RPAREN!{ $type = Type.DateTime; }
+	| base64BinaryBag '.'! CONTAINS_TOK^ LPAREN! base64BinaryExpr RPAREN!{ $type = Type.Base64Binary; }
+	| dayTimeDurationBag '.'! CONTAINS_TOK^ LPAREN! dayTimeDurationExpr RPAREN!{ $type = Type.DayTimeDuration; }
+	| yearMonthDurationBag '.'! CONTAINS_TOK^ LPAREN! yearMonthDurationExpr RPAREN!{ $type = Type.YearMonthDuration; }
+	| x500NameBag '.'! CONTAINS_TOK^ LPAREN! x500NameExpr RPAREN!{ $type = Type.X500Name; }
+	| rfc822NameBag '.'! CONTAINS_TOK^ LPAREN! rfc822NameExpr RPAREN!{ $type = Type.Rfc822Name; }
+	| hexBinaryBag '.'! CONTAINS_TOK^ LPAREN! hexBinaryExpr RPAREN!{ $type = Type.HexBinary; }
+	| (base64BinaryExpr) => base64BinaryBag '.'! CONTAINS_TOK^ LPAREN! base64BinaryExpr RPAREN!{ $type = Type.Base64Binary; }
 	;
 
-equalityExpr
-	: integerExpr ( '==' | '>=' | '>' | '<' | '<=' )^ integerExpr
-	| doubleExpr ( '==' | '>=' | '>' | '<' | '<=' )^ doubleExpr
-	| stringExpr ( '==' | '>=' | '>' | '<' | '<=' )^ stringExpr
-	| anyUriExpr ( '==' | '>=' | '>' | '<' | '<=' )^ anyUriExpr
-	| dateExpr ( '==' | '>=' | '>' | '<' | '<=' )^ dateExpr
-	| timeExpr ( '==' | '>=' | '>' | '<' | '<=' )^ timeExpr
-	| dateTimeExpr ( '==' | '>=' | '>' | '<' | '<=' )^ dateTimeExpr
-	| yearMonthDurationExpr ( '==' | '>=' | '>' | '<' | '<=' )^ yearMonthDurationExpr
-	| x500NameExpr ( '==' | '>=' | '>' | '<' | '<=' )^ x500NameExpr
-	| rfc822NameExpr ( '=='	| '>=' | '>' | '<' | '<=' )^ rfc822NameExpr
-	| dayTimeDurationExpr ( '==' | '>=' | '>' | '<' | '<=' )^ dayTimeDurationExpr
-	| base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' )^ base64BinaryExpr
- ;
-
-regexOp
-	: integerExpr '.'! REGEXMATCH_TOK^ LPAREN! integerExpr RPAREN!
-	| doubleExpr '.'! REGEXMATCH_TOK^ LPAREN! doubleExpr RPAREN!
-	| stringExpr '.'! REGEXMATCH_TOK^ LPAREN! stringExpr RPAREN!
-	| anyUriExpr '.'! REGEXMATCH_TOK^ LPAREN! anyUriExpr RPAREN!
-	| dateExpr '.'! REGEXMATCH_TOK^ LPAREN! dateExpr RPAREN!
-	| timeExpr '.'! REGEXMATCH_TOK^ LPAREN! timeExpr RPAREN!
-	| dateTimeExpr '.'! REGEXMATCH_TOK^ LPAREN! dateTimeExpr RPAREN!
-	| dayTimeDurationExpr '.'! REGEXMATCH_TOK^ LPAREN! dayTimeDurationExpr RPAREN!
-	| yearMonthDurationExpr '.'! REGEXMATCH_TOK^ LPAREN! yearMonthDurationExpr RPAREN!
-	| x500NameExpr '.'! REGEXMATCH_TOK^ LPAREN! x500NameExpr RPAREN!
-	| rfc822NameExpr '.'! REGEXMATCH_TOK^ LPAREN! rfc822NameExpr RPAREN!
-	| base64BinaryExpr '.'! REGEXMATCH_TOK^ LPAREN! base64BinaryExpr RPAREN!
+equalityExpr returns [ Type type ]
+	: integerExpr ( '==' | '>=' | '>' | '<' | '<=' )^ integerExpr { $type = Type.Integer; }
+	| doubleExpr ( '==' | '>=' | '>' | '<' | '<=' )^ doubleExpr { $type = Type.Double; }
+	| stringExpr ( '==' | '>=' | '>' | '<' | '<=' )^ stringExpr { $type = Type.String; }
+	| anyUriExpr ( '==' | '>=' | '>' | '<' | '<=' )^ anyUriExpr { $type = Type.AnyUri; }
+	| dateExpr ( '==' | '>=' | '>' | '<' | '<=' )^ dateExpr { $type = Type.Date; }
+	| timeExpr ( '==' | '>=' | '>' | '<' | '<=' )^ timeExpr { $type = Type.Time; }
+	| dateTimeExpr ( '==' | '>=' | '>' | '<' | '<=' )^ dateTimeExpr { $type = Type.DateTime; }
+	| yearMonthDurationExpr ( '==' | '>=' | '>' | '<' | '<=' )^ yearMonthDurationExpr { $type = Type.YearMonthDuration; }
+	| x500NameExpr ( '==' | '>=' | '>' | '<' | '<=' )^ x500NameExpr { $type = Type.X500Name; }
+	| rfc822NameExpr ( '=='	| '>=' | '>' | '<' | '<=' )^ rfc822NameExpr { $type = Type.Rfc822Name; }
+	| dayTimeDurationExpr ( '==' | '>=' | '>' | '<' | '<=' )^ dayTimeDurationExpr { $type = Type.DayTimeDuration; }
+	| base64BinaryExpr ( '==' | '>=' | '>' | '<' | '<=' )^ base64BinaryExpr { $type = Type.Base64Binary; }
+	;
+regexOp returns [ Type type ]
+	: integerExpr '.'! REGEXMATCH_TOK^ LPAREN! integerExpr RPAREN! { $type = Type.Integer; }
+	| doubleExpr '.'! REGEXMATCH_TOK^ LPAREN! doubleExpr RPAREN! { $type = Type.Double; }
+	| stringExpr '.'! REGEXMATCH_TOK^ LPAREN! stringExpr RPAREN! { $type = Type.String; }
+	| anyUriExpr '.'! REGEXMATCH_TOK^ LPAREN! anyUriExpr RPAREN! { $type = Type.AnyUri; }
+	| dateExpr '.'! REGEXMATCH_TOK^ LPAREN! dateExpr RPAREN! { $type = Type.Date; }
+	| timeExpr '.'! REGEXMATCH_TOK^ LPAREN! timeExpr RPAREN! { $type = Type.Time; }
+	| dateTimeExpr '.'! REGEXMATCH_TOK^ LPAREN! dateTimeExpr RPAREN! { $type = Type.DateTime; }
+	| dayTimeDurationExpr '.'! REGEXMATCH_TOK^ LPAREN! dayTimeDurationExpr RPAREN! { $type = Type.DayTimeDuration; }
+	| yearMonthDurationExpr '.'! REGEXMATCH_TOK^ LPAREN! yearMonthDurationExpr RPAREN! { $type = Type.YearMonthDuration; }
+	| x500NameExpr '.'! REGEXMATCH_TOK^ LPAREN! x500NameExpr RPAREN! { $type = Type.X500Name; }
+	| rfc822NameExpr '.'! REGEXMATCH_TOK^ LPAREN! rfc822NameExpr RPAREN! { $type = Type.Rfc822Name; }
+	| base64BinaryExpr '.'! REGEXMATCH_TOK^ LPAREN! base64BinaryExpr RPAREN! { $type = Type.Base64Binary; }
 	;
 
-bagOp
-	: (booleanBag) => booleanBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! booleanBag RPAREN!
-	| (integerBag) => integerBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! integerBag RPAREN!
-	| (doubleBag) => doubleBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! doubleBag RPAREN!
-	| (stringBag ) => stringBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! stringBag RPAREN!
-	| (dateBag ) => dateBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! dateBag RPAREN!
-	| (timeBag ) => timeBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! timeBag RPAREN!
-	| (dateTimeBag ) => dateTimeBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! dateTimeBag RPAREN!
-	| (base64BinaryBag ) => base64BinaryBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! base64BinaryBag RPAREN!
-	| (dayTimeDurationBag ) => dayTimeDurationBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! dayTimeDurationBag RPAREN!
-	| (yearMonthDurationBag ) => yearMonthDurationBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! yearMonthDurationBag RPAREN!
-	| (anyUriBag ) => anyUriBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! anyUriBag RPAREN!
-	| (x500NameBag ) => x500NameBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! x500NameBag RPAREN!
-	| (rfc822NameBag ) => rfc822NameBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! rfc822NameBag RPAREN!
-	| (hexBinaryBag ) => hexBinaryBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! hexBinaryBag RPAREN!
-	| (base64BinaryBag) => base64BinaryBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! base64BinaryBag RPAREN!
+bagOp returns [ Type type ]
+	: (booleanBag) => booleanBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! booleanBag RPAREN! { $type = Type.BooleanBag; }
+	| (integerBag) => integerBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! integerBag RPAREN! { $type = Type.IntegerBag; }
+	| (doubleBag) => doubleBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! doubleBag RPAREN! { $type = Type.DoubleBag; }
+	| (stringBag ) => stringBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! stringBag RPAREN! { $type = Type.StringBag; }
+	| (dateBag ) => dateBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! dateBag RPAREN! { $type = Type.DateBag; }
+	| (timeBag ) => timeBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! timeBag RPAREN! { $type = Type.TimeBag; }
+	| (dateTimeBag ) => dateTimeBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! dateTimeBag RPAREN! { $type = Type.DateTimeBag; }
+	| (base64BinaryBag ) => base64BinaryBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! base64BinaryBag RPAREN! { $type = Type.Base64BinaryBag; }
+	| (dayTimeDurationBag ) => dayTimeDurationBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! dayTimeDurationBag RPAREN! { $type = Type.DayTimeDurationBag; }
+	| (yearMonthDurationBag ) => yearMonthDurationBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! yearMonthDurationBag RPAREN! { $type = Type.YearMonthDurationBag; }
+	| (anyUriBag ) => anyUriBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! anyUriBag RPAREN! { $type = Type.AnyUriBag; }
+	| (x500NameBag ) => x500NameBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! x500NameBag RPAREN! { $type = Type.X500NameBag; }
+	| (rfc822NameBag ) => rfc822NameBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! rfc822NameBag RPAREN! { $type = Type.Rfc822NameBag; }
+	| (hexBinaryBag ) => hexBinaryBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! hexBinaryBag RPAREN! { $type = Type.HexBinaryBag; }
+	| (base64BinaryBag) => base64BinaryBag '.'! ( ATLEASTONEMENBEROF_TOK | SUBSET_TOK | SETEQUALS_TOK )^ LPAREN! base64BinaryBag RPAREN! { $type = Type.Base64BinaryBag; }
 	;
 
 integerExpr

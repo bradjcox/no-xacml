@@ -18,18 +18,25 @@ public class Xacml2Types
 	}
 	public Function getFunction(String name, Type type)
 	{
-		for (NoxSynonym s: NoxSynonym.values())
+		try
 		{
-			String x = s.synonym;
-			if (x.equals(name))
+			for (NoxSynonym s: NoxSynonym.values())
 			{
-				String n = s.name();
-				Function f = this.getFunction(getNoxName(n), type);
-				return f;
+				String x = s.synonym;
+				if (x.equals(name))
+				{
+					String n = s.name();
+					Function f = this.getFunction(getNoxName(n), type);
+					return f;
+				}
 			}
+			Function f = this.getFunction(getNoxName(name), type);
+			return f;
 		}
-		Function f = this.getFunction(getNoxName(name), type);
-		return f;
+		catch (Throwable e)
+		{
+			throw new Fault(e);
+		}
 	}
 	public Function getFunction(NoxName noxName, Type type)
 	{
@@ -132,8 +139,8 @@ public class Xacml2Types
 		ToDoBag(null, null),
 		ToDo(Type.ToDoBag, null),
 
-		AnyURIBag(null, null),
-		AnyURI(Type.AnyURIBag, "http://www.w3.org/2001/XMLSchema#anyURI"),
+		AnyUriBag(null, null),
+		AnyUri(Type.AnyUriBag, "http://www.w3.org/2001/XMLSchema#AnyUri"),
 
 		Base64BinaryBag(null, null),
 		Base64Binary(Type.Base64BinaryBag, "http://www.w3.org/2001/XMLSchema#base64Binary"),
@@ -218,7 +225,7 @@ public class Xacml2Types
 		anyOfAll(NoxName.anyOfAll, "urn:oasis:names:tc:xacml:1.0:function:any-of-all", Type.Boolean, new Type[] { Type.ToDo }),
 		anyOfAny(NoxName.anyOfAny, "urn:oasis:names:tc:xacml:1.0:function:any-of-any", Type.Boolean, new Type[] { Type.ToDo }),
 
-		anyURIAtLeastOneMemberOf(NoxName.atLeastOneMemberOf, "urn:oasis:names:tc:xacml:1.0:function:anyURI-at-least-one-member-of", Type.Boolean, new Type[] { Type.AnyURI }),
+		AnyUriAtLeastOneMemberOf(NoxName.atLeastOneMemberOf, "urn:oasis:names:tc:xacml:1.0:function:AnyUri-at-least-one-member-of", Type.Boolean, new Type[] { Type.AnyUri }),
 		base64BinaryAtLeastOneMemberOf(NoxName.atLeastOneMemberOf, "urn:oasis:names:tc:xacml:1.0:function:base64Binary-at-least-one-member-of", Type.Boolean, new Type[] { Type.Base64Binary }),
 		booleanAtLeastOneMemberOf(NoxName.atLeastOneMemberOf, "urn:oasis:names:tc:xacml:1.0:function:boolean-at-least-one-member-of", Type.Boolean, new Type[] { Type.Boolean }),
 		dateAtLeastOneMemberOf(NoxName.atLeastOneMemberOf, "urn:oasis:names:tc:xacml:1.0:function:date-at-least-one-member-of", Type.Boolean, new Type[] { Type.DateBag }),
@@ -231,7 +238,7 @@ public class Xacml2Types
 		timeAtLeastOneMemberOf(NoxName.atLeastOneMemberOf, "urn:oasis:names:tc:xacml:1.0:function:time-at-least-one-member-of", Type.Boolean, new Type[] { Type.Time }),
 		x500NameAtLeastOneMemberOf(NoxName.atLeastOneMemberOf, "urn:oasis:names:tc:xacml:1.0:function:x500Name-at-least-one-member-of", Type.Boolean, new Type[] { Type.X500Name }),
 
-		anyURIBag(NoxName.bag, "urn:oasis:names:tc:xacml:1.0:function:anyURI-bag", Type.AnyURIBag, new Type[] { Type.String }),
+		AnyUriBag(NoxName.bag, "urn:oasis:names:tc:xacml:1.0:function:AnyUri-bag", Type.AnyUriBag, new Type[] { Type.String }),
 		base64BinaryBag(NoxName.bag, "urn:oasis:names:tc:xacml:1.0:function:base64Binary-bag", Type.Base64BinaryBag, new Type[] { Type.String }),
 		booleanBag(NoxName.bag, "urn:oasis:names:tc:xacml:1.0:function:boolean-bag", Type.BooleanBag, new Type[] { Type.String }),
 		dateBag(NoxName.bag, "urn:oasis:names:tc:xacml:1.0:function:date-bag", Type.DateBag, new Type[] { Type.String }),
@@ -247,7 +254,7 @@ public class Xacml2Types
 		x500NameBag(NoxName.bag, "urn:oasis:names:tc:xacml:1.0:function:x500Name-bag", Type.X500NameBag, new Type[] { Type.String }),
 		yearMonthDurationBag(NoxName.bag, "urn:oasis:names:tc:xacml:1.0:function:yearMonthDuration-bag", Type.YearMonthDurationBag, new Type[] { Type.String }),
 
-		anyURIBagSize(NoxName.bagSize, "urn:oasis:names:tc:xacml:1.0:function:anyURI-bag-size", Type.Integer, new Type[] { Type.AnyURIBag }),
+		AnyUriBagSize(NoxName.bagSize, "urn:oasis:names:tc:xacml:1.0:function:AnyUri-bag-size", Type.Integer, new Type[] { Type.AnyUriBag }),
 		base64BinaryBagSize(NoxName.bagSize, "urn:oasis:names:tc:xacml:1.0:function:base64Binary-bag-size", Type.Integer, new Type[] { Type.Base64BinaryBag }),
 		booleanBagSize(NoxName.bagSize, "urn:oasis:names:tc:xacml:1.0:function:boolean-bag-size", Type.Integer, new Type[] { Type.BooleanBag }),
 		dateBagSize(NoxName.bagSize, "urn:oasis:names:tc:xacml:1.0:function:date-bag-size", Type.Integer, new Type[] { Type.DateBag }),
@@ -267,7 +274,7 @@ public class Xacml2Types
 		doubleDivide(NoxName.divide, "urn:oasis:names:tc:xacml:1.0:function:double-divide", Type.Double, new Type[] { Type.Double }),
 		integerDivide(NoxName.divide, "urn:oasis:names:tc:xacml:1.0:function:integer-divide", Type.Integer, new Type[] { Type.Integer }),
 
-		anyURIEqual(NoxName.equal, "urn:oasis:names:tc:xacml:1.0:function:anyURI-equal", Type.Boolean, new Type[] { Type.AnyURI }),
+		AnyUriEqual(NoxName.equal, "urn:oasis:names:tc:xacml:1.0:function:AnyUri-equal", Type.Boolean, new Type[] { Type.AnyUri }),
 		base64BinaryEqual(NoxName.equal, "urn:oasis:names:tc:xacml:1.0:function:base64Binary-equal", Type.Boolean, new Type[] { Type.Base64Binary }),
 		booleanEqual(NoxName.equal, "urn:oasis:names:tc:xacml:1.0:function:boolean-equal", Type.Boolean, new Type[] { Type.Boolean }),
 		dateEqual(NoxName.equal, "urn:oasis:names:tc:xacml:1.0:function:date-equal", Type.Boolean, new Type[] { Type.Date }),
@@ -300,7 +307,7 @@ public class Xacml2Types
 
 		timeInRange(NoxName.inRange, "urn:oasis:names:tc:xacml:1.0:function:time-in-range", Type.Boolean, new Type[] { Type.Time }),
 
-		anyURIIntersection(NoxName.intersection, "urn:oasis:names:tc:xacml:1.0:function:anyURI-intersection", Type.AnyURIBag, new Type[] { Type.AnyURIBag }),
+		AnyUriIntersection(NoxName.intersection, "urn:oasis:names:tc:xacml:1.0:function:AnyUri-intersection", Type.AnyUriBag, new Type[] { Type.AnyUriBag }),
 		base64BinaryIntersection(NoxName.intersection, "urn:oasis:names:tc:xacml:1.0:function:base64Binary-intersection", Type.Base64BinaryBag, new Type[] { Type.Base64BinaryBag }),
 		booleanIntersection(NoxName.intersection, "urn:oasis:names:tc:xacml:1.0:function:boolean-intersection", Type.BooleanBag, new Type[] { Type.BooleanBag }),
 		dateIntersection(NoxName.intersection, "urn:oasis:names:tc:xacml:1.0:function:date-intersection", Type.DateBag, new Type[] { Type.DateBag }),
@@ -313,7 +320,7 @@ public class Xacml2Types
 		timeIntersection(NoxName.intersection, "urn:oasis:names:tc:xacml:1.0:function:time-intersection", Type.TimeBag, new Type[] { Type.TimeBag }),
 		x500NameIntersection(NoxName.intersection, "urn:oasis:names:tc:xacml:1.0:function:x500Name-intersection", Type.X500NameBag, new Type[] { Type.X500NameBag }),
 
-		anyURIIsIn(NoxName.isIn, "urn:oasis:names:tc:xacml:1.0:function:anyURI-is-in", Type.Boolean, new Type[] { Type.AnyURI }),
+		AnyUriIsIn(NoxName.isIn, "urn:oasis:names:tc:xacml:1.0:function:AnyUri-is-in", Type.Boolean, new Type[] { Type.AnyUri }),
 		base64BinaryIsIn(NoxName.isIn, "urn:oasis:names:tc:xacml:1.0:function:base64Binary-is-in", Type.Boolean, new Type[] { Type.Base64Binary }),
 		booleanIsIn(NoxName.isIn, "urn:oasis:names:tc:xacml:1.0:function:boolean-is-in", Type.Boolean, new Type[] { Type.Boolean }),
 		dateIsIn(NoxName.isIn, "urn:oasis:names:tc:xacml:1.0:function:date-is-in", Type.Boolean, new Type[] { Type.Date }),
@@ -363,7 +370,7 @@ public class Xacml2Types
 		not(NoxName.not, "urn:oasis:names:tc:xacml:1.0:function:not", Type.Boolean, new Type[] { Type.Boolean }),
 		nOf(NoxName.of, "urn:oasis:names:tc:xacml:1.0:function:n-of", Type.ToDo, new Type[] { Type.ToDo }),
 
-		anyURIOneAndOnly(NoxName.oneAndOnly, "urn:oasis:names:tc:xacml:1.0:function:anyURI-one-and-only", Type.AnyURI, new Type[] { Type.AnyURIBag }),
+		AnyUriOneAndOnly(NoxName.oneAndOnly, "urn:oasis:names:tc:xacml:1.0:function:AnyUri-one-and-only", Type.AnyUri, new Type[] { Type.AnyUriBag }),
 		base64BinaryOneAndOnly(NoxName.oneAndOnly, "urn:oasis:names:tc:xacml:1.0:function:base64Binary-one-and-only", Type.Base64Binary, new Type[] { Type.Base64BinaryBag }),
 		booleanOneAndOnly(NoxName.oneAndOnly, "urn:oasis:names:tc:xacml:1.0:function:boolean-one-and-only", Type.Boolean, new Type[] { Type.BooleanBag }),
 		dateOneAndOnly(NoxName.oneAndOnly, "urn:oasis:names:tc:xacml:1.0:function:date-one-and-only", Type.Date, new Type[] { Type.DateBag }),
@@ -383,7 +390,7 @@ public class Xacml2Types
 		or(NoxName.or, "urn:oasis:names:tc:xacml:1.0:function:or", Type.Boolean, new Type[] { Type.Boolean }),
 
 		stringRegexpMatch(NoxName.regexpMatch, "urn:oasis:names:tc:xacml:1.0:function:string-regexp-match", Type.Boolean, new Type[] { Type.String }),
-		anyURIRegexpMatch(NoxName.regexpMatch, "urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match", Type.Boolean, new Type[] { Type.ToDo }),
+		AnyUriRegexpMatch(NoxName.regexpMatch, "urn:oasis:names:tc:xacml:2.0:function:AnyUri-regexp-match", Type.Boolean, new Type[] { Type.ToDo }),
 		dnsNameRegexpMatch(NoxName.regexpMatch, "urn:oasis:names:tc:xacml:2.0:function:dnsName-regexp-match", Type.Boolean, new Type[] { Type.ToDo }),
 		ipAddressRegexpMatch(NoxName.regexpMatch, "urn:oasis:names:tc:xacml:2.0:function:ipAddress-regexp-match", Type.Boolean, new Type[] { Type.ToDo }),
 		rfc822NameRegexpMatch(NoxName.regexpMatch, "urn:oasis:names:tc:xacml:2.0:function:rfc822Name-regexp-match", Type.Boolean, new Type[] { Type.Rfc822Name }),
@@ -391,7 +398,7 @@ public class Xacml2Types
 
 		round(NoxName.round, "urn:oasis:names:tc:xacml:1.0:function:round", Type.Double, new Type[] { Type.Double }),
 
-		anyURISetEquals(NoxName.setEquals, "urn:oasis:names:tc:xacml:1.0:function:anyURI-set-equals", Type.Boolean, new Type[] { Type.AnyURIBag }),
+		AnyUriSetEquals(NoxName.setEquals, "urn:oasis:names:tc:xacml:1.0:function:AnyUri-set-equals", Type.Boolean, new Type[] { Type.AnyUriBag }),
 		base64BinarySetEquals(NoxName.setEquals, "urn:oasis:names:tc:xacml:1.0:function:base64Binary-set-equals", Type.Boolean, new Type[] { Type.Base64BinaryBag }),
 		booleanSetEquals(NoxName.setEquals, "urn:oasis:names:tc:xacml:1.0:function:boolean-set-equals", Type.Boolean, new Type[] { Type.BooleanBag }),
 		dateSetEquals(NoxName.setEquals, "urn:oasis:names:tc:xacml:1.0:function:date-set-equals", Type.Boolean, new Type[] { Type.DateBag }),
@@ -407,7 +414,7 @@ public class Xacml2Types
 		urlStringConcatenate(NoxName.stringConcatenate, "urn:oasis:names:tc:xacml:2.0:function:url-string-concatenate", Type.String, new Type[] { Type.String }),
 		regexpStringMatch(NoxName.stringMatch, "urn:oasis:names:tc:xacml:1.0:function:regexp-string-match", Type.Boolean, new Type[] { Type.String }),
 
-		anyURISubset(NoxName.subset, "urn:oasis:names:tc:xacml:1.0:function:anyURI-subset", Type.AnyURIBag, new Type[] { Type.AnyURIBag }),
+		AnyUriSubset(NoxName.subset, "urn:oasis:names:tc:xacml:1.0:function:AnyUri-subset", Type.AnyUriBag, new Type[] { Type.AnyUriBag }),
 		base64BinarySubset(NoxName.subset, "urn:oasis:names:tc:xacml:1.0:function:base64Binary-subset", Type.Boolean, new Type[] { Type.Base64BinaryBag }),
 		booleanSubset(NoxName.subset, "urn:oasis:names:tc:xacml:1.0:function:boolean-subset", Type.Boolean, new Type[] { Type.BooleanBag }),
 		dateSubset(NoxName.subset, "urn:oasis:names:tc:xacml:1.0:function:date-subset", Type.Boolean, new Type[] { Type.DateBag }),
@@ -429,7 +436,7 @@ public class Xacml2Types
 		integerToDouble(NoxName.toDouble, "urn:oasis:names:tc:xacml:1.0:function:integer-to-double", Type.Double, new Type[] { Type.Integer }),
 		doubleToInteger(NoxName.toInteger, "urn:oasis:names:tc:xacml:1.0:function:double-to-integer", Type.Integer, new Type[] { Type.Double }),
 
-		anyURIUnion(NoxName.union, "urn:oasis:names:tc:xacml:1.0:function:anyURI-union", Type.AnyURIBag, new Type[] { Type.AnyURIBag }),
+		AnyUriUnion(NoxName.union, "urn:oasis:names:tc:xacml:1.0:function:AnyUri-union", Type.AnyUriBag, new Type[] { Type.AnyUriBag }),
 		base64BinaryUnion(NoxName.union, "urn:oasis:names:tc:xacml:1.0:function:base64Binary-union", Type.Base64BinaryBag, new Type[] { Type.Base64BinaryBag }),
 		booleanUnion(NoxName.union, "urn:oasis:names:tc:xacml:1.0:function:boolean-union", Type.BooleanBag, new Type[] { Type.BooleanBag }),
 		dateUnion(NoxName.union, "urn:oasis:names:tc:xacml:1.0:function:date-union", Type.DateBag, new Type[] { Type.DateBag }),
