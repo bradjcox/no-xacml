@@ -1,9 +1,14 @@
 package noxacml.xacml2;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import noxacml.util.Fault;
 
 public class Xacml2Types
 {
+	public final static Map<String, Type> tokenToTypeMap = new HashMap<String, Type>();
+
 	public NoxName getNoxName(String name)
 	{
 		NoxName n = NoxName.valueOf(name);
@@ -11,7 +16,8 @@ public class Xacml2Types
 	}
 	public Type getType(String typeName)
 	{
-		Type t = Type.valueOf(typeName);
+		Type t = tokenToTypeMap.get(typeName);
+//		Type t = Type.valueOf(typeName);
 		if (t == null)
 			throw new Fault("Type not found: "+typeName);
 		return t;
@@ -190,13 +196,15 @@ public class Xacml2Types
 		DnsNameBag(null, null),
 		DnsName(Type.DnsNameBag, "urn:oasis:names:tc:xacml:2.0:data-type:dnsName");
 
-		public final Type type;
+		public final Type bagType;
 		public final String uri;
 
-		Type(Type type, String uri)
+		Type(Type bagType, String uri)
 		{
-			this.type = type;
+			this.bagType = bagType;
 			this.uri = uri;
+			if (bagType != null)
+				tokenToTypeMap.put(this.name().toUpperCase(), this);
 		}
 		public String toString()
 		{

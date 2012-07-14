@@ -368,66 +368,58 @@ public class PolicyBuilder
 	ExpressionType newBooleanOrExpr(Tree tree)
 	{
 		String tok = tree.getText();
-		if (tree.getChildCount() == 2)
-		{
-			ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME);
-			Function function = types.getFunction(tok, Type.Boolean);
-			o.setFunctionId(function.oasisFunctionURI);
+		Tree t = tree.getChild(0);
+		Tree l = tree.getChild(1);
+		Tree r = tree.getChild(2);
 
+		Type type = types.getType(t.getText());
+		ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME);
+		Function function = types.getFunction(tok, type);
+		o.setFunctionId(function.oasisFunctionURI);
+
+		if (r != null)
+		{
 			List<ExpressionType> e = o.getExpressions();
-			e.add(newBooleanAndExpr(tree.getChild(0)));
-			e.add(newBooleanAndExpr(tree.getChild(1)));
+			e.add(newBooleanAndExpr(l));
+			e.add(newBooleanAndExpr(r));
 			return o;
 		}
-		else if (tree.getChildCount() == 1)
+		else
 		{
 			return newBooleanAndExpr(tree.getChild(0));
 		}
-		else throw new Fault("Expecting 1 or 2 children");
 	}
 	ExpressionType newBooleanAndExpr(Tree tree)
 	{
 		String tok = tree.getText();
-		if (tree.getChildCount() == 2)
-		{
-			ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME);
-			containsOp_return t = (containsOp_return)tree;
-			Function function = types.getFunction(tok, t.type);
-			o.setFunctionId(function.oasisFunctionURI);
+		Tree t = tree.getChild(0);
+		Tree l = tree.getChild(1);
+		Tree r = tree.getChild(2);
 
+		Type type = types.getType(t.getText());
+		ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME);
+		Function function = types.getFunction(tok, type);
+		o.setFunctionId(function.oasisFunctionURI);
+
+		if (r != null)
+		{
 			List<ExpressionType> e = o.getExpressions();
-			e.add(newBooleanExpr(tree.getChild(0)));
-			e.add(newBooleanExpr(tree.getChild(1)));
+			e.add(newBooleanExpr(l));
+			e.add(newBooleanExpr(r));
 			return o;
 		}
-		else if (tree.getChildCount() == 1)
+		else
 		{
-			return newBooleanExpr(tree.getChild(0));
+			return newBooleanExpr(l);
 		}
-		else throw new Fault("Expecting 1 or 2 children");
 	}
-
-//	ExpressionType newBooleanExpr(Tree tree)
-//	{
-//		String tok = tree.getText();
-//		if (tree.getChildCount() == 1)
-//		{
-//			ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME);
-//			Function function = types.getFunction(tok, Type.Boolean);
-//			o.setFunctionId(function.oasisFunctionURI);
-//
-//			List<ExpressionType> e = o.getExpressions();
-//			e.add(newExpressionType(tree.getChild(0)));
-//			return o;
-//		}
-//		else throw new Fault("Expecting 1 child");
-//	}
 
 	ExpressionType newBooleanExpr(Tree tree)
 	{
 		String tok = tree.getText();
-		Tree left = tree.getChild(0);
-		Tree right = tree.getChild(1);
+		Tree t = tree.getChild(0);
+		Tree l = tree.getChild(1);
+		Tree r = tree.getChild(2);
 
 		if (tok.startsWith("\""))
 		{
@@ -436,14 +428,16 @@ public class PolicyBuilder
 		}
 		else if ("subject".equals(tok) || "resource".equals(tok) || "action".equals(tok) || "environment".equals(tok))
 		{
-			return newAttributeSelectorType(left);
+			return newAttributeSelectorType(l);
 		}
 		ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME);
-		Function function = types.getFunction(tok, Type.String);
+
+		Type type = types.getType(t.getText());
+		Function function = types.getFunction(tok, type);
 		o.setFunctionId(function.oasisFunctionURI);
 		List<ExpressionType> exprList = o.getExpressions();
-		exprList.add(newBooleanExpr(left));
-		exprList.add(newBooleanExpr(right));
+		exprList.add(newBooleanExpr(l));
+		exprList.add(newBooleanExpr(r));
 		return o;
 	}
 

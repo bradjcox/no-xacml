@@ -17,6 +17,8 @@ tokens
 	ENVIRONMENT='environment';
 	MATCHES='matches';
 	ABS='abs';
+	AND='&&';
+	OR='||';
 	ACTION='action';
 	ALLOF='allOf';
 	ALLOFALL='allOfAll';
@@ -115,11 +117,11 @@ target
 	;
 
 matchOrExpr
-  : matchAndExpr ('||'^ matchAndExpr )*
+  : matchAndExpr (OR^ matchAndExpr )*
   ;
 
 matchAndExpr
-  : matchExpr ('&&'^ matchExpr)*
+  : matchExpr (AND^ matchExpr)*
   ;
 
 matchExpr
@@ -136,48 +138,26 @@ rule
 	;
 
 condition
-	: CONDITION^ '{'! booleanAndExpr '}'!
+	: CONDITION^ '{'! booleanExpr '}'!
 	;
-
-booleanAndExpr
-  : ('&&') => (l=booleanOrExpr ('&&' r+=booleanOrExpr)+)
-  	-> ^('&&' BOOLEAN $l $r)
-  | l=booleanOrExpr
-  	-> ^('&&' BOOLEAN $l)
-  ;
-
-booleanOrExpr
-  : ('||') => (l=booleanExpr ('||' r+=booleanExpr )+)
-  	-> ^('||' BOOLEAN $l $r)
-  | l=booleanExpr
-  	-> ^('||' BOOLEAN $l)
-  ;
 
 booleanExpr
 	: TRUE
 	| FALSE
-	| booleanCreate
-	| booleanNof
-	| booleanWrap
-	| booleanNode
+	| booleanBag
+	| BOOLEAN^ LP! attributeSelector RP!
+	| ( NOF | NOT)^ LP! booleanExpr RP!
+	| LP! booleanExpr RP!
+	| stringExpr '.'! ( NODEEQUAL | NODEMATCH )^ LP! stringExpr RP!
 	| equalityExpr
 	| isInOp
-	| containsOp
+	| (l=booleanExpr (o=AND | o=OR) r=booleanExpr)
+  	-> ^($o BOOLEAN $l $r)
+//	| containsOp
 //	| bagOp
 //	| regexOp
 	;
-booleanCreate
-	: BOOLEAN^ LP! attributeSelector RP!
-	;
-booleanNof
-	: ( NOF | NOT)^ LP! booleanExpr RP!
-	;
-booleanWrap
-	: LP! booleanOrExpr RP!
-	;
-booleanNode
-	: stringExpr '.'! ( NODEEQUAL | NODEMATCH )^ LP! stringExpr RP!
-	;
+
 booleanBag
 	: BOOLEAN^ STRING_CONSTANT_LIST
 //	| BAG LP! booleanExpr ( ','! booleanExpr)+ RP!
@@ -185,60 +165,60 @@ booleanBag
 	;
 
 isInOp
-	: doubleExpr '.' ISIN LP doubleBag RP
+	: doubleExpr '.'! ISIN LP! doubleBag RP!
 		-> ^(ISIN DOUBLE doubleExpr doubleBag)
-	| stringExpr '.' ISIN LP stringBag RP
+	| stringExpr '.'! ISIN LP! stringBag RP!
 		-> ^(ISIN INTEGER stringExpr stringBag)
-	| anyUriExpr '.' ISIN LP anyUriBag RP
+	| anyUriExpr '.'! ISIN LP! anyUriBag RP!
 		-> ^(ISIN ANYURI anyUriExpr anyUriBag)
-	| dateExpr '.' ISIN LP dateBag RP
+	| dateExpr '.'! ISIN LP! dateBag RP!
 		 -> ^(ISIN DATE dateExpr dateBag)
-	| timeExpr '.' ISIN LP timeBag RP
+	| timeExpr '.'! ISIN LP! timeBag RP!
 		-> ^(ISIN TIME timeExpr timeBag)
-	| dateTimeExpr '.' ISIN LP dateTimeBag RP
+	| dateTimeExpr '.'! ISIN LP! dateTimeBag RP!
 		-> ^(ISIN DATETIME dateTimeExpr dateTimeBag)
-	| base64BinaryExpr '.' ISIN LP base64BinaryBag RP
+	| base64BinaryExpr '.'! ISIN LP! base64BinaryBag RP!
 		-> ^(ISIN BASE64BINARY base64BinaryExpr base64BinaryBag)
-	| dayTimeDurationExpr '.' ISIN LP dayTimeDurationBag RP
+	| dayTimeDurationExpr '.'! ISIN LP! dayTimeDurationBag RP!
 		-> ^(ISIN DAYTIMEDURATION dayTimeDurationExpr dayTimeDurationBag)
-	| yearMonthDurationExpr '.' ISIN LP yearMonthDurationBag RP
+	| yearMonthDurationExpr '.'! ISIN LP! yearMonthDurationBag RP!
 		-> ^(ISIN YEARMONTHDURATION yearMonthDurationExpr yearMonthDurationBag)
-	| x500NameExpr '.' ISIN LP x500NameBag RP
+	| x500NameExpr '.'! ISIN LP! x500NameBag RP!
 		-> ^(ISIN X500NAME x500NameExpr x500NameBag)
-	| rfc822NameExpr '.' ISIN LP rfc822NameBag RP
+	| rfc822NameExpr '.'! ISIN LP! rfc822NameBag RP!
 		-> ^(ISIN RFC822NAME rfc822NameExpr rfc822NameBag)
-	| hexBinaryExpr '.' ISIN LP hexBinaryBag RP
+	| hexBinaryExpr '.'! ISIN LP! hexBinaryBag RP!
 		-> ^(ISIN HEXBINARY hexBinaryExpr hexBinaryBag)
-	| (base64BinaryExpr) => base64BinaryExpr '.' ISIN LP base64BinaryBag RP
+	| (base64BinaryExpr) => base64BinaryExpr '.'! ISIN LP! base64BinaryBag RP!
 		-> ^(ISIN BASE64BINARY base64BinaryExpr base64BinaryBag)
 	;
 
 containsOp
-	: doubleBag '.' CONTAINS LP doubleExpr RP
+	: doubleBag '.'! CONTAINS LP! doubleExpr RP!
 		-> ^(CONTAINS DOUBLE doubleBag doubleExpr )
-	| stringBag '.' CONTAINS LP stringExpr RP
+	| stringBag '.'! CONTAINS LP! stringExpr RP!
 		-> ^(CONTAINS STRING stringBag stringExpr )
-	| anyUriBag '.' CONTAINS LP anyUriExpr RP
+	| anyUriBag '.'! CONTAINS LP! anyUriExpr RP!
 		-> ^(CONTAINS STRING anyUriBag anyUriExpr)
-	| dateBag '.' CONTAINS LP dateBag RP
+	| dateBag '.'! CONTAINS LP! dateBag RP!
 		-> ^(CONTAINS STRING dateBag dateBag)
-	| timeBag '.' CONTAINS LP timeExpr RP
+	| timeBag '.'! CONTAINS LP! timeExpr RP!
 		-> ^(CONTAINS STRING timeBag timeExpr)
-	| dateTimeBag '.' CONTAINS LP dateTimeExpr RP
+	| dateTimeBag '.'! CONTAINS LP! dateTimeExpr RP!
 		-> ^(CONTAINS STRING dateTimeBag dateTimeExpr)
-	| base64BinaryBag '.' CONTAINS LP base64BinaryExpr RP
+	| base64BinaryBag '.'! CONTAINS LP! base64BinaryExpr RP!
 		-> ^(CONTAINS STRING base64BinaryBag base64BinaryExpr)
-	| dayTimeDurationBag '.' CONTAINS LP dayTimeDurationExpr RP
+	| dayTimeDurationBag '.'! CONTAINS LP! dayTimeDurationExpr RP!
 		-> ^(CONTAINS STRING dayTimeDurationBag dayTimeDurationExpr)
-	| yearMonthDurationBag '.' CONTAINS LP yearMonthDurationExpr RP
+	| yearMonthDurationBag '.'! CONTAINS LP! yearMonthDurationExpr RP!
 		-> ^(CONTAINS STRING yearMonthDurationBag yearMonthDurationExpr)
-	| x500NameBag '.' CONTAINS LP x500NameExpr RP
+	| x500NameBag '.'! CONTAINS LP! x500NameExpr RP!
 		-> ^(CONTAINS STRING x500NameBag x500NameExpr)
-	| rfc822NameBag '.' CONTAINS LP rfc822NameExpr RP
+	| rfc822NameBag '.'! CONTAINS LP! rfc822NameExpr RP!
 		-> ^(CONTAINS STRING rfc822NameBag rfc822NameExpr)
-	| hexBinaryBag '.' CONTAINS LP hexBinaryExpr RP
+	| hexBinaryBag '.'! CONTAINS LP! hexBinaryExpr RP!
 		-> ^(CONTAINS STRING hexBinaryBag hexBinaryExpr)
-	| (base64BinaryExpr) => base64BinaryBag '.' CONTAINS LP base64BinaryExpr RP
+	| (base64BinaryExpr) => base64BinaryBag '.'! CONTAINS LP! base64BinaryExpr RP!
 		-> ^(CONTAINS STRING base64BinaryBag base64BinaryExpr)
 	;
 
