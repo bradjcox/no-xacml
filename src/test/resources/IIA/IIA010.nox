@@ -14,7 +14,7 @@ policy IIA010 denyOverrides
 		condition
 		{
 			"Physician".isIn(subject.role) &&
-			subject.age.oneAndOnly().integer() >= 45
+			integer(subject.age.oneAndOnly()) >= 45
 		}
 	}
 }
