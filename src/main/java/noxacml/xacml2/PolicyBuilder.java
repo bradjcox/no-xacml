@@ -2,7 +2,6 @@ package noxacml.xacml2;
 
 import java.util.List;
 
-import noxacml.GrammarParser.containsOp_return;
 import noxacml.util.Fault;
 import noxacml.util.SAMLBuilder;
 import noxacml.util.XACMLObjectUtil;
@@ -373,8 +372,9 @@ public class PolicyBuilder
 		Tree r = tree.getChild(2);
 
 		Type type = types.getType(t.getText());
-		ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME);
 		Function function = types.getFunction(tok, type);
+
+		ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME);
 		o.setFunctionId(function.oasisFunctionURI);
 
 		if (r != null)
@@ -386,7 +386,7 @@ public class PolicyBuilder
 		}
 		else
 		{
-			return newBooleanAndExpr(tree.getChild(0));
+			return newBooleanAndExpr(l);
 		}
 	}
 	ExpressionType newBooleanAndExpr(Tree tree)
@@ -397,24 +397,25 @@ public class PolicyBuilder
 		Tree r = tree.getChild(2);
 
 		Type type = types.getType(t.getText());
-		ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME);
 		Function function = types.getFunction(tok, type);
+
+		ApplyType o = builder.create(ApplyType.class, ApplyType.DEFAULT_ELEMENT_NAME);
 		o.setFunctionId(function.oasisFunctionURI);
 
 		if (r != null)
 		{
 			List<ExpressionType> e = o.getExpressions();
-			e.add(newBooleanExpr(l));
-			e.add(newBooleanExpr(r));
+			e.add(newBooleqnEquals(l));
+			e.add(newBooleqnEquals(r));
 			return o;
 		}
 		else
 		{
-			return newBooleanExpr(l);
+			return newBooleqnEquals(l);
 		}
 	}
 
-	ExpressionType newBooleanExpr(Tree tree)
+	ExpressionType newBooleqnEquals(Tree tree)
 	{
 		String tok = tree.getText();
 		Tree t = tree.getChild(0);
@@ -436,8 +437,8 @@ public class PolicyBuilder
 		Function function = types.getFunction(tok, type);
 		o.setFunctionId(function.oasisFunctionURI);
 		List<ExpressionType> exprList = o.getExpressions();
-		exprList.add(newBooleanExpr(l));
-		exprList.add(newBooleanExpr(r));
+		exprList.add(newBooleqnEquals(l));
+		exprList.add(newBooleqnEquals(r));
 		return o;
 	}
 

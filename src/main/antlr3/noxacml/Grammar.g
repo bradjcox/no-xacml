@@ -140,7 +140,7 @@ matchExpr
 	;
 
 attributeSelector
-	: ( SUBJECT	| RESOURCE | ACTION | ENVIRONMENT)^ DOT! LOWERCASEIDENTIFIER
+	: ( SUBJECT  | RESOURCE | ACTION | ENVIRONMENT) => ( SUBJECT	| RESOURCE | ACTION | ENVIRONMENT)^ DOT! LOWERCASEIDENTIFIER
 	;
 
 rule
@@ -149,44 +149,43 @@ rule
 
 condition
 	: CONDITION LB booleanAndExpr RB
-		-> ^(CONDITION BOOLEAN booleanAndExpr)
+		-> ^(CONDITION booleanAndExpr)
 	;
 
 booleanAndExpr
-  : (AND) => (l=booleanOrExpr (AND r+=booleanOrExpr)+)
-  	-> ^(AND BOOLEAN $l $r)
-  | l=booleanOrExpr
-  	-> ^(AND BOOLEAN $l)
+  : booleanOrExpr (AND booleanOrExpr)*
+//  	-> ^(AND BOOLEAN $l $r)
   ;
 
 booleanOrExpr
-  : (OR) => (l=booleanExpr (OR r+=booleanExpr )+)
-  	-> ^(OR BOOLEAN $l $r)
-  | l=booleanExpr
-  	-> ^(OR BOOLEAN $l)
+  : booleanExpr (OR booleanExpr )*
+//  	-> ^(OR BOOLEAN $l $r)
   ;
 
 booleanExpr
-	: TRUE
-	| FALSE
-	| equalityExpr
-	| isInExpr
-	| booleanNof
-	| booleanWrap
-	| booleanNode
-//	| booleanCreate
-//	| containsOp
-//	| bagOp
-//	| regexOp
-	;
+  : TRUE
+  | FALSE
+  | booleanEquals
+  | isInExpr
+//  | booleanNof
+//  | booleanWrap
+//  | booleanNode
+//  | booleanCreate
+//  | containsOp
+//  | bagOp
+//  | regexOp
+  ;
+
 booleanNof
-	: (NOF | NOT) => ( NOF | NOT)^ LP! booleanExpr RP!
-	;
+  : ( NOF | NOT)^ LP! booleanEquals RP!
+  ;
+
 booleanWrap
-	: LP! booleanOrExpr RP!
-	;
+  : LP! booleanOrExpr RP!
+  ;
+
 booleanNode
-	: ( NODEEQUAL | NODEMATCH ) => stringExpr DOT! ( NODEEQUAL | NODEMATCH )^ LP! stringExpr RP!
+	: stringExpr DOT! ( NODEEQUAL | NODEMATCH )^ LP! stringExpr RP!
 	;
 booleanBag
 	: BOOLEAN^ STRING_CONSTANT_LIST
@@ -196,126 +195,126 @@ booleanBag
 	;
 
 isInExpr
-	: (ISIN) => doubleExpr DOT ISIN LP doubleBag RP
+	: doubleExpr DOT ISIN LP doubleBag RP
 		-> ^(ISIN DOUBLE doubleExpr doubleBag)
-	| (ISIN) => stringExpr DOT ISIN LP stringBag RP
+	| stringExpr DOT ISIN LP stringBag RP
 		-> ^(ISIN STRING stringExpr stringBag)
-	| (ISIN) => integerExpr DOT ISIN LP integerBag RP
-		-> ^(ISIN INTEGER stringExpr stringBag)
-	| (ISIN) => anyUriExpr DOT ISIN LP anyUriBag RP
+//	| integerExpr DOT ISIN LP integerBag RP
+//		-> ^(ISIN INTEGER integerExpr integerBag)
+	| anyUriExpr DOT ISIN LP anyUriBag RP
 		-> ^(ISIN ANYURI anyUriExpr anyUriBag)
-	| (ISIN) => dateExpr DOT ISIN LP dateBag RP
+	| dateExpr DOT ISIN LP dateBag RP
 		 -> ^(ISIN DATE dateExpr dateBag)
-	| (ISIN) => timeExpr DOT ISIN LP timeBag RP
+	| timeExpr DOT ISIN LP timeBag RP
 		-> ^(ISIN TIME timeExpr timeBag)
-	| (ISIN) => dateTimeExpr DOT ISIN LP dateTimeBag RP
+	| dateTimeExpr DOT ISIN LP dateTimeBag RP
 		-> ^(ISIN DATETIME dateTimeExpr dateTimeBag)
-	| (ISIN) => base64BinaryExpr DOT ISIN LP base64BinaryBag RP
+	| base64BinaryExpr DOT ISIN LP base64BinaryBag RP
 		-> ^(ISIN BASE64BINARY base64BinaryExpr base64BinaryBag)
-	| (ISIN) => dayTimeDurationExpr DOT ISIN LP dayTimeDurationBag RP
+	| dayTimeDurationExpr DOT ISIN LP dayTimeDurationBag RP
 		-> ^(ISIN DAYTIMEDURATION dayTimeDurationExpr dayTimeDurationBag)
-	| (ISIN) => yearMonthDurationExpr DOT ISIN LP yearMonthDurationBag RP
+	| yearMonthDurationExpr DOT ISIN LP yearMonthDurationBag RP
 		-> ^(ISIN YEARMONTHDURATION yearMonthDurationExpr yearMonthDurationBag)
-	| (ISIN) => x500NameExpr DOT ISIN LP x500NameBag RP
+	| x500NameExpr DOT ISIN LP x500NameBag RP
 		-> ^(ISIN X500NAME x500NameExpr x500NameBag)
-	| (ISIN) => rfc822NameExpr DOT ISIN LP rfc822NameBag RP
+	| rfc822NameExpr DOT ISIN LP rfc822NameBag RP
 		-> ^(ISIN RFC822NAME rfc822NameExpr rfc822NameBag)
-	| (ISIN) => hexBinaryExpr DOT ISIN LP hexBinaryBag RP
+	| hexBinaryExpr DOT ISIN LP hexBinaryBag RP
 		-> ^(ISIN HEXBINARY hexBinaryExpr hexBinaryBag)
-	| (ISIN) => base64BinaryExpr DOT ISIN LP base64BinaryBag RP
-		-> ^(ISIN BASE64BINARY base64BinaryExpr base64BinaryBag)
 	;
 
-equalityExpr
-	: ( EQ | GE | GT | LT | LE ) => l1=integerExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r1=integerExpr
+booleanEquals
+	: l1=integerExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r1=integerExpr
 		-> ^($o INTEGER $l1 $r1)
-	| ( EQ | GE | GT | LT | LE ) => l2=doubleExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r2=doubleExpr
+	| l2=doubleExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r2=doubleExpr
 		-> ^($o DOUBLE $l2 $r2)
-	| ( EQ | GE | GT | LT | LE ) => l3=stringExpr ( o=EQ | GE | GT | LT | LE ) r3=stringExpr
+	| l3=stringExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r3=stringExpr
 		-> ^($o STRING $l3 $r3)
-	| ( EQ | GE | GT | LT | LE ) => l4=anyUriExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r4=anyUriExpr
+	| l4=anyUriExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r4=anyUriExpr
 		-> ^($o ANYURI $l4 $r4)
-	| ( EQ | GE | GT | LT | LE ) => l5=dateExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r5=dateExpr
+	| l5=dateExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r5=dateExpr
 		-> ^($o DATE $l5 $r5)
-	| ( EQ | GE | GT | LT | LE ) => l6=timeExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r6=timeExpr
+	| l6=timeExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r6=timeExpr
 		-> ^($o TIME $l6 $r6)
-	| ( EQ | GE | GT | LT | LE ) => l7=dateTimeExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r7=dateTimeExpr
+	| l7=dateTimeExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r7=dateTimeExpr
 		-> ^($o DATETIME $l7 $r7)
-	| ( EQ | GE | GT | LT | LE ) => l8=yearMonthDurationExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r8=yearMonthDurationExpr
+	| l8=yearMonthDurationExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r8=yearMonthDurationExpr
 		-> ^($o YEARMONTHDURATION $l8 $r8)
-	| ( EQ | GE | GT | LT | LE ) => l9=x500NameExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r9=x500NameExpr
+	| l9=x500NameExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) r9=x500NameExpr
 		-> ^($o X500NAME $l9 $r9)
-	| ( EQ | GE | GT | LT | LE ) => lA=rfc822NameExpr ( o=EQ	| o=GE | o=GT | o=LT | o=LE ) rA=rfc822NameExpr
+	| lA=rfc822NameExpr ( o=EQ	| o=GE | o=GT | o=LT | o=LE ) rA=rfc822NameExpr
 		-> ^($o RFC822NAME $lA $rA)
-	| ( EQ | GE | GT | LT | LE ) => lB=dayTimeDurationExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) rB=dayTimeDurationExpr
+	| lB=dayTimeDurationExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) rB=dayTimeDurationExpr
 		-> ^($o DAYTIMEDURATION $lB $rB)
-	| ( EQ | GE | GT | LT | LE ) => lC=base64BinaryExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) rC=base64BinaryExpr
-		-> ^($o BASE64BINARY $lC $rC)
+//	| lC=base64BinaryExpr ( o=EQ | o=GE | o=GT | o=LT | o=LE ) rC=base64BinaryExpr
+//		-> ^($o BASE64BINARY $lC $rC)
+//	| isInExpr
  ;
 
-regexOp
-	: l=integerExpr DOT REGEXMATCH LP r=integerExpr RP
-        -> ^(REGEXMATCH INTEGER $l $r)
-	| doubleExpr DOT REGEXMATCH LP doubleExpr RP
-        -> ^(REGEXMATCH INTEGER $l $r)
-	| stringExpr DOT REGEXMATCH LP stringExpr RP
-        -> ^(REGEXMATCH INTEGER $l $r)
-	| anyUriExpr DOT REGEXMATCH LP anyUriExpr RP
-        -> ^(REGEXMATCH INTEGER $l $r)
-	| dateExpr DOT REGEXMATCH LP dateExpr RP
-        -> ^(REGEXMATCH INTEGER $l $r)
-	| timeExpr DOT REGEXMATCH LP timeExpr RP
-        -> ^(REGEXMATCH INTEGER $l $r)
-	| dateTimeExpr DOT REGEXMATCH LP dateTimeExpr RP
-        -> ^(REGEXMATCH INTEGER $l $r)
-	| dayTimeDurationExpr DOT REGEXMATCH LP dayTimeDurationExpr RP
-        -> ^(REGEXMATCH INTEGER $l $r)
-	| yearMonthDurationExpr DOT REGEXMATCH LP yearMonthDurationExpr RP
-        -> ^(REGEXMATCH INTEGER $l $r)
-	| x500NameExpr DOT REGEXMATCH LP x500NameExpr RP
-        -> ^(REGEXMATCH INTEGER $l $r)
-	| rfc822NameExpr DOT REGEXMATCH LP rfc822NameExpr RP
-        -> ^(REGEXMATCH INTEGER $l $r)
-	| base64BinaryExpr DOT REGEXMATCH LP base64BinaryExpr RP
-        -> ^(REGEXMATCH INTEGER $l $r)
-	;
+//regexOp
+//	: l1=integerExpr DOT REGEXMATCH LP r1=integerExpr RP
+//        -> ^(REGEXMATCH INTEGER $l1 $r1)
+//	| l2=doubleExpr DOT REGEXMATCH LP r2=doubleExpr RP
+//        -> ^(REGEXMATCH DOUBLE $l2 $r2)
+//	| l3=stringExpr DOT REGEXMATCH LP r3=stringExpr RP
+//        -> ^(REGEXMATCH STRING$l3 $r3)
+//	| l4=anyUriExpr DOT REGEXMATCH LP r4=anyUriExpr RP
+//        -> ^(REGEXMATCH ANYURI $l4 $r4)
+//	| l5=dateExpr DOT REGEXMATCH LP r5=dateExpr RP
+//        -> ^(REGEXMATCH DATE $l5 $r5)
+//	| l6=timeExpr DOT REGEXMATCH LP r6=timeExpr RP
+//        -> ^(REGEXMATCH TIME $l6 $r6)
+//	| l7=dateTimeExpr DOT REGEXMATCH LP r7=dateTimeExpr RP
+//        -> ^(REGEXMATCH DATETIME $l7 $r7)
+//	| l8=dayTimeDurationExpr DOT REGEXMATCH LP r8=dayTimeDurationExpr RP
+//        -> ^(REGEXMATCH DAYTIMEDURATION $l8 $r8)
+//	| l9=yearMonthDurationExpr DOT REGEXMATCH LP r9=yearMonthDurationExpr RP
+//        -> ^(REGEXMATCH YEARMONTHDURATION $l9 $r9)
+//	| lA=x500NameExpr DOT REGEXMATCH LP rA=x500NameExpr RP
+//        -> ^(REGEXMATCH X500NAME $lA $rA)
+//	| lB=rfc822NameExpr DOT REGEXMATCH LP rB=rfc822NameExpr RP
+//        -> ^(REGEXMATCH RFC822NAME $lB $rB)
+//	| lC=base64BinaryExpr DOT REGEXMATCH LP rC=base64BinaryExpr RP
+//        -> ^(REGEXMATCH BASE64BINARY $lC $rC)
+//	;
 
-bagOp
-	: (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => l1=booleanBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r1=booleanBag RP
-	    -> ^($o BOOLEAN $l1 $r1)
-	| (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => l2=integerBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r2=integerBag RP
-	    -> ^($o INTEGER $l2 $r2)
-	| (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => l3=doubleBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r3=doubleBag RP
-	    -> ^($o DOUBLE $l3 $r3)
-	| (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => l4=stringBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r4=stringBag RP
-	    -> ^($o STRING $l4 $r4)
-	| (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => l5=dateBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r5=dateBag RP
-	    -> ^($o DATE $l5 $r5)
-	| (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => l6=timeBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r6=timeBag RP
-	    -> ^($o TIME $l6 $r6)
-	| (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => l7=dateTimeBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r7=dateTimeBag RP
-	    -> ^($o DATETIME $l7 $r7)
-	| (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => l8=base64BinaryBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r8=base64BinaryBag RP
-	    -> ^($o BASE64BINARY $l8 $r8)
-	| (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => l9=dayTimeDurationBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r9=dayTimeDurationBag RP
-	    -> ^($o DAYTIMEDURATION $l9 $r9)
-	| (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => lA=yearMonthDurationBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP rA=yearMonthDurationBag RP
-	    -> ^($o YEARMONTHDURATION $lA $rA)
-	| (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => lB=anyUriBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP rB=anyUriBag RP
-	    -> ^($o ANYURI $lB $rB)
-	| (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => lC=x500NameBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP rC=x500NameBag RP
-	    -> ^($o X500NAME $lC $rC)
-	| (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => lD=rfc822NameBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP rD=rfc822NameBag RP
-	    -> ^($o RFC822NAME $lD $rD)
-	| (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => lE=hexBinaryBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP rE=hexBinaryBag RP
-	    -> ^($o HEXBINARY $lE $rE)
-	| (ATLEASTONEMENBEROF | SUBSET | SETEQUALS) => lF=base64BinaryBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP rF=base64BinaryBag RP
-	    -> ^($o BASE64BINARY $lF $rF)
-	;
+//bagOp
+//	: l1=booleanBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r1=booleanBag RP
+//	    -> ^($o BOOLEAN $l1 $r1)
+//	| l2=integerBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r2=integerBag RP
+//	    -> ^($o INTEGER $l2 $r2)
+//	| l3=doubleBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r3=doubleBag RP
+//	    -> ^($o DOUBLE $l3 $r3)
+//	| l4=stringBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r4=stringBag RP
+//	    -> ^($o STRING $l4 $r4)
+//	| l5=dateBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r5=dateBag RP
+//	    -> ^($o DATE $l5 $r5)
+//	| l6=timeBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r6=timeBag RP
+//	    -> ^($o TIME $l6 $r6)
+//	| l7=dateTimeBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r7=dateTimeBag RP
+//	    -> ^($o DATETIME $l7 $r7)
+//	| l8=base64BinaryBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r8=base64BinaryBag RP
+//	    -> ^($o BASE64BINARY $l8 $r8)
+//	| l9=dayTimeDurationBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP r9=dayTimeDurationBag RP
+//	    -> ^($o DAYTIMEDURATION $l9 $r9)
+//	| lA=yearMonthDurationBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP rA=yearMonthDurationBag RP
+//	    -> ^($o YEARMONTHDURATION $lA $rA)
+//	| lB=anyUriBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP rB=anyUriBag RP
+//	    -> ^($o ANYURI $lB $rB)
+//	| lC=x500NameBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP rC=x500NameBag RP
+//	    -> ^($o X500NAME $lC $rC)
+//	| lD=rfc822NameBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP rD=rfc822NameBag RP
+//	    -> ^($o RFC822NAME $lD $rD)
+//	| lE=hexBinaryBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP rE=hexBinaryBag RP
+//	    -> ^($o HEXBINARY $lE $rE)
+//	| lF=base64BinaryBag DOT ( o=ATLEASTONEMENBEROF | o=SUBSET | o=SETEQUALS ) LP rF=base64BinaryBag RP
+//	    -> ^($o BASE64BINARY $lF $rF)
+//	;
 
 integerExpr
-	: (INTEGER_CONSTANT) => INTEGER_CONSTANT
-	| (ONEANDONLY) => (integerBag DOT ONEANDONLY LP RP)
+	: INTEGER_CONSTANT
+	| integerBag DOT ONEANDONLY LP RP
+  | INTEGER LP stringExpr RP
 //	| anyBag DOT! SIZE LP! RP!
 //	| stringExpr DOT! ( NODECOUNT )^ LP! RP!
 //	| integerExpr DOT! ABS LP! RP!
@@ -323,38 +322,45 @@ integerExpr
 //	| ABS LP! integerExpr RP!
 	;
 integerBag
-	: (INTEGER^ LP! (STRING_LIST | attributeSelector) RP!
-		| BAG^ LP! integerExpr ( COMMA! integerExpr)+ RP!)
-		(DOT! ( INTERSECTION | UNION )^ LP! integerBag	RP!)*
+	: (INTEGER LP l=attributeSelector RP
+	    -> ^(INTEGER $l)
+		| BAG LP l=integerExpr ( COMMA r+=integerExpr)* RP
+		  -> ^(BAG INTEGER $l $r)
+		) (DOT ( o=INTERSECTION | o=UNION ) LP l=integerBag	RP
+      -> ^($o INTEGER $l)
+		)*
 	;
 
 doubleExpr
-	: (DOUBLE_CONSTANT) => DOUBLE_CONSTANT
-//	| (DOUBLE) => DOUBLE^ LP! stringExpr RP!
+	: DOUBLE_CONSTANT
+//	| DOUBLE^ LP! stringExpr RP!
 //	| LP! doubleExpr ( '+' | '-' | '*' | '/' | '%' ) doubleExpr RP!
 //	| ( ABS | RND | FLR ) LP! doubleExpr	RP!
 	;
 doubleBag
 	: DOUBLE^ LP! (STRING_LIST | attributeSelector) RP!
-//	| BAG LP! doubleExpr ( COMMA! doubleExpr)+ RP!
+	| BAG LP! doubleExpr ( COMMA! doubleExpr)+ RP!
 //	| ( INTERSECTION | UNION ) LP! dayTimeDurationBag COMMA! dayTimeDurationBag	RP!
 	;
 
 stringExpr
-	: (STRING_CONSTANT) => STRING_CONSTANT^
-	| (ONEANDONLY) => stringBag DOT! ONEANDONLY^ LP! RP!
+	: STRING_CONSTANT^
+	| stringBag DOT! ONEANDONLY^ LP! RP!
 //		(DOT! ( REQUIRED | NORMALIZESPACE | NORMALIZETOLOWERCASE)^ LP! RP!)*
 	;
 //	| CONCATENATE LP! stringExpr COMMA! stringExpr RP!
 stringBag
-	: STRING^ LP! (STRING_LIST | attributeSelector) RP!
+	: STRING_LIST
+    -> ^(STRING STRING_LIST)
+	| attributeSelector
+	  -> ^(STRING attributeSelector)
 //	| (stringBag) => ( INTERSECTION | UNION ) LP! stringBag COMMA! stringBag	RP!
 	;
 
 
 anyUriExpr
-	: (ANYURI) => ANYURI^ LP! stringExpr RP!
-	| (ONEANDONLY) => anyUriBag DOT! ONEANDONLY^ LP! RP!
+	: ANYURI^ LP! stringExpr RP!
+	| anyUriBag DOT! ONEANDONLY^ LP! RP!
 //	| stringExpr DOT! URI^ LP! RP!
 //	| ((anyUriExpr) => anyUriExpr DOT! ( NORMALIZESPACE | NORMALIZETOLOWERCASE) LP! RP!)
 //	| CONCATENATE LP! anyUriExpr COMMA! anyUriExpr RP!
@@ -386,8 +392,8 @@ timeBag
 	;
 
 dateTimeExpr
-	: (DATETIME) => DATETIME^ LP! stringExpr RP!
-	| (ONEANDONLY) => dateTimeBag DOT! ONEANDONLY^ LP! RP!
+	: DATETIME^ LP! stringExpr RP!
+	| dateTimeBag DOT! ONEANDONLY^ LP! RP!
 	;
 dateTimeBag
 	: DATETIME^ LP! (STRING_LIST | attributeSelector) RP!
@@ -396,8 +402,8 @@ dateTimeBag
 	;
 
 base64BinaryExpr
-	: (BASE64BINARY) => BASE64BINARY^ LP! stringExpr RP!
-	| (ONEANDONLY) => base64BinaryBag DOT! ONEANDONLY^ LP! RP!
+	: BASE64BINARY^ LP! stringExpr RP!
+	| base64BinaryBag DOT! ONEANDONLY^ LP! RP!
 	;
 base64BinaryBag
 	: BASE64BINARY^ LP! (STRING_LIST | attributeSelector) RP!
@@ -438,8 +444,8 @@ x500NameBag
 	;
 
 rfc822NameExpr
-	: (RFC822NAME) => RFC822NAME^ LP! stringExpr RP!
-	| (ONEANDONLY) => rfc822NameBag DOT! ONEANDONLY^ LP! RP!
+	: RFC822NAME^ LP! stringExpr RP!
+	| rfc822NameBag DOT! ONEANDONLY^ LP! RP!
 //	| ((rfc822NameExpr) => rfc822NameExpr DOT! MATCH LP! rfc822NameExpr RP!)
 	;
 rfc822NameBag
@@ -475,10 +481,32 @@ WHITESPACE
 	| COMMENT
 	;
 
+//STRING_CONSTANT
+////	:	DQUOT ( ESC_SEQ | ~('\\'|DQUOT) )* DQUOT
+//	:	DQUOT ( options {greedy=false;} : (~DQUOT)*) DQUOT
+//	;
+
 STRING_CONSTANT
-//	:	DQUOT ( ESC_SEQ | ~('\\'|DQUOT) )* DQUOT
-	:	DQUOT ( options {greedy=false;} : (~DQUOT)*) DQUOT
-	;
+    :   DQUOT (  EscapeSequence | ~( '\\' | '"' | '\r' | '\n' ) )* DQUOT
+    ;
+
+fragment EscapeSequence
+    :   '\\'
+      (
+                 'b'
+             |   't'
+             |   'n'
+             |   'f'
+             |   'r'
+             |   '\"'
+             |   '\''
+             |   '\\'
+             |  ('0'..'3') ('0'..'7') ('0'..'7')
+             |  ('0'..'7') ('0'..'7')
+             | ('0'..'7')
+      )
+;
+
 
 STRING_LIST
 	: STRING_CONSTANT ( COMMA! STRING_CONSTANT )*
